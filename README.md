@@ -17,7 +17,7 @@ Example:
 
 ```css
 .parent {
-	gutters: 20px;
+    gutters: 20px;
 }
 
 ```
@@ -26,19 +26,18 @@ Outputs:
 
 ```css
 .parent {
-	--PGY: 20px;
-	--PGX: 20px;
-	margin-right: calc(var(--CGY, 0px) - var(--PGX, 0px));
-	margin-bottom: calc(var(--CGY, 0px) - var(--PGX, 0px));
-	gutters: 20px;
-	width: calc(400px - var(--CGX, 0px) + var(--PGX));
+    --PGY: 20px;
+    --PGX: 20px;
+    margin-right: calc(var(--CGY, 0px) - var(--PGX, 0px));
+    margin-bottom: calc(var(--CGY, 0px) - var(--PGX, 0px));
+    width: calc(400px - var(--CGX, 0px) + var(--PGX));
 }
 
 .parent > * {
-	--CGY: 20px;
-	--CGX: 20px;
-	margin-right: var(--CGY, 0px);
-	margin-bottom: var(--CGX, 0px);
+    --CGY: 20px;
+    --CGX: 20px;
+    margin-right: var(--CGY, 0px);
+    margin-bottom: var(--CGX, 0px);
 }
 ```
 
