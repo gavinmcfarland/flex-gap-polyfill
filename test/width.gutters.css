@@ -1,0 +1,8 @@
+.example {
+	gutters: 20px;
+	width: 400px;
+}
+
+.child {
+	width: 50%;
+}

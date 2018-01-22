@@ -1,0 +1,52 @@
+{
+  "name": "postcss-gutters",
+  "version": "0.0.1",
+  "description": "A [PostCSS] plugin which lets you add gutters between child elements of any parent element.",
+  "author": "Gavin <someotter@tadpot.com>",
+  "license": "CC0-1.0",
+  "repository": "mindthetic/postcss-gutters",
+  "homepage": "https://github.com/mindthetic/postcss-gutters#readme",
+  "bugs": "https://github.com/mindthetic/postcss-gutters/issues",
+  "main": "index.bundle.js",
+  "module": "index.js",
+  "files": [
+    "index.js",
+    "index.bundle.js"
+  ],
+  "scripts": {
+    "clean": "git clean -X -d -f",
+    "prepublishOnly": "npm test",
+    "pretest": "rollup -c .rollup.js --silent",
+    "test": "echo 'Running tests...'; npm run test:js && npm run test:tape",
+    "test:js": "eslint *.js --cache --ignore-path .gitignore --quiet",
+    "test:tape": "postcss-tape"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "postcss": "^6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26",
+    "babel-eslint": "^8.1",
+    "babel-preset-env": "^1.6",
+    "echint": "^4.0",
+    "eslint": "^4.14",
+    "eslint-config-dev": "2.0",
+    "postcss-tape": "2.2",
+    "postcss-value-parser": "^3.3.0",
+    "pre-commit": "^1.2",
+    "rollup": "^0.53.3",
+    "rollup-plugin-babel": "^3.0"
+  },
+  "eslintConfig": {
+    "extends": "dev",
+    "parser": "babel-eslint"
+  },
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin"
+  ]
+}
