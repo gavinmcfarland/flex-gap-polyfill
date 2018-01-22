@@ -48,12 +48,12 @@ npm install postcss-gutters --save-dev
 ```
 
 
-[npm-url]: https://www.npmjs.com/package/postcss-negative-padding
-[npm-img]: https://img.shields.io/npm/v/postcss-negative-padding.svg
-[cli-url]: https://travis-ci.org/mindthetic/postcss-negative-padding
-[cli-img]: https://img.shields.io/travis/mindthetic/postcss-negative-padding.svg
-[win-url]: https://ci.appveyor.com/project/mindthetic/postcss-negative-padding
-[win-img]: https://img.shields.io/appveyor/ci/mindthetic/postcss-negative-padding.svg
+[npm-url]: https://www.npmjs.com/package/postcss-gutters
+[npm-img]: https://img.shields.io/npm/v/postcss-gutters.svg
+[cli-url]: https://travis-ci.org/mindthetic/postcss-gutters
+[cli-img]: https://img.shields.io/travis/mindthetic/postcss-gutters.svg
+[win-url]: https://ci.appveyor.com/project/mindthetic/postcss-gutters
+[win-img]: https://img.shields.io/appveyor/ci/mindthetic/postcss-gutters.svg
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
