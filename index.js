@@ -1,6 +1,6 @@
 import postcss from "postcss";
 
-export default postcss.plugin("postcss-guttering", () => {
+export default postcss.plugin("postcss-gutters", () => {
 	// opts = opts || {};
 
 	function width(decl) {
