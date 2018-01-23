@@ -72,7 +72,7 @@ export default postcss.plugin("postcss-guttering", () => {
 			value: "calc(var(--CGY, 0px) - var(--PGX, 0px))"
 		});
 		decl.before({
-			prop: "margin-bottom",
+			prop: "margin-top",
 			value: "calc(var(--CGY, 0px) - var(--PGX, 0px))"
 		});
 
@@ -111,7 +111,7 @@ export default postcss.plugin("postcss-guttering", () => {
 				value: "var(--CGY, 0px)"
 			},
 			{
-				prop: "margin-bottom",
+				prop: "margin-top",
 				value: "var(--CGX, 0px)"
 			}
 		);
