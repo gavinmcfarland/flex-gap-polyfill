@@ -1,3 +1,3 @@
 .example > * {
-	width: calc(50% - var(--CGX, 0px));
+	width: calc(50% - var(--IGI, 0px));
 }

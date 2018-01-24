@@ -29,12 +29,12 @@ export default postcss.plugin("postcss-gutters", () => {
 		if (hasGutters === false) {
 			decl.before({
 				prop: "width",
-				value: "calc(" + decl.value + " - var(--CGX, 0px))"
+				value: "calc(" + decl.value + " - var(--IGI, 0px))"
 			});
 		} else {
 			decl.before({
 				prop: "width",
-				value: "calc(" + decl.value + " - var(--CGX, 0px) + var(--PGX))"
+				value: "calc(" + decl.value + " - var(--IGI, 0px) + var(--AGI))"
 			});
 		}
 
@@ -48,20 +48,20 @@ export default postcss.plugin("postcss-gutters", () => {
 
 		if (values.length === 1) {
 			decl.before({
-				prop: "--PGY",
+				prop: "--AGB",
 				value: values[0]
 			});
 			decl.before({
-				prop: "--PGX",
+				prop: "--AGI",
 				value: values[0]
 			});
 		} else {
 			decl.before({
-				prop: "--PGY",
+				prop: "--AGB",
 				value: values[0]
 			});
 			decl.before({
-				prop: "--PGX",
+				prop: "--AGI",
 				value: values[1]
 			});
 		}
@@ -69,11 +69,11 @@ export default postcss.plugin("postcss-gutters", () => {
 
 		decl.before({
 			prop: "margin-right",
-			value: "calc(var(--CGY, 0px) - var(--PGX, 0px))"
+			value: "calc((-1 * var(--IGI, var(--AGI))) + var(--AMI, 0px)) !important"
 		});
 		decl.before({
 			prop: "margin-top",
-			value: "calc(var(--CGY, 0px) - var(--PGX, 0px))"
+			value: "calc((-1 * var(--IGB, var(--AGB))) + var(--AMB, 0px)) !important"
 		});
 
 		var newRule = postcss.rule({
@@ -83,24 +83,40 @@ export default postcss.plugin("postcss-gutters", () => {
 		if (values.length === 1) {
 			newRule.append(
 				{
-					prop: "--CGY",
+					prop: "--IGB",
 					value: values[0]
 				},
 				{
-					prop: "--CGX",
+					prop: "--IGI",
 					value: values[0]
+				},
+				{
+					prop: "--AMB",
+					value: "calc(var(--IGB) - (var(--AGB, 0px) - var(--IGB, 0px)))"
+				},
+				{
+					prop: "--AMI",
+					value: "calc(var(--IGI) - (var(--AGI, 0px) - var(--IGI, 0px)))"
 				}
 			);
 		}
 		else {
 			newRule.append(
 				{
-					prop: "--CGY",
+					prop: "--IGB",
 					value: values[0]
 				},
 				{
-					prop: "--CGX",
+					prop: "--IGI",
 					value: values[1]
+				},
+				{
+					prop: "--AMB",
+					value: "calc(var(--IGB) - (var(--AGB, 0px) - var(--IGB, 0px)))"
+				},
+				{
+					prop: "--AMI",
+					value: "calc(var(--IGI) - (var(--AGI, 0px) - var(--IGI, 0px)))"
 				}
 			);
 		}
@@ -108,11 +124,11 @@ export default postcss.plugin("postcss-gutters", () => {
 		newRule.append(
 			{
 				prop: "margin-right",
-				value: "var(--CGY, 0px)"
+				value: "var(--AMI)"
 			},
 			{
 				prop: "margin-top",
-				value: "var(--CGX, 0px)"
+				value: "var(--AMB)"
 			}
 		);
 

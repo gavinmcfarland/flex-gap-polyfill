@@ -1,13 +1,15 @@
 .example {
-	--PGY: 20px;
-	--PGX: 20px;
-	margin-right: calc(var(--CGY, 0px) - var(--PGX, 0px));
-	margin-bottom: calc(var(--CGY, 0px) - var(--PGX, 0px));
+	--AGB: 20px;
+	--AGI: 20px;
+	margin-right: calc((-1 * var(--IGI, var(--AGI))) + var(--AMI, 0px)) !important;
+	margin-top: calc((-1 * var(--IGB, var(--AGB))) + var(--AMB, 0px)) !important;
 	gutters: 20px;
 }
 .example > * {
-	--CGY: 20px;
-	--CGX: 20px;
-	margin-right: var(--CGY, 0px);
-	margin-bottom: var(--CGX, 0px);
+	--IGB: 20px;
+	--IGI: 20px;
+	--AMB: calc(var(--IGB) - (var(--AGB, 0px) - var(--IGB, 0px)));
+	--AMI: calc(var(--IGI) - (var(--AGI, 0px) - var(--IGI, 0px)));
+	margin-right: var(--AMI);
+	margin-top: var(--AMB);
 }
