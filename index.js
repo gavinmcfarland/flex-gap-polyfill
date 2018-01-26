@@ -4,7 +4,7 @@ export default postcss.plugin("postcss-gutters", () => {
 	// opts = opts || {};
 
 	function width(decl) {
-		var hasGutters = false;
+		// var hasGutters = false;
 		// var selector = decl.parent.selector;
 		// var isChild = selector.match(/ *> *\*$/);
 		// if (isChild) {
@@ -20,23 +20,28 @@ export default postcss.plugin("postcss-gutters", () => {
 		// 	});
 		// }
 
-		var rule = decl.parent;
+		// var rule = decl.parent;
+        //
+		// rule.walkDecls("gutters", () => {
+		// 	hasGutters = true;
+		// });
+		// console.log(rule);
+		// if (hasGutters === false) {
+		// 	decl.before({
+		// 		prop: "width",
+		// 		value: "calc(" + decl.value + " - var(--IGI, calc(-1 * var(--AGI))))"
+		// 	});
+		// } else {
+		// 	decl.before({
+		// 		prop: "width",
+		// 		value: "calc(" + decl.value + " - var(--IGI, 0px) + var(--AGI))"
+		// 	});
+		// }
 
-		rule.walkDecls("gutters", () => {
-			hasGutters = true;
+		decl.before({
+			prop: "width",
+			value: "calc(" + decl.value + " - var(--IGI, calc(-1 * var(--AGI))))"
 		});
-
-		if (hasGutters === false) {
-			decl.before({
-				prop: "width",
-				value: "calc(" + decl.value + " - var(--IGI, 0px))"
-			});
-		} else {
-			decl.before({
-				prop: "width",
-				value: "calc(" + decl.value + " - var(--IGI, 0px) + var(--AGI))"
-			});
-		}
 
 		decl.remove();
 	}
