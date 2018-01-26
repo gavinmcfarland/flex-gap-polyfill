@@ -4,7 +4,7 @@
 	margin-right: calc((-1 * var(--IGI, var(--AGI))) + var(--AMI, 0px)) !important;
 	margin-top: calc((-1 * var(--IGB, var(--AGB))) + var(--AMB, 0px)) !important;
 	gutters: 20px;
-	width: calc(400px - var(--IGI, calc(-1 * var(--AGI))));
+	width: calc(400px - var(--IGI, calc(-1 * var(--AGI, 0px))));
 }
 
 .example > * {
@@ -17,5 +17,5 @@
 }
 
 .child {
-	width: calc(50% - var(--IGI, calc(-1 * var(--AGI))));
+	width: calc(50% - var(--IGI, calc(-1 * var(--AGI, 0px))));
 }

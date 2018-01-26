@@ -40,7 +40,7 @@ export default postcss.plugin("postcss-gutters", () => {
 
 		decl.before({
 			prop: "width",
-			value: "calc(" + decl.value + " - var(--IGI, calc(-1 * var(--AGI))))"
+			value: "calc(" + decl.value + " - var(--IGI, calc(-1 * var(--AGI, 0px))))"
 		});
 
 		decl.remove();
