@@ -1,3 +1,7 @@
+.example > * > * {
+	--IW: 200%;
+}
 .example > * {
-	width: calc(50% - var(--IGI, calc(-1 * var(--AGI, 0px))));
+	--IW: 0.5;
+	width: calc( 50% - var(--CCC, var(--IGI, calc(-1 * var(--AGI, 0px)))) );
 }

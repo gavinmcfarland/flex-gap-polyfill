@@ -1,10 +1,15 @@
+.example > * {
+	--IW: 200%;
+}
+
 .example {
 	--AGB: 20px;
 	--AGI: 20px;
-	margin-right: calc((-1 * var(--IGI, var(--AGI))) + var(--AMI, 0px)) !important;
+	margin-left: calc((-1 * var(--IGI, var(--AGI))) + var(--AMI, 0px)) !important;
 	margin-top: calc((-1 * var(--IGB, var(--AGB))) + var(--AMB, 0px)) !important;
 	gutters: 20px;
-	width: calc(400px - var(--IGI, calc(-1 * var(--AGI, 0px))));
+	--IW: NaN;
+	width: calc( 400px - var(--CCC, var(--IGI, calc(-1 * var(--AGI, 0px)))) );
 }
 
 .example > * {
@@ -12,10 +17,23 @@
 	--IGI: 20px;
 	--AMB: calc(var(--IGB) - (var(--AGB, 0px) - var(--IGB, 0px)));
 	--AMI: calc(var(--IGI) - (var(--AGI, 0px) - var(--IGI, 0px)));
-	margin-right: var(--AMI);
+	margin-left: var(--AMI);
 	margin-top: var(--AMB);
 }
 
+.example > * > * {
+	--CCC: 0px;
+}
+
+.example > * {
+	--CCC: initial !important;
+}
+
+.child > * {
+	--IW: 200%;
+}
+
 .child {
-	width: calc(50% - var(--IGI, calc(-1 * var(--AGI, 0px))));
+	--IW: 0.5;
+	width: calc( 50% - var(--CCC, var(--IGI, calc(-1 * var(--AGI, 0px)))) );
 }
