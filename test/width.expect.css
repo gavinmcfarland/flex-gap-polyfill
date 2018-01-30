@@ -1,7 +1,7 @@
-.example > * > * {
-	--IW: 200%;
+.w_50 > * {
+	--width: initial;
 }
-.example > * {
-	--IW: 0.5;
-	width: calc( 50% - var(--CCC, var(--IGI, calc(-1 * var(--AGI, 0px)))) );
+.w_50 {
+	--width: 0.5;
+	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 }

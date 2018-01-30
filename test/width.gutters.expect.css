@@ -1,39 +1,35 @@
-.example > * {
-	--IW: 200%;
+.g_20 > * > * {
+	--child-gutters: initial;
+	--parent-gutters: initial;
+	--neg-gutters: initial;
 }
 
-.example {
-	--AGB: 20px;
-	--AGI: 20px;
-	margin-left: calc((-1 * var(--IGI, var(--AGI))) + var(--AMI, 0px)) !important;
-	margin-top: calc((-1 * var(--IGB, var(--AGB))) + var(--AMB, 0px)) !important;
-	gutters: 20px;
-	--IW: NaN;
-	width: calc( 400px - var(--CCC, var(--IGI, calc(-1 * var(--AGI, 0px)))) );
+.g_20 > * {
+	--gutters: initial;
+	--child-gutters: 20px!important;
+	--parent-gutters: 20px;
+	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 }
 
-.example > * {
-	--IGB: 20px;
-	--IGI: 20px;
-	--AMB: calc(var(--IGB) - (var(--AGB, 0px) - var(--IGB, 0px)));
-	--AMI: calc(var(--IGI) - (var(--AGI, 0px) - var(--IGI, 0px)));
-	margin-left: var(--AMI);
-	margin-top: var(--AMB);
+.g_20 {
+	--gutters: 20px;
 }
 
-.example > * > * {
-	--CCC: 0px;
+.g_20 > * {
+	margin-top: var(--child-gutters, 0px);
+	margin-left: var(--child-gutters, 0px);
 }
 
-.example > * {
-	--CCC: initial !important;
+.g_20 {
+	margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px)));
+	margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px)));
 }
 
-.child > * {
-	--IW: 200%;
+.w_50 > * {
+	--width: initial;
 }
 
-.child {
-	--IW: 0.5;
-	width: calc( 50% - var(--CCC, var(--IGI, calc(-1 * var(--AGI, 0px)))) );
+.w_50 {
+	--width: 0.5;
+	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 }
