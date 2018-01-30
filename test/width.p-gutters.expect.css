@@ -13,7 +13,7 @@
 }
 
 .g_2 {
-	--gutters: 2%;
+	--gutters: 2%!important;
 	--p-gutters: calc(var(--width) * var(--gutters));
 }
 
@@ -23,8 +23,8 @@
 }
 
 .g_2 {
-	margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px)));
-	margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px)));
+	margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
+	margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
 }
 
 .w_50 > * {

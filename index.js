@@ -101,7 +101,7 @@ export default postcss.plugin("postcss-gutters", () => {
 		// .g_20
 		decl.before({
 			prop: "--gutters",
-			value: decl.value
+			value: decl.value + "!important"
 		});
 
 		// .g_20 > *
@@ -116,10 +116,10 @@ export default postcss.plugin("postcss-gutters", () => {
 		// .g_20
 		margin1Rule.append({
 			prop: "margin-top",
-			value: "calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px)))"
+			value: "calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important"
 		}, {
 			prop: "margin-left",
-			value: "calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px)))"
+			value: "calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important"
 		});
 
 		level1Rule.before(level2Rule);
