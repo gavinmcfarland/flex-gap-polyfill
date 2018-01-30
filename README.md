@@ -24,7 +24,6 @@ It works by adding margins to each child element and recalculating their widths.
 - Use with or without a wrapper div
 - Gutters don't have to be even numbers
 - Works well with responsive design
-- Use percentages at first level (nested coming soon)
 
 
 ## Setup
