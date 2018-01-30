@@ -9,7 +9,7 @@
 	--child-gutters: 2%!important;
 	--parent-gutters: 2%;
 	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
-	--p-gutters: initial;
+	--p-gutters: initial !important;
 }
 
 .g_2 {

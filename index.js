@@ -89,7 +89,7 @@ export default postcss.plugin("postcss-gutters", () => {
 		if (isPercentage) {
 			level2Rule.append({
 				prop: "--p-gutters",
-				value: "initial"
+				value: "initial !important"
 			});
 
 			level1Rule.append({
