@@ -7,12 +7,12 @@
 
 Work in progress, not recommended for production.
 
-Apply gutters between child elements of any parent element.
+Apply gutters between child elements of any container element.
 
 Example:
 
 ```css
-.parent {
+.container {
     gutters: 20px;
 }
 
@@ -21,9 +21,12 @@ Example:
 It works by adding margins to each child element and recalculating their widths. 
 
 - Works with nested elements
+- No additional class names or divs needed
 - Use with or without a wrapper div
-- Gutters don't have to be even numbers
 - Works well with responsive design
+- Gutters don't have to be even numbers
+- Style borders and padding as normal
+- Supports percentages (Note on flex containers they behave inconsistantly amoungst browsers)
 
 
 ## Setup
@@ -31,6 +34,10 @@ It works by adding margins to each child element and recalculating their widths.
 ```bash
 npm install postcss-gutters --save-dev
 ```
+
+## Browsers
+
+Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
 
 
 [npm-url]: https://www.npmjs.com/package/postcss-gutters
