@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../test/width.gutters.result.css">
+		<link rel="stylesheet" href="../test/width.p-gutters.result.css">
+		<style media="screen">
+			body {
+				margin: 0;
+				padding: 20px;
+				font-family: sans-serif;
+				line-height: 1.25;
+				font-size: 16px;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			.container::before,
+			.container::after,
+			.child-container::before,
+			.child-conatiner::after {
+    			content: ' ';
+    			display: table;
+			}
+			.container > * {
+				background-color: pink;
+			}
+			.child-container {
+				background: transparent;
+			}
+			.child-container > * {
+				background-color: aqua;
+			}
+			h1 {
+				margin-top: 20px;
+				margin-bottom: 40px;
+				text-align: center;
+			}
+			p {
+				margin-top: 20px;
+			}
+
+			div > * {
+				width: 200%
+			}
+
+			.container, .child-container {
+				display: flex;
+				flex-wrap: wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>PostCSS Gutters</h1>
+		<p>View on <a href="https://github.com/mindthetic/postcss-gutters">github</a></h1>
+		<p>no gutters > no gutters</p>
+		<div class="container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+		<p>no gutters > 20px</p>
+		<div class="container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="g_20 child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+		<p>20px > no gutters</p>
+		<div class="g_20 container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+		<p>20px > 20px</p>
+		<div class="g_20 container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="g_20 child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+		<p>2% > no gutters</p>
+		<div class="g_2 container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+		<p> no gutters > 2%</p>
+		<div class="container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="g_2 child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+		<p> 2% > 2%</p>
+		<div class="g_2 container">
+			<div class="w_50">A</div>
+			<div class="w_50">B</div>
+			<div class="w_50">C</div>
+			<div class="w_50">D</div>
+			<div class="g_2 child-container">
+				<div class="w_50">A</div>
+				<div class="w_50">B</div>
+				<div class="w_50">C</div>
+				<div class="w_50">D</div>
+			</div>
+		</div>
+
+	</body>
+</html>
