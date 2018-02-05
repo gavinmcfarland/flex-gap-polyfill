@@ -28,6 +28,10 @@ export default postcss.plugin("postcss-gutters", () => {
 			level1Rule.before(level2Rule);
 		}
 
+		decl.before({
+			prop: "flex-grow",
+			value: "0"
+		});
 
 		decl.before({
 			prop: "width",
