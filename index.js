@@ -32,6 +32,10 @@ export default postcss.plugin("postcss-gutters", () => {
 			prop: "flex-grow",
 			value: "0"
 		});
+		decl.before({
+			prop: "flex-basis",
+			value: "auto"
+		});
 
 		decl.before({
 			prop: "width",
