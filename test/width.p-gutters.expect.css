@@ -12,6 +12,16 @@
 	--p-gutters: initial !important;
 }
 
+.g_2:before {
+	content: ' ';
+	display: table;
+}
+
+.g_2:after {
+	content: ' ';
+	display: table;
+}
+
 .g_2 {
 	--gutters: 2%!important;
 	--p-gutters: calc(var(--width) * var(--gutters));

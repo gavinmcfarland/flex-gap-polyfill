@@ -65,6 +65,12 @@ export default postcss.plugin("postcss-gutters", () => {
 		let margin2Rule = postcss.rule({
 			selector: level1Rule.selector + " > *"
 		});
+		let beforeRule = postcss.rule({
+			selector: level1Rule.selector + ":before"
+		});
+		let afterRule = postcss.rule({
+			selector: level1Rule.selector + ":after"
+		});
 
 		// .g_20 > * > *
 		level3Rule.append({
@@ -130,8 +136,27 @@ export default postcss.plugin("postcss-gutters", () => {
 			value: "calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important"
 		});
 
+		// Before, After
+		beforeRule.append({
+			prop: "content",
+			value: "' '"
+		},{
+			prop: "display",
+			value: "table"
+		});
+
+		afterRule.append({
+			prop: "content",
+			value: "' '"
+		},{
+			prop: "display",
+			value: "table"
+		});
+
 		level1Rule.before(level2Rule);
 		level2Rule.before(level3Rule);
+		level1Rule.before(beforeRule);
+		level1Rule.before(afterRule);
 		level1Rule.after(margin2Rule);
 		margin2Rule.after(margin1Rule);
 

@@ -9,6 +9,14 @@
 	--parent-gutters: 20px;
 	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 }
+.g_20:before {
+	content: ' ';
+	display: table;
+}
+.g_20:after {
+	content: ' ';
+	display: table;
+}
 .g_20 {
 	--gutters: 20px!important;
 }
