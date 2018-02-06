@@ -6,6 +6,9 @@ module.exports = {
 		'width': {
 			message: 'supports width property'
 		},
+		'width.collapse': {
+			message: 'supports width collapse'
+		},
 		'width.gutters': {
 			message: 'supports width and gutters when applied to same element'
 		},
