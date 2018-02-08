@@ -17,6 +17,14 @@ export default postcss.plugin("postcss-gutters", () => {
 				prop: "flex-grow",
 				value: "0"
 			});
+			decl.before({
+				prop: "--grow",
+				value: "0 !important"
+			});
+			level2Rule.append({
+				prop: "--grow",
+				value: "initial"
+			});
 		}
 		else {
 			if (isPercentage) {

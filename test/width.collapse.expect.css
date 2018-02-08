@@ -1,3 +1,4 @@
 .w_collapse {
 	flex-grow: 0;
+	--grow: 0 !important;
 }
