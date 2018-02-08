@@ -75,24 +75,24 @@ export default postcss.plugin("postcss-gutters", () => {
 
 	function transformGutters(decl) {
 		// var values = postcss.list.space(decl.value);
-		let isPercentage = decl.value.match(/[\d\.]+%/g);
-		let level1Rule = decl.parent;
-		let level2Rule = postcss.rule({
-			selector: level1Rule.selector + " > *"
+		var isPercentage = decl.value.match(/[\d\.]+%/g);
+		var level1Rule = decl.parent;
+		var level2Rule = postcss.rule({
+			selector: level1Rule.selector + " > *, " + level1Rule.selector + " > ::slotted(*)"
 		});
-		let level3Rule = postcss.rule({
-			selector: level1Rule.selector + " > * > *"
+		var level3Rule = postcss.rule({
+			selector: level1Rule.selector + " > * > *, " + level1Rule.selector + " > ::slotted(*) > *"
 		});
-		let margin1Rule = postcss.rule({
+		var margin1Rule = postcss.rule({
 			selector: level1Rule.selector
 		});
-		let margin2Rule = postcss.rule({
-			selector: level1Rule.selector + " > *"
+		var margin2Rule = postcss.rule({
+			selector: level1Rule.selector + " > *, " + level1Rule.selector + " > ::slotted(*)"
 		});
-		let beforeRule = postcss.rule({
+		var beforeRule = postcss.rule({
 			selector: level1Rule.selector + ":before"
 		});
-		let afterRule = postcss.rule({
+		var afterRule = postcss.rule({
 			selector: level1Rule.selector + ":after"
 		});
 

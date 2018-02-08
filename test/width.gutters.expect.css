@@ -1,10 +1,10 @@
-.g_20 > * > * {
+.g_20 > * > *, .g_20 > ::slotted(*) > * {
 	--child-gutters: initial;
 	--parent-gutters: initial;
 	--neg-gutters: initial;
 }
 
-.g_20 > * {
+.g_20 > *, .g_20 > ::slotted(*) {
 	--gutters: initial;
 	--child-gutters: 20px!important;
 	--parent-gutters: 20px;
@@ -25,7 +25,7 @@
 	--gutters: 20px!important;
 }
 
-.g_20 > * {
+.g_20 > *, .g_20 > ::slotted(*) {
 	margin-top: var(--child-gutters, 0px);
 	margin-left: var(--child-gutters, 0px);
 }
