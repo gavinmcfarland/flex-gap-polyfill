@@ -81,7 +81,7 @@ export default postcss.plugin("postcss-gutters", () => {
 			selector: level1Rule.selector + " > *, " + level1Rule.selector + " > ::slotted(*)"
 		});
 		var level3Rule = postcss.rule({
-			selector: level1Rule.selector + " > * > *, " + level1Rule.selector + " > ::slotted(*) > *"
+			selector: level1Rule.selector + " > * > *"
 		});
 		var margin1Rule = postcss.rule({
 			selector: level1Rule.selector

@@ -1,4 +1,4 @@
-.g_2 > * > *, .g_2 > ::slotted(*) > * {
+.g_2 > * > * {
 	--child-gutters: initial;
 	--parent-gutters: initial;
 	--neg-gutters: initial;
