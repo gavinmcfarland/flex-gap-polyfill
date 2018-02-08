@@ -167,6 +167,9 @@ export default postcss.plugin("postcss-gutters", () => {
 		},{
 			prop: "display",
 			value: "table"
+		},{
+			prop: "width",
+			value: "0"
 		});
 
 		afterRule.append({
@@ -175,6 +178,9 @@ export default postcss.plugin("postcss-gutters", () => {
 		},{
 			prop: "display",
 			value: "table"
+		},{
+			prop: "width",
+			value: "0"
 		});
 
 		level1Rule.before(level2Rule);

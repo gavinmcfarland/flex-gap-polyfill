@@ -15,11 +15,13 @@
 .g_2:before {
 	content: ' ';
 	display: table;
+	width: 0;
 }
 
 .g_2:after {
 	content: ' ';
 	display: table;
+	width: 0;
 }
 
 .g_2 {

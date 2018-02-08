@@ -14,11 +14,13 @@
 .g_20:before {
 	content: ' ';
 	display: table;
+	width: 0;
 }
 
 .g_20:after {
 	content: ' ';
 	display: table;
+	width: 0;
 }
 
 .g_20 {
