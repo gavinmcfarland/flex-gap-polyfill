@@ -1,4 +1,5 @@
 .w_collapse {
 	flex-grow: 0;
+	display: inline-flex;
 	--grow: 0 !important;
 }

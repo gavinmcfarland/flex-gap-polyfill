@@ -18,6 +18,10 @@ export default postcss.plugin("postcss-gutters", () => {
 				value: "0"
 			});
 			decl.before({
+				prop: "display",
+				value: "inline-flex"
+			});
+			decl.before({
 				prop: "--grow",
 				value: "0 !important"
 			});
