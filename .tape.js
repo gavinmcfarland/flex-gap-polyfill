@@ -6,6 +6,9 @@ module.exports = {
 		'width': {
 			message: 'supports width property'
 		},
+		'height': {
+			message: 'supports height property'
+		},
 		'width.collapse': {
 			message: 'supports width collapse'
 		},

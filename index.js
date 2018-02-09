@@ -73,6 +73,75 @@ export default postcss.plugin("postcss-gutters", () => {
 
 	}
 
+	function transformHeight(decl) {
+		let level1Rule = decl.parent;
+		let isPercentage = decl.value.match(/[\d\.]+%/g);
+		let level2Rule = postcss.rule({
+			selector: level1Rule.selector + " > *"
+		});
+		var valueNumber = 0;
+
+		if (decl.value === "collapse") {
+			decl.before({
+				prop: "flex-grow",
+				value: "0"
+			});
+			decl.before({
+				prop: "display",
+				value: "inline-flex"
+			});
+			decl.before({
+				prop: "--grow",
+				value: "0 !important"
+			});
+			level2Rule.append({
+				prop: "--grow",
+				value: "initial"
+			});
+		}
+		else {
+			if (isPercentage) {
+				valueNumber = decl.value.replace(/\%/g, "");
+				// .w_50
+				decl.before({
+					prop: "--height",
+					value: valueNumber / 100
+				});
+
+				// .w_50 > *
+				level2Rule.append({
+					prop: "--height",
+					value: "initial"
+				});
+
+				level1Rule.before(level2Rule);
+			}
+
+
+
+			decl.before({
+				prop: "flex-grow",
+				value: "0"
+			});
+			decl.before({
+				prop: "flex-basis",
+				value: "auto"
+			});
+
+			decl.before({
+				prop: "height",
+				value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
+			});
+
+
+
+			// Remove original decl
+
+		}
+		decl.remove();
+
+	}
+
 	function transformGutters(decl) {
 		// var values = postcss.list.space(decl.value);
 		var isPercentage = decl.value.match(/[\d\.]+%/g);
@@ -420,6 +489,9 @@ export default postcss.plugin("postcss-gutters", () => {
 		css.walkDecls(function (decl) {
 			if (decl.prop === "width") {
 				transformWidth(decl);
+			}
+			if (decl.prop === "height") {
+				transformHeight(decl);
 			}
 			if (decl.prop === "gutters") {
 				transformGutters(decl);
