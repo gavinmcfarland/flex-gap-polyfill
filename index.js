@@ -45,6 +45,11 @@ export default postcss.plugin("postcss-gutters", () => {
 					value: "initial"
 				});
 
+				level2Rule.append({
+					prop: "--direction-row-grow",
+					value: "initial"
+				});
+
 				level1Rule.before(level2Rule);
 			}
 
@@ -118,6 +123,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				// .w_50 > *
 				level2Rule.append({
 					prop: "--height",
+					value: "initial"
+				});
+
+				level2Rule.append({
+					prop: "--direction-column-grow",
 					value: "initial"
 				});
 

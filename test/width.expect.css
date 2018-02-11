@@ -1,5 +1,6 @@
 .w_50 > * {
 	--width: initial;
+	--direction-row-grow: initial;
 }
 .w_50 {
 	--width: 0.5;

@@ -1,5 +1,6 @@
 .h_50 > * {
 	--height: initial;
+	--direction-column-grow: initial;
 }
 .h_50 {
 	--height: 0.5;
