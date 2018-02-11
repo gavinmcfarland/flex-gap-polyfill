@@ -45,7 +45,7 @@
 
 .w_50 {
 	--width: 0.5;
-	flex-grow: 0 !important;
+	flex-grow: var(--direction-row);
 	flex-shrink: 0;
 	flex-basis: auto !important;
 	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));

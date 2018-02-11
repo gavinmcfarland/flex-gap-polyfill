@@ -49,10 +49,9 @@ export default postcss.plugin("postcss-gutters", () => {
 			}
 
 
-
 			decl.before({
 				prop: "flex-grow",
-				value: "0 !important"
+				value: "var(--direction-row)"
 			});
 			decl.before({
 				prop: "flex-shrink",
@@ -125,7 +124,7 @@ export default postcss.plugin("postcss-gutters", () => {
 
 			decl.before({
 				prop: "flex-grow",
-				value: "0 !important"
+				value: "var(--direction-column)"
 			});
 			decl.before({
 				prop: "flex-shrink",
