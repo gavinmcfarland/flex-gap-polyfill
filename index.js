@@ -22,11 +22,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				value: "inline-flex"
 			});
 			decl.before({
-				prop: "--grow",
+				prop: "--direction-row-grow",
 				value: "0 !important"
 			});
 			level2Rule.append({
-				prop: "--grow",
+				prop: "--direction-row-grow",
 				value: "initial"
 			});
 		}
@@ -98,11 +98,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				value: "inline-flex"
 			});
 			decl.before({
-				prop: "--grow",
+				prop: "--direction-column-grow",
 				value: "0 !important"
 			});
 			level2Rule.append({
-				prop: "--grow",
+				prop: "--direction-column-grow",
 				value: "initial"
 			});
 		}
