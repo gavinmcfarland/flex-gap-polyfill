@@ -60,7 +60,7 @@ export default postcss.plugin("postcss-gutters", () => {
 			});
 			decl.before({
 				prop: "flex-basis",
-				value: "auto"
+				value: "auto !important"
 			});
 
 			decl.before({
@@ -133,7 +133,7 @@ export default postcss.plugin("postcss-gutters", () => {
 			});
 			decl.before({
 				prop: "flex-basis",
-				value: "auto"
+				value: "auto !important"
 			});
 
 			decl.before({

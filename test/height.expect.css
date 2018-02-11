@@ -5,6 +5,6 @@
 	--height: 0.5;
 	flex-grow: 0;
 	flex-shrink: 0;
-	flex-basis: auto;
+	flex-basis: auto !important;
 	height: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 }
