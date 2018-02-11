@@ -44,6 +44,7 @@
 .w_50 {
 	--width: 0.5;
 	flex-grow: 0;
+	flex-shrink: 0;
 	flex-basis: auto;
 	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 }

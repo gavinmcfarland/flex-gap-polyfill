@@ -55,6 +55,10 @@ export default postcss.plugin("postcss-gutters", () => {
 				value: "0"
 			});
 			decl.before({
+				prop: "flex-shrink",
+				value: "0"
+			});
+			decl.before({
 				prop: "flex-basis",
 				value: "auto"
 			});
@@ -121,6 +125,10 @@ export default postcss.plugin("postcss-gutters", () => {
 
 			decl.before({
 				prop: "flex-grow",
+				value: "0"
+			});
+			decl.before({
+				prop: "flex-shrink",
 				value: "0"
 			});
 			decl.before({
