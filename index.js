@@ -22,11 +22,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				value: "inline-flex"
 			});
 			decl.before({
-				prop: "--direction-row-grow",
-				value: "0 !important"
+				prop: "--width-grow",
+				value: "0"
 			});
 			level2Rule.append({
-				prop: "--direction-row-grow",
+				prop: "--width-grow",
 				value: "initial"
 			});
 		}
@@ -45,22 +45,20 @@ export default postcss.plugin("postcss-gutters", () => {
 					value: "initial"
 				});
 
-				level2Rule.append({
-					prop: "--direction-row-grow",
-					value: "initial"
-				});
-
 				level1Rule.before(level2Rule);
 			}
 
-
 			decl.before({
-				prop: "--direction-row-grow",
-				value: "0 !important"
+				prop: "--width-grow",
+				value: "0"
+			});
+			level2Rule.append({
+				prop: "--width-grow",
+				value: "initial"
 			});
 			decl.before({
 				prop: "flex-grow",
-				value: "var(--direction-row-grow)"
+				value: "var(--row-grow, var(--height-grow, 1))"
 			});
 			decl.before({
 				prop: "flex-shrink",
@@ -102,14 +100,6 @@ export default postcss.plugin("postcss-gutters", () => {
 				prop: "display",
 				value: "inline-flex"
 			});
-			decl.before({
-				prop: "--direction-column-grow",
-				value: "0 !important"
-			});
-			level2Rule.append({
-				prop: "--direction-column-grow",
-				value: "initial"
-			});
 		}
 		else {
 			if (isPercentage) {
@@ -126,22 +116,20 @@ export default postcss.plugin("postcss-gutters", () => {
 					value: "initial"
 				});
 
-				level2Rule.append({
-					prop: "--direction-column-grow",
-					value: "initial"
-				});
-
 				level1Rule.before(level2Rule);
 			}
 
-
 			decl.before({
-				prop: "--direction-column-grow",
-				value: "0 !important"
+				prop: "--height-grow",
+				value: "0"
+			});
+			level2Rule.append({
+				prop: "--height-grow",
+				value: "initial"
 			});
 			decl.before({
 				prop: "flex-grow",
-				value: "var(--direction-column-grow)"
+				value: "var(--column-grow, var(--width-grow, 1))"
 			});
 			decl.before({
 				prop: "flex-shrink",
