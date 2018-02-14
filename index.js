@@ -159,7 +159,10 @@ export default postcss.plugin("postcss-gutters", () => {
 		var isPercentage = decl.value.match(/[\d\.]+%/g);
 		var level1Rule = decl.parent;
 		var level2Rule = postcss.rule({
-			selector: level1Rule.selector + " > *, " + level1Rule.selector + " > ::slotted(*)"
+			selector: level1Rule.selector + " > *"
+		});
+		var level2Slotted = postcss.rule({
+			selector: level1Rule.selector + " > ::slotted(*)"
 		});
 		var level3Rule = postcss.rule({
 			selector: level1Rule.selector + " > * > *"
@@ -168,7 +171,10 @@ export default postcss.plugin("postcss-gutters", () => {
 			selector: level1Rule.selector
 		});
 		var margin2Rule = postcss.rule({
-			selector: level1Rule.selector + " > *, " + level1Rule.selector + " > ::slotted(*)"
+			selector: level1Rule.selector + " > *"
+		});
+		var margin2Slotted = postcss.rule({
+			selector: level1Rule.selector + " > ::slotted(*)"
 		});
 		var beforeRule = postcss.rule({
 			selector: level1Rule.selector + ":before"
@@ -204,9 +210,28 @@ export default postcss.plugin("postcss-gutters", () => {
 			value: "calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important"
 		});
 
+		level2Slotted.append({
+			prop: "--gutters",
+			value: "initial"
+		}, {
+			prop: "--child-gutters",
+			value: decl.value + "!important"
+		}, {
+			prop: "--parent-gutters",
+			value: decl.value
+		}, {
+			prop: "--neg-gutters",
+			value: "calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important"
+		});
+
 		// P-gutters
 		if (isPercentage) {
 			level2Rule.append({
+				prop: "--p-gutters",
+				value: "initial !important"
+			});
+
+			level2Slotted.append({
 				prop: "--p-gutters",
 				value: "initial !important"
 			});
@@ -265,10 +290,12 @@ export default postcss.plugin("postcss-gutters", () => {
 		});
 
 		level1Rule.before(level2Rule);
+		level1Rule.before(level2Slotted);
 		level2Rule.before(level3Rule);
 		level1Rule.before(beforeRule);
 		level1Rule.before(afterRule);
 		level1Rule.after(margin2Rule);
+		level1Rule.after(margin2Slotted);
 		margin2Rule.after(margin1Rule);
 
 		// Remove original decl
