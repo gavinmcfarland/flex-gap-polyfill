@@ -37,7 +37,10 @@
 	--p-gutters: calc(var(--width) * var(--gutters));
 }
 
-.g_2 > ::slotted(*) {}
+.g_2 > ::slotted(*) {
+	margin-top: var(--child-gutters, 0px);
+	margin-left: var(--child-gutters, 0px);
+}
 
 .g_2 > * {
 	margin-top: var(--child-gutters, 0px);

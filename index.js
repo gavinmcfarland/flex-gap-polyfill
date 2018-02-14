@@ -256,6 +256,13 @@ export default postcss.plugin("postcss-gutters", () => {
 			prop: "margin-left",
 			value: "var(--child-gutters, 0px)"
 		});
+		margin2Slotted.append({
+			prop: "margin-top",
+			value: "var(--child-gutters, 0px)"
+		}, {
+			prop: "margin-left",
+			value: "var(--child-gutters, 0px)"
+		});
 
 		// .g_20
 		margin1Rule.append({

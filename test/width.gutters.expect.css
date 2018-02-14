@@ -34,7 +34,10 @@
 	--gutters: 20px!important;
 }
 
-.g_20 > ::slotted(*) {}
+.g_20 > ::slotted(*) {
+	margin-top: var(--child-gutters, 0px);
+	margin-left: var(--child-gutters, 0px);
+}
 
 .g_20 > * {
 	margin-top: var(--child-gutters, 0px);
