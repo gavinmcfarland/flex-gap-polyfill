@@ -38,8 +38,8 @@
 }
 
 .g_2 > ::slotted(*) {
-	margin-top: var(--child-gutters, 0px);
-	margin-left: var(--child-gutters, 0px);
+	margin-top: var(--child-gutters, 0px) !important;
+	margin-left: var(--child-gutters, 0px) !important;
 }
 
 .g_2 > * {
