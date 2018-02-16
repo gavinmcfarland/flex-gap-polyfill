@@ -183,6 +183,17 @@ export default postcss.plugin("postcss-gutters", () => {
 			selector: level1Rule.selector + ":after"
 		});
 
+		level1Rule.append({
+			prop: "--child-gutters",
+			value: "initial"
+		}, {
+			prop: "--parent-gutters",
+			value: "initial"
+		}, {
+			prop: "--neg-gutters",
+			value: "initial"
+		});
+
 		// .g_20 > * > *
 		level3Rule.append({
 			prop: "--child-gutters",

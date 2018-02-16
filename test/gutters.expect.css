@@ -27,6 +27,9 @@
 }
 .g_20 {
 	--gutters: 20px!important;
+	--child-gutters: initial;
+	--parent-gutters: initial;
+	--neg-gutters: initial;
 }
 .g_20 > ::slotted(*) {
 	margin-top: var(--child-gutters, 0px) !important;
