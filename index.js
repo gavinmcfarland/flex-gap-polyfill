@@ -46,6 +46,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				});
 
 				level1Rule.before(level2Rule);
+
+				decl.before({
+					prop: "width",
+					value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
+				});
 			}
 
 			decl.before({
@@ -67,11 +72,6 @@ export default postcss.plugin("postcss-gutters", () => {
 			decl.before({
 				prop: "flex-basis",
 				value: "auto !important"
-			});
-
-			decl.before({
-				prop: "width",
-				value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
 			});
 
 
@@ -117,6 +117,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				});
 
 				level1Rule.before(level2Rule);
+
+				decl.before({
+					prop: "height",
+					value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
+				});
 			}
 
 			decl.before({
@@ -139,13 +144,6 @@ export default postcss.plugin("postcss-gutters", () => {
 				prop: "flex-basis",
 				value: "auto !important"
 			});
-
-			decl.before({
-				prop: "height",
-				value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
-			});
-
-
 
 			// Remove original decl
 
