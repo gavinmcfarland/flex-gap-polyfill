@@ -208,6 +208,11 @@ export default postcss.plugin("postcss-gutters", () => {
 				prop: "flex-basis",
 				value: "auto !important"
 			});
+			decl.before({
+				prop: "height",
+				value: "calc(var(--gutters, 0)" + decl.value + ")"
+			});
+			decl.remove();
 		}
 
 
