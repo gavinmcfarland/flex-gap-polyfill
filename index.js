@@ -210,7 +210,7 @@ export default postcss.plugin("postcss-gutters", () => {
 			});
 			decl.before({
 				prop: "height",
-				value: "calc(var(--gutters, 0) + " + decl.value + ")"
+				value: "calc(var(--gutters, 0px) + " + decl.value + ")"
 			});
 			decl.remove();
 		}
