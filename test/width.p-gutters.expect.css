@@ -7,7 +7,7 @@
 .g_2 > * {
 	--gutters: initial;
 	--child-gutters: 2%!important;
-	--parent-gutters: 2%;
+	--parent-gutters: 2%!important;
 	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 	--p-gutters: initial !important;
 }
@@ -34,9 +34,7 @@
 
 .g_2 {
 	--gutters: 2%!important;
-	--child-gutters: initial;
 	--parent-gutters: initial;
-	--neg-gutters: initial;
 	--p-gutters: calc(var(--width) * var(--gutters));
 }
 

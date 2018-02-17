@@ -248,13 +248,7 @@ export default postcss.plugin("postcss-gutters", () => {
 		});
 
 		level1Rule.append({
-			prop: "--child-gutters",
-			value: "initial"
-		}, {
 			prop: "--parent-gutters",
-			value: "initial"
-		}, {
-			prop: "--neg-gutters",
 			value: "initial"
 		});
 
@@ -279,7 +273,7 @@ export default postcss.plugin("postcss-gutters", () => {
 			value: decl.value + "!important"
 		}, {
 			prop: "--parent-gutters",
-			value: decl.value
+			value: decl.value + "!important"
 		}, {
 			prop: "--neg-gutters",
 			value: "calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important"
