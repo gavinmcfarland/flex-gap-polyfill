@@ -12,7 +12,7 @@ export default postcss.plugin("postcss-gutters", () => {
 		});
 		var valueNumber = 0;
 
-		if (decl.value === "collapse") {
+		if (decl.value === "shrink") {
 			decl.before({
 				prop: "flex-grow",
 				value: "0"
@@ -28,6 +28,14 @@ export default postcss.plugin("postcss-gutters", () => {
 			level2Rule.append({
 				prop: "--width-grow",
 				value: "initial"
+			});
+
+			decl.remove();
+		}
+		else if (decl.value === "grow") {
+			decl.before({
+				prop: "flex-grow",
+				value: "1"
 			});
 
 			decl.remove();
@@ -116,7 +124,7 @@ export default postcss.plugin("postcss-gutters", () => {
 		});
 		var valueNumber = 0;
 
-		if (decl.value === "collapse") {
+		if (decl.value === "shrink") {
 			decl.before({
 				prop: "flex-grow",
 				value: "0"
@@ -124,6 +132,13 @@ export default postcss.plugin("postcss-gutters", () => {
 			decl.before({
 				prop: "display",
 				value: "inline-flex"
+			});
+			decl.remove();
+		}
+		else if (decl.value === "grow") {
+			decl.before({
+				prop: "flex-grow",
+				value: "1"
 			});
 			decl.remove();
 		}

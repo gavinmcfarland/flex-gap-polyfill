@@ -1,4 +1,4 @@
-.w_collapse {
+.w_shrink {
 	flex-grow: 0;
 	display: inline-flex;
 	--width-grow: 0;
