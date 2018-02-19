@@ -105,13 +105,26 @@ function guttersProp(decl) {
 
 }
 
-function widthProp(decl) {
+function lengthProp(decl) {
 	const childSelector = " > *";
 	const originalRule = decl.parent;
 	const levelTwoRule = postcss.rule({selector: originalRule.selector + childSelector});
 
 	let percentage = decl.value.match(/[\d\.]+%/g);
-	let prop = "width";
+	let prop = decl.prop;
+	let oppProp;
+	let direction;
+
+	// Check for width or height
+	if (prop === "width") {
+		oppProp = "height";
+		direction = "row";
+	}
+	else if (prop === "height") {
+		oppProp = "width";
+		direction = "column";
+	}
+
 
 	// Add new rules
 	originalRule.before(levelTwoRule);
@@ -144,7 +157,7 @@ function widthProp(decl) {
 			`--${prop}: ${number / 100};
 			 --${prop}-grow: 0;
 			 ${prop}: calc(${decl.value} + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
-			 flex-grow: var(--row-grow, var(--height-grow, 1));
+			 flex-grow: var(--${direction}-grow, var(--${oppProp}-grow, 1));
 			 flex-shrink: 0;
 			 flex-basis: auto !important;`
 		);
@@ -159,7 +172,7 @@ function widthProp(decl) {
 	else {
 		decl.before(
 			`--width-grow: 0;
-			 flex-grow: var(--row-grow, var(--height-grow, 1));
+			 flex-grow: var(--${direction}-grow, var(--${oppProp}-grow, 1));
 			 flex-shrink: 0;
 			 flex-basis: auto !important`
 		);
@@ -176,116 +189,113 @@ function widthProp(decl) {
 
 export default postcss.plugin("postcss-gutters", () => {
 
-	function transformHeight(decl) {
-		let originalRule = decl.parent;
-		let percentage = decl.value.match(/[\d\.]+%/g);
-		let levelTwoRule = postcss.rule({
-			selector: originalRule.selector + " > *"
-		});
-		var valueNumber = 0;
-
-		if (decl.value === "shrink") {
-			decl.before({
-				prop: "flex-grow",
-				value: "0"
-			});
-			decl.before({
-				prop: "display",
-				value: "inline-flex"
-			});
-			decl.remove();
-		}
-		else if (decl.value === "grow") {
-			decl.before({
-				prop: "flex-grow",
-				value: "1"
-			});
-			decl.remove();
-		}
-		else if (percentage) {
-
-			valueNumber = decl.value.replace(/\%/g, "");
-			// .w_50
-			decl.before({
-				prop: "--height",
-				value: valueNumber / 100
-			});
-
-			// .w_50 > *
-			levelTwoRule.append({
-				prop: "--height",
-				value: "initial"
-			});
-
-			originalRule.before(levelTwoRule);
-
-			decl.before({
-				prop: "height",
-				value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
-			});
-
-			decl.before({
-				prop: "--height-grow",
-				value: "0"
-			});
-			levelTwoRule.append({
-				prop: "--height-grow",
-				value: "initial"
-			});
-			decl.before({
-				prop: "flex-grow",
-				value: "var(--column-grow, var(--width-grow, 1))"
-			});
-			decl.before({
-				prop: "flex-shrink",
-				value: "0"
-			});
-			decl.before({
-				prop: "flex-basis",
-				value: "auto !important"
-			});
-
-			decl.remove();
-		}
-		else {
-			decl.before({
-				prop: "--height-grow",
-				value: "0"
-			});
-			levelTwoRule.append({
-				prop: "--height-grow",
-				value: "initial"
-			});
-			decl.before({
-				prop: "flex-grow",
-				value: "var(--column-grow, var(--width-grow, 1))"
-			});
-			decl.before({
-				prop: "flex-shrink",
-				value: "0"
-			});
-			decl.before({
-				prop: "flex-basis",
-				value: "auto !important"
-			});
-			decl.before({
-				prop: "height",
-				value: "calc(var(--gutters, 0px) + " + decl.value + ")"
-			});
-			decl.remove();
-		}
-
-
-	}
+	// function transformHeight(decl) {
+	// 	let originalRule = decl.parent;
+	// 	let percentage = decl.value.match(/[\d\.]+%/g);
+	// 	let levelTwoRule = postcss.rule({
+	// 		selector: originalRule.selector + " > *"
+	// 	});
+	// 	var valueNumber = 0;
+    //
+	// 	if (decl.value === "shrink") {
+	// 		decl.before({
+	// 			prop: "flex-grow",
+	// 			value: "0"
+	// 		});
+	// 		decl.before({
+	// 			prop: "display",
+	// 			value: "inline-flex"
+	// 		});
+	// 		decl.remove();
+	// 	}
+	// 	else if (decl.value === "grow") {
+	// 		decl.before({
+	// 			prop: "flex-grow",
+	// 			value: "1"
+	// 		});
+	// 		decl.remove();
+	// 	}
+	// 	else if (percentage) {
+    //
+	// 		valueNumber = decl.value.replace(/\%/g, "");
+	// 		// .w_50
+	// 		decl.before({
+	// 			prop: "--height",
+	// 			value: valueNumber / 100
+	// 		});
+    //
+	// 		// .w_50 > *
+	// 		levelTwoRule.append({
+	// 			prop: "--height",
+	// 			value: "initial"
+	// 		});
+    //
+	// 		originalRule.before(levelTwoRule);
+    //
+	// 		decl.before({
+	// 			prop: "height",
+	// 			value: "calc(" + decl.value + " + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px))"
+	// 		});
+    //
+	// 		decl.before({
+	// 			prop: "--height-grow",
+	// 			value: "0"
+	// 		});
+	// 		levelTwoRule.append({
+	// 			prop: "--height-grow",
+	// 			value: "initial"
+	// 		});
+	// 		decl.before({
+	// 			prop: "flex-grow",
+	// 			value: "var(--column-grow, var(--width-grow, 1))"
+	// 		});
+	// 		decl.before({
+	// 			prop: "flex-shrink",
+	// 			value: "0"
+	// 		});
+	// 		decl.before({
+	// 			prop: "flex-basis",
+	// 			value: "auto !important"
+	// 		});
+    //
+	// 		decl.remove();
+	// 	}
+	// 	else {
+	// 		decl.before({
+	// 			prop: "--height-grow",
+	// 			value: "0"
+	// 		});
+	// 		levelTwoRule.append({
+	// 			prop: "--height-grow",
+	// 			value: "initial"
+	// 		});
+	// 		decl.before({
+	// 			prop: "flex-grow",
+	// 			value: "var(--column-grow, var(--width-grow, 1))"
+	// 		});
+	// 		decl.before({
+	// 			prop: "flex-shrink",
+	// 			value: "0"
+	// 		});
+	// 		decl.before({
+	// 			prop: "flex-basis",
+	// 			value: "auto !important"
+	// 		});
+	// 		decl.before({
+	// 			prop: "height",
+	// 			value: "calc(var(--gutters, 0px) + " + decl.value + ")"
+	// 		});
+	// 		decl.remove();
+	// 	}
+    //
+    //
+	// }
 
 	return function (css) {
 
 		css.walkDecls(function (decl) {
-			if (decl.prop === "width") {
-				widthProp(decl);
-			}
-			if (decl.prop === "height") {
-				transformHeight(decl);
+			if (decl.prop === "width" || decl.prop === "height") {
+				lengthProp(decl);
 			}
 			if (decl.prop === "gutters") {
 				guttersProp(decl);
