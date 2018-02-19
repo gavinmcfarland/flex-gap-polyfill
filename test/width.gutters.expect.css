@@ -58,8 +58,8 @@
 .w_50 {
 	--width: 0.5;
 	--width-grow: 0;
-	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 	flex-grow: var(--row-grow, var(--height-grow, 1));
 	flex-shrink: 0;
 	flex-basis: auto !important;
+	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 }

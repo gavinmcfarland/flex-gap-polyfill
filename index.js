@@ -105,6 +105,29 @@ function guttersProp(decl) {
 
 }
 
+function gutterLengthProp(decl) {
+	const originalRule = decl.parent;
+
+	let percentage = decl.value.match(/[\d\.]+%/g);
+	let length = decl.value.match(/[\d\.]+\w+/g);
+	let prop = decl.prop;
+
+	if (percentage) {
+		decl.before(
+			`${prop}: calc(${decl.value} + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));`
+		);
+		originalRule.walk(i => {i.raws.before = "\n\t";});
+		decl.remove();
+	}
+	else if (length) {
+		decl.before(
+			`${prop}: calc(${decl.value} + var(--gutters, 0px))`
+		);
+		originalRule.walk(i => {i.raws.before = "\n\t";});
+		decl.remove();
+	}
+}
+
 function lengthProp(decl) {
 	const childSelector = " > *";
 	const originalRule = decl.parent;
@@ -156,7 +179,6 @@ function lengthProp(decl) {
 		decl.before(
 			`--${prop}: ${number / 100};
 			 --${prop}-grow: 0;
-			 ${prop}: calc(${decl.value} + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 			 flex-grow: var(--${direction}-grow, var(--${oppProp}-grow, 1));
 			 flex-shrink: 0;
 			 flex-basis: auto !important;`
@@ -167,7 +189,6 @@ function lengthProp(decl) {
 			 --${prop}-grow: initial;`
 		);
 
-		decl.remove();
 	}
 	else {
 		decl.before(
@@ -194,6 +215,9 @@ export default postcss.plugin("postcss-gutters", () => {
 		css.walkDecls(function (decl) {
 			if (decl.prop === "width" || decl.prop === "height") {
 				lengthProp(decl);
+			}
+			if (decl.prop === "width" || decl.prop === "height") {
+				gutterLengthProp(decl);
 			}
 			if (decl.prop === "gutters") {
 				guttersProp(decl);
