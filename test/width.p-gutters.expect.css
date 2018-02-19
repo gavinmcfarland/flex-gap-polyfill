@@ -5,19 +5,19 @@
 }
 
 .g_2 > * {
+	--p-gutters: initial !important;
 	--gutters: initial;
 	--child-gutters: 2%!important;
 	--parent-gutters: 2%!important;
 	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
-	--p-gutters: initial !important;
 }
 
 .g_2 > ::slotted(*) {
+	--p-gutters: initial !important;
 	--gutters: initial;
 	--child-gutters: 2%!important;
 	--parent-gutters: 2%;
 	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
-	--p-gutters: initial !important;
 }
 
 .g_2:before {
@@ -34,8 +34,8 @@
 
 .g_2 {
 	--gutters: 2%!important;
-	--parent-gutters: initial;
 	--p-gutters: calc(var(--width) * var(--gutters));
+	--parent-gutters: initial;
 }
 
 .g_2 > ::slotted(*) {

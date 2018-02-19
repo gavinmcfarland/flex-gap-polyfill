@@ -1,43 +1,43 @@
 .g_20 > * > * {
-	--child-gutters: initial;
-	--parent-gutters: initial;
-	--neg-gutters: initial;
+    --child-gutters: initial;
+    --parent-gutters: initial;
+    --neg-gutters: initial;
 }
 .g_20 > * {
-	--gutters: initial;
-	--child-gutters: 20px!important;
-	--parent-gutters: 20px!important;
-	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
+    --gutters: initial;
+    --child-gutters: 20px!important;
+    --parent-gutters: 20px!important;
+    --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 }
 .g_20 > ::slotted(*) {
-	--gutters: initial;
-	--child-gutters: 20px!important;
-	--parent-gutters: 20px;
-	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
+    --gutters: initial;
+    --child-gutters: 20px!important;
+    --parent-gutters: 20px;
+    --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 }
 .g_20:before {
-	content: ' ';
-	display: table;
-	width: 0;
+    content: ' ';
+    display: table;
+    width: 0;
 }
 .g_20:after {
-	content: ' ';
-	display: table;
-	width: 0;
+    content: ' ';
+    display: table;
+    width: 0;
 }
 .g_20 {
-	--gutters: 20px!important;
-	--parent-gutters: initial;
+    --gutters: 20px!important;
+    --parent-gutters: initial;
 }
 .g_20 > ::slotted(*) {
-	margin-top: var(--child-gutters, 0px) !important;
-	margin-left: var(--child-gutters, 0px) !important;
+    margin-top: var(--child-gutters, 0px) !important;
+    margin-left: var(--child-gutters, 0px) !important;
 }
 .g_20 > * {
-	margin-top: var(--child-gutters, 0px);
-	margin-left: var(--child-gutters, 0px);
+    margin-top: var(--child-gutters, 0px);
+    margin-left: var(--child-gutters, 0px);
 }
 .g_20 {
-	margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
-	margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
+    margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
+    margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
 }
