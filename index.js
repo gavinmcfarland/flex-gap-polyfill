@@ -142,8 +142,8 @@ function widthProp(decl) {
 
 		decl.before(
 			`--${prop}: ${number / 100};
-			 ${prop}: calc(${decl.value} + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 			 --${prop}-grow: 0;
+			 ${prop}: calc(${decl.value} + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 			 flex-grow: var(--row-grow, var(--height-grow, 1));
 			 flex-shrink: 0;
 			 flex-basis: auto !important;`
