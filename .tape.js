@@ -9,9 +9,6 @@ module.exports = {
 		'height': {
 			message: 'supports height property'
 		},
-		'width.shrink': {
-			message: 'supports width shrink'
-		},
 		'width.gutters': {
 			message: 'supports width and gutters when applied to same element'
 		},

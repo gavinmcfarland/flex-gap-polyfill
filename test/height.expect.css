@@ -1,12 +1,7 @@
 .h_50 > * {
 	--height: initial;
-	--height-grow: initial;
 }
 .h_50 {
 	--height: 0.5;
-	--height-grow: 0;
-	flex-grow: var(--column-grow, var(--width-grow, 1));
-	flex-shrink: 0;
-	flex-basis: auto !important;
 	height: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
 }

@@ -1,8 +1,0 @@
-.w_shrink > * {
-	--width-grow: initial;
-}
-.w_shrink {
-	--width-grow: 0;
-	flex-grow: 0;
-	display: inline-flex;
-}
