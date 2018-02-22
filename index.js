@@ -1,6 +1,6 @@
 import postcss from "postcss";
 
-function guttersProp(decl) {
+function guttersProp(decl, webComponents) {
 	const childSelector = " > *";
 	const slottedSelector = " > ::slotted(*)";
 	const originalRule = decl.parent;
@@ -17,21 +17,26 @@ function guttersProp(decl) {
 
 	// Add new rules
 	originalRule.before(levelTwoRule);
-	originalRule.before(levelTwoSlotted);
+
 	levelTwoRule.before(levelThreeRule);
 	originalRule.before(originalBefore);
 	originalRule.before(originalAfter);
 	originalRule.after(levelTwoMargin);
-	originalRule.after(levelTwoMarginSlotted);
+	if (webComponents) {
+		originalRule.before(levelTwoSlotted);
+		originalRule.after(levelTwoMarginSlotted);
+	}
 	levelTwoMargin.after(originalMargin);
 
 	if (percentage) {
 		levelTwoRule.append(
 			`--p-gutters: initial !important;`
 		);
-		levelTwoSlotted.append(
-			`--p-gutters: initial !important;`
-		);
+		if (webComponents) {
+			levelTwoSlotted.append(
+				`--p-gutters: initial !important;`
+			);
+		}
 		originalRule.append(
 			`--p-gutters: calc(var(--width) * var(--gutters));`
 		);
@@ -75,21 +80,28 @@ function guttersProp(decl) {
 		 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;`
 	);
 
-	levelTwoSlotted.append(
-		`--gutters: initial;
-		 --child-gutters: ${decl.value}!important;
-		 --parent-gutters: ${decl.value};
-		 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;`
-	);
+	if (webComponents) {
+		levelTwoSlotted.append(
+			`--gutters: initial;
+			 --child-gutters: ${decl.value}!important;
+			 --parent-gutters: ${decl.value};
+			 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;`
+		);
+	}
+
 
 	levelTwoMargin.append(
 		`margin-top: var(--child-gutters, 0px);
 		 margin-left: var(--child-gutters, 0px);`
 	);
-	levelTwoMarginSlotted.append(
-		`margin-top: var(--child-gutters, 0px) !important;
-		 margin-left: var(--child-gutters, 0px) !important;`
-	);
+
+	if (webComponents) {
+		levelTwoMarginSlotted.append(
+			`margin-top: var(--child-gutters, 0px) !important;
+			 margin-left: var(--child-gutters, 0px) !important;`
+		);
+	}
+
 
 	originalRule.walk(i => { delete i.raws.before });
 	originalMargin.walk(i => { delete i.raws.before });
@@ -140,16 +152,19 @@ function gutterLengthProp(decl) {
 	}
 }
 
-export default postcss.plugin("postcss-gutters", () => {
+export default postcss.plugin("postcss-gutters", (opts) => {
+	var webComponents = false;
+	if (opts && opts.webComponents) {
+		webComponents = true;
+	}
 
 	return function (css) {
-
 		css.walkDecls(function (decl) {
 			if (decl.prop === "width" || decl.prop === "height") {
 				gutterLengthProp(decl);
 			}
 			if (decl.prop === "gutters") {
-				guttersProp(decl);
+				guttersProp(decl, webComponents);
 			}
 		});
 	};

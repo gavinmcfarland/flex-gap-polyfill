@@ -12,14 +12,6 @@
 	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 }
 
-.g_2 > ::slotted(*) {
-	--p-gutters: initial !important;
-	--gutters: initial;
-	--child-gutters: 2%!important;
-	--parent-gutters: 2%;
-	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
-}
-
 .g_2:before {
 	content: ' ';
 	display: table;
@@ -36,11 +28,6 @@
 	--gutters: 2%!important;
 	--p-gutters: calc(var(--width) * var(--gutters));
 	--parent-gutters: initial;
-}
-
-.g_2 > ::slotted(*) {
-	margin-top: var(--child-gutters, 0px) !important;
-	margin-left: var(--child-gutters, 0px) !important;
 }
 
 .g_2 > * {
