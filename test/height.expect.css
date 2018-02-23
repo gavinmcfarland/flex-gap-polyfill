@@ -3,5 +3,5 @@
 }
 .h_50 {
 	--height: 0.5;
-	height: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
+	height: calc(50% + var(--diff-gutters, 0px));
 }

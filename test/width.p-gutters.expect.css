@@ -1,50 +1,194 @@
-.g_2 > * > * {
-	--child-gutters: initial;
-	--parent-gutters: initial;
-	--neg-gutters: initial;
-}
-
-.g_2 > * {
-	--p-gutters: initial !important;
+.g_2\% > * {
+	--parent-gutters: 2% !important;
 	--gutters: initial;
-	--child-gutters: 2%!important;
-	--parent-gutters: 2%!important;
-	--neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
+	--per-parent-gutters: calc(100% / ((100 - 2) / 2)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
 
-.g_2:before {
-	content: ' ';
-	display: table;
-	width: 0;
-}
-
-.g_2:after {
-	content: ' ';
-	display: table;
-	width: 0;
-}
-
-.g_2 {
-	--gutters: 2%!important;
-	--p-gutters: calc(var(--width) * var(--gutters));
+.g_2\% {
 	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 2) / 2)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
 
-.g_2 > * {
-	margin-top: var(--child-gutters, 0px);
-	margin-left: var(--child-gutters, 0px);
+.g_10\% > * {
+	--parent-gutters: 10% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 10) / 10)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
 
-.g_2 {
-	margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
-	margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
+.g_10\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 10) / 10)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
 
-.w_50 > * {
+.g_15\% > * {
+	--parent-gutters: 15% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 15) / 15)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_15\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 15) / 15)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_20\% > * {
+	--parent-gutters: 20% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 20) / 20)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_20\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 20) / 20)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_25\% > * {
+	--parent-gutters: 25% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 25) / 25)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_25\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 25) / 25)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_30\% > * {
+	--parent-gutters: 30% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 30) / 30)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_30\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 30) / 30)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_35\% > * {
+	--parent-gutters: 35% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 35) / 35)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_35\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 35) / 35)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_40\% > * {
+	--parent-gutters: 40% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 40) / 40)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_40\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 40) / 40)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_50\% > * {
+	--parent-gutters: 50% !important;
+	--gutters: initial;
+	--per-parent-gutters: calc(100% / ((100 - 50) / 50)) !important;
+	--per-gutters: initial;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.g_50\% {
+	--parent-gutters: initial;
+	--per-gutters: calc(100% / ((100 - 50) / 50)) !important;
+	--margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
+}
+
+.w_50\% > * {
 	--width: initial;
 }
 
-.w_50 {
+.w_50\% {
 	--width: 0.5;
-	width: calc(50% + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));
+	width: calc(50% + var(--diff-gutters, 0px));
+}
+
+.w_300px > * {}
+
+.w_300px {
+	width: calc(300px + var(--gutters, 0px));
 }

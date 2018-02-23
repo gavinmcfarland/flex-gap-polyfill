@@ -1,7 +1,43 @@
-.g_2 {
+.g_2\% {
 	gutters: 2%;
 }
 
-.w_50 {
+.g_10\% {
+	gutters: 10%;
+}
+
+.g_15\% {
+	gutters: 15%;
+}
+
+.g_20\% {
+	gutters: 20%;
+}
+
+.g_25\% {
+	gutters: 25%;
+}
+
+.g_30\% {
+	gutters: 30%;
+}
+
+.g_35\% {
+	gutters: 35%;
+}
+
+.g_40\% {
+	gutters: 40%;
+}
+
+.g_50\% {
+	gutters: 50%;
+}
+
+.w_50\% {
 	width: 50%;
+}
+
+.w_300px {
+	width: 300px;
 }

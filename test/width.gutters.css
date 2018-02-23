@@ -1,7 +1,15 @@
-.g_20 {
+.g_20px {
 	gutters: 20px;
 }
 
-.w_50 {
+.g_40px {
+	gutters: 40px;
+}
+
+.w_50\% {
 	width: 50%;
+}
+
+.w_300px {
+	width: 300px;
 }

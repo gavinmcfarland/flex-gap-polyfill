@@ -1,33 +1,37 @@
-.g_20 > * > * {
-    --child-gutters: initial;
-    --parent-gutters: initial;
-    --neg-gutters: initial;
+.g_20px > * {
+	--parent-gutters: 20px !important;
+	--gutters: initial;
+	--neg-gutters: calc(-1 * var(--gutters, 0px)) !important;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
-.g_20 > * {
-    --gutters: initial;
-    --child-gutters: 20px!important;
-    --parent-gutters: 20px!important;
-    --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
+
+.g_20px {
+	--parent-gutters: initial;
+	--gutters: 20px !important;
+	--margin: calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
-.g_20:before {
-    content: ' ';
-    display: table;
-    width: 0;
+
+.g_40px > * {
+	--parent-gutters: 40px !important;
+	--gutters: initial;
+	--neg-gutters: calc(-1 * var(--gutters, 0px)) !important;
+	--diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+	--margin: var(--parent-gutters, 0px);
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }
-.g_20:after {
-    content: ' ';
-    display: table;
-    width: 0;
-}
-.g_20 {
-    --gutters: 20px!important;
-    --parent-gutters: initial;
-}
-.g_20 > * {
-    margin-top: var(--child-gutters, 0px);
-    margin-left: var(--child-gutters, 0px);
-}
-.g_20 {
-    margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
-    margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
+
+.g_40px {
+	--parent-gutters: initial;
+	--gutters: 40px !important;
+	--margin: calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important;
+	padding-top: 0.02px;
+	margin-top: var(--margin);
+	margin-left: var(--margin);
 }

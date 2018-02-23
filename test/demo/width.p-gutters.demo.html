@@ -1,25 +1,60 @@
-<link rel="stylesheet" href="../width.p-gutters.result.css">
-
 <style media="screen">
 	body {
 		padding: 100px;
+	}
+	* {
+		box-sizing: border-box;
 	}
 	.boundary {
 		border: 1px dashed grey;
 	}
 	.example {
-
+		display: flex;
+		flex-wrap: wrap;
 	}
 	.example > * {
-		background: green;
+		background: yellow;
+		flex-grow: 1;
 	}
+	.example > .example > * {
+		background: pink;
+		flex-grow: 1;
+	}
+	.example > .example > .example > * {
+		background: aqua;
+	}
+	.example > .example > .example > .example > * {
+		background: lightgrey;
+	}
+
+	.example > .example  {
+		background: transparent;
+	}
+
+	.example > .example > .example {
+		background: transparent;
+	}
+
+	.w_50\% {
+		flex-grow: 0;
+	}
+
+
+
+
+
+
+
+
 </style>
 
+<link rel="stylesheet" href="../width.p-gutters.result.css">
+
 <div class="boundary">
-	<div class="example g_2 w_50">
-		<div>A</div>
-		<div>B</div>
-		<div>C</div>
-		<div class="w_50">D</div>
-	</div>
+		<div class="example g_20%">
+			<div style="width: 100%">A</div>
+			<div class="example g_10%">
+				<div>A</div>
+			</div>
+		</div>
 </div>

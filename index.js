@@ -2,116 +2,102 @@ import postcss from "postcss";
 
 function guttersProp(decl, webComponents) {
 	const childSelector = " > *";
-	const slottedSelector = " > ::slotted(*)";
 	const originalRule = decl.parent;
-	const originalMargin = postcss.rule({selector: originalRule.selector});
-	const originalBefore = postcss.rule({selector: originalRule.selector + ":before"});
-	const originalAfter = postcss.rule({selector: originalRule.selector + ":after"});
+	const slottedSelector = " > ::slotted(*)";
 	const levelTwoRule = postcss.rule({selector: originalRule.selector + childSelector});
 	const levelTwoSlotted = postcss.rule({selector: originalRule.selector + slottedSelector});
-	const levelTwoMargin = postcss.rule({selector: originalRule.selector + childSelector});
-	const levelTwoMarginSlotted = postcss.rule({selector: originalRule.selector + slottedSelector});
-	const levelThreeRule = postcss.rule({selector: originalRule.selector + childSelector + childSelector});
+
 
 	const percentage = decl.value.match(/[\d\.]+%/g);
+	console.log(webComponents, percentage);
 
 	// Add new rules
 	originalRule.before(levelTwoRule);
 
-	levelTwoRule.before(levelThreeRule);
-	originalRule.before(originalBefore);
-	originalRule.before(originalAfter);
-	originalRule.after(levelTwoMargin);
 	if (webComponents) {
 		originalRule.before(levelTwoSlotted);
-		originalRule.after(levelTwoMarginSlotted);
 	}
-	levelTwoMargin.after(originalMargin);
+
+	// if (percentage) {
+	// 	levelTwoRule.append(
+	// 		`--p-gutters: initial !important;`
+	// 	);
+	// 	if (webComponents) {
+	// 		levelTwoSlotted.append(
+	// 			`--p-gutters: initial !important;`
+	// 		);
+	// 	}
+	// 	originalRule.append(
+	// 		`--p-gutters: calc(var(--width) * var(--gutters));`
+	// 	);
+	// }
 
 	if (percentage) {
-		levelTwoRule.append(
-			`--p-gutters: initial !important;`
-		);
-		if (webComponents) {
-			levelTwoSlotted.append(
-				`--p-gutters: initial !important;`
-			);
-		}
+		let number = decl.value.replace(/\%/g, "");
 		originalRule.append(
-			`--p-gutters: calc(var(--width) * var(--gutters));`
+			`--parent-gutters: initial;
+			 --per-gutters: calc(100% / ((100 - ${number}) / ${number})) !important;
+			 --margin: calc(var(--per-parent-gutters, 0px) - var(--per-gutters, 0px)) !important;
+			 padding-top: 0.02px;
+			 margin-top: var(--margin);
+			 margin-left: var(--margin);`
 		);
 	}
 
-	decl.before(
-		`--gutters: ${decl.value}!important`
-	);
+	else {
+		originalRule.append(
+			`--parent-gutters: initial;
+			 --gutters: ${decl.value} !important;
+			 --margin: calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important;
+			 padding-top: 0.02px;
+			 margin-top: var(--margin);
+			 margin-left: var(--margin);`
+		);
+	}
 
-	originalRule.append(
-		`--parent-gutters: initial;`
-	);
+	if (percentage) {
+		let number = decl.value.replace(/\%/g, "");
+		levelTwoRule.append(
+			`--parent-gutters: ${decl.value} !important;
+			 --gutters: initial;
+			 --per-parent-gutters: calc(100% / ((100 - ${number}) / ${number})) !important;
+			 --per-gutters: initial;
+			 --diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+			 --margin: var(--parent-gutters, 0px);
+			 margin-top: var(--margin);
+			 margin-left: var(--margin);`
+		);
+	}
+	else {
+		levelTwoRule.append(
+			`--parent-gutters: ${decl.value} !important;
+			 --gutters: initial;
+			 --neg-gutters: calc(-1 * var(--gutters, 0px)) !important;
+			 --diff-gutters: calc(var(--gutters, 0px) - var(--parent-gutters, 0px));
+			 --margin: var(--parent-gutters, 0px);
+			 margin-top: var(--margin);
+			 margin-left: var(--margin);`
+		);
+	}
 
-	originalMargin.append(
-		`margin-top: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;
-		 margin-left: calc(var(--parent-gutters, 0px) - var(--p-gutters, var(--gutters, 0px))) !important;`
-	);
 
-	originalBefore.append(
-		`content: ' ';
-		 display: table;
-		 width: 0;`
-	);
 
-	originalAfter.append(
-		`content: ' ';
-		 display: table;
-		 width: 0;`
-	);
 
-	levelThreeRule.append(
-		`--child-gutters: initial;
-		 --parent-gutters: initial;
-		 --neg-gutters: initial;`
-	);
-
-	levelTwoRule.append(
-		`--gutters: initial;
-		 --child-gutters: ${decl.value}!important;
-		 --parent-gutters: ${decl.value}!important;
-		 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;`
-	);
 
 	if (webComponents) {
 		levelTwoSlotted.append(
-			`--gutters: initial;
-			 --child-gutters: ${decl.value}!important;
-			 --parent-gutters: ${decl.value};
-			 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;`
+			`--parent-gutters: ${decl.value} !important;
+			 --gutters: initial;
+			 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
+			 --margin: var(--parent-gutters, 0px);
+			 margin-top: var(--margin);
+			 margin-left: var(--margin);`
 		);
 	}
 
-
-	levelTwoMargin.append(
-		`margin-top: var(--child-gutters, 0px);
-		 margin-left: var(--child-gutters, 0px);`
-	);
-
-	if (webComponents) {
-		levelTwoMarginSlotted.append(
-			`margin-top: var(--child-gutters, 0px) !important;
-			 margin-left: var(--child-gutters, 0px) !important;`
-		);
-	}
-
-
-	originalRule.walk(i => { delete i.raws.before });
-	originalMargin.walk(i => { delete i.raws.before });
-	originalBefore.walk(i => { delete i.raws.before });
-	originalAfter.walk(i => { delete i.raws.before });
-	levelTwoRule.walk(i => { delete i.raws.before });
-	levelTwoSlotted.walk(i => { delete i.raws.before });
-	levelTwoMargin.walk(i => { delete i.raws.before });
-	levelTwoMarginSlotted.walk(i => { delete i.raws.before });
-	levelThreeRule.walk(i => { delete i.raws.before });
+	originalRule.walk(i => { i.raws.before = "\n\t" });
+	levelTwoRule.walk(i => { i.raws.before = "\n\t" });
+	levelTwoSlotted.walk(i => { i.raws.before = "\n\t" });
 
 	decl.remove();
 
@@ -133,7 +119,7 @@ function gutterLengthProp(decl) {
 		let number = decl.value.replace(/\%/g, "");
 		decl.before(
 			`--${prop}: ${number / 100};
-			${prop}: calc(${decl.value} + var(--neg-gutters, var(--gutters, 0px)) - var(--p-gutters, 0px));`
+			${prop}: calc(${decl.value} + var(--diff-gutters, 0px));`
 		);
 		levelTwoRule.append(
 			`--${prop}: initial;`
