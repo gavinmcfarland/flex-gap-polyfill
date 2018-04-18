@@ -385,5 +385,6 @@
 .w_300px > * {}
 
 .w_300px {
-	width: calc(300px + var(--gutters, 0px));
+	--this: calc(300px * var(--per-gutters-decimal, initial)));
+	width: calc(300px + var(--this, var(--gutters, 0px)));
 }

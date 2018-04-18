@@ -156,7 +156,8 @@ function gutterLengthProp(decl) {
 	}
 	else if (length) {
 		decl.before(
-			`${prop}: calc(${decl.value} + var(--gutters, 0px))`
+			`--this: calc(${decl.value} * var(--per-gutters-decimal, initial)));
+			${prop}: calc(${decl.value} + var(--this, var(--gutters, 0px)));`
 		);
 		originalRule.walk(i => {i.raws.before = "\n\t";});
 		levelTwoRule.walk(i => {i.raws.before = "\n\t";});
