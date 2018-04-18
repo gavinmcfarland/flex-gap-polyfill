@@ -42,7 +42,7 @@ function guttersProp(decl, webComponents) {
 			`--parent-gutters: initial;
 			 --gutters: ${decl.value} !important;
 			 --per-gutters-decimal: ${perNumber2} !important;
-			 --width-per-gutters: calc(${decl.value} * var(--per-gutters-decimal, 0px));
+			 --width-per-gutters: calc(var(--width-px, 0px) * var(--per-gutters-decimal, 0px));
 			 --per-gutters-number: calc(100 / ((100 - ${number}) / ${number})) !important;
 			 --width-gutters: calc((100% / ((100 - ${number}) / ${number})) * var(--width)) !important ;
 			 --per-number: ${perNumber} !important;
