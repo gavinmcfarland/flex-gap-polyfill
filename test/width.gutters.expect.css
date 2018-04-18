@@ -64,6 +64,6 @@
 .w_300px > * {}
 
 .w_300px {
-	--this: calc(300px * var(--per-gutters-decimal, initial)));
-	width: calc(300px + var(--this, var(--gutters, 0px)));
+	--width-px: 300px;
+	width: calc(300px + var(--width-per-gutters, var(--gutters, 0px)));
 }

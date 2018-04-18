@@ -42,6 +42,7 @@ function guttersProp(decl, webComponents) {
 			`--parent-gutters: initial;
 			 --gutters: ${decl.value} !important;
 			 --per-gutters-decimal: ${perNumber2} !important;
+			 --width-per-gutters: calc(${decl.value} * var(--per-gutters-decimal, 0px));
 			 --per-gutters-number: calc(100 / ((100 - ${number}) / ${number})) !important;
 			 --width-gutters: calc((100% / ((100 - ${number}) / ${number})) * var(--width)) !important ;
 			 --per-number: ${perNumber} !important;
@@ -156,8 +157,8 @@ function gutterLengthProp(decl) {
 	}
 	else if (length) {
 		decl.before(
-			`--this: calc(${decl.value} * var(--per-gutters-decimal, initial)));
-			${prop}: calc(${decl.value} + var(--this, var(--gutters, 0px)));`
+			`--width-px: ${decl.value};
+			${prop}: calc(${decl.value} + var(--width-per-gutters, var(--gutters, 0px)));`
 		);
 		originalRule.walk(i => {i.raws.before = "\n\t";});
 		levelTwoRule.walk(i => {i.raws.before = "\n\t";});
