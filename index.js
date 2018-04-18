@@ -58,7 +58,7 @@ function guttersProp(decl, webComponents) {
 			`--parent-gutters: initial;
 			 --gutters: ${decl.value} !important;
 			 --width-gutters: var(--parent-gutters);
-			 --margin: var(--width-is-pixels, calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important);
+			 --margin: calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important;
 
 			 padding-top: 0.02px;
 			 margin-top: var(--margin);
@@ -157,8 +157,7 @@ function gutterLengthProp(decl) {
 	}
 	else if (length) {
 		decl.before(
-			`--width-is-pixels: var(--neg-gutters, initial);
-			--width-px: ${decl.value};
+			`--width-px: ${decl.value};
 			${prop}: calc(${decl.value} + var(--width-per-gutters, var(--gutters, 0px)));`
 		);
 		originalRule.walk(i => {i.raws.before = "\n\t";});
