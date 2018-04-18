@@ -143,7 +143,7 @@ function gutterLengthProp(decl) {
 		let number = decl.value.replace(/\%/g, "");
 		decl.before(
 			`--${prop}: ${number / 100};
-			${prop}: calc(${decl.value} + var(--width-gutters, var(--child-width-gutters, 0px)));`
+			${prop}: calc(${decl.value} + var(--width-gutters, var(--child-width-gutters, var(--gutters, 0px))));`
 		);
 		levelTwoRule.append(
 			`--${prop}: initial;`

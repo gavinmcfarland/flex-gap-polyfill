@@ -58,7 +58,7 @@
 
 .w_50\% {
 	--width: 0.5;
-	width: calc(50% + var(--width-gutters, var(--child-width-gutters, 0px)));
+	width: calc(50% + var(--width-gutters, var(--child-width-gutters, var(--gutters, 0px))));
 }
 
 .w_300px > * {}
