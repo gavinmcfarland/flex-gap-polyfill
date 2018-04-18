@@ -19,7 +19,7 @@
 	--parent-gutters: initial;
 	--gutters: 20px !important;
 	--width-gutters: var(--parent-gutters);
-	--margin: calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important;
+	--margin: var(--width-is-pixels, calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important);
 	padding-top: 0.02px;
 	margin-top: var(--margin);
 	margin-left: var(--margin);
@@ -46,7 +46,7 @@
 	--parent-gutters: initial;
 	--gutters: 40px !important;
 	--width-gutters: var(--parent-gutters);
-	--margin: calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important;
+	--margin: var(--width-is-pixels, calc(var(--parent-gutters, 0px) - var(--gutters, 0px)) !important);
 	padding-top: 0.02px;
 	margin-top: var(--margin);
 	margin-left: var(--margin);
@@ -64,6 +64,7 @@
 .w_300px > * {}
 
 .w_300px {
+	--width-is-pixels: var(--neg-gutters, initial);
 	--width-px: 300px;
 	width: calc(300px + var(--width-per-gutters, var(--gutters, 0px)));
 }
