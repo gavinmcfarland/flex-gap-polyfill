@@ -21,6 +21,7 @@
 .g_2\% {
 	--parent-gutters: initial;
 	--gutters: 2% !important;
+	--per-gutters-decimal: 0.02 !important;
 	--per-gutters-number: calc(100 / ((100 - 2) / 2)) !important;
 	--width-gutters: calc((100% / ((100 - 2) / 2)) * var(--width)) !important ;
 	--per-number: 0.02040816326530612 !important;
@@ -53,6 +54,7 @@
 .g_4\% {
 	--parent-gutters: initial;
 	--gutters: 4% !important;
+	--per-gutters-decimal: 0.04 !important;
 	--per-gutters-number: calc(100 / ((100 - 4) / 4)) !important;
 	--width-gutters: calc((100% / ((100 - 4) / 4)) * var(--width)) !important ;
 	--per-number: 0.041666666666666664 !important;
@@ -85,6 +87,7 @@
 .g_10\% {
 	--parent-gutters: initial;
 	--gutters: 10% !important;
+	--per-gutters-decimal: 0.1 !important;
 	--per-gutters-number: calc(100 / ((100 - 10) / 10)) !important;
 	--width-gutters: calc((100% / ((100 - 10) / 10)) * var(--width)) !important ;
 	--per-number: 0.1111111111111111 !important;
@@ -117,6 +120,7 @@
 .g_15\% {
 	--parent-gutters: initial;
 	--gutters: 15% !important;
+	--per-gutters-decimal: 0.15 !important;
 	--per-gutters-number: calc(100 / ((100 - 15) / 15)) !important;
 	--width-gutters: calc((100% / ((100 - 15) / 15)) * var(--width)) !important ;
 	--per-number: 0.1764705882352941 !important;
@@ -149,6 +153,7 @@
 .g_20\% {
 	--parent-gutters: initial;
 	--gutters: 20% !important;
+	--per-gutters-decimal: 0.2 !important;
 	--per-gutters-number: calc(100 / ((100 - 20) / 20)) !important;
 	--width-gutters: calc((100% / ((100 - 20) / 20)) * var(--width)) !important ;
 	--per-number: 0.25 !important;
@@ -208,6 +213,7 @@
 .g_25\% {
 	--parent-gutters: initial;
 	--gutters: 25% !important;
+	--per-gutters-decimal: 0.25 !important;
 	--per-gutters-number: calc(100 / ((100 - 25) / 25)) !important;
 	--width-gutters: calc((100% / ((100 - 25) / 25)) * var(--width)) !important ;
 	--per-number: 0.3333333333333333 !important;
@@ -240,6 +246,7 @@
 .g_30\% {
 	--parent-gutters: initial;
 	--gutters: 30% !important;
+	--per-gutters-decimal: 0.3 !important;
 	--per-gutters-number: calc(100 / ((100 - 30) / 30)) !important;
 	--width-gutters: calc((100% / ((100 - 30) / 30)) * var(--width)) !important ;
 	--per-number: 0.42857142857142855 !important;
@@ -272,6 +279,7 @@
 .g_35\% {
 	--parent-gutters: initial;
 	--gutters: 35% !important;
+	--per-gutters-decimal: 0.35 !important;
 	--per-gutters-number: calc(100 / ((100 - 35) / 35)) !important;
 	--width-gutters: calc((100% / ((100 - 35) / 35)) * var(--width)) !important ;
 	--per-number: 0.5384615384615384 !important;
@@ -304,6 +312,7 @@
 .g_40\% {
 	--parent-gutters: initial;
 	--gutters: 40% !important;
+	--per-gutters-decimal: 0.4 !important;
 	--per-gutters-number: calc(100 / ((100 - 40) / 40)) !important;
 	--width-gutters: calc((100% / ((100 - 40) / 40)) * var(--width)) !important ;
 	--per-number: 0.6666666666666666 !important;
@@ -336,6 +345,7 @@
 .g_50\% {
 	--parent-gutters: initial;
 	--gutters: 50% !important;
+	--per-gutters-decimal: 0.5 !important;
 	--per-gutters-number: calc(100 / ((100 - 50) / 50)) !important;
 	--width-gutters: calc((100% / ((100 - 50) / 50)) * var(--width)) !important ;
 	--per-number: 1 !important;

@@ -37,9 +37,11 @@ function guttersProp(decl, webComponents) {
 	if (percentage) {
 		let number = decl.value.replace(/\%/g, "");
 		let perNumber = 1 / ((100 - number) / number);
+		let perNumber2 = number / 100;
 		originalRule.append(
 			`--parent-gutters: initial;
 			 --gutters: ${decl.value} !important;
+			 --per-gutters-decimal: ${perNumber2} !important;
 			 --per-gutters-number: calc(100 / ((100 - ${number}) / ${number})) !important;
 			 --width-gutters: calc((100% / ((100 - ${number}) / ${number})) * var(--width)) !important ;
 			 --per-number: ${perNumber} !important;
