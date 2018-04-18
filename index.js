@@ -112,8 +112,8 @@ function guttersProp(decl, webComponents) {
 			 --gutters: initial;
 			 --neg-gutters: calc(var(--gutters, 0px) - var(--child-gutters, 0px)) !important;
 			 --margin: var(--parent-gutters, 0px);
-			 margin-top: var(--margin);
-			 margin-left: var(--margin);`
+			 margin-top: var(--margin) !important;
+			 margin-left: var(--margin) !important;`
 		);
 	}
 
