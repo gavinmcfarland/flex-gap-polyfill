@@ -2,14 +2,18 @@
 	gutters: 20px;
 }
 
-.g_40px {
-	gutters: 40px;
-}
-
-.w_50\% {
-	width: 50%;
+.g_10\% {
+	gutters: 10%;
 }
 
 .w_300px {
 	width: 300px;
+}
+
+.w_25\% {
+	width: 25%;
+}
+
+.w_50\% {
+	width: 50%;
 }

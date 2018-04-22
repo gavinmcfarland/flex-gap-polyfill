@@ -1,7 +1,0 @@
-.h_50 > * {
-	--height: initial;
-}
-.h_50 {
-	--height: 0.5;
-	height: calc(50% + var(--width-gutters, var(--child-width-gutters, var(--gutters, 0px))));
-}
