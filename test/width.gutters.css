@@ -2,8 +2,16 @@
 	gutters: 20px;
 }
 
+.g_40px {
+	gutters: 40px;
+}
+
 .g_10\% {
 	gutters: 10%;
+}
+
+.g_30\% {
+	gutters: 30%;
 }
 
 .w_300px {

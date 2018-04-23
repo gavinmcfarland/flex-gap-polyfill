@@ -47,16 +47,18 @@ function addGap(decl, webComponents) {
 	// Pixels, Ems
 	else {
 		container.append(
-		   `${pf}gap: ${value.number};
-			${pf}gap_negative: -1 * ${value.number};
+		   `${pf}gap: ${decl.value} !important;
 			${pf}gap_is-pixels: true;
-			${pf}gap_parent: var(${pf}gap);
-			${pf}gap_new: calc(var(${pf}gap_parent, 0px) - var(${pf}gap_child, 0px));`
+			${pf}gap_parent: initial;
+			${pf}gap_new: calc(var(${pf}gap_parent, 0px) - var(${pf}gap, 0px));`
 		);
 
 		item.append(
-		   `${pf}gap_difference: calc(var(${pf}gap_parent, 0px) - var(${pf}gap_child, 0px));
-			${pf}gap_new: var(${pf}gap_parent);`
+		   `${pf}gap_parent: ${decl.value} !important;
+			${pf}gap: initial;
+			${pf}gap_negative: ${-1 * value.number + value.unit};
+			${pf}gap_difference: calc(var(${pf}gap, 0px) - var(${pf}gap_parent, 0px));
+			${pf}gap_new: var(${pf}gap_parent, 0px);`
 		);
 
 		reset.append(
@@ -120,7 +122,7 @@ function addWidth(decl) {
 			${pf}${prop}_number: ${value.number};
 			${pf}${prop}_percentage_decimal: ${value.number};
 			${pf}${prop}_is-percentage: ${value.number};
-			${pf}${prop}_new: calc(${value.number} + var(${pf}gutters_width, var(${pf}gutters_child-width, var(${pf}gutters, 0px))));`
+			${pf}${prop}_new: calc(${decl.value} + var(${pf}gutters_width, var(${pf}gutters_child-width, var(${pf}gutters, 0px))));`
 		);
 
 		reset.append(
@@ -134,7 +136,7 @@ function addWidth(decl) {
 		container.append(
 		   `${pf}${prop}: ${value.number};
 			${pf}${prop}_is-pixel: ${value.number};
-			${pf}${prop}_new: calc(${value.number} + var(${pf}gutters_percentage-width, var(${pf}gutters_pixels, 0px)));`
+			${pf}${prop}_new: calc(${decl.value} + var(${pf}gutters_percentage-width, var(${pf}gutters_pixels, 0px)));`
 		);
 
 		reset.append(
