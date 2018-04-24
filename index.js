@@ -119,7 +119,7 @@ function addGap(decl, webComponents) {
 		container.append(
 			`${pf}gap_parent: initial;
 			${pf}gap: ${decl.value} !important;
-			${pf}_on-width: var(${pf}gap_parent);
+			${pf}gap_on-width: var(${pf}gap_parent);
 			${pf}gap_new: calc(var(${pf}gap_parent, 0px) - var(${pf}gap, 0px)) !important;
 			padding-top: 0.02px;
 			margin-top: var(${pf}gap_new);
