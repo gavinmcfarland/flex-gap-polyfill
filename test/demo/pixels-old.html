@@ -1,0 +1,91 @@
+<style media="screen">
+	body {
+		padding: 100px;
+	}
+	.boundary {
+		border: 1px dashed grey;
+		display: inline-flex;
+	}
+	.example {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.example > * {
+		background: yellow;
+		flex-grow: 1;
+	}
+	.example > .example > * {
+		background: pink;
+		flex-grow: 1;
+	}
+	.example > .example > .example > * {
+		background: aqua;
+	}
+	.example > .example > .example > .example > * {
+		background: lightgrey;
+	}
+
+	.example > .example  {
+		background: transparent;
+	}
+
+	.example > .example > .example {
+		background: transparent;
+	}
+
+	.w_50\% {
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+
+
+
+
+
+
+
+
+</style>
+
+<link rel="stylesheet" href="../width.gutters.result.css">
+
+<div class="boundary">
+	<div class="example g_20px w_300px">
+		<div class="example g_40px w_50%">
+			<div class="w_50% w_50%2">A</div>
+			<div class="w_50% w_50%2">B</div>
+			<div class="w_50% w_50%2">C</div>
+			<div class="w_50% w_50%2">D</div>
+			<div class="example g_20px">
+				<div class="w_50% w_50%2">A</div>
+				<div class="w_50% w_50%2">B</div>
+				<div class="w_50% w_50%2">C</div>
+				<div class="w_50% w_50%2">D</div>
+				<div class="example g_40px">
+					<div class="w_50% w_50%2">A</div>
+					<div class="w_50% w_50%2">B</div>
+					<div class="w_50% w_50%2">C</div>
+					<div class="w_50% w_50%2">D</div>
+				</div>
+			</div>
+		</div>
+		<div class="example g_40px w_50%">
+			<div class="w_50% w_50%2">A</div>
+			<div class="w_50% w_50%2">B</div>
+			<div class="w_50% w_50%2">C</div>
+			<div class="w_50% w_50%2">D</div>
+			<div class="example g_20px">
+				<div class="w_50% w_50%2">A</div>
+				<div class="w_50% w_50%2">B</div>
+				<div class="w_50% w_50%2">C</div>
+				<div class="w_50% w_50%2">D</div>
+				<div class="example g_40px">
+					<div class="w_50% w_50%2">A</div>
+					<div class="w_50% w_50%2">B</div>
+					<div class="w_50% w_50%2">C</div>
+					<div class="w_50% w_50%2">D</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
