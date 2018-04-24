@@ -22,43 +22,58 @@ function addGap(decl, webComponents) {
 	// Percentages
 	if (value.unit === "%") {
 
-		container.append(
-		   `${pf}gap: ${value.number};
-			${pf}gap_container: ${value.number};
-			${pf}gap_number: ${value.number};
-			${pf}gap_percentage-decimal: ${value.number / 100};
-			${pf}gap_negative:  ${-1 * value.number + value.unit};
-			${pf}gap_is-percentages: true;
-			${pf}gap_new: `
+		reset.append(
+			`${pf}gap_special: initial;
+			${pf}gap_on-width: initial;`
 		);
 
 		item.append(
-		   `${pf}gap_difference: calc(var(${pf}gap_container) - var(${pf}gap_item));
-			${pf}gap_new: var(${pf}gap_difference);`
+			`${pf}gap_parent: ${decl.value} !important;
+			${pf}gap: initial;
+			${pf}gap_on-width: initial;
+			${pf}gap_special: calc(((var(${pf}gap_parent-percentage-number) - var(${pf}gap_percentage-number)) / var(${pf}gap_parent-percentage-number)) * var(${pf}gap_parent));
+			${pf}gap_number: ${value.number};
+			${pf}gap_percentage-decimal: ${value.number / 100};
+			${pf}gap_negative:  ${-1 * value.number + value.unit};
+			${pf}gap_parent-percentage-number: calc(100 / ((100 - 2) / 2)) !important;
+			${pf}gap_parent-percentage: calc(100% / ((100 - 2) / 2)) !important;
+			${pf}gap_difference: calc(var(${pf}gap, 0px) - var(${pf}gap_parent, 0px));
+			${pf}gap_difference_percentage: calc(var(${pf}gap, 0px) - var(${pf}gap_parent, 0px));
+			${pf}gap_on-width-child: calc(-1 * var(${pf}gap_parent, 0px)) !important;
+			${pf}gap_is-percentages: true;
+			${pf}gap_new: var(${pf}gap, 0px);`
 		);
 
-		reset.append(
-		   `${pf}gap_difference: initial;
-			${pf}gap_new: initial`
+		container.append(
+			`${pf}gap: ${value.number} !important;
+			${pf}gap_parent: initial;
+			${pf}gap_container: ${value.number};
+			${pf}gap_percentage-number: ${value.number};
+			${pf}gap_number: ${value.number};
+			${pf}gap_percentage-decimal: ${value.number / 100} !important;
+			${pf}gap_negative:  ${-1 * value.number + value.unit};
+			${pf}gap_is-percentages: true;
+			${pf}gap_on-width-percentage: calc(var(${pf}width-pixels, 0px) * var(${pf}gap_percentage-decimal, 0px));
+			${pf}gap_new: ;`
 		);
 
 	}
 
 	// Pixels, Ems
 	else {
-		container.append(
-		   `${pf}gap: ${decl.value} !important;
-			${pf}gap_is-pixels: true;
-			${pf}gap_parent: initial;
-			${pf}gap_new: calc(var(${pf}gap_parent, 0px) - var(${pf}gap, 0px));`
-		);
-
 		item.append(
-		   `${pf}gap_parent: ${decl.value} !important;
+			`${pf}gap_parent: ${decl.value} !important;
 			${pf}gap: initial;
 			${pf}gap_negative: ${-1 * value.number + value.unit};
 			${pf}gap_difference: calc(var(${pf}gap, 0px) - var(${pf}gap_parent, 0px));
 			${pf}gap_new: var(${pf}gap_parent, 0px);`
+		);
+
+		container.append(
+			`${pf}gap: ${decl.value} !important;
+			${pf}gap_is-pixels: true;
+			${pf}gap_parent: initial;
+			${pf}gap_new: calc(var(${pf}gap_parent, 0px) - var(${pf}gap, 0px));`
 		);
 
 		reset.append(
@@ -77,19 +92,19 @@ function addGap(decl, webComponents) {
 			 ${pf}gap_new: var(${pf}gap, 0px);`
 		);
 		slotted.append(
-		   `margin-top; var(${pf}gap_new) !important;
+			`margin-top; var(${pf}gap_new) !important;
 			margin-left: var(${pf}gap_new) !important;`
 		);
 	}
 	else {
 		container.append(
-		   `padding-top: 0.02px;
+			`padding-top: 0.02px;
 			margin-top: var(${pf}gap_new);
 			margin-left: var(${pf}gap_new);`
 		);
 
 		item.append(
-		   `margin-top: var(${pf}gap_new);
+			`margin-top: var(${pf}gap_new);
 			margin-left: var(${pf}gap_new);`
 		);
 	}
@@ -118,7 +133,7 @@ function addWidth(decl) {
 	// Percentages
 	if (value.unit === "%") {
 		container.append(
-		   `${pf}${prop}: ${decl.value};
+			`${pf}${prop}: ${decl.value};
 			${pf}${prop}_number: ${value.number};
 			${pf}${prop}_percentage_decimal: ${value.number};
 			${pf}${prop}_is-percentage: ${value.number};
@@ -134,19 +149,19 @@ function addWidth(decl) {
 	// Pixels, Ems
 	else {
 		container.append(
-		   `${pf}${prop}: ${value.number};
+			`${pf}${prop}: ${value.number};
 			${pf}${prop}_is-pixel: ${value.number};
 			${pf}${prop}_new: calc(${decl.value} + var(${pf}gutters_percentage-width, var(${pf}gutters_pixels, 0px)));`
 		);
 
 		reset.append(
-		   `${pf}${prop}: initial;
+			`${pf}${prop}: initial;
 			${pf}${prop}_new: initial;`
 		);
 	}
 
 	decl.before(
-	   `${prop}: var(${pf}${prop}_new);`
+		`${prop}: var(${pf}${prop}_new);`
 	);
 
 	decl.remove();
