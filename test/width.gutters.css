@@ -18,8 +18,20 @@
 	gutters: 3%;
 }
 
-.w_300px {
-	width: 300px;
+.g_6\% {
+	gutters: 6%;
+}
+
+.w_400px {
+	width: 400px;
+}
+
+.w_600px {
+	width: 600px;
+}
+
+.w_800px {
+	width: 800px;
 }
 
 .w_25\% {

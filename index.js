@@ -27,76 +27,34 @@ function addGap(decl, webComponents) {
 	// Percentages
 	if (value.unit === "%") {
 
-		reset.append(
-			`${pf}gap_special: initial;
-			${pf}gap_on-width-child: initial;`
-		);
+		// reset.append(
+		// 	`${pf}gap_special: initial;`
+		// );
 
 		item.append(
-			`${pf}gap: initial;
-			${pf}gap_on-width: initial;
-
-			${pf}gap_parent: ${decl.value} !important;
-			${pf}gap_parent-per-number: ${perNumber2} !important;
-			${pf}gap_parent-per: ${perNumber2 + "%"} !important;
-			${pf}gap_difference: calc(var(${pf}gap, 0px) - var(${pf}gap_parent, 0px));
-			${pf}gap_difference_per: calc(100% / ((100 - var(${pf}gap_difference)) / var(${pf}gap_difference)));
-			${pf}gap_special: calc(((var(${pf}gap_parent-per-number) - var(${pf}gap_per-number)) / var(${pf}gap_parent-per-number)) * var(${pf}gap_parent));
-			${pf}gap_new: var(${pf}gap_parent, 0px);
-			${pf}gap_on-width-child: calc(-1 * var(${pf}gap_parent, 0px)) !important;
-
-			margin-top: var(${pf}gap_new);
-			margin-left: var(${pf}gap_new);`
+			`${pf}gap_parent: ${decl.value};
+			${pf}gap_new: ${decl.value};`
 		);
-
+		// formular: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gap_parent: initial;
-
-			${pf}gap: ${decl.value} !important;
-			${pf}gap_per-decimal: ${value.number / 100} !important;
-			${pf}gap_on-width-per: calc(var(${pf}width-px, 0px) * var(${pf}gap_per-decimal, 0px));
-			${pf}gap_per-number: ${perNumber2} !important;
-			${pf}gap_on-width: calc((100% / ((100 - ${value.number}) / ${value.number})) * var(${pf}width)) !important;
-			${pf}per-number: ${perNumber} !important;
-			${pf}gap_new: var(${pf}gap_special, calc(var(${pf}gap_parent, 0px) - (var(${pf}per-number, 0px) * var(${pf}gap_parent, 100%)))) !important;
-
-			padding-top: 0.02px;
-			margin-top: calc(var(${pf}gap_new) * var(${pf}width, 1));
-			margin-left: calc(var(${pf}gap_new) * var(${pf}width, 1));`
+			`${pf}gap_new: calc( ((var(${pf}gap_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100) !important;`
 		);
 
 	}
 
 	// Pixels, Ems
 	else {
-		reset.append(
-		   `${pf}gap_on-width-child: initial;
-			${pf}gap_special: initial;`
-		);
+		// reset.append(
+		//    `${pf}gap_special: initial;`
+		// );
 
 		item.append(
-			`${pf}gap: initial;
-			${pf}gap_on-width: initial;
-			${pf}gap_parent: ${decl.value} !important;
-			${pf}gap_negative: calc(-1 * var(${pf}gap, 0px)) !important;
-			${pf}gap_on-width-child: calc(-1 * var(${pf}gap_parent, 0px)) !important;
-			${pf}gap_difference: calc(var(${pf}gap, 0px) - var(${pf}gap_parent, 0px));
-			${pf}gap_new: var(${pf}gap_parent, 0px);
-
-			margin-top: var(${pf}gap_new);
-			margin-left: var(${pf}gap_new);
-			`
+			`${pf}gap_parent: ${decl.value};
+			${pf}gap_new: ${decl.value};`
 		);
 
 		container.append(
-			`${pf}gap_parent: initial;
-			${pf}gap: ${decl.value} !important;
-			${pf}gap_on-width: var(${pf}gap_parent);
-			${pf}gap_new: calc(var(${pf}gap_parent, 0px) - var(${pf}gap, 0px)) !important;
-
-			padding-top: 0.02px;
-			margin-top: var(${pf}gap_new);
-			margin-left: var(${pf}gap_new);`
+			`${pf}gap_new: calc(var(${pf}gap_parent, 0px) - ${decl.value}) !important;`
 		);
 
 	}
@@ -115,18 +73,18 @@ function addGap(decl, webComponents) {
 			margin-left: var(${pf}gap_new) !important;`
 		);
 	}
-	// else {
-	// 	container.append(
-	// 		`padding-top: 0.02px;
-	// 		margin-top: var(${pf}gap_new);
-	// 		margin-left: var(${pf}gap_new);`
-	// 	);
-	//
-	// 	item.append(
-	// 		`margin-top: var(${pf}gap_new);
-	// 		margin-left: var(${pf}gap_new);`
-	// 	);
-	// }
+	else {
+		item.append(
+			`margin-top: var(${pf}gap_new);
+			margin-left: var(${pf}gap_new);`
+		);
+
+		container.append(
+			`padding-top: 0.02px;
+			margin-top: var(${pf}gap_new);
+			margin-left: var(${pf}gap_new);`
+		);
+	}
 
 	container.walk(i => { i.raws.before = "\n\t" });
 	item.walk(i => { i.raws.before = "\n\t" });
@@ -152,24 +110,28 @@ function addWidth(decl) {
 	// Percentages
 	if (value.unit === "%") {
 		container.append(
-			`${pf}${prop}: ${value.number / 100};
-			${pf}${prop}_new: calc(${decl.value} + var(${pf}gap_on-width, var(${pf}gap_on-width-child, var(${pf}gap, 0px))));`
+			`${pf}${prop}_percentages: ${decl.value};
+			${pf}${prop}_percentages-decimal: ${value.number / 100};
+			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0%));`
 		);
 
 		reset.append(
-			`${pf}${prop}: initial;`
+			`${pf}${prop}_percentages: initial;
+			${pf}${prop}_percentages-decimal: initial;
+			${pf}${prop}_new: initial;`
 		);
 	}
 
 	// Pixels, Ems
 	else {
 		container.append(
-			`${pf}${prop}-px: ${decl.value};
-			${pf}${prop}_new: calc(${decl.value} + var(${pf}gap_on-width-per, var(${pf}gap, 0px)))`
+			`${pf}${prop}_pixels: ${decl.value};
+			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0px));`
 		);
 
 		// reset.append(
-		// 	`${pf}${prop}: initial;`
+		// 	`${pf}${prop}_pixels: initial;
+		// 	${pf}${prop}_new: initial;`
 		// );
 	}
 
