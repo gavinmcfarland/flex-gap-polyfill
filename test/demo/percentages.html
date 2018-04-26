@@ -1,12 +1,13 @@
 <style media="screen">
 	body {
 		padding: 100px;
+		font-family: sans-serif;
 	}
 	* {
 		box-sizing: border-box;
 	}
 	.boundary {
-		outline: 1px solid red;
+		outline: 1px dashed red;
 		display: table;
 		width: 100%;
 	}
@@ -16,6 +17,17 @@
 		flex-grow: 0;
 		width: 100%;
 	}
+
+	.example > * {
+    	border-radius: 2px;
+    	padding-top: 16px;
+    	padding-right: 16px;
+    	padding-bottom: 16px;
+    	padding-left: 16px;
+    	font-size: 13px;
+    	font-weight: bold;
+	}
+
 	.example > * {
 		background: yellow;
 		flex-grow: 1;
@@ -33,10 +45,12 @@
 
 	.example > .example  {
 		background: transparent;
+		padding: 0;
 	}
 
 	.example > .example > .example {
 		background: transparent;
+		padding: 0;
 	}
 
 	.w_50\%, .w_100\%, .w_25\% {
@@ -92,7 +106,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="example g_3% w_50%">
+		<div class="example g_10% w_50%">
 			<div class="w_25%">A</div>
 			<div class="w_25%">B</div>
 			<div class="w_25%">C</div>

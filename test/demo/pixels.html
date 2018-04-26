@@ -1,6 +1,7 @@
 <style media="screen">
 	body {
 		padding: 100px;
+		font-family: sans-serif;
 	}
 	.boundary {
 		border: 1px dashed grey;
@@ -15,6 +16,14 @@
 	.example > * {
 		background: yellow;
 		flex-grow: 1;
+
+		border-radius: 2px;
+    	padding-top: 16px;
+    	padding-right: 16px;
+    	padding-bottom: 16px;
+    	padding-left: 16px;
+    	font-size: 13px;
+    	font-weight: bold;
 	}
 	.example > .example > * {
 		background: pink;
@@ -29,10 +38,12 @@
 
 	.example > .example  {
 		background: transparent;
+		padding: 0;
 	}
 
 	.example > .example > .example {
 		background: transparent;
+		padding: 0;
 	}
 
 	.w_50\% {

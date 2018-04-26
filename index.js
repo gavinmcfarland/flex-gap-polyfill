@@ -110,9 +110,9 @@ function addWidth(decl) {
 	// Percentages
 	if (value.unit === "%") {
 		container.append(
-			`${pf}${prop}_percentages: ${decl.value};
-			${pf}${prop}_percentages-decimal: ${value.number / 100};
-			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0%));`
+			`${pf}${prop}_percentages: ${decl.value} !important;
+			${pf}${prop}_percentages-decimal: ${value.number / 100} !important;
+			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0%)) !important;`
 		);
 
 		reset.append(
@@ -125,14 +125,14 @@ function addWidth(decl) {
 	// Pixels, Ems
 	else {
 		container.append(
-			`${pf}${prop}_pixels: ${decl.value};
-			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0px));`
+			`${pf}${prop}_pixels: ${decl.value} !important;
+			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0px)) !important;`
 		);
 
-		// reset.append(
-		// 	`${pf}${prop}_pixels: initial;
-		// 	${pf}${prop}_new: initial;`
-		// );
+		reset.append(
+			`${pf}${prop}_pixels: initial;
+			${pf}${prop}_new: initial;`
+		);
 	}
 
 	decl.before(
