@@ -6,7 +6,7 @@ const CS = " > *";
 const SS = " > ::slotted(*)";
 
 
-function addGap(decl, webComponents) {
+function addGutters(decl, webComponents) {
 
 	let value = valueParser.unit(decl.value);
 
@@ -14,31 +14,24 @@ function addGap(decl, webComponents) {
 	const item = postcss.rule({selector: container.selector + CS});
 	const reset = postcss.rule({selector: container.selector + CS + CS});
 	const slotted = postcss.rule({selector: container.selector + SS});
-
-	container.before(slotted);
 	container.before(item);
-	item.before(reset);
-
-	let perNumber = 1 / ((100 - value.number) / value.number);
-	let perNumber2 = 100 / ((100 - value.number) / value.number);
-
-	console.log(perNumber, perNumber2);
+	// item.before(reset);
 
 	// Percentages
 	if (value.unit === "%") {
 
 		// reset.append(
-		// 	`${pf}gap_special: initial;`
+		// 	`${pf}gutters_special: initial;`
 		// );
 
 		item.append(
-			`${pf}gap_parent: ${decl.value};
-			${pf}gap_new: ${decl.value};`
+			`${pf}gutters_parent: ${decl.value};
+			${pf}gutters_new: ${decl.value};`
 		);
 		// formular: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gap_percentage-decimal: ${value.number / 100};
-			${pf}gap_new: var(${pf}gap_percentage-to-pixels, calc( ((var(${pf}gap_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
+			`${pf}gutters_percentage-decimal: ${value.number / 100};
+			${pf}gutters_new: var(${pf}gutters_percentage-to-pixels, calc( ((var(${pf}gutters_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
 
 	}
@@ -46,44 +39,45 @@ function addGap(decl, webComponents) {
 	// Pixels, Ems
 	else {
 		// reset.append(
-		//    `${pf}gap_special: initial;`
+		//    `${pf}gutters_special: initial;`
 		// );
 
 		item.append(
-			`${pf}gap_parent: ${decl.value};
-			${pf}gap_new: ${decl.value};`
+			`${pf}gutters_parent: ${decl.value};
+			${pf}gutters_new: ${decl.value};`
 		);
 
 		container.append(
-			`${pf}gap_new: calc(var(${pf}gap_parent, 0px) - ${decl.value}) !important;`
+			`${pf}gutters_new: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
 		);
 
 	}
 
 	// If web components
 	if (webComponents === true) {
-		slotted.append(
-			`${pf}gap: initial;
-
-			 ${pf}gap_parent: ${value.number} !important;
-			 ${pf}gap_negative: calc(var(${pf}gap, 0px) - var(${pf}gap_child, 0px)) !important;
-			 ${pf}gap_new: var(${pf}gap, 0px);`
-		);
-		slotted.append(
-			`margin-top; var(${pf}gap_new) !important;
-			margin-left: var(${pf}gap_new) !important;`
-		);
+		container.before(slotted);
+		// slotted.append(
+		// 	`${pf}gutters: initial;
+		//
+		// 	 ${pf}gutters_parent: ${value.number} !important;
+		// 	 ${pf}gutters_negative: calc(var(${pf}gutters, 0px) - var(${pf}gutters_child, 0px)) !important;
+		// 	 ${pf}gutters_new: var(${pf}gutters, 0px);`
+		// );
+		// slotted.append(
+		// 	`margin-top; var(${pf}gutters_new) !important;
+		// 	margin-left: var(${pf}gutters_new) !important;`
+		// );
 	}
 	else {
 		item.append(
-			`margin-top: var(${pf}gap_new);
-			margin-left: var(${pf}gap_new);`
+			`margin-top: var(${pf}gutters_new);
+			margin-left: var(${pf}gutters_new);`
 		);
 
 		container.append(
 			`padding-top: 0.02px;
-			margin-top: var(${pf}gap_new);
-			margin-left: var(${pf}gap_new);`
+			margin-top: var(${pf}gutters_new);
+			margin-left: var(${pf}gutters_new);`
 		);
 	}
 
@@ -91,6 +85,7 @@ function addGap(decl, webComponents) {
 	item.walk(i => { i.raws.before = "\n\t" });
 	reset.walk(i => { i.raws.before = "\n\t" });
 	slotted.walk(i => { i.raws.before = "\n\t" });
+
 
 	decl.remove();
 }
@@ -113,7 +108,7 @@ function addWidth(decl) {
 		container.append(
 			`${pf}${prop}_percentages: ${decl.value} !important;
 			${pf}${prop}_percentages-decimal: ${value.number / 100} !important;
-			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0%)) !important;`
+			${pf}${prop}_new: calc(${decl.value} - var(${pf}gutters_new, 0%)) !important;`
 		);
 
 		reset.append(
@@ -126,13 +121,13 @@ function addWidth(decl) {
 	// Pixels, Ems
 	else {
 		container.append(
-			`${pf}gap_percentage-to-pixels: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal)) !important;
+			`${pf}gutters_percentage-to-pixels: calc(${"-" + decl.value} * var(${pf}gutters_percentage-decimal)) !important;
 			${pf}${prop}_pixels: ${decl.value} !important;
-			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0px)) !important;`
+			${pf}${prop}_new: calc(${decl.value} - var(${pf}gutters_new, 0px)) !important;`
 		);
 
 		reset.append(
-			`${pf}gap_percentage-to-pixels: initial;
+			`${pf}gutters_percentage-to-pixels: initial;
 			${pf}${prop}_pixels: initial;
 			${pf}${prop}_new: initial;`
 		);
@@ -164,7 +159,7 @@ export default postcss.plugin("postcss-gutters", (opts) => {
 				addWidth(decl);
 			}
 			if (decl.prop === "gutters") {
-				addGap(decl, webComponents);
+				addGutters(decl, webComponents);
 			}
 		});
 	};

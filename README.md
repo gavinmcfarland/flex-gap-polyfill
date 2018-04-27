@@ -5,7 +5,6 @@
 [![Windows Build Status][win-img]][win-url]
 [![Gitter Chat][git-img]][git-url]
 
-Work in progress, not recommended for production.
 
 Apply gutters between child elements of any container element.
 
@@ -18,15 +17,15 @@ Example:
 
 ```
 
-It works by adding margins to each child element and recalculating their widths. 
+It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
-- Works with nested elements
+- Works with unlimited nested elements
 - No additional class names or divs needed
 - Use with or without a wrapper div
 - Works well with responsive design
 - Gutters don't have to be even numbers
 - Style borders and padding as normal
-- Supports percentages (Note on flex containers they behave inconsistantly amoungst browsers)
+- Supports percentages (Note on flex containers they behave inconsistently amongst browsers)
 
 
 ## Setup

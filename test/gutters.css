@@ -5,3 +5,43 @@
 .g_40px {
 	gutters: 40px;
 }
+
+.g_10\% {
+	gutters: 10%;
+}
+
+.g_30\% {
+	gutters: 30%;
+}
+
+.g_25\% {
+	gutters: 25%;
+}
+
+.g_3\% {
+	gutters: 3%;
+}
+
+.g_6\% {
+	gutters: 6%;
+}
+
+.w_400px {
+	width: 400px;
+}
+
+.w_600px {
+	width: 600px;
+}
+
+.w_800px {
+	width: 800px;
+}
+
+.w_25\% {
+	width: 25%;
+}
+
+.w_50\% {
+	width: 50%;
+}
