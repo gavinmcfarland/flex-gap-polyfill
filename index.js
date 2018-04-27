@@ -37,7 +37,8 @@ function addGap(decl, webComponents) {
 		);
 		// formular: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gap_new: calc( ((var(${pf}gap_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100) !important;`
+			`${pf}gap_percentage-decimal: ${value.number / 100};
+			${pf}gap_new: var(${pf}gap_percentage-to-pixels, calc( ((var(${pf}gap_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
 
 	}
@@ -125,12 +126,14 @@ function addWidth(decl) {
 	// Pixels, Ems
 	else {
 		container.append(
-			`${pf}${prop}_pixels: ${decl.value} !important;
+			`${pf}gap_percentage-to-pixels: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal)) !important;
+			${pf}${prop}_pixels: ${decl.value} !important;
 			${pf}${prop}_new: calc(${decl.value} - var(${pf}gap_new, 0px)) !important;`
 		);
 
 		reset.append(
-			`${pf}${prop}_pixels: initial;
+			`${pf}gap_percentage-to-pixels: initial;
+			${pf}${prop}_pixels: initial;
 			${pf}${prop}_new: initial;`
 		);
 	}
