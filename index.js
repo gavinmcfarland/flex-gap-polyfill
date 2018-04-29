@@ -15,7 +15,7 @@ function addGutters(decl, webComponents) {
 	const reset = postcss.rule({selector: container.selector + CS + CS});
 	const slotted = postcss.rule({selector: container.selector + SS});
 	container.before(item);
-	item.before(reset);
+	// item.before(reset);
 
 	// Percentages
 	if (value.unit === "%") {
@@ -55,6 +55,17 @@ function addGutters(decl, webComponents) {
 
 	}
 
+	item.append(
+		`margin-top: var(${pf}gutters_new);
+		margin-left: var(${pf}gutters_new);`
+	);
+
+	container.append(
+		`padding-top: 0.02px;
+		margin-top: var(${pf}gutters_new);
+		margin-left: var(${pf}gutters_new);`
+	);
+
 	// If web components
 	if (webComponents === true) {
 		container.before(slotted);
@@ -64,18 +75,6 @@ function addGutters(decl, webComponents) {
 			${pf}gutters_new: ${decl.value};
 			margin-top: var(${pf}gutters_new) !important;
 			margin-left: var(${pf}gutters_new) !important;`
-		);
-	}
-	else {
-		item.append(
-			`margin-top: var(${pf}gutters_new);
-			margin-left: var(${pf}gutters_new);`
-		);
-
-		container.append(
-			`padding-top: 0.02px;
-			margin-top: var(${pf}gutters_new);
-			margin-left: var(${pf}gutters_new);`
 		);
 	}
 
