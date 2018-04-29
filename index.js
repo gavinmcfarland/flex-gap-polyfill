@@ -15,13 +15,13 @@ function addGutters(decl, webComponents) {
 	const reset = postcss.rule({selector: container.selector + CS + CS});
 	const slotted = postcss.rule({selector: container.selector + SS});
 	container.before(item);
-	// item.before(reset);
+	item.before(reset);
 
 	// Percentages
 	if (value.unit === "%") {
 
 		// reset.append(
-		// 	`${pf}gutters_special: initial;`
+		// 	`${pf}gutters_new: initial;`
 		// );
 
 		item.append(
@@ -30,7 +30,8 @@ function addGutters(decl, webComponents) {
 		);
 		// formular: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gutters_percentage-decimal: ${value.number / 100};
+			`${pf}has_gutters: true;
+			${pf}gutters_percentage-decimal: ${value.number / 100};
 			${pf}gutters_new: var(${pf}gutters_percentage-to-pixels, calc( ((var(${pf}gutters_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
 
@@ -39,7 +40,7 @@ function addGutters(decl, webComponents) {
 	// Pixels, Ems
 	else {
 		// reset.append(
-		//    `${pf}gutters_special: initial;`
+		// 	`${pf}gutters_new: initial;`
 		// );
 
 		item.append(
@@ -48,7 +49,8 @@ function addGutters(decl, webComponents) {
 		);
 
 		container.append(
-			`${pf}gutters_new: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
+			`${pf}has_gutters: true;
+			${pf}gutters_new: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
 		);
 
 	}
@@ -56,17 +58,13 @@ function addGutters(decl, webComponents) {
 	// If web components
 	if (webComponents === true) {
 		container.before(slotted);
-		// slotted.append(
-		// 	`${pf}gutters: initial;
-		//
-		// 	 ${pf}gutters_parent: ${value.number} !important;
-		// 	 ${pf}gutters_negative: calc(var(${pf}gutters, 0px) - var(${pf}gutters_child, 0px)) !important;
-		// 	 ${pf}gutters_new: var(${pf}gutters, 0px);`
-		// );
-		// slotted.append(
-		// 	`margin-top; var(${pf}gutters_new) !important;
-		// 	margin-left: var(${pf}gutters_new) !important;`
-		// );
+
+		slotted.append(
+			`${pf}gutters_parent: ${decl.value};
+			${pf}gutters_new: ${decl.value};
+			margin-top: var(${pf}gutters_new) !important;
+			margin-left: var(${pf}gutters_new) !important;`
+		);
 	}
 	else {
 		item.append(
