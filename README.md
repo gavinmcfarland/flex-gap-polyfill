@@ -15,6 +15,10 @@ Example:
     gutters: 40px;
 }
 
+.item {
+    width: 50%;
+}
+
 ```
 
 Output:
@@ -36,8 +40,14 @@ Output:
     margin-top: var(--gutters);
     margin-left: var(--gutters);
 }
+
+.width {
+    --FI_width: calc(50% - var(--FI_gutters_item, var(--FI_gutters_container, 0%))) !important
+    width: var(--FI_width);
+}
 ```
 
+You can view [several examples](https://mindthetic.github.io/postcss-gutters/) of it in action.
 
 It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
