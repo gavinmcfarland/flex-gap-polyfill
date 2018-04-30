@@ -23,18 +23,18 @@ Output:
 /* Some output not shown to simplify example */
 
 .container > * {
-    --FI_gutters_parent: 40px !important;
-    --FI_gutters_item: 40px !important;
-    --FI_gutters: var(--FI_gutters_item) !important;
-    margin-top: var(--FI_gutters);
-    margin-left: var(--FI_gutters);
+    --gutters_parent: 40px !important;
+    --gutters_item: 40px !important;
+    --gutters: var(--gutters_item) !important;
+    margin-top: var(--gutters);
+    margin-left: var(--gutters);
 }
 
 .container {
-    --FI_gutters_container: calc(var(--FI_gutters_parent, 0px) - 40px) !important;
-    --FI_gutters: var(--FI_gutters_container);
-    margin-top: var(--FI_gutters);
-    margin-left: var(--FI_gutters);
+    --gutters_container: calc(var(--gutters_parent, 0px) - 40px) !important;
+    --gutters: var(--gutters_container);
+    margin-top: var(--gutters);
+    margin-left: var(--gutters);
 }
 ```
 
