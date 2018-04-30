@@ -41,7 +41,7 @@ Output:
     margin-left: var(--gutters);
 }
 
-.width {
+.item {
     --FI_width: calc(50% - var(--FI_gutters_item, var(--FI_gutters_container, 0%))) !important
     width: var(--FI_width);
 }
