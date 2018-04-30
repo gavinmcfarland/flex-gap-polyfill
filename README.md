@@ -42,7 +42,7 @@ Output:
 }
 
 .item {
-    --width: calc(50% - var(--FI_gutters_item, var(--FI_gutters_container, 0%))) !important
+    --width: calc(50% - var(--gutters_item, var(--gutters_container, 0%))) !important
     width: var(--width);
 }
 ```
