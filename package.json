@@ -1,6 +1,6 @@
 {
   "name": "postcss-gutters",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A [PostCSS] plugin which lets you add gutters between child elements of any parent element.",
   "author": "Gavin <someotter@tadpot.com>",
   "license": "CC0-1.0",
