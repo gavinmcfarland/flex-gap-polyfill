@@ -25,7 +25,7 @@ function addGutters(decl, webComponents) {
 		// );
 
 		item.append(
-			`${pf}gutters_parent: ${decl.value};
+			`${pf}gutters_parent: ${decl.value} !important;
 			${pf}gutters_new: ${decl.value};`
 		);
 		// formular: (parent - self) / (100 - self) * 100
@@ -45,7 +45,7 @@ function addGutters(decl, webComponents) {
 		// );
 
 		item.append(
-			`${pf}gutters_parent: ${decl.value};
+			`${pf}gutters_parent: ${decl.value} !important;
 			${pf}gutters_new: ${decl.value};`
 		);
 
