@@ -13,6 +13,7 @@
 }
 
 .g_20px {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_new: calc(var(--FI_gutters_parent, 0px) - 20px) !important;
 	padding-top: 0.02px;
@@ -35,6 +36,7 @@
 }
 
 .g_40px {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_new: calc(var(--FI_gutters_parent, 0px) - 40px) !important;
 	padding-top: 0.02px;
@@ -57,6 +59,7 @@
 }
 
 .g_10\% {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_percentage-decimal: 0.1;
 	--FI_gutters_new: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100)) !important;
@@ -80,6 +83,7 @@
 }
 
 .g_30\% {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_percentage-decimal: 0.3;
 	--FI_gutters_new: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100)) !important;
@@ -103,6 +107,7 @@
 }
 
 .g_25\% {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_percentage-decimal: 0.25;
 	--FI_gutters_new: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100)) !important;
@@ -126,6 +131,7 @@
 }
 
 .g_3\% {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_percentage-decimal: 0.03;
 	--FI_gutters_new: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100)) !important;
@@ -149,6 +155,7 @@
 }
 
 .g_6\% {
+	--FI_gutters_parent: initial;
 	--FI_has_gutters: true;
 	--FI_gutters_percentage-decimal: 0.06;
 	--FI_gutters_new: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100)) !important;

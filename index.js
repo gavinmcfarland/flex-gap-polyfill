@@ -30,7 +30,8 @@ function addGutters(decl, webComponents) {
 		);
 		// formular: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}has_gutters: true;
+			`${pf}gutters_parent: initial;
+			${pf}has_gutters: true;
 			${pf}gutters_percentage-decimal: ${value.number / 100};
 			${pf}gutters_new: var(${pf}gutters_percentage-to-pixels, calc( ((var(${pf}gutters_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
@@ -49,7 +50,8 @@ function addGutters(decl, webComponents) {
 		);
 
 		container.append(
-			`${pf}has_gutters: true;
+			`${pf}gutters_parent: initial;
+			${pf}has_gutters: true;
 			${pf}gutters_new: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
 		);
 
