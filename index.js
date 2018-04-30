@@ -31,7 +31,9 @@ function addGutters(decl, webComponents) {
 		);
 		// formula: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gutters_parent: initial;
+			`${pf}gutters_original: ${decl.value};
+			${pf}gutters_parent: initial;
+			${pf}gutters_item: initial;
 			${pf}gutters_percentage-decimal: ${value.number / 100};
 			${pf}gutters_container: var(${pf}gutters_percentage-to-pixels, calc( ((var(${pf}gutters_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
@@ -51,7 +53,9 @@ function addGutters(decl, webComponents) {
 		);
 
 		container.append(
-			`${pf}gutters_parent: initial;
+			`${pf}gutters_original: ${decl.value};
+			${pf}gutters_parent: initial;
+			${pf}gutters_item: initial;
 			${pf}gutters_container: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
 		);
 
@@ -75,8 +79,8 @@ function addGutters(decl, webComponents) {
 		slotted.append(
 			`${pf}gutters_parent: ${decl.value};
 			${pf}gutters_item: ${decl.value};
-			margin-top: var(${pf}gutters_item) !important;
-			margin-left: var(${pf}gutters_item) !important;`
+			margin-top: ${decl.value} !important;
+			margin-left: ${decl.value} !important;`
 		);
 	}
 

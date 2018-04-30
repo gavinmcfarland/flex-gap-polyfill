@@ -13,12 +13,14 @@
 .g_20px > ::slotted(*) {
 	--FI_gutters_parent: 20px;
 	--FI_gutters_item: 20px;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 20px !important;
+	margin-left: 20px !important;
 }
 
 .g_20px {
+	--FI_gutters_original: 20px;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_container: calc(var(--FI_gutters_parent, 0px) - 20px) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gutters_container) !important;
@@ -40,12 +42,14 @@
 .g_40px > ::slotted(*) {
 	--FI_gutters_parent: 40px;
 	--FI_gutters_item: 40px;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 40px !important;
+	margin-left: 40px !important;
 }
 
 .g_40px {
+	--FI_gutters_original: 40px;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_container: calc(var(--FI_gutters_parent, 0px) - 40px) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gutters_container) !important;
@@ -67,12 +71,14 @@
 .g_10\% > ::slotted(*) {
 	--FI_gutters_parent: 10%;
 	--FI_gutters_item: 10%;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 10% !important;
+	margin-left: 10% !important;
 }
 
 .g_10\% {
+	--FI_gutters_original: 10%;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_percentage-decimal: 0.1;
 	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100)) !important;
 	padding-top: 0.02px;
@@ -95,12 +101,14 @@
 .g_30\% > ::slotted(*) {
 	--FI_gutters_parent: 30%;
 	--FI_gutters_item: 30%;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 30% !important;
+	margin-left: 30% !important;
 }
 
 .g_30\% {
+	--FI_gutters_original: 30%;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_percentage-decimal: 0.3;
 	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100)) !important;
 	padding-top: 0.02px;
@@ -123,12 +131,14 @@
 .g_25\% > ::slotted(*) {
 	--FI_gutters_parent: 25%;
 	--FI_gutters_item: 25%;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 25% !important;
+	margin-left: 25% !important;
 }
 
 .g_25\% {
+	--FI_gutters_original: 25%;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_percentage-decimal: 0.25;
 	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100)) !important;
 	padding-top: 0.02px;
@@ -151,12 +161,14 @@
 .g_3\% > ::slotted(*) {
 	--FI_gutters_parent: 3%;
 	--FI_gutters_item: 3%;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 3% !important;
+	margin-left: 3% !important;
 }
 
 .g_3\% {
+	--FI_gutters_original: 3%;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_percentage-decimal: 0.03;
 	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100)) !important;
 	padding-top: 0.02px;
@@ -179,12 +191,14 @@
 .g_6\% > ::slotted(*) {
 	--FI_gutters_parent: 6%;
 	--FI_gutters_item: 6%;
-	margin-top: var(--FI_gutters_item) !important;
-	margin-left: var(--FI_gutters_item) !important;
+	margin-top: 6% !important;
+	margin-left: 6% !important;
 }
 
 .g_6\% {
+	--FI_gutters_original: 6%;
 	--FI_gutters_parent: initial;
+	--FI_gutters_item: initial;
 	--FI_gutters_percentage-decimal: 0.06;
 	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100)) !important;
 	padding-top: 0.02px;
