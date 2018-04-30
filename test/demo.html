@@ -68,13 +68,35 @@
 <h1>PostCSS Gutters</h1>
 <p>View on <a href="https://github.com/mindthetic/postcss-gutters">github</a></h1>
 
-<h4>No gutters</h4>
+<h4>No gutters > Pixels</h4>
 <div class="boundary">
 	<div class="example">
 		<div class="w_50%">A</div>
 		<div class="w_50%">B</div>
 		<div class="w_50%">C</div>
 		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>
+
+<h4>Pixels > Not gutters</h4>
+<div class="boundary">
+	<div class="example g_40px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
 	</div>
 </div>
 
@@ -96,7 +118,7 @@
 		<div class="w_50%">B</div>
 		<div class="w_50%">C</div>
 		<div class="w_50%">D</div>
-		<div class="example">
+		<div class="example g_20px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
