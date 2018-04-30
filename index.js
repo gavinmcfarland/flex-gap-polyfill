@@ -27,13 +27,14 @@ function addGutters(decl, webComponents) {
 		item.append(
 			`${pf}gutters_parent: ${decl.value} !important;
 			${pf}gutters_item: ${decl.value} !important;
+			${pf}gutters: var(${pf}gutters_item);
 			${pf}gutters_container: initial;`
 		);
 		// formula: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gutters_original: ${decl.value};
-			${pf}gutters_parent: initial;
+			`${pf}gutters_parent: initial;
 			${pf}gutters_item: initial;
+			${pf}gutters: var(${pf}gutters_container) !important;
 			${pf}gutters_percentage-decimal: ${value.number / 100};
 			${pf}gutters_container: var(${pf}gutters_percentage-to-pixels, calc( ((var(${pf}gutters_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
@@ -49,27 +50,29 @@ function addGutters(decl, webComponents) {
 		item.append(
 			`${pf}gutters_parent: ${decl.value} !important;
 			${pf}gutters_item: ${decl.value} !important;
-			${pf}gutters_container: initial;`
+			${pf}gutters_container: initial;
+			${pf}gutters: var(${pf}gutters_item);`
 		);
 
 		container.append(
 			`${pf}gutters_original: ${decl.value};
 			${pf}gutters_parent: initial;
 			${pf}gutters_item: initial;
-			${pf}gutters_container: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
+			${pf}gutters_container: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;
+			${pf}gutters: var(${pf}gutters_container) !important;`
 		);
 
 	}
 
 	item.append(
-		`margin-top: var(${pf}gutters_item);
-		margin-left: var(${pf}gutters_item);`
+		`margin-top: var(${pf}gutters);
+		margin-left: var(${pf}gutters);`
 	);
 
 	container.append(
 		`padding-top: 0.02px;
-		margin-top: var(${pf}gutters_container) !important;
-		margin-left: var(${pf}gutters_container) !important;`
+		margin-top: var(${pf}gutters);
+		margin-left: var(${pf}gutters);`
 	);
 
 	// If web components

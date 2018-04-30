@@ -12,10 +12,32 @@ Example:
 
 ```css
 .container {
-    gutters: 20px;
+    gutters: 40px;
 }
 
 ```
+
+Output:
+
+```css
+/* Some output not shown to simplify example */
+
+.container > * {
+    --FI_gutters_parent: 40px !important;
+    --FI_gutters_item: 40px !important;
+    --FI_gutters: var(--FI_gutters_item) !important;
+    margin-top: var(--FI_gutters);
+    margin-left: var(--FI_gutters);
+}
+
+.container {
+    --FI_gutters_container: calc(var(--FI_gutters_parent, 0px) - 40px) !important;
+    --FI_gutters: var(--FI_gutters_container);
+    margin-top: var(--FI_gutters);
+    margin-left: var(--FI_gutters);
+}
+```
+
 
 It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
