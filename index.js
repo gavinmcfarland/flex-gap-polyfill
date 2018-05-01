@@ -5,7 +5,6 @@ const pf = "--FI_";
 const CS = " > *";
 const SS = " > ::slotted(*)";
 
-
 function addGutters(decl, webComponents) {
 
 	let value = valueParser.unit(decl.value);
@@ -19,23 +18,9 @@ function addGutters(decl, webComponents) {
 
 	// Percentages
 	if (value.unit === "%") {
-
-		reset.append(
-			`${pf}gutters_item: initial;`
-		);
-
-		item.append(
-			`${pf}gutters_parent: ${decl.value} !important;
-			${pf}gutters_item: ${decl.value} !important;
-			${pf}gutters: var(${pf}gutters_item);
-			${pf}gutters_container: initial;`
-		);
 		// formula: (parent - self) / (100 - self) * 100
 		container.append(
-			`${pf}gutters_parent: initial;
-			${pf}gutters_item: initial;
-			${pf}gutters: var(${pf}gutters_container) !important;
-			${pf}gutters_percentage-decimal: ${value.number / 100};
+			`${pf}gutters_percentage-decimal: ${value.number / 100};
 			${pf}gutters_container: var(${pf}gutters_percentage-to-pixels, calc( ((var(${pf}gutters_parent, 0%) - ${decl.value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${value.number}) * 100)) !important;`
 		);
 
@@ -43,34 +28,31 @@ function addGutters(decl, webComponents) {
 
 	// Pixels, Ems
 	else {
-		reset.append(
-			`${pf}gutters_item: initial;`
-		);
-
-		item.append(
-			`${pf}gutters_parent: ${decl.value} !important;
-			${pf}gutters_item: ${decl.value} !important;
-			${pf}gutters_container: initial;
-			${pf}gutters: var(${pf}gutters_item);`
-		);
-
+		// formula: (parent - self)
 		container.append(
-			`${pf}gutters_original: ${decl.value};
-			${pf}gutters_parent: initial;
-			${pf}gutters_item: initial;
-			${pf}gutters_container: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;
-			${pf}gutters: var(${pf}gutters_container) !important;`
+			`${pf}gutters_container: calc(var(${pf}gutters_parent, 0px) - ${decl.value}) !important;`
 		);
 
 	}
 
+	reset.append(
+		`${pf}gutters_item: initial;`
+	);
+
 	item.append(
-		`margin-top: var(${pf}gutters);
+		`${pf}gutters_container: initial;
+		${pf}gutters_parent: ${decl.value} !important;
+		${pf}gutters_item: ${decl.value} !important;
+		${pf}gutters: var(${pf}gutters_item);
+		margin-top: var(${pf}gutters);
 		margin-left: var(${pf}gutters);`
 	);
 
 	container.append(
-		`padding-top: 0.02px;
+		`${pf}gutters_parent: initial;
+		${pf}gutters_item: initial;
+		${pf}gutters: var(${pf}gutters_container) !important;
+		padding-top: 0.02px;
 		margin-top: var(${pf}gutters);
 		margin-left: var(${pf}gutters);`
 	);
@@ -92,10 +74,8 @@ function addGutters(decl, webComponents) {
 	reset.walk(i => { i.raws.before = "\n\t" });
 	slotted.walk(i => { i.raws.before = "\n\t" });
 
-
 	decl.remove();
 }
-
 
 function addWidth(decl) {
 
@@ -114,7 +94,7 @@ function addWidth(decl) {
 		container.append(
 			`${pf}${prop}_percentages: ${decl.value} !important;
 			${pf}${prop}_percentages-decimal: ${value.number / 100} !important;
-			${pf}${prop}_new: calc(${decl.value} - var(${pf}gutters_item, var(${pf}gutters_container, 0%))) !important;`
+			${pf}${prop}: calc(${decl.value} - var(${pf}gutters_item, var(${pf}gutters_container, 0%))) !important;`
 		);
 
 		reset.append(
@@ -128,7 +108,7 @@ function addWidth(decl) {
 		container.append(
 			`${pf}gutters_percentage-to-pixels: calc(${"-" + decl.value} * var(${pf}gutters_percentage-decimal)) !important;
 			${pf}${prop}_pixels: ${decl.value} !important;
-			${pf}${prop}_new: calc(${decl.value} - var(${pf}gutters_item, var(${pf}gutters_container, 0px))) !important;`
+			${pf}${prop}: calc(${decl.value} - var(${pf}gutters_item, var(${pf}gutters_container, 0px))) !important;`
 		);
 
 		reset.append(
@@ -138,12 +118,10 @@ function addWidth(decl) {
 	}
 
 	decl.before(
-		`${prop}: var(${pf}${prop}_new);`
+		`${prop}: var(${pf}${prop});`
 	);
 
 	decl.remove();
-
-	// cleanRules();
 
 	container.walk(i => {i.raws.before = "\n\t";});
 	reset.walk(i => {i.raws.before = "\n\t";});
