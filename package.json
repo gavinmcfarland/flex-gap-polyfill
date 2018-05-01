@@ -42,7 +42,10 @@
   },
   "eslintConfig": {
     "extends": "dev",
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "rules": {
+        "max-params": [2, 4]
+    }
   },
   "keywords": [
     "postcss",
