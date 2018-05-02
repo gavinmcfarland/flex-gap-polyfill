@@ -113,17 +113,18 @@ function addGutters(decl, opts) {
 
 			slotted.append(
 				`${pf}gutters_parent${axis}: ${value};
-				${pf}gutters_item${axis}: ${value};`
+				${pf}gutters_item${axis}: ${value};
+				${pf}gutters${axis}: var(${pf}gutters_item${axis});`
 			);
 
 			if (axis === "_row") {
 				slotted.append(
-					`margin-top: var(${pf}gutters${axis});`
+					`margin-top: var(${pf}gutters${axis}) !important;`
 				);
 			}
 			if (axis === "_column") {
 				slotted.append(
-					`margin-left: var(${pf}gutters${axis});`
+					`margin-left: var(${pf}gutters${axis}) !important;`
 				);
 			}
 		}
