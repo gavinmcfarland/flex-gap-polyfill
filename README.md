@@ -6,7 +6,7 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-Apply gutters between child elements of any container element.
+Apply gutters between any child element of any container element.
 
 Example:
 
@@ -24,7 +24,7 @@ Example:
 Output:
 
 ```css
-/* Some output not shown to simplify example */
+/* Output simplified for example */
 
 .container > * {
     --gutters_parent: 40px !important;

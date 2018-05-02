@@ -1,4 +1,8 @@
-# Changes to postcss-sequence
+# Changes to postcss-gutters
+
+### 3.0.0 (2 May 2018)
+
+- Added support for horizontal and vertical gutters
 
 ### 2.0.0 (27 Apr 2018)
 
