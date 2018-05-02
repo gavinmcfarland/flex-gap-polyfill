@@ -1,254 +1,347 @@
 .g_20px > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_20px > * {
-	--FI_gutters_parent: 20px !important;
-	--FI_gutters_item: 20px !important;
-	--FI_gutters_container: initial;
-	--FI_gutters: var(--FI_gutters_item);
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_20px > ::slotted(*) {
-	--FI_gutters_parent: 20px;
-	--FI_gutters_item: 20px;
-	margin-top: 20px !important;
-	margin-left: 20px !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 20px !important;
+	--FI_gutters_item_row: 20px !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 20px !important;
+	--FI_gutters_item_column: 20px !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_20px {
-	--FI_gutters_original: 20px;
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters_container: calc(var(--FI_gutters_parent, 0px) - 20px) !important;
-	--FI_gutters: var(--FI_gutters_container) !important;
+	--FI_gutters_container_row: calc(var(--FI_gutters_parent_row, 0px) - 20px) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: calc(var(--FI_gutters_parent_column, 0px) - 20px) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_20px > ::slotted(*) {
+	--FI_gutters_parent_row: 20px;
+	--FI_gutters_item_row: 20px;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 20px;
+	--FI_gutters_item_column: 20px;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_40px > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_40px > * {
-	--FI_gutters_parent: 40px !important;
-	--FI_gutters_item: 40px !important;
-	--FI_gutters_container: initial;
-	--FI_gutters: var(--FI_gutters_item);
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_40px > ::slotted(*) {
-	--FI_gutters_parent: 40px;
-	--FI_gutters_item: 40px;
-	margin-top: 40px !important;
-	margin-left: 40px !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 40px !important;
+	--FI_gutters_item_row: 40px !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 40px !important;
+	--FI_gutters_item_column: 40px !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_40px {
-	--FI_gutters_original: 40px;
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters_container: calc(var(--FI_gutters_parent, 0px) - 40px) !important;
-	--FI_gutters: var(--FI_gutters_container) !important;
+	--FI_gutters_container_row: calc(var(--FI_gutters_parent_row, 0px) - 40px) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: calc(var(--FI_gutters_parent_column, 0px) - 40px) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_40px > ::slotted(*) {
+	--FI_gutters_parent_row: 40px;
+	--FI_gutters_item_row: 40px;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 40px;
+	--FI_gutters_item_column: 40px;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_10\% > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_10\% > * {
-	--FI_gutters_parent: 10% !important;
-	--FI_gutters_item: 10% !important;
-	--FI_gutters: var(--FI_gutters_item);
-	--FI_gutters_container: initial;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_10\% > ::slotted(*) {
-	--FI_gutters_parent: 10%;
-	--FI_gutters_item: 10%;
-	margin-top: 10% !important;
-	margin-left: 10% !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 10% !important;
+	--FI_gutters_item_row: 10% !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 10% !important;
+	--FI_gutters_item_column: 10% !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_10\% {
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters: var(--FI_gutters_container) !important;
-	--FI_gutters_percentage-decimal: 0.1;
-	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100)) !important;
+	--FI_gutters_percentage-decimal_row: 0.1;
+	--FI_gutters_container_row: var(--FI_gutters_percentage-to-pixels_row, calc( ((var(--FI_gutters_parent_row, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100)) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_percentage-decimal_column: 0.1;
+	--FI_gutters_container_column: var(--FI_gutters_percentage-to-pixels_column, calc( ((var(--FI_gutters_parent_column, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100)) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_10\% > ::slotted(*) {
+	--FI_gutters_parent_row: 10%;
+	--FI_gutters_item_row: 10%;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 10%;
+	--FI_gutters_item_column: 10%;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_30\% > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_30\% > * {
-	--FI_gutters_parent: 30% !important;
-	--FI_gutters_item: 30% !important;
-	--FI_gutters: var(--FI_gutters_item);
-	--FI_gutters_container: initial;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_30\% > ::slotted(*) {
-	--FI_gutters_parent: 30%;
-	--FI_gutters_item: 30%;
-	margin-top: 30% !important;
-	margin-left: 30% !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 30% !important;
+	--FI_gutters_item_row: 30% !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 30% !important;
+	--FI_gutters_item_column: 30% !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_30\% {
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters: var(--FI_gutters_container) !important;
-	--FI_gutters_percentage-decimal: 0.3;
-	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100)) !important;
+	--FI_gutters_percentage-decimal_row: 0.3;
+	--FI_gutters_container_row: var(--FI_gutters_percentage-to-pixels_row, calc( ((var(--FI_gutters_parent_row, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100)) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_percentage-decimal_column: 0.3;
+	--FI_gutters_container_column: var(--FI_gutters_percentage-to-pixels_column, calc( ((var(--FI_gutters_parent_column, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100)) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_30\% > ::slotted(*) {
+	--FI_gutters_parent_row: 30%;
+	--FI_gutters_item_row: 30%;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 30%;
+	--FI_gutters_item_column: 30%;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_25\% > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_25\% > * {
-	--FI_gutters_parent: 25% !important;
-	--FI_gutters_item: 25% !important;
-	--FI_gutters: var(--FI_gutters_item);
-	--FI_gutters_container: initial;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_25\% > ::slotted(*) {
-	--FI_gutters_parent: 25%;
-	--FI_gutters_item: 25%;
-	margin-top: 25% !important;
-	margin-left: 25% !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 25% !important;
+	--FI_gutters_item_row: 25% !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 25% !important;
+	--FI_gutters_item_column: 25% !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_25\% {
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters: var(--FI_gutters_container) !important;
-	--FI_gutters_percentage-decimal: 0.25;
-	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100)) !important;
+	--FI_gutters_percentage-decimal_row: 0.25;
+	--FI_gutters_container_row: var(--FI_gutters_percentage-to-pixels_row, calc( ((var(--FI_gutters_parent_row, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100)) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_percentage-decimal_column: 0.25;
+	--FI_gutters_container_column: var(--FI_gutters_percentage-to-pixels_column, calc( ((var(--FI_gutters_parent_column, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100)) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_25\% > ::slotted(*) {
+	--FI_gutters_parent_row: 25%;
+	--FI_gutters_item_row: 25%;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 25%;
+	--FI_gutters_item_column: 25%;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_3\% > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_3\% > * {
-	--FI_gutters_parent: 3% !important;
-	--FI_gutters_item: 3% !important;
-	--FI_gutters: var(--FI_gutters_item);
-	--FI_gutters_container: initial;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_3\% > ::slotted(*) {
-	--FI_gutters_parent: 3%;
-	--FI_gutters_item: 3%;
-	margin-top: 3% !important;
-	margin-left: 3% !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 3% !important;
+	--FI_gutters_item_row: 3% !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 3% !important;
+	--FI_gutters_item_column: 3% !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_3\% {
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters: var(--FI_gutters_container) !important;
-	--FI_gutters_percentage-decimal: 0.03;
-	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100)) !important;
+	--FI_gutters_percentage-decimal_row: 0.03;
+	--FI_gutters_container_row: var(--FI_gutters_percentage-to-pixels_row, calc( ((var(--FI_gutters_parent_row, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100)) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_percentage-decimal_column: 0.03;
+	--FI_gutters_container_column: var(--FI_gutters_percentage-to-pixels_column, calc( ((var(--FI_gutters_parent_column, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100)) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_3\% > ::slotted(*) {
+	--FI_gutters_parent_row: 3%;
+	--FI_gutters_item_row: 3%;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 3%;
+	--FI_gutters_item_column: 3%;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_6\% > * > * {
-	--FI_gutters_item: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_item_column: initial;
 }
 
 .g_6\% > * {
-	--FI_gutters_parent: 6% !important;
-	--FI_gutters_item: 6% !important;
-	--FI_gutters: var(--FI_gutters_item);
-	--FI_gutters_container: initial;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
-}
-
-.g_6\% > ::slotted(*) {
-	--FI_gutters_parent: 6%;
-	--FI_gutters_item: 6%;
-	margin-top: 6% !important;
-	margin-left: 6% !important;
+	--FI_gutters_container_row: initial;
+	--FI_gutters_parent_row: 6% !important;
+	--FI_gutters_item_row: 6% !important;
+	--FI_gutters_row: var(--FI_gutters_item_row);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_container_column: initial;
+	--FI_gutters_parent_column: 6% !important;
+	--FI_gutters_item_column: 6% !important;
+	--FI_gutters_column: var(--FI_gutters_item_column);
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_6\% {
-	--FI_gutters_parent: initial;
-	--FI_gutters_item: initial;
-	--FI_gutters: var(--FI_gutters_container) !important;
-	--FI_gutters_percentage-decimal: 0.06;
-	--FI_gutters_container: var(--FI_gutters_percentage-to-pixels, calc( ((var(--FI_gutters_parent, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100)) !important;
+	--FI_gutters_percentage-decimal_row: 0.06;
+	--FI_gutters_container_row: var(--FI_gutters_percentage-to-pixels_row, calc( ((var(--FI_gutters_parent_row, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100)) !important;
+	--FI_gutters_parent_row: initial;
+	--FI_gutters_item_row: initial;
+	--FI_gutters_row: var(--FI_gutters_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--FI_gutters);
-	margin-left: var(--FI_gutters);
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_percentage-decimal_column: 0.06;
+	--FI_gutters_container_column: var(--FI_gutters_percentage-to-pixels_column, calc( ((var(--FI_gutters_parent_column, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100)) !important;
+	--FI_gutters_parent_column: initial;
+	--FI_gutters_item_column: initial;
+	--FI_gutters_column: var(--FI_gutters_container_column) !important;
+	padding-top: 0.02px;
+	margin-left: var(--FI_gutters_column);
+}
+
+.g_6\% > ::slotted(*) {
+	--FI_gutters_parent_row: 6%;
+	--FI_gutters_item_row: 6%;
+	margin-top: var(--FI_gutters_row);
+	--FI_gutters_parent_column: 6%;
+	--FI_gutters_item_column: 6%;
+	margin-left: var(--FI_gutters_column);
 }
 
 .w_400px > * {
-	--FI_gutters_percentage-to-pixels: initial;
+	--FI_gutters_percentage-to-pixels_column: initial;
+	--FI_gutters_percentage-to-pixels_row: initial;
 	--FI_width_pixels: initial;
 }
 
 .w_400px {
-	width: var(--FI_width_new);
-	--FI_gutters_percentage-to-pixels: calc(-400px * var(--FI_gutters_percentage-decimal)) !important;
+	width: var(--FI_width);
+	--FI_gutters_percentage-to-pixels_column: calc(-400px * var(--FI_gutters_percentage-decimal_column)) !important;
+	--FI_gutters_percentage-to-pixels_row: calc(-400px * var(--FI_gutters_percentage-decimal_column)) !important;
 	--FI_width_pixels: 400px !important;
-	--FI_width_new: calc(400px - var(--FI_gutters_item, var(--FI_gutters_container, 0px))) !important;
+	--FI_width: calc(400px - var(--FI_gutters_item_column, var(--FI_gutters_container_column, 0px))) !important;
 }
 
 .w_600px > * {
-	--FI_gutters_percentage-to-pixels: initial;
+	--FI_gutters_percentage-to-pixels_column: initial;
+	--FI_gutters_percentage-to-pixels_row: initial;
 	--FI_width_pixels: initial;
 }
 
 .w_600px {
-	width: var(--FI_width_new);
-	--FI_gutters_percentage-to-pixels: calc(-600px * var(--FI_gutters_percentage-decimal)) !important;
+	width: var(--FI_width);
+	--FI_gutters_percentage-to-pixels_column: calc(-600px * var(--FI_gutters_percentage-decimal_column)) !important;
+	--FI_gutters_percentage-to-pixels_row: calc(-600px * var(--FI_gutters_percentage-decimal_column)) !important;
 	--FI_width_pixels: 600px !important;
-	--FI_width_new: calc(600px - var(--FI_gutters_item, var(--FI_gutters_container, 0px))) !important;
+	--FI_width: calc(600px - var(--FI_gutters_item_column, var(--FI_gutters_container_column, 0px))) !important;
 }
 
 .w_800px > * {
-	--FI_gutters_percentage-to-pixels: initial;
+	--FI_gutters_percentage-to-pixels_column: initial;
+	--FI_gutters_percentage-to-pixels_row: initial;
 	--FI_width_pixels: initial;
 }
 
 .w_800px {
-	width: var(--FI_width_new);
-	--FI_gutters_percentage-to-pixels: calc(-800px * var(--FI_gutters_percentage-decimal)) !important;
+	width: var(--FI_width);
+	--FI_gutters_percentage-to-pixels_column: calc(-800px * var(--FI_gutters_percentage-decimal_column)) !important;
+	--FI_gutters_percentage-to-pixels_row: calc(-800px * var(--FI_gutters_percentage-decimal_column)) !important;
 	--FI_width_pixels: 800px !important;
-	--FI_width_new: calc(800px - var(--FI_gutters_item, var(--FI_gutters_container, 0px))) !important;
+	--FI_width: calc(800px - var(--FI_gutters_item_column, var(--FI_gutters_container_column, 0px))) !important;
 }
 
 .w_25\% > * {
@@ -257,10 +350,10 @@
 }
 
 .w_25\% {
-	width: var(--FI_width_new);
+	width: var(--FI_width);
 	--FI_width_percentages: 25% !important;
 	--FI_width_percentages-decimal: 0.25 !important;
-	--FI_width_new: calc(25% - var(--FI_gutters_item, var(--FI_gutters_container, 0%))) !important;
+	--FI_width: calc(25% - var(--FI_gutters_item_column, var(--FI_gutters_container_column, 0%))) !important;
 }
 
 .w_50\% > * {
@@ -269,8 +362,8 @@
 }
 
 .w_50\% {
-	width: var(--FI_width_new);
+	width: var(--FI_width);
 	--FI_width_percentages: 50% !important;
 	--FI_width_percentages-decimal: 0.5 !important;
-	--FI_width_new: calc(50% - var(--FI_gutters_item, var(--FI_gutters_container, 0%))) !important;
+	--FI_width: calc(50% - var(--FI_gutters_item_column, var(--FI_gutters_container_column, 0%))) !important;
 }
