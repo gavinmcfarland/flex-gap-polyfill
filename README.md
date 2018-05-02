@@ -6,7 +6,7 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-Apply gutters between any child element of any container element.
+Apply gutters between any child element of any container element without the need for additional divs or 'alpha' and 'omega' classes.
 
 Example:
 
@@ -58,7 +58,6 @@ It works by adding margins to each child element and recalculating their widths 
 - Gutters don't have to be even numbers
 - Style borders and padding as normal
 - Supports percentages (Note on flex containers they behave inconsistently amongst browsers)
-
 
 ## Setup
 
