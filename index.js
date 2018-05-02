@@ -179,13 +179,15 @@ function addWidth(decl) {
 	// Pixels, Ems
 	else {
 		container.append(
-			`${pf}gutters_percentage-to-pixels${axis}: calc(${"-" + decl.value} * var(${pf}gutters_percentage-decimal${axis})) !important;
+			`${pf}gutters_percentage-to-pixels_column: calc(${"-" + decl.value} * var(${pf}gutters_percentage-decimal${axis})) !important;
+			${pf}gutters_percentage-to-pixels_row: calc(${"-" + decl.value} * var(${pf}gutters_percentage-decimal${axis})) !important;
 			${pf}${prop}_pixels: ${decl.value} !important;
 			${pf}${prop}: calc(${decl.value} - var(${pf}gutters_item${axis}, var(${pf}gutters_container${axis}, 0px))) !important;`
 		);
 
 		reset.append(
-			`${pf}gutters_percentage-to-pixels${axis}: initial;
+			`${pf}gutters_percentage-to-pixels_column: initial;
+			${pf}gutters_percentage-to-pixels_row: initial;
 			${pf}${prop}_pixels: initial;`
 		);
 	}
