@@ -1,7 +1,7 @@
 module.exports = {
-	'postcss-gutters': {
-		'gutters': {
-			message: 'supports gutters property',
+	'postcss-gap': {
+		'gap': {
+			message: 'supports gap property',
 			options: {
 				webComponents: true
 			}

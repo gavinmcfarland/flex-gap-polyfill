@@ -1,0 +1,54 @@
+.g_20px {
+	display: flex;
+	gap: 20px;
+}
+
+.g_40px {
+	display: flex;
+	gap: 40px;
+}
+
+.g_10\% {
+	display: flex;
+	gap: 10%;
+}
+
+.g_30\% {
+	display: flex;
+	gap: 30%;
+}
+
+.g_25\% {
+	display: flex;
+	gap: 25%;
+}
+
+.g_3\% {
+	display: flex;
+	gap: 3%;
+}
+
+.g_6\% {
+	display: flex;
+	gap: 6%;
+}
+
+.w_400px {
+	width: 400px;
+}
+
+.w_600px {
+	width: 600px;
+}
+
+.w_800px {
+	width: 800px;
+}
+
+.w_25\% {
+	width: 25%;
+}
+
+.w_50\% {
+	width: 50%;
+}
