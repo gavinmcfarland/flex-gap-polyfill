@@ -10,7 +10,7 @@ function hasFlex(decl) {
 
 	const item = postcss.rule({selector: container.selector + CS});
 	const root = postcss.rule({selector: ":root"});
-	if (decl.value === "flex") {
+	if (decl.value === "flex" || decl.value === "inline-flex") {
 		container.before(item);
 		item.before(root);
 
