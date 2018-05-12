@@ -22,7 +22,7 @@ function hasFlex(decl) {
 }
 
 
-function addgap(decl, opts) {
+function addGap(decl, opts) {
 
 	const container = decl.parent;
 
@@ -237,7 +237,7 @@ export default postcss.plugin("postcss-gap", (opts) => {
 
 					if (declTwo.prop === "display") {
 						if (declTwo.value !== "grid") {
-							addgap(decl, webComponents);
+							addGap(decl, webComponents);
 						}
 					}
 				});
