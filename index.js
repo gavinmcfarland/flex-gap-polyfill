@@ -9,8 +9,10 @@ function hasFlex(decl) {
 	const container = decl.parent;
 
 	const item = postcss.rule({selector: container.selector + CS});
-	// const roots = postcss.rule({selector: ":root"});
+
 	if (decl.value === "flex" || decl.value === "inline-flex") {
+		container.before(item);
+
 		container.append(
 			`${pf}has-polyfil_gap-container: initial;`
 		);
@@ -18,11 +20,12 @@ function hasFlex(decl) {
 			`${pf}has-polyfil_gap-item: initial;`
 		);
 	}
+	root.walk(i => { i.raws.before = "\n\t" });
 	item.walk(i => { i.raws.before = "\n\t" });
 }
 
 
-function addGap(decl, opts) {
+function addgap(decl, opts) {
 
 	const container = decl.parent;
 
@@ -214,16 +217,16 @@ export default postcss.plugin("postcss-gap", (opts) => {
 	}
 
 	return function (css) {
-		const rootRule = postcss.rule({selector: ":root"});
+		const root = postcss.rule({selector: ":root"});
 
-		css.prepend(rootRule);
+		css.prepend(root);
 
-		rootRule.append(
+		root.append(
 			`${pf}has-polyfil_gap-container: 0px;
 			${pf}has-polyfil_gap-item: 0px;`
 		);
 
-		rootRule.walk(i => { i.raws.before = "\n\t" });
+		root.walk(i => {i.raws.before = "\n\t";});
 
 		css.walkDecls(function (decl) {
 			if (decl.prop === "width" || decl.prop === "height") {
@@ -237,7 +240,7 @@ export default postcss.plugin("postcss-gap", (opts) => {
 
 					if (declTwo.prop === "display") {
 						if (declTwo.value !== "grid") {
-							addGap(decl, webComponents);
+							addgap(decl, webComponents);
 						}
 					}
 				});
