@@ -20,7 +20,7 @@ function hasFlex(decl) {
 			`${pf}has-polyfil_gap-item: initial;`
 		);
 	}
-	root.walk(i => { i.raws.before = "\n\t" });
+
 	item.walk(i => { i.raws.before = "\n\t" });
 }
 
