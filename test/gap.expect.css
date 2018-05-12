@@ -369,9 +369,10 @@
 }
 
 .w_400px {
-	width: 400px;
+	width: var(--FI_width);
 	--FI_gap_percentage-to-pixels_column: calc(-400px * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-400px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(400px - var(--FI_gap_container_column, 0%)) !important;
 }
 
 .w_600px > * {
@@ -380,9 +381,10 @@
 }
 
 .w_600px {
-	width: 600px;
+	width: var(--FI_width);
 	--FI_gap_percentage-to-pixels_column: calc(-600px * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-600px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(600px - var(--FI_gap_container_column, 0%)) !important;
 }
 
 .w_800px > * {
@@ -391,9 +393,10 @@
 }
 
 .w_800px {
-	width: 800px;
+	width: var(--FI_width);
 	--FI_gap_percentage-to-pixels_column: calc(-800px * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-800px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(800px - var(--FI_gap_container_column, 0%)) !important;
 }
 
 .w_25\% > * {
@@ -401,8 +404,9 @@
 }
 
 .w_25\% {
-	width: 25%;
+	width: var(--FI_width);
 	--FI_width_percentages-decimal: 0.25 !important;
+	--FI_width: calc(25% - var(--FI_gap_container_column, 0%)) !important;
 }
 
 .w_50\% > * {
@@ -410,6 +414,7 @@
 }
 
 .w_50\% {
-	width: 50%;
+	width: var(--FI_width);
 	--FI_width_percentages-decimal: 0.5 !important;
+	--FI_width: calc(50% - var(--FI_gap_container_column, 0%)) !important;
 }

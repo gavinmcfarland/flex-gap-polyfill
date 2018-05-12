@@ -173,6 +173,9 @@ function addWidth(decl) {
 		container.append(
 			`${pf}${prop}_percentages-decimal: ${value.number / 100} !important;`
 		);
+		container.append(
+			`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`
+		);
 
 		reset.append(
 			`${pf}${prop}_percentages-decimal: initial;`
@@ -185,12 +188,21 @@ function addWidth(decl) {
 			`${pf}gap_percentage-to-pixels_column: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;
 			${pf}gap_percentage-to-pixels_row: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;`
 		);
+		container.append(
+			`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`
+		);
 
 		reset.append(
 			`${pf}gap_percentage-to-pixels_column: initial;
 			${pf}gap_percentage-to-pixels_row: initial;`
 		);
 	}
+
+	decl.before(
+		`${prop}: var(${pf}${prop});`
+	);
+
+	decl.remove();
 
 	container.walk(i => {i.raws.before = "\n\t";});
 	reset.walk(i => {i.raws.before = "\n\t";});
