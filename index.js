@@ -171,14 +171,11 @@ function addWidth(decl) {
 	// Percentages
 	if (value.unit === "%") {
 		container.append(
-			`${pf}${prop}_percentages: ${decl.value} !important;
-			${pf}${prop}_percentages-decimal: ${value.number / 100} !important;
-			${pf}${prop}: calc(${decl.value} - var(${pf}gap_item${axis}, var(${pf}gap_container${axis}, 0%))) !important;`
+			`${pf}${prop}_percentages-decimal: ${value.number / 100} !important;`
 		);
 
 		reset.append(
-			`${pf}${prop}_percentages: initial;
-			${pf}${prop}_percentages-decimal: initial;`
+			`${pf}${prop}_percentages-decimal: initial;`
 		);
 	}
 
@@ -186,23 +183,14 @@ function addWidth(decl) {
 	else {
 		container.append(
 			`${pf}gap_percentage-to-pixels_column: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;
-			${pf}gap_percentage-to-pixels_row: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;
-			${pf}${prop}_pixels: ${decl.value} !important;
-			${pf}${prop}: calc(${decl.value} - var(${pf}gap_item${axis}, var(${pf}gap_container${axis}, 0px))) !important;`
+			${pf}gap_percentage-to-pixels_row: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;`
 		);
 
 		reset.append(
 			`${pf}gap_percentage-to-pixels_column: initial;
-			${pf}gap_percentage-to-pixels_row: initial;
-			${pf}${prop}_pixels: initial;`
+			${pf}gap_percentage-to-pixels_row: initial;`
 		);
 	}
-
-	decl.before(
-		`${prop}: var(${pf}${prop});`
-	);
-
-	decl.remove();
 
 	container.walk(i => {i.raws.before = "\n\t";});
 	reset.walk(i => {i.raws.before = "\n\t";});

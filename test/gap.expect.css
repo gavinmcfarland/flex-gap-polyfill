@@ -366,65 +366,50 @@
 .w_400px > * {
 	--FI_gap_percentage-to-pixels_column: initial;
 	--FI_gap_percentage-to-pixels_row: initial;
-	--FI_width_pixels: initial;
 }
 
 .w_400px {
-	width: var(--FI_width);
+	width: 400px;
 	--FI_gap_percentage-to-pixels_column: calc(-400px * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-400px * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_width_pixels: 400px !important;
-	--FI_width: calc(400px - var(--FI_gap_item_column, var(--FI_gap_container_column, 0px))) !important;
 }
 
 .w_600px > * {
 	--FI_gap_percentage-to-pixels_column: initial;
 	--FI_gap_percentage-to-pixels_row: initial;
-	--FI_width_pixels: initial;
 }
 
 .w_600px {
-	width: var(--FI_width);
+	width: 600px;
 	--FI_gap_percentage-to-pixels_column: calc(-600px * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-600px * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_width_pixels: 600px !important;
-	--FI_width: calc(600px - var(--FI_gap_item_column, var(--FI_gap_container_column, 0px))) !important;
 }
 
 .w_800px > * {
 	--FI_gap_percentage-to-pixels_column: initial;
 	--FI_gap_percentage-to-pixels_row: initial;
-	--FI_width_pixels: initial;
 }
 
 .w_800px {
-	width: var(--FI_width);
+	width: 800px;
 	--FI_gap_percentage-to-pixels_column: calc(-800px * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-800px * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_width_pixels: 800px !important;
-	--FI_width: calc(800px - var(--FI_gap_item_column, var(--FI_gap_container_column, 0px))) !important;
 }
 
 .w_25\% > * {
-	--FI_width_percentages: initial;
 	--FI_width_percentages-decimal: initial;
 }
 
 .w_25\% {
-	width: var(--FI_width);
-	--FI_width_percentages: 25% !important;
+	width: 25%;
 	--FI_width_percentages-decimal: 0.25 !important;
-	--FI_width: calc(25% - var(--FI_gap_item_column, var(--FI_gap_container_column, 0%))) !important;
 }
 
 .w_50\% > * {
-	--FI_width_percentages: initial;
 	--FI_width_percentages-decimal: initial;
 }
 
 .w_50\% {
-	width: var(--FI_width);
-	--FI_width_percentages: 50% !important;
+	width: 50%;
 	--FI_width_percentages-decimal: 0.5 !important;
-	--FI_width: calc(50% - var(--FI_gap_item_column, var(--FI_gap_container_column, 0%))) !important;
 }
