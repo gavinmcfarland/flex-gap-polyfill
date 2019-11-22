@@ -72,10 +72,10 @@ Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
 
 [npm-url]: https://www.npmjs.com/package/postcss-gutters
 [npm-img]: https://img.shields.io/npm/v/postcss-gutters.svg
-[cli-url]: https://travis-ci.org/mindthetic/postcss-gutters
-[cli-img]: https://img.shields.io/travis/mindthetic/postcss-gutters.svg
-[win-url]: https://ci.appveyor.com/project/mindthetic/postcss-gutters
-[win-img]: https://img.shields.io/appveyor/ci/mindthetic/postcss-gutters.svg
+[cli-url]: https://travis-ci.org/limitlessloop/postcss-gutters
+[cli-img]: https://img.shields.io/travis/limitlessloop/postcss-gutters.svg
+[win-url]: https://ci.appveyor.com/project/limitlessloop/postcss-gutters
+[win-img]: https://img.shields.io/appveyor/ci/limitlessloop/postcss-gutters.svg
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
