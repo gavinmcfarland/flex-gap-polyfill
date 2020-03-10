@@ -64,12 +64,12 @@ npm install postcss-gap-polyfill --save-dev
 Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
 
 
-[npm-url]: https://www.npmjs.com/package/postcss-gutters
-[npm-img]: https://img.shields.io/npm/v/postcss-gutters.svg
-[cli-url]: https://travis-ci.org/limitlessloop/postcss-gutters
-[cli-img]: https://img.shields.io/travis/limitlessloop/postcss-gutters.svg
-[win-url]: https://ci.appveyor.com/project/limitlessloop/postcss-gutters
-[win-img]: https://img.shields.io/appveyor/ci/limitlessloop/postcss-gutters.svg
+[npm-url]: https://www.npmjs.com/package/postcss-gap-polyfill
+[npm-img]: https://img.shields.io/npm/v/postcss-gap-polyfill.svg
+[cli-url]: https://travis-ci.org/limitlessloop/postcss-gap-polyfill
+[cli-img]: https://img.shields.io/travis/limitlessloop/postcss-gap-polyfill.svg
+[win-url]: https://ci.appveyor.com/project/limitlessloop/postcss-gap-polyfill
+[win-img]: https://img.shields.io/appveyor/ci/limitlessloop/postcss-gap-polyfill.svg
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
