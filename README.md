@@ -54,7 +54,7 @@ It works by adding margins to each child element and recalculating their widths 
 ## Setup
 
 ```bash
-npm install postcss-gutters --save-dev
+npm install postcss-gap-polyfill --save-dev
 ```
 
 ## Options
