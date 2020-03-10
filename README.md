@@ -41,7 +41,7 @@ Output:
 }
 ```
 
-You can view [several examples](https://mindthetic.github.io/postcss-gutters/) of it in action.
+You can view [several examples](https://limitlessloop.github.io/postcss-gap-polyfill/) of it in action.
 
 It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
