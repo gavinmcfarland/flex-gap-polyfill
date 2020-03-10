@@ -1,4 +1,8 @@
-# Changes to postcss-gutters
+# Changes to postcss-gap-polyfil
+
+### 3.0.2 (10 Mar 2020)
+
+- Renamed and updated docs
 
 ### 3.0.0 (2 May 2018)
 

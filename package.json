@@ -1,12 +1,12 @@
 {
-  "name": "postcss-gutters",
-  "version": "3.0.1",
-  "description": "A [PostCSS] plugin which lets you add gutters between child elements of any parent element.",
+  "name": "postcss-gap-polyfill",
+  "version": "3.0.2",
+  "description": "A polyfill for adding gap between flex items, following the CSS Gap specification.",
   "author": "Gavin <someotter@tadpot.com>",
   "license": "CC0-1.0",
-  "repository": "mindthetic/postcss-gutters",
-  "homepage": "https://github.com/mindthetic/postcss-gutters#readme",
-  "bugs": "https://github.com/mindthetic/postcss-gutters/issues",
+  "repository": "limitlessloop/postcss-gap-polyfill",
+  "homepage": "https://github.com/mindthetic/postcss-gap-polyfills#readme",
+  "bugs": "https://github.com/mindthetic/postcss-gap-polyfills/issues",
   "main": "index.bundle.js",
   "module": "index.js",
   "files": [

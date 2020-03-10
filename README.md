@@ -6,7 +6,9 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-A polyfill for adding minimum gap between flex items, following the CSS Gap specification.
+A polyfill for adding gap between flex items, following the CSS Gap specification.
+
+> 🙋 Looking for people to help test.
 
 Example:
 
@@ -45,21 +47,17 @@ It works by adding margins to each child element and recalculating their widths 
 
 - Works with unlimited nested elements
 - No additional class names or divs needed
-- Use with or without a wrapper div
+- Use with or without a wrapper div (support for margins coming soon)
 - Works well with responsive design
 - Gutters don't have to be even numbers
 - Style borders and padding as normal
-- Supports percentages (Note on flex containers they behave inconsistently amongst browsers)
+- Partial support for percentages (Tempermental)
 
 ## Setup
 
 ```bash
 npm install postcss-gap-polyfill --save-dev
 ```
-
-## Options
-
-
 
 ## Browsers
 
