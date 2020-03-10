@@ -1,4 +1,4 @@
-# PostCSS Gutters
+# PostCSS Gap Polyfill
 
 [![NPM Version][npm-img]][npm-url]
 [![Linux Build Status][cli-img]][cli-url]
@@ -6,17 +6,14 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-Apply gutters between any child element of any container element without the need for additional divs or 'alpha' and 'omega' classes.
+A polyfill for adding minimum gap between flex items, following the CSS Gap specification.
 
 Example:
 
 ```css
 .container {
-    gutters: 40px;
-}
-
-.item {
-    width: 50%;
+    display: flex;
+    gap: 40px;
 }
 
 ```
@@ -40,11 +37,6 @@ Output:
     margin-top: var(--gutters);
     margin-left: var(--gutters);
 }
-
-.item {
-    --width: calc(50% - var(--gutters_item, var(--gutters_container, 0%))) !important
-    width: var(--width);
-}
 ```
 
 You can view [several examples](https://mindthetic.github.io/postcss-gutters/) of it in action.
@@ -64,6 +56,10 @@ It works by adding margins to each child element and recalculating their widths 
 ```bash
 npm install postcss-gutters --save-dev
 ```
+
+## Options
+
+
 
 ## Browsers
 
