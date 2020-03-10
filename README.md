@@ -51,7 +51,7 @@ It works by adding margins to each child element and recalculating their widths 
 - Works well with responsive design
 - Gutters don't have to be even numbers
 - Style borders and padding as normal
-- Partial support for percentages (Tempermental)
+- Partial support for percentages (tempermental)
 
 ## Setup
 
