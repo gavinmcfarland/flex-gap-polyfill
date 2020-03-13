@@ -1,4 +1,4 @@
-# Flex Fap Polyfill
+# Flex Gap Polyfill
 
 [![NPM Version][npm-img]][npm-url]
 [![Linux Build Status][cli-img]][cli-url]
