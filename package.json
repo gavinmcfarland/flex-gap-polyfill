@@ -1,61 +1,64 @@
 {
-  "name": "postcss-gap-polyfill",
-  "version": "3.0.2",
-  "description": "A polyfill for adding gap between flex items, following the CSS Gap specification.",
-  "author": "Gavin <someotter@tadpot.com>",
-  "license": "CC0-1.0",
-  "repository": "limitlessloop/postcss-gap-polyfill",
-  "homepage": "https://github.com/mindthetic/postcss-gap-polyfills#readme",
-  "bugs": "https://github.com/mindthetic/postcss-gap-polyfills/issues",
-  "main": "index.bundle.js",
-  "module": "index.js",
-  "files": [
-    "index.js",
-    "index.bundle.js"
-  ],
-  "scripts": {
-    "clean": "git clean -X -d -f",
-    "prepublishOnly": "npm test",
-    "pretest": "rollup -c .rollup.js --silent",
-    "test": "echo 'Running tests...'; npm run test:js && npm run test:tape",
-    "test:js": "eslint *.js --cache --ignore-path .gitignore --quiet",
-    "test:tape": "postcss-tape"
-  },
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "dependencies": {
-    "postcss": "^6.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26",
-    "babel-eslint": "^8.1",
-    "babel-preset-env": "^1.6",
-    "echint": "^4.0.2",
-    "eslint": ">=4.18.2",
-    "eslint-config-dev": "2.0",
-    "postcss-tape": "2.2",
-    "postcss-value-parser": "^3.3.0",
-    "pre-commit": "^1.2",
-    "rollup": "^0.53.3",
-    "rollup-plugin-babel": "^3.0"
-  },
-  "eslintConfig": {
-    "extends": "dev",
-    "parser": "babel-eslint",
-    "rules": {
-      "max-params": [
-        2,
-        4
-      ]
-    }
-  },
-  "keywords": [
-    "postcss",
-    "css",
-    "postcss-plugin",
-    "gutters",
-    "columns",
-    "rows"
-  ]
+    "name": "flex-gap-polyfill",
+    "version": "3.0.2",
+    "description": "A PostCSS polyfill for adding gap between flex items, following the CSS Gap specification.",
+    "author": "Gavin <someotter@tadpot.com>",
+    "license": "CC0-1.0",
+    "repository": "limitlessloop/flex-gap-polyfill",
+    "homepage": "https://github.com/mindthetic/flex-gap-polyfills#readme",
+    "bugs": "https://github.com/mindthetic/flex-gap-polyfills/issues",
+    "main": "index.bundle.js",
+    "module": "index.js",
+    "files": [
+        "index.js",
+        "index.bundle.js"
+    ],
+    "scripts": {
+        "clean": "git clean -X -d -f",
+        "prepublishOnly": "npm test",
+        "pretest": "rollup -c .rollup.js --silent",
+        "test": "echo 'Running tests...'; npm run test:js && npm run test:tape",
+        "test:js": "eslint *.js --cache --ignore-path .gitignore --quiet",
+        "test:tape": "postcss-tape"
+    },
+    "engines": {
+        "node": ">=4.0.0"
+    },
+    "dependencies": {
+        "postcss": "^6.0"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26",
+        "babel-eslint": "^8.1",
+        "babel-preset-env": "^1.6",
+        "echint": "^4.0.2",
+        "eslint": ">=4.18.2",
+        "eslint-config-dev": "2.0",
+        "postcss-tape": "2.2",
+        "postcss-value-parser": "^3.3.0",
+        "pre-commit": "^1.2",
+        "rollup": "^0.53.3",
+        "rollup-plugin-babel": "^3.0"
+    },
+    "eslintConfig": {
+        "extends": "dev",
+        "parser": "babel-eslint",
+        "rules": {
+            "max-params": [
+                2,
+                4
+            ]
+        }
+    },
+    "keywords": [
+        "postcss",
+        "css",
+        "postcss-plugin",
+        "gutters",
+        "columns",
+        "rows",
+        "flex",
+        "flexbox",
+        "polyfill"
+    ]
 }

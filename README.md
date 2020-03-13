@@ -1,4 +1,4 @@
-# PostCSS Gap Polyfill
+# Flex Fap Polyfill
 
 [![NPM Version][npm-img]][npm-url]
 [![Linux Build Status][cli-img]][cli-url]
@@ -6,7 +6,7 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-A polyfill for adding gap between flex items, following the CSS Gap specification.
+A PostCSS polyfill for adding gap between flex items, following the CSS Gap specification.
 
 > 🙋 Looking for people to help test.
 
@@ -41,7 +41,7 @@ Output:
 }
 ```
 
-You can view [several examples](https://limitlessloop.github.io/postcss-gap-polyfill/) of it in action.
+You can view [several examples](https://limitlessloop.github.io/flex-gap-polyfill/) of it in action.
 
 It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
@@ -56,7 +56,7 @@ It works by adding margins to each child element and recalculating their widths 
 ## Setup
 
 ```bash
-npm install postcss-gap-polyfill --save-dev
+npm install flex-gap-polyfill --save-dev
 ```
 
 ## Browsers
@@ -64,12 +64,12 @@ npm install postcss-gap-polyfill --save-dev
 Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
 
 
-[npm-url]: https://www.npmjs.com/package/postcss-gap-polyfill
-[npm-img]: https://img.shields.io/npm/v/postcss-gap-polyfill.svg
-[cli-url]: https://travis-ci.org/limitlessloop/postcss-gap-polyfill
-[cli-img]: https://img.shields.io/travis/limitlessloop/postcss-gap-polyfill.svg
-[win-url]: https://ci.appveyor.com/project/limitlessloop/postcss-gap-polyfill
-[win-img]: https://img.shields.io/appveyor/ci/limitlessloop/postcss-gap-polyfill.svg
+[npm-url]: https://www.npmjs.com/package/flex-gap-polyfill
+[npm-img]: https://img.shields.io/npm/v/flex-gap-polyfill.svg
+[cli-url]: https://travis-ci.org/limitlessloop/flex-gap-polyfill
+[cli-img]: https://img.shields.io/travis/limitlessloop/flex-gap-polyfill.svg
+[win-url]: https://ci.appveyor.com/project/limitlessloop/flex-gap-polyfill
+[win-img]: https://img.shields.io/appveyor/ci/limitlessloop/flex-gap-polyfill.svg
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
