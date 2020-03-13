@@ -34,12 +34,10 @@
 .g_20px > ::slotted(*) {
 	--FI_gutters_parent_row: 20px;
 	--FI_gutters_item_row: 20px;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 20px;
 	--FI_gutters_item_column: 20px;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_40px > * > * {
@@ -78,12 +76,10 @@
 .g_40px > ::slotted(*) {
 	--FI_gutters_parent_row: 40px;
 	--FI_gutters_item_row: 40px;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 40px;
 	--FI_gutters_item_column: 40px;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_10\% > * > * {
@@ -124,12 +120,10 @@
 .g_10\% > ::slotted(*) {
 	--FI_gutters_parent_row: 10%;
 	--FI_gutters_item_row: 10%;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 10%;
 	--FI_gutters_item_column: 10%;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_30\% > * > * {
@@ -170,12 +164,10 @@
 .g_30\% > ::slotted(*) {
 	--FI_gutters_parent_row: 30%;
 	--FI_gutters_item_row: 30%;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 30%;
 	--FI_gutters_item_column: 30%;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_25\% > * > * {
@@ -216,12 +208,10 @@
 .g_25\% > ::slotted(*) {
 	--FI_gutters_parent_row: 25%;
 	--FI_gutters_item_row: 25%;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 25%;
 	--FI_gutters_item_column: 25%;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_3\% > * > * {
@@ -262,12 +252,10 @@
 .g_3\% > ::slotted(*) {
 	--FI_gutters_parent_row: 3%;
 	--FI_gutters_item_row: 3%;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 3%;
 	--FI_gutters_item_column: 3%;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .g_6\% > * > * {
@@ -308,12 +296,10 @@
 .g_6\% > ::slotted(*) {
 	--FI_gutters_parent_row: 6%;
 	--FI_gutters_item_row: 6%;
-	--FI_gutters_row: var(--FI_gutters_item_row);
-	margin-top: var(--FI_gutters_row) !important;
+	margin-top: var(--FI_gutters_row);
 	--FI_gutters_parent_column: 6%;
 	--FI_gutters_item_column: 6%;
-	--FI_gutters_column: var(--FI_gutters_item_column);
-	margin-left: var(--FI_gutters_column) !important;
+	margin-left: var(--FI_gutters_column);
 }
 
 .w_400px > * {
