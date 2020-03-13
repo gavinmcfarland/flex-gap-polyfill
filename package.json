@@ -1,6 +1,6 @@
 {
     "name": "flex-gap-polyfill",
-    "version": "1.0.0-alpha.0",
+    "version": "1.0.0-alpha.2",
     "description": "A PostCSS polyfill for adding gap between flex items, following the CSS Gap specification.",
     "author": "Gavin <someotter@tadpot.com>",
     "license": "CC0-1.0",
@@ -25,20 +25,20 @@
         "node": ">=4.0.0"
     },
     "dependencies": {
-        "postcss": "^6.0"
+        "postcss": "^6.0.23"
     },
     "devDependencies": {
-        "babel-core": "^6.26",
-        "babel-eslint": "^8.1",
-        "babel-preset-env": "^1.6",
+        "babel-core": "^6.26.3",
+        "babel-eslint": "^8.2.6",
+        "babel-preset-env": "^1.7.0",
         "echint": "^4.0.2",
         "eslint": ">=4.18.2",
         "eslint-config-dev": "2.0",
         "postcss-tape": "2.2",
-        "postcss-value-parser": "^3.3.0",
+        "postcss-value-parser": "^3.3.1",
         "pre-commit": "^1.2",
         "rollup": "^0.53.3",
-        "rollup-plugin-babel": "^3.0"
+        "rollup-plugin-babel": "^3.0.7"
     },
     "eslintConfig": {
         "extends": "dev",
