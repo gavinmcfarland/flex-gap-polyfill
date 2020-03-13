@@ -1,8 +1,4 @@
 <style media="screen">
-	:root {
-		--FI_has-gutters: true;
-	}
-
 	body {
 		padding: 100px;
 		font-family: sans-serif;
@@ -20,14 +16,9 @@
 		flex-grow: 1;
 	}
 
-	/* Fix for margin overlap */
-
+	/* Minor fix for margin overlap */
 	.example {
 		pointer-events: none;
-	}
-
-	.example>* {
-		pointer-events: all;
 	}
 
 	.example>* {
@@ -75,37 +66,15 @@
 <link rel="stylesheet" href="gutters.result.css">
 
 <h1>Flex Gap Polyfill</h1>
-<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfil">github</a></h1>
+<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a></h1>
 
-	<h4>No gutters > Pixels</h4>
+	<h4>No gutters</h4>
 	<div class="boundary">
 		<div class="example">
-			<div class="w_50%"><a href="/">A</a></div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>Pixels > Not gutters</h4>
-	<div class="boundary">
-		<div class="example g_40px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
-			<div class="example">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
 		</div>
 	</div>
 
