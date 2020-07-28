@@ -5,6 +5,49 @@ const pf = "--FI_";
 const CS = " > *";
 const SS = " > ::slotted(*)";
 
+// function supportNativeSolution(decl) {
+// 	const container = decl.parent;
+
+// 	const item = postcss.rule({ selector: container.selector + CS });
+
+// 	// console.log(container)
+
+// 	// const item = postcss.rule({ selector: container.selector + CS });
+
+// 	// var css = `/* firefox 64+  @media pointer + -moz-user-select: none */
+// 	// /* safari 13+   flow-root + -webkit-initial-letter */
+// 	// /* chrome 79+   width max() */
+// 	// @media (pointer: coarse), (pointer: fine) {
+// 	//   @supports (-moz-user-select: none) or
+// 	//             ((display: flow-root) and (-webkit-initial-letter: 1)) or
+// 	//             (width: max(1px, 2px)) {
+// 	//     /* resets polyfill code and apply native solution */
+// 	//   }
+// 	// }`
+
+// 	var mediaRule = postcss.rule({ selector: '@media (pointer: coarse), (pointer: fine)' })
+// 	var supportsRule = postcss.rule({ selector: '@supports (-moz-user-select: none) or ((display: flow-root) and(- webkit - initial - letter: 1)) or (width: max(1px, 2px))' })
+// 	var cssRule = postcss.rule({ selector: container.selector })
+
+// 	var cssRule2 = postcss.rule({ selector: item.selector })
+
+// 	supportsRule.append(cssRule2)
+
+// 	supportsRule.append(cssRule)
+
+// 	cssRule2.append(
+// 		`margin: initial;`
+// 	);
+
+// 	cssRule.append(
+// 		`margin: initial;`
+// 	);
+
+// 	mediaRule.append(supportsRule)
+
+// 	container.after(mediaRule)
+// }
+
 function hasFlex(decl) {
 	const container = decl.parent;
 
@@ -133,6 +176,10 @@ function addgap(decl, opts) {
 				);
 			}
 		}
+
+		container.append(
+			`width: 100%;
+			flex-grow: 0;`);
 	});
 
 
@@ -236,11 +283,12 @@ export default postcss.plugin("postcss-gap", (opts) => {
 				hasFlex(decl);
 			}
 			if (decl.prop === "gap") {
-				decl.parent.walkDecls(function (declTwo) {
 
+				decl.parent.walkDecls(function (declTwo) {
 					if (declTwo.prop === "display") {
 						if (declTwo.value !== "grid") {
 							addgap(decl, webComponents);
+							// supportNativeSolution(decl);
 						}
 					}
 				});
