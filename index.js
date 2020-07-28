@@ -8,7 +8,7 @@ const SS = " > ::slotted(*)";
 function hasFlex(decl) {
 	const container = decl.parent;
 
-	const item = postcss.rule({selector: container.selector + CS});
+	const item = postcss.rule({ selector: container.selector + CS });
 
 	if (decl.value === "flex" || decl.value === "inline-flex") {
 		container.before(item);
@@ -29,9 +29,9 @@ function addgap(decl, opts) {
 
 	const container = decl.parent;
 
-	const item = postcss.rule({selector: container.selector + CS});
-	const reset = postcss.rule({selector: container.selector + CS + CS});
-	const slotted = postcss.rule({selector: container.selector + SS});
+	const item = postcss.rule({ selector: container.selector + CS });
+	const reset = postcss.rule({ selector: container.selector + CS + CS });
+	const slotted = postcss.rule({ selector: container.selector + SS });
 	container.before(item);
 	item.before(reset);
 
@@ -155,7 +155,7 @@ function addWidth(decl) {
 	}
 
 	const container = decl.parent;
-	const reset = postcss.rule({selector: container.selector + CS});
+	const reset = postcss.rule({ selector: container.selector + CS });
 
 	container.before(reset);
 
@@ -173,9 +173,9 @@ function addWidth(decl) {
 		container.append(
 			`${pf}${prop}_percentages-decimal: ${value.number / 100} !important;`
 		);
-		container.append(
-			`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`
-		);
+		// container.append(
+		// 	`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`
+		// );
 
 		reset.append(
 			`${pf}${prop}_percentages-decimal: initial;`
@@ -198,14 +198,14 @@ function addWidth(decl) {
 		);
 	}
 
-	decl.before(
-		`${prop}: var(${pf}${prop});`
-	);
+	// decl.before(
+	// 	`${prop}: var(${pf}${prop});`
+	// );
 
-	decl.remove();
+	// decl.remove();
 
-	container.walk(i => {i.raws.before = "\n\t";});
-	reset.walk(i => {i.raws.before = "\n\t";});
+	container.walk(i => { i.raws.before = "\n\t"; });
+	reset.walk(i => { i.raws.before = "\n\t"; });
 
 
 }
@@ -217,7 +217,7 @@ export default postcss.plugin("postcss-gap", (opts) => {
 	}
 
 	return function (css) {
-		const root = postcss.rule({selector: ":root"});
+		const root = postcss.rule({ selector: ":root" });
 
 		css.prepend(root);
 
@@ -226,7 +226,7 @@ export default postcss.plugin("postcss-gap", (opts) => {
 			${pf}has-polyfil_gap-item: 0px;`
 		);
 
-		root.walk(i => {i.raws.before = "\n\t";});
+		root.walk(i => { i.raws.before = "\n\t"; });
 
 		css.walkDecls(function (decl) {
 			if (decl.prop === "width" || decl.prop === "height") {
