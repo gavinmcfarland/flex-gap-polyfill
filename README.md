@@ -8,9 +8,12 @@
 
 A PostCSS polyfill for adding gap between flex items, following the CSS Gap specification.
 
-> 🙋 Looking for people to help test.
+## Known issues
 
-Example:
+- No way to detect browsers which support flex-gap.
+- Slight variation on width of flex items when using flex-wrap.
+
+## Example
 
 ```css
 .container {
@@ -20,28 +23,28 @@ Example:
 
 ```
 
-Output:
+Becomes:
 
 ```css
 /* Output simplified for example */
 
 .container > * {
-    --gutters_parent: 40px !important;
-    --gutters_item: 40px !important;
-    --gutters: var(--gutters_item) !important;
-    margin-top: var(--gutters);
-    margin-left: var(--gutters);
+    --gap_parent: 40px !important;
+    --gap_item: 40px !important;
+    --gap: var(--gutters_item) !important;
+    margin-top: var(--gap);
+    margin-left: var(--gap);
 }
 
 .container {
-    --gutters_container: calc(var(--gutters_parent, 0px) - 40px) !important;
-    --gutters: var(--gutters_container);
-    margin-top: var(--gutters);
-    margin-left: var(--gutters);
+    --gap_container: calc(var(--gap_parent, 0px) - 40px) !important;
+    --gap: var(--gap_container);
+    margin-top: var(--gap);
+    margin-left: var(--gap);
 }
 ```
 
-You can view [several examples](https://limitlessloop.github.io/flex-gap-polyfill/) of it in action.
+You can view several test cases here [several examples](https://limitlessloop.github.io/flex-gap-polyfill/).
 
 It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
@@ -51,7 +54,7 @@ It works by adding margins to each child element and recalculating their widths 
 - Works well with responsive design
 - Gutters don't have to be even numbers
 - Style borders and padding as normal
-- Partial support for percentages (tempermental)
+- Partial support for percentages (tempermental/non-spec)
 
 ## Setup
 
