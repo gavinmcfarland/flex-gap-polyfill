@@ -44,7 +44,7 @@ Becomes:
 }
 ```
 
-You can view several test cases here [several examples](https://limitlessloop.github.io/flex-gap-polyfill/).
+You can view [several test cases](https://limitlessloop.github.io/flex-gap-polyfill/) here.
 
 It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
 
