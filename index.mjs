@@ -1,6 +1,4 @@
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var postcss = _interopDefault(require('postcss'));
+import postcss from 'postcss';
 
 var valueParser = require('postcss-value-parser');
 
@@ -232,5 +230,5 @@ var index = postcss.plugin("postcss-gap", opts => {
   };
 });
 
-module.exports = index;
-//# sourceMappingURL=index.js.map
+export default index;
+//# sourceMappingURL=index.mjs.map
