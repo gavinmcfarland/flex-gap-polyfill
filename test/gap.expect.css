@@ -404,10 +404,10 @@
 }
 
 .w_400px {
-	width: calc(400px - var(--fl-gap));
-	--FI_gap_percentage-to-pixels_column: calc(-calc(400px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_gap_percentage-to-pixels_row: calc(-calc(400px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_width: calc(calc(400px - var(--fl-gap)) - var(--FI_gap_container_column, 0%)) !important;
+	width: 400px;
+	--FI_gap_percentage-to-pixels_column: calc(-400px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_gap_percentage-to-pixels_row: calc(-400px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(400px - var(--FI_gap_container_column, 0%)) !important;
 }
 
 .w_600px > * {
@@ -416,10 +416,10 @@
 }
 
 .w_600px {
-	width: calc(600px - var(--fl-gap));
-	--FI_gap_percentage-to-pixels_column: calc(-calc(600px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_gap_percentage-to-pixels_row: calc(-calc(600px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
-	--FI_width: calc(calc(600px - var(--fl-gap)) - var(--FI_gap_container_column, 0%)) !important;
+	width: 600px;
+	--FI_gap_percentage-to-pixels_column: calc(-600px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_gap_percentage-to-pixels_row: calc(-600px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(600px - var(--FI_gap_container_column, 0%)) !important;
 }
 
 .w_800px > * {
@@ -428,30 +428,84 @@
 }
 
 .w_800px {
+	width: 800px;
+	--FI_gap_percentage-to-pixels_column: calc(-800px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_gap_percentage-to-pixels_row: calc(-800px * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(800px - var(--FI_gap_container_column, 0%)) !important;
+}
+
+.w_25\% > * {
+	--FI_width_percentages-decimal: initial;
+}
+
+.w_25\% {
+	width: 25%;
+	--FI_width_percentages-decimal: 0.25 !important;
+}
+
+.w_50\% > * {
+	--FI_width_percentages-decimal: initial;
+}
+
+.w_50\% {
+	width: 50%;
+	--FI_width_percentages-decimal: 0.5 !important;
+}
+
+.wg_400px > * {
+	--FI_gap_percentage-to-pixels_column: initial;
+	--FI_gap_percentage-to-pixels_row: initial;
+}
+
+.wg_400px {
+	width: calc(400px - var(--fl-gap));
+	--FI_gap_percentage-to-pixels_column: calc(-calc(400px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_gap_percentage-to-pixels_row: calc(-calc(400px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(calc(400px - var(--fl-gap)) - var(--FI_gap_container_column, 0%)) !important;
+}
+
+.wg_600px > * {
+	--FI_gap_percentage-to-pixels_column: initial;
+	--FI_gap_percentage-to-pixels_row: initial;
+}
+
+.wg_600px {
+	width: calc(600px - var(--fl-gap));
+	--FI_gap_percentage-to-pixels_column: calc(-calc(600px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_gap_percentage-to-pixels_row: calc(-calc(600px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
+	--FI_width: calc(calc(600px - var(--fl-gap)) - var(--FI_gap_container_column, 0%)) !important;
+}
+
+.wg_800px > * {
+	--FI_gap_percentage-to-pixels_column: initial;
+	--FI_gap_percentage-to-pixels_row: initial;
+}
+
+.wg_800px {
 	width: calc(800px - var(--fl-gap));
 	--FI_gap_percentage-to-pixels_column: calc(-calc(800px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-calc(800px - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_width: calc(calc(800px - var(--fl-gap)) - var(--FI_gap_container_column, 0%)) !important;
 }
 
-.w_25\% > * {
+.wg_25\% > * {
 	--FI_gap_percentage-to-pixels_column: initial;
 	--FI_gap_percentage-to-pixels_row: initial;
 }
 
-.w_25\% {
+.wg_25\% {
 	width: calc(25% - var(--fl-gap));
 	--FI_gap_percentage-to-pixels_column: calc(-calc(25% - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-calc(25% - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_width: calc(calc(25% - var(--fl-gap)) - var(--FI_gap_container_column, 0%)) !important;
 }
 
-.w_50\% > * {
+.wg_50\% > * {
 	--FI_gap_percentage-to-pixels_column: initial;
 	--FI_gap_percentage-to-pixels_row: initial;
 }
 
-.w_50\% {
+.wg_50\% {
 	width: calc(50% - var(--fl-gap));
 	--FI_gap_percentage-to-pixels_column: calc(-calc(50% - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;
 	--FI_gap_percentage-to-pixels_row: calc(-calc(50% - var(--fl-gap)) * var(--FI_gap_percentage-decimal_column)) !important;

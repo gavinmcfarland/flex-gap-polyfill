@@ -8,7 +8,7 @@ const SS = " > ::slotted(*)"; // function supportNativeSolution(decl) {
 // 	const container = decl.parent;
 // 	const item = postcss.rule({ selector: container.selector + CS });
 // 	var mediaRule = postcss.rule({ selector: '@media (pointer: coarse), (pointer: fine)' })
-// 	var supportsRule = postcss.rule({ selector: '@supports (-moz-user-select: none) or ((display: flow-root) and(- webkit - initial - letter: 1)) or (width: max(1px, 2px))' })
+// 	var supportsRule = postcss.rule({ selector: '@supports (-moz-user-select: none) or (width: max(1px, 2px))' })
 // 	var cssRule = postcss.rule({ selector: container.selector })
 // 	var cssRule2 = postcss.rule({ selector: item.selector })
 // 	supportsRule.append(cssRule2)
