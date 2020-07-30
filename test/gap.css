@@ -1,42 +1,70 @@
 .g_20px {
 	display: flex;
 	gap: 20px;
+	--fl-gap: 0px;
+}
+
+.g_20px > * {
 	--fl-gap: 20px;
 }
 
 .g_40px {
 	display: flex;
 	gap: 40px;
+	--fl-gap: 0px;
+}
+
+.g_40px > * {
 	--fl-gap: 40px;
 }
 
 .g_10\% {
 	display: flex;
 	gap: 10%;
+	--fl-gap: 0px;
+}
+
+.g_10\% > * {
 	--fl-gap: 10%;
 }
 
 .g_30\% {
 	display: flex;
 	gap: 30%;
+	--fl-gap: 0px;
+}
+
+.g_30\% > * {
 	--fl-gap: 30%;
 }
 
 .g_25\% {
 	display: flex;
 	gap: 25%;
+	--fl-gap: 0px;
+}
+
+.g_25\% > * {
 	--fl-gap: 25%;
 }
 
 .g_3\% {
 	display: flex;
 	gap: 3%;
+	--fl-gap: 0px;
+}
+
+.g_3\% > * {
 	--fl-gap: 3%;
 }
 
 .g_6\% {
 	display: flex;
 	gap: 6%;
+	--fl-gap: 0px;
+}
+
+.g_6\% > * {
 	--fl-gap: 6%;
 }
 

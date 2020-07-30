@@ -22,20 +22,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 20px) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 20px) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_20px > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_20px > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_20px {
 	display: flex;
-	--fl-gap: 20px;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, calc(var(--FI_gap_parent_row, 0px) - 20px)) !important;
 	--FI_gap_parent_row: initial;
@@ -43,18 +35,12 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, calc(var(--FI_gap_parent_column, 0px) - 20px)) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_20px > ::slotted(*) {
@@ -65,7 +51,11 @@
 	--FI_gap_parent_column: 20px;
 	--FI_gap_item_column: 20px;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_20px > * {
+	--fl-gap: 20px;
 }
 
 .g_40px > * {
@@ -87,20 +77,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 40px) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 40px) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_40px > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_40px > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_40px {
 	display: flex;
-	--fl-gap: 40px;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, calc(var(--FI_gap_parent_row, 0px) - 40px)) !important;
 	--FI_gap_parent_row: initial;
@@ -108,18 +90,12 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, calc(var(--FI_gap_parent_column, 0px) - 40px)) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_40px > ::slotted(*) {
@@ -130,7 +106,11 @@
 	--FI_gap_parent_column: 40px;
 	--FI_gap_item_column: 40px;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_40px > * {
+	--fl-gap: 40px;
 }
 
 .g_10\% > * {
@@ -152,20 +132,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 10%) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 10%) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_10\% > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_10\% > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_10\% {
 	display: flex;
-	--fl-gap: 10%;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_percentage-decimal_row: 0.1;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_row, calc( ((var(--FI_gap_parent_row, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100))) !important;
@@ -174,19 +146,13 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_percentage-decimal_column: 0.1;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_column, calc( ((var(--FI_gap_parent_column, 0%) - 10%) * var(--FI_width_percentages-decimal, 1)) / (100 - 10) * 100))) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_10\% > ::slotted(*) {
@@ -197,7 +163,11 @@
 	--FI_gap_parent_column: 10%;
 	--FI_gap_item_column: 10%;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_10\% > * {
+	--fl-gap: 10%;
 }
 
 .g_30\% > * {
@@ -219,20 +189,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 30%) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 30%) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_30\% > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_30\% > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_30\% {
 	display: flex;
-	--fl-gap: 30%;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_percentage-decimal_row: 0.3;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_row, calc( ((var(--FI_gap_parent_row, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100))) !important;
@@ -241,19 +203,13 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_percentage-decimal_column: 0.3;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_column, calc( ((var(--FI_gap_parent_column, 0%) - 30%) * var(--FI_width_percentages-decimal, 1)) / (100 - 30) * 100))) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_30\% > ::slotted(*) {
@@ -264,7 +220,11 @@
 	--FI_gap_parent_column: 30%;
 	--FI_gap_item_column: 30%;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_30\% > * {
+	--fl-gap: 30%;
 }
 
 .g_25\% > * {
@@ -286,20 +246,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 25%) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 25%) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_25\% > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_25\% > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_25\% {
 	display: flex;
-	--fl-gap: 25%;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_percentage-decimal_row: 0.25;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_row, calc( ((var(--FI_gap_parent_row, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100))) !important;
@@ -308,19 +260,13 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_percentage-decimal_column: 0.25;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_column, calc( ((var(--FI_gap_parent_column, 0%) - 25%) * var(--FI_width_percentages-decimal, 1)) / (100 - 25) * 100))) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_25\% > ::slotted(*) {
@@ -331,7 +277,11 @@
 	--FI_gap_parent_column: 25%;
 	--FI_gap_item_column: 25%;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_25\% > * {
+	--fl-gap: 25%;
 }
 
 .g_3\% > * {
@@ -353,20 +303,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 3%) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 3%) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_3\% > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_3\% > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_3\% {
 	display: flex;
-	--fl-gap: 3%;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_percentage-decimal_row: 0.03;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_row, calc( ((var(--FI_gap_parent_row, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100))) !important;
@@ -375,19 +317,13 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_percentage-decimal_column: 0.03;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_column, calc( ((var(--FI_gap_parent_column, 0%) - 3%) * var(--FI_width_percentages-decimal, 1)) / (100 - 3) * 100))) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_3\% > ::slotted(*) {
@@ -398,7 +334,11 @@
 	--FI_gap_parent_column: 3%;
 	--FI_gap_item_column: 3%;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_3\% > * {
+	--fl-gap: 3%;
 }
 
 .g_6\% > * {
@@ -420,20 +360,12 @@
 	--FI_gap_parent_column: var(--FI_has-polyfil_gap-item, 6%) !important;
 	--FI_gap_item_column: var(--FI_has-polyfil_gap-item, 6%) !important;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column);
-}
-
-.g_6\% > * {
-	--FI_width_percentages-decimal: initial;
-}
-
-.g_6\% > * {
-	--FI_width_percentages-decimal: initial;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_6\% {
 	display: flex;
-	--fl-gap: 6%;
+	--fl-gap: 0px;
 	--FI_has-polyfil_gap-container: initial;
 	--FI_gap_percentage-decimal_row: 0.06;
 	--FI_gap_container_row: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_row, calc( ((var(--FI_gap_parent_row, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100))) !important;
@@ -442,19 +374,13 @@
 	--FI_gap_row: var(--FI_gap_container_row) !important;
 	padding-top: 0.02px;
 	margin-top: var(--FI_gap_row);
-	width: 100%;
-	flex-grow: 0;
 	--FI_gap_percentage-decimal_column: 0.06;
 	--FI_gap_container_column: var(--FI_has-polyfil_gap-container, var(--FI_gap_percentage-to-pixels_column, calc( ((var(--FI_gap_parent_column, 0%) - 6%) * var(--FI_width_percentages-decimal, 1)) / (100 - 6) * 100))) !important;
 	--FI_gap_parent_column: initial;
 	--FI_gap_item_column: initial;
 	--FI_gap_column: var(--FI_gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-left: var(--FI_gap_column);
-	width: 100%;
-	flex-grow: 0;
-	--FI_width_percentages-decimal: 1 !important;
-	--FI_width_percentages-decimal: 1 !important;
+	margin-right: var(--FI_gap_column);
 }
 
 .g_6\% > ::slotted(*) {
@@ -465,7 +391,11 @@
 	--FI_gap_parent_column: 6%;
 	--FI_gap_item_column: 6%;
 	--FI_gap_column: var(--FI_gap_item_column);
-	margin-left: var(--FI_gap_column) !important;
+	margin-right: var(--FI_gap_column) !important;
+}
+
+.g_6\% > * {
+	--fl-gap: 6%;
 }
 
 .w_400px > * {

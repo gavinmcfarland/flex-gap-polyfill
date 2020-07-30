@@ -1,6 +1,7 @@
 <style media="screen">
 	:root {
 		--FI_has-gutters: true;
+		--fl-gap: 0px;
 	}
 
 	body {
@@ -18,6 +19,10 @@
 		display: flex;
 		flex-wrap: wrap;
 		flex-grow: 1;
+	}
+
+	.example.example {
+		--fl-gap: 0px;
 	}
 
 	.example2 {
@@ -81,401 +86,401 @@
 <h1>Flex Gap Polyfill</h1>
 <p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a></h1>
 
-	<h4>No wrap</h4>
-	<div class="boundary">
-		<div class="example example2 g_40px">
-			<div><a href="/">A</a></div>
-			<div>B</div>
-			<div>C</div>
-			<div>D</div>
+<h4>No wrap</h4>
+<div class="boundary">
+	<div class="example example2 g_40px">
+		<div><a href="/">A</a></div>
+		<div>B</div>
+		<div>C</div>
+		<div>D</div>
+	</div>
+</div>
+
+<h4>No gutters > Pixels</h4>
+<div class="boundary">
+	<div class="example">
+		<div class="w_50%"><a href="/">A</a></div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
 		</div>
 	</div>
+</div>
 
-	<h4>No gutters > Pixels</h4>
-	<div class="boundary">
+<h4>Pixels > Not gutters</h4>
+<div class="boundary">
+	<div class="example g_40px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
 		<div class="example">
-			<div class="w_50%"><a href="/">A</a></div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>Pixels > Not gutters</h4>
-	<div class="boundary">
-		<div class="example g_40px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-
-	<h4>Pixels</h4>
-	<div class="boundary">
-		<div class="example g_40px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
 		</div>
 	</div>
+</div>
 
-	<h4>Pixels > Pixels</h4>
-	<div class="boundary">
-		<div class="example g_40px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
+
+<h4>Pixels</h4>
+<div class="boundary">
+	<div class="example g_40px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
 	</div>
+</div>
 
-	<h4>Percentages</h4>
-	<div class="boundary">
-		<div class="example g_3%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-		</div>
-	</div>
-
-	<h4>Percentages > Pixels</h4>
-	<div class="boundary">
-		<div class="example g_3%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>Percentages > Percentages</h4>
-	<div class="boundary">
-		<div class="example g_3%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h3>With percentage width applied</h3>
-
-	<h4>Pixels</h4>
-	<div class="boundary">
-		<div class="example g_40px" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-		</div>
-		<div class="example g_40px" style="width: 50%">
+<h4>Pixels > Pixels</h4>
+<div class="boundary">
+	<div class="example g_40px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
 		</div>
 	</div>
+</div>
 
-	<h4>Pixels > Pixels</h4>
-	<div class="boundary">
-		<div class="example g_40px" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_40px" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
+<h4>Percentages</h4>
+<div class="boundary">
+	<div class="example g_3%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
 	</div>
+</div>
 
-	<h4>Percentages</h4>
-	<div class="boundary">
-		<div class="example g_3%" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-		</div>
-		<div class="example g_3%" style="width: 50%">
+<h4>Percentages > Pixels</h4>
+<div class="boundary">
+	<div class="example g_3%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
 		</div>
 	</div>
+</div>
 
-	<h4>Percentages > Pixels</h4>
-	<div class="boundary">
-		<div class="example g_3%" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3%" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>Percentages > Percentages</h4>
-	<div class="boundary">
-		<div class="example g_3%" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3%" style="width: 50%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>Percentages > Percentages</h4>
-	<div class="boundary">
-		<div class="example g_3%" style="width: 25%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3%" style="width: 25%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3%" style="width: 25%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3%" style="width: 25%">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-	</div>
-
-	<h3>With pixel width applied</h3>
-
-	<h4>Pixels</h4>
-	<div class="boundary w_800px">
-		<div class="example g_40px" style="width: 400px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-		</div>
-		<div class="example g_40px" style="width: 400px">
+<h4>Percentages > Percentages</h4>
+<div class="boundary">
+	<div class="example g_3%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
 		</div>
 	</div>
+</div>
 
-	<h4>Pixels > Pixels</h4>
-	<div class="boundary w_800px">
-		<div class="example g_40px" style="width: 400px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_40px" style="width: 400px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
+<h3>With percentage width applied</h3>
+
+<h4>Pixels</h4>
+<div class="boundary">
+	<div class="example g_40px" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
 	</div>
+	<div class="example g_40px" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+</div>
 
-	<h4>Percentages</h4>
-	<div class="boundary" style="width: 800px">
-		<div class="example g_3%" style="width: 400px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-		</div>
-		<div class="example g_3%" style="width: 400px">
+<h4>Pixels > Pixels</h4>
+<div class="boundary">
+	<div class="example g_40px" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
 		</div>
 	</div>
-
-	<h4>Percentages > Pixels</h4>
-	<div class="boundary" style="width: 800px">
-		<div class="example g_3%" style="width: 400px">
+	<div class="example g_40px" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3%" style="width: 400px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_20px">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
 		</div>
 	</div>
+</div>
 
-	<h4>Percentages > Percentages</h4>
-	<div class="boundary" style="width: 800px">
-		<div class="example g_3% w_400px">
+<h4>Percentages</h4>
+<div class="boundary">
+	<div class="example g_3%" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+	<div class="example g_3%" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+</div>
+
+<h4>Percentages > Pixels</h4>
+<div class="boundary">
+	<div class="example g_3%" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
 			<div class="w_50%">A</div>
 			<div class="w_50%">B</div>
 			<div class="w_50%">C</div>
 			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
-		</div>
-		<div class="example g_3% w_400px">
-			<div class="w_50%">A</div>
-			<div class="w_50%">B</div>
-			<div class="w_50%">C</div>
-			<div class="w_50%">D</div>
-			<div class="example g_6%">
-				<div class="w_50%">A</div>
-				<div class="w_50%">B</div>
-				<div class="w_50%">C</div>
-				<div class="w_50%">D</div>
-			</div>
 		</div>
 	</div>
+	<div class="example g_3%" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>
+
+<h4>Percentages > Percentages</h4>
+<div class="boundary">
+	<div class="example g_3%" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_3%" style="width: 50%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>
+
+<h4>Percentages > Percentages</h4>
+<div class="boundary">
+	<div class="example g_3%" style="width: 25%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_3%" style="width: 25%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_3%" style="width: 25%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_3%" style="width: 25%">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>
+
+<h3>With pixel width applied</h3>
+
+<h4>Pixels</h4>
+<div class="boundary w_800px">
+	<div class="example g_40px" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+	<div class="example g_40px" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+</div>
+
+<h4>Pixels > Pixels</h4>
+<div class="boundary w_800px">
+	<div class="example g_40px" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_40px" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>
+
+<h4>Percentages</h4>
+<div class="boundary" style="width: 800px">
+	<div class="example g_3%" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+	<div class="example g_3%" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+	</div>
+</div>
+
+<h4>Percentages > Pixels</h4>
+<div class="boundary" style="width: 800px">
+	<div class="example g_3%" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_3%" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_20px">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>
+
+<h4>Percentages > Percentages</h4>
+<div class="boundary" style="width: 800px">
+	<div class="example g_3%" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+	<div class="example g_3%" style="width: 400px">
+		<div class="w_50%">A</div>
+		<div class="w_50%">B</div>
+		<div class="w_50%">C</div>
+		<div class="w_50%">D</div>
+		<div class="example g_6%">
+			<div class="w_50%">A</div>
+			<div class="w_50%">B</div>
+			<div class="w_50%">C</div>
+			<div class="w_50%">D</div>
+		</div>
+	</div>
+</div>

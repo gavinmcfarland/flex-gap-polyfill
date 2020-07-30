@@ -10,21 +10,6 @@ const SS = " > ::slotted(*)";
 
 // 	const item = postcss.rule({ selector: container.selector + CS });
 
-// 	// console.log(container)
-
-// 	// const item = postcss.rule({ selector: container.selector + CS });
-
-// 	// var css = `/* firefox 64+  @media pointer + -moz-user-select: none */
-// 	// /* safari 13+   flow-root + -webkit-initial-letter */
-// 	// /* chrome 79+   width max() */
-// 	// @media (pointer: coarse), (pointer: fine) {
-// 	//   @supports (-moz-user-select: none) or
-// 	//             ((display: flow-root) and (-webkit-initial-letter: 1)) or
-// 	//             (width: max(1px, 2px)) {
-// 	//     /* resets polyfill code and apply native solution */
-// 	//   }
-// 	// }`
-
 // 	var mediaRule = postcss.rule({ selector: '@media (pointer: coarse), (pointer: fine)' })
 // 	var supportsRule = postcss.rule({ selector: '@supports (-moz-user-select: none) or ((display: flow-root) and(- webkit - initial - letter: 1)) or (width: max(1px, 2px))' })
 // 	var cssRule = postcss.rule({ selector: container.selector })
@@ -40,7 +25,8 @@ const SS = " > ::slotted(*)";
 // 	);
 
 // 	cssRule.append(
-// 		`margin: initial;`
+// 		`margin-top: initial;
+// 		 padding: initial;`
 // 	);
 
 // 	mediaRule.append(supportsRule)
@@ -133,7 +119,7 @@ function addgap(decl, opts) {
 		}
 		if (axis === "_column") {
 			item.append(
-				`margin-left: var(${pf}gap${axis});`
+				`margin-right: var(${pf}gap${axis});`
 			);
 		}
 
@@ -151,7 +137,7 @@ function addgap(decl, opts) {
 		}
 		if (axis === "_column") {
 			container.append(
-				`margin-left: var(${pf}gap${axis});`
+				`margin-right: var(${pf}gap${axis});`
 			);
 		}
 
@@ -172,14 +158,14 @@ function addgap(decl, opts) {
 			}
 			if (axis === "_column") {
 				slotted.append(
-					`margin-left: var(${pf}gap${axis}) !important;`
+					`margin-right: var(${pf}gap${axis}) !important;`
 				);
 			}
 		}
 
-		container.append(
-			`width: 100%;
-			flex-grow: 0;`);
+		// container.append(
+		// 	`width: 100%;
+		// 	flex-grow: 0;`);
 	});
 
 
