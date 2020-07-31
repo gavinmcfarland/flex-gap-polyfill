@@ -1,7 +1,7 @@
 import postcss from "postcss";
 var valueParser = require('postcss-value-parser');
 
-const pf = "--FI_";
+const pf = "--fgp-";
 const CS = " > *";
 const SS = " > ::slotted(*)";
 

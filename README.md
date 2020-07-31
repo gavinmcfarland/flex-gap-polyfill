@@ -2,7 +2,6 @@
 
 [![NPM Version][npm-img]][npm-url]
 [![Linux Build Status][cli-img]][cli-url]
-[![Windows Build Status][win-img]][win-url]
 [![Gitter Chat][git-img]][git-url]
 
 
@@ -12,6 +11,7 @@ A PostCSS polyfill for adding gap between flex items, following the CSS Gap spec
 
 - No way to detect browsers which support flex-gap, so polyfill is always used.
 - Slight variation of percentage width of flex items (because of negative margin) mainly noticeable when using flex-wrap.
+- Support for individul column/row gap coming soon.
 
 ## Example
 
@@ -26,32 +26,31 @@ A PostCSS polyfill for adding gap between flex items, following the CSS Gap spec
 Becomes:
 
 ```css
-/* Output simplified for example */
+/* Output simplified for purposes of example */
 
 .container > * {
-    --gap_parent: 40px !important;
-    --gap_item: 40px !important;
-    --gap: var(--gutters_item) !important;
-    margin-top: var(--gap);
-    margin-left: var(--gap);
+    --fgp-gap_parent: 40px !important;
+    --fgp-gap_item: 40px !important;
+    --fgp-gap: var(--fgp_item) !important;
+    margin-top: var(--fgp-gap);
+    margin-right: var(--fgp-gap);
 }
 
 .container {
-    --gap_container: calc(var(--gap_parent, 0px) - 40px) !important;
-    --gap: var(--gap_container);
-    margin-top: var(--gap);
-    margin-left: var(--gap);
+    --fgp-gap_container: calc(var(--fgp-gap_parent, 0px) - 40px) !important;
+    --fgp-gap: var(--fgp-gap_container);
+    margin-top: var(--fgp-gap);
+    margin-right: var(--fgp-gap);
 }
 ```
 
-You can view [several test cases](https://limitlessloop.github.io/flex-gap-polyfill/) here.
+You can view [several test cases](https://limitlessloop.github.io/flex-gap-polyfill/).
 
-It works by adding margins to each child element and recalculating their widths and applying a negative margin to the container.
+It works by adding margins to each child element and applying a negative margin to the container.
 
-- Works with unlimited nested elements
-- No additional class names or divs needed
-- Style borders and padding as normal
-- Partial support for percentages (tempermental/non-spec)
+- Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc.
+- No additional class names or divs needed.
+- Style borders and padding as normal.
 
 ## Browsers
 
@@ -88,8 +87,6 @@ postcss([
 [npm-img]: https://img.shields.io/npm/v/flex-gap-polyfill.svg
 [cli-url]: https://travis-ci.org/limitlessloop/flex-gap-polyfill
 [cli-img]: https://img.shields.io/travis/limitlessloop/flex-gap-polyfill.svg
-[win-url]: https://ci.appveyor.com/project/limitlessloop/flex-gap-polyfill
-[win-img]: https://img.shields.io/appveyor/ci/limitlessloop/flex-gap-polyfill.svg
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
