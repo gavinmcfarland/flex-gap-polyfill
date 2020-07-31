@@ -263,6 +263,10 @@ var index = postcss.plugin("postcss-gap", opts => {
           hassFlex = true;
         }
 
+        if (decl.prop === "display" && decl.value === "inline-flex") {
+          hassFlex = true;
+        }
+
         if (decl.prop === "margin" || decl.prop === "margin-right" || decl.prop === "margin-top") {
           if (decl.prop === "margin-top") {
             marginValues[0] = decl.value;
