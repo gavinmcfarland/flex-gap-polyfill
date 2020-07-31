@@ -5,12 +5,12 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-A PostCSS polyfill for adding gap between flex items, following the CSS Gap specification.
+This is a PostCSS plugin that emulates flex gap using margins.
 
 ## Known issues
 
 - No way to detect browsers which support flex-gap, so polyfill is always used.
-- Slight variation in computed width of flex items when using percentages (because of negative margin on container), usually this is desirable though.
+- Slight variation of computed width of flex items when using percentages (because of negative margin on container), usually in most cases this is desirable anyway.
 
 ## Example
 
