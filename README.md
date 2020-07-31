@@ -10,7 +10,7 @@ A PostCSS polyfill for adding gap between flex items, following the CSS Gap spec
 ## Known issues
 
 - No way to detect browsers which support flex-gap, so polyfill is always used.
-- Slight variation of percentage width of flex items (because of negative margin) mainly noticeable when using flex-wrap.
+- Slight variation in computed width of flex items when using percentages (because of negative margin on container), usually this is desirable though.
 
 ## Example
 
