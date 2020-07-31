@@ -56,16 +56,36 @@ It works by adding margins to each child element and recalculating their widths 
 - Style borders and padding as normal
 - Partial support for percentages (tempermental/non-spec)
 
-## Setup
+## Browsers
+
+Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
+
+## Usage
+
+Add [Flex Gap Polyfill] to your project:
 
 ```bash
 npm install flex-gap-polyfill --save-dev
 ```
 
-## Browsers
+Use **PostCSS Magic Token** to process your CSS:
 
-Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
+```js
+const flexGapPolyfill = require('flex-gap-polyfill');
 
+flexGapPolyfill.process(YOUR_CSS /*, processOptions, pluginOptions */);
+```
+
+Or use it as a [PostCSS] plugin:
+
+```js
+const postcss = require('postcss');
+const flexGapPolyfill = require('flex-gap-polyfill');
+
+postcss([
+    flexGapPolyfill(/* pluginOptions */)
+]).process(YOUR_CSS /*, processOptions */);
+```
 
 [npm-url]: https://www.npmjs.com/package/flex-gap-polyfill
 [npm-img]: https://img.shields.io/npm/v/flex-gap-polyfill.svg
@@ -77,3 +97,18 @@ Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
 [PostCSS]: https://github.com/postcss/postcss
+[Flex Gap Polyfil]: https://github.com/limitlessloop/flex-gap-polyfill
+
+## Options
+
+- `webComponents`
+
+    __Type__: Boolean __Default__: false
+
+    When `true` polyfill will also target slotted elements
+
+- `percentageRowGaps`
+
+    __Type__: Boolean __Default__: false
+
+    When `true` percentage row gaps will be calculated based on width of element (non spec).

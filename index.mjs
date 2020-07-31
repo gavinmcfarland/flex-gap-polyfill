@@ -41,7 +41,7 @@ function hasFlex(decl) {
   });
 }
 
-function addgap(decl, opts) {
+function addGap(decl, opts) {
   const container = decl.parent;
   const item = postcss.rule({
     selector: container.selector + CS
@@ -69,7 +69,8 @@ function addgap(decl, opts) {
     }
 
     var number = valueParser.unit(value).number;
-    var unit = valueParser.unit(value).unit; // Percentages
+    var unit = valueParser.unit(value).unit;
+    var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "_row"; // Percentages
 
     if (unit === "%") {
       // formula: (parent - self) / (100 - self) * 100
@@ -87,8 +88,10 @@ function addgap(decl, opts) {
 			${pf}gap_item${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap${axis}: var(${pf}gap_item${axis});`);
 
-    if (axis === "_row") {
-      item.append(`margin-top: var(${pf}gap${axis});`);
+    if (percentageRowGaps) {
+      if (axis === "_row") {
+        item.append(`margin-top: var(${pf}gap${axis});`);
+      }
     }
 
     if (axis === "_column") {
@@ -100,8 +103,10 @@ function addgap(decl, opts) {
 			${pf}gap${axis}: var(${pf}gap_container${axis}) !important;
 			padding-top: 0.02px;`);
 
-    if (axis === "_row") {
-      container.append(`margin-top: var(${pf}gap${axis});`);
+    if (percentageRowGaps) {
+      if (axis === "_row") {
+        container.append(`margin-top: var(${pf}gap${axis});`);
+      }
     }
 
     if (axis === "_column") {
@@ -109,14 +114,16 @@ function addgap(decl, opts) {
     } // If web components
 
 
-    if (opts === true) {
+    if (opts.webComponents === true) {
       container.before(slotted);
       slotted.append(`${pf}gap_parent${axis}: ${value};
 				${pf}gap_item${axis}: ${value};
 				${pf}gap${axis}: var(${pf}gap_item${axis});`);
 
-      if (axis === "_row") {
-        slotted.append(`margin-top: var(${pf}gap${axis}) !important;`);
+      if (percentageRowGaps) {
+        if (axis === "_row") {
+          slotted.append(`margin-top: var(${pf}gap${axis}) !important;`);
+        }
       }
 
       if (axis === "_column") {
@@ -192,12 +199,10 @@ function addWidth(decl) {
 }
 
 var index = postcss.plugin("postcss-gap", opts => {
-  var webComponents = false;
-
-  if (opts && opts.webComponents) {
-    webComponents = true;
-  }
-
+  // var webComponents = false;
+  // if (opts && opts.webComponents) {
+  // 	webComponents = true;
+  // }
   return function (css) {
     const root = postcss.rule({
       selector: ":root"
@@ -221,7 +226,7 @@ var index = postcss.plugin("postcss-gap", opts => {
         decl.parent.walkDecls(function (declTwo) {
           if (declTwo.prop === "display") {
             if (declTwo.value !== "grid") {
-              addgap(decl, webComponents); // supportNativeSolution(decl);
+              addGap(decl, opts); // supportNativeSolution(decl);
             }
           }
         });
