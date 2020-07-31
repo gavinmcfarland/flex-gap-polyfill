@@ -26,7 +26,7 @@ A PostCSS polyfill for adding gap between flex items, following the CSS Gap spec
 Becomes:
 
 ```css
-/* Output simplified for purposes of example */
+/* Output simplified for purpose of example */
 
 .container > * {
     --fgp-gap_parent: 40px !important;
