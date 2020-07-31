@@ -50,9 +50,6 @@ It works by adding margins to each child element and recalculating their widths 
 
 - Works with unlimited nested elements
 - No additional class names or divs needed
-- Use with or without a wrapper div (support for margins coming soon)
-- Works well with responsive design
-- Gutters don't have to be even numbers
 - Style borders and padding as normal
 - Partial support for percentages (tempermental/non-spec)
 
@@ -68,7 +65,7 @@ Add [Flex Gap Polyfill] to your project:
 npm install flex-gap-polyfill --save-dev
 ```
 
-Use **PostCSS Magic Token** to process your CSS:
+Use **Flex Gap Polyfill** to process your CSS:
 
 ```js
 const flexGapPolyfill = require('flex-gap-polyfill');
