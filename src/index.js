@@ -54,7 +54,7 @@ function hasFlex(decl) {
 }
 
 
-function addGap(rule, values, opts) {
+function addGap(rule, values, marginValues, opts) {
 
 	const container = rule;
 
@@ -134,13 +134,15 @@ function addGap(rule, values, opts) {
 		if (percentageRowGaps) {
 			if (axis === "_row") {
 				container.append(
-					`margin-top: var(${pf}gap${axis});`
+					`${pf}margin-top: calc(var(${pf}gap${axis}) + ${marginValues[0]});
+					margin-top: var(${pf}margin-top) !important;`
 				);
 			}
 		}
 		if (axis === "_column") {
 			container.append(
-				`margin-right: var(${pf}gap${axis});`
+				`${pf}margin-right: calc(var(${pf}gap${axis}) + ${marginValues[1]});
+				margin-right: var(${pf}margin-right) !important;`
 			);
 		}
 
@@ -190,6 +192,14 @@ function removeGap(rule) {
 		}
 	})
 }
+
+// function removeMargin(rule) {
+// 	rule.walkDecls((decl) => {
+// 		if (decl.prop === "margin-right" || decl.prop === "margin-top") {
+// 			decl.remove()
+// 		}
+// 	})
+// }
 
 function addWidth(decl) {
 
@@ -278,6 +288,7 @@ export default postcss.plugin("postcss-gap", (opts) => {
 
 		css.walkRules(rule => {
 			var gapValue = ['', '']
+			var marginValues = ['0px', '0px'];
 			var hasGap = false;
 			var hassFlex = false;
 
@@ -319,11 +330,33 @@ export default postcss.plugin("postcss-gap", (opts) => {
 					hassFlex = true;
 				}
 
+				if (decl.prop === "margin" || decl.prop === "margin-right" || decl.prop === "margin-top") {
+					if (decl.prop === "margin-top") {
+						marginValues[0] = decl.value
+					}
+
+					if (decl.prop === "margin-right") {
+						marginValues[1] = decl.value
+					}
+
+					if (decl.prop === "margin") {
+						marginValues = postcss.list.space(decl.value);
+						if (marginValues.length === 1) {
+							marginValues.push(marginValues[0]);
+						}
+						if (marginValues.length > 1) {
+							marginValues = marginValues.slice(0, 2);
+						}
+					}
+				}
+
 			});
 
 			if (hasGap && hassFlex) {
-				addGap(rule, gapValue, opts);
+				addGap(rule, gapValue, marginValues, opts);
 				removeGap(rule);
+				// removeMargin(rule);
+
 				// supportNativeSolution(decl);
 			}
 		})

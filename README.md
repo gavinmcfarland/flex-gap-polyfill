@@ -10,7 +10,7 @@ This is a PostCSS plugin that emulates flex gap using margins.
 ## Known issues
 
 - No way to detect browsers which support flex-gap, so polyfill is always used.
-- Slight variation of computed width of flex items when using percentages (because of negative margin on container), usually in most cases this is desirable anyway.
+- Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway.
 
 ## Example
 
@@ -28,16 +28,16 @@ Becomes:
 /* Output simplified for purpose of example */
 
 .container > * {
-    --fgp-gap_parent: 40px !important;
-    --fgp-gap_item: 40px !important;
-    --fgp-gap: var(--fgp_item) !important;
+    --fgp-gap-parent: 40px !important;
+    --fgp-gap-item: 40px !important;
+    --fgp-gap: var(--fgp-gap-item) !important;
     margin-top: var(--fgp-gap);
     margin-right: var(--fgp-gap);
 }
 
 .container {
-    --fgp-gap_container: calc(var(--fgp-gap_parent, 0px) - 40px) !important;
-    --fgp-gap: var(--fgp-gap_container);
+    --fgp-gap_container: calc(var(--fgp-gap-parent, 0px) - 40px) !important;
+    --fgp-gap: var(--fgp-gap-container);
     margin-top: var(--fgp-gap);
     margin-right: var(--fgp-gap);
 }

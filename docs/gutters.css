@@ -36,13 +36,15 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--fgp-gap_row);
+	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
+	margin-top: var(--fgp-margin-top) !important;
 	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 20px)) !important;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_20px > ::slotted(*) {
@@ -94,13 +96,15 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	margin-top: var(--fgp-gap_row);
+	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
+	margin-top: var(--fgp-margin-top) !important;
 	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 40px)) !important;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_40px > ::slotted(*) {
@@ -157,7 +161,8 @@
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_10\% > ::slotted(*) {
@@ -213,7 +218,8 @@
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_30\% > ::slotted(*) {
@@ -269,7 +275,8 @@
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_25\% > ::slotted(*) {
@@ -325,7 +332,8 @@
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_3\% > ::slotted(*) {
@@ -381,7 +389,8 @@
 	--fgp-gap_item_column: initial;
 	--fgp-gap_column: var(--fgp-gap_container_column) !important;
 	padding-top: 0.02px;
-	margin-right: var(--fgp-gap_column);
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
 }
 
 .g_6\% > ::slotted(*) {

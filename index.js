@@ -43,7 +43,7 @@ function hasFlex(decl) {
   });
 }
 
-function addGap(rule, values, opts) {
+function addGap(rule, values, marginValues, opts) {
   const container = rule;
   const item = postcss.rule({
     selector: container.selector + CS
@@ -101,12 +101,14 @@ function addGap(rule, values, opts) {
 
     if (percentageRowGaps) {
       if (axis === "_row") {
-        container.append(`margin-top: var(${pf}gap${axis});`);
+        container.append(`${pf}margin-top: calc(var(${pf}gap${axis}) + ${marginValues[0]});
+					margin-top: var(${pf}margin-top) !important;`);
       }
     }
 
     if (axis === "_column") {
-      container.append(`margin-right: var(${pf}gap${axis});`);
+      container.append(`${pf}margin-right: calc(var(${pf}gap${axis}) + ${marginValues[1]});
+				margin-right: var(${pf}margin-right) !important;`);
     } // If web components
 
 
@@ -150,7 +152,14 @@ function removeGap(rule) {
       decl.remove();
     }
   });
-}
+} // function removeMargin(rule) {
+// 	rule.walkDecls((decl) => {
+// 		if (decl.prop === "margin-right" || decl.prop === "margin-top") {
+// 			decl.remove()
+// 		}
+// 	})
+// }
+
 
 function addWidth(decl) {
   var value = valueParser.unit(decl.value);
@@ -218,6 +227,7 @@ var index = postcss.plugin("postcss-gap", opts => {
     });
     css.walkRules(rule => {
       var gapValue = ['', ''];
+      var marginValues = ['0px', '0px'];
       var hasGap = false;
       var hassFlex = false;
       rule.walkDecls(function (decl) {
@@ -254,11 +264,34 @@ var index = postcss.plugin("postcss-gap", opts => {
         if (decl.prop === "display" && decl.value === "flex") {
           hassFlex = true;
         }
+
+        if (decl.prop === "margin" || decl.prop === "margin-right" || decl.prop === "margin-top") {
+          if (decl.prop === "margin-top") {
+            marginValues[0] = decl.value;
+          }
+
+          if (decl.prop === "margin-right") {
+            marginValues[1] = decl.value;
+          }
+
+          if (decl.prop === "margin") {
+            marginValues = postcss.list.space(decl.value);
+
+            if (marginValues.length === 1) {
+              marginValues.push(marginValues[0]);
+            }
+
+            if (marginValues.length > 1) {
+              marginValues = marginValues.slice(0, 2);
+            }
+          }
+        }
       });
 
       if (hasGap && hassFlex) {
-        addGap(rule, gapValue, opts);
-        removeGap(rule); // supportNativeSolution(decl);
+        addGap(rule, gapValue, marginValues, opts);
+        removeGap(rule); // removeMargin(rule);
+        // supportNativeSolution(decl);
       }
     });
   };
