@@ -11,7 +11,6 @@ A PostCSS polyfill for adding gap between flex items, following the CSS Gap spec
 
 - No way to detect browsers which support flex-gap, so polyfill is always used.
 - Slight variation of percentage width of flex items (because of negative margin) mainly noticeable when using flex-wrap.
-- Support for individul column/row gap coming soon.
 
 ## Example
 
@@ -46,11 +45,12 @@ Becomes:
 
 You can view [several test cases](https://limitlessloop.github.io/flex-gap-polyfill/).
 
-It works by adding margins to each child element and applying a negative margin to the container.
+It works by emulating flex gap by adding margins to each child element and applying a negative margin to the container.
 
 - Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc.
 - No additional class names or divs needed.
 - Style borders and padding as normal.
+- Supports `gap`, `row-gap` and `column-gap`.
 
 ## Browsers
 
