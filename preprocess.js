@@ -3,6 +3,9 @@ const chokidar = require('chokidar');
 const path = require('path');
 const phtmlUtilityClass = require('phtml-utility-class');
 
+let options = {
+	processBlockStyles: true
+}
 
 function processPHTML(dir) {
 	// var dir = path.dirname(input);
@@ -15,7 +18,7 @@ function processPHTML(dir) {
 			let output = path.join(dirname, basename + '.html');
 
 			fs.readFile(filepath, 'utf8', (err, html) => {
-				phtmlUtilityClass.process(html /*, processOptions, pluginOptions */).then((result) => {
+				phtmlUtilityClass.process(html, null, options).then((result) => {
 					// console.log(result.html)
 					fs.writeFile(output, result.html, () => true);
 					// if (result.map) {

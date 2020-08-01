@@ -10,65 +10,105 @@
 		font-family: sans-serif;
 	}
 
-	.example>* {
-		box-sizing: border-box;
-		background: yellow;
-
-		border-radius: 2px;
-		padding-top: 16px;
-		padding-right: 16px;
-		padding-bottom: 16px;
-		padding-left: 16px;
-		font-size: 13px;
-		font-weight: bold;
+	.outline {
+		outline: dotted;
+		display: flow-root;
 	}
 
-	.example>.example>* {
-		background: pink;
+	.example {
+		padding: 0 !important;
+		background: transparent !important;
 
+		& > {
+			& * {
+				box-sizing: border-box;
+				background: pink;
+				border-radius: 5px;
+				padding: 1em;
+				font-size: 13px;
+				font-weight: bold;
+			}
+
+			& .example > * {
+				background: aqua;
+			}
+
+			& .example > .example > * {
+				background: lightgrey;
+			}
+
+			& .example > .example > .example > * {
+				background: yellow;
+			}
+		}
 	}
 
-	.example>.example>.example>* {
-		background: aqua;
+	.flex-wrap {
+		flex-wrap: wrap;
 	}
 
-	.example>.example>.example>.example>* {
-		background: lightgrey;
+	.gap-20px {
+		display: flex;
+		gap: 20px;
 	}
 
-	.example>.example {
-		background: transparent;
-		padding: 0;
+	.gap-40px {
+		display: flex;
+		gap: 50px;
 	}
 
-	.example>.example>.example {
-		background: transparent;
-		padding: 0;
+	.gap-3% {
+		display: flex;
+		gap: 3%;
+	}
+
+	.gap-6% {
+		display: flex;
+		gap: 6%;
 	}
 </style>
 
-<h4>No width</h4>
-<div class="boundary">
-	<div class="example" style="
-	display: flex;
-	gap: 20px;
-	">
+<h1>Flex Gap Polyfill</p>
+
+<h4>Basic</h4>
+<div class="outline">
+	<div class="example gap-20px flex-wrap">
+		<div><a href="/">One</a></div>
+		<div>Two</div>
+		<div>Three</div>
+		<div>Four</div>
+		<div>Five</div>
+	</div>
+</div>
+
+<h4>No gaps > Pixels</h4>
+<div class="outline">
+	<div class="example">
 		<div><a href="/">A</a></div>
 		<div>B</div>
 		<div>C</div>
 		<div>D</div>
-		<div>E</div>
-		<div>F</div>
-		<div>G</div>
-		<div>H</div>
-		<div>I</div>
-		<div>J</div>
-		<div>K</div>
-		<div>L</div>
-		<div>M</div>
-		<div>N</div>
-		<div>O</div>
-		<div>P</div>
-		<div>Q</div>
+		<div class="example gap-20px">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+		</div>
+	</div>
+</div>
+
+<h4>Pixels > Pixels</h4>
+<div class="outline">
+	<div class="example gap-20px flex-wrap">
+		<div><a href="/">A</a></div>
+		<div>B</div>
+		<div>C</div>
+		<div>D</div>
+		<div class="example gap-40px flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+		</div>
 	</div>
 </div>
