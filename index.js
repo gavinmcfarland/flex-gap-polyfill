@@ -214,15 +214,6 @@ function addWidth(decl) {
 }
 
 var index = postcss.plugin("postcss-gap", opts => {
-  // var webComponents = false;
-  // if (opts && opts.webComponents) {
-  // 	webComponents = true;
-  // }
-  // if (!opts) {
-  // 	opts = {}
-  // 	// opts.percentageRowGaps = false;
-  // 	// opts.webComponents = false;
-  // }
   opts = opts || {};
   return function (css) {
     const root = postcss.rule({
