@@ -11,8 +11,20 @@
 	}
 
 	.outline {
-		outline: dotted;
+		outline: 1px dotted black;
 		display: flow-root;
+		position: relative;
+
+		/* & ::after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: -1px;
+			bottom: -1px;
+			left: -1px;
+			right: -1px;
+			border: 1px dotted black;
+		} */
 	}
 
 	.example {
@@ -54,15 +66,15 @@
 
 	.gap-40px {
 		display: flex;
-		gap: 50px;
+		gap: 40px;
 	}
 
-	.gap-3% {
+	.gap-3\% {
 		display: flex;
 		gap: 3%;
 	}
 
-	.gap-6% {
+	.gap-6\% {
 		display: flex;
 		gap: 6%;
 	}
@@ -71,6 +83,14 @@
 <h1>Flex Gap Polyfill</p>
 
 <h4>Basic</h4>
+<pre>
+.example {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+</pre>
+
 <div class="outline">
 	<div class="example gap-20px flex-wrap">
 		<div><a href="/">One</a></div>
@@ -81,14 +101,29 @@
 	</div>
 </div>
 
-<h4>No gaps > Pixels</h4>
+<h4>Nested</h4>
+
+<pre>
+.example {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.example .example {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+}
+</pre>
+
 <div class="outline">
-	<div class="example">
+	<div class="example gap-40px flex-wrap">
 		<div><a href="/">A</a></div>
 		<div>B</div>
 		<div>C</div>
 		<div>D</div>
-		<div class="example gap-20px">
+		<div class="example gap-20px flex-wrap">
 			<div>A</div>
 			<div>B</div>
 			<div>C</div>
@@ -97,14 +132,42 @@
 	</div>
 </div>
 
-<h4>Pixels > Pixels</h4>
+<h4>Percentages</h4>
+
+<pre>
+.example
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3%;
+}
+</pre>
+
 <div class="outline">
-	<div class="example gap-20px flex-wrap">
+	<div class="example gap-3% flex-wrap">
 		<div><a href="/">A</a></div>
 		<div>B</div>
 		<div>C</div>
 		<div>D</div>
-		<div class="example gap-40px flex-wrap">
+	</div>
+</div>
+
+<h4>Combination</h4>
+
+<pre>
+.example
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3%;
+}
+</pre>
+
+<div class="outline">
+	<div class="example gap-3% flex-wrap">
+		<div><a href="/">A</a></div>
+		<div>B</div>
+		<div>C</div>
+		<div>D</div>
+		<div class="example gap-6% flex-wrap">
 			<div>A</div>
 			<div>B</div>
 			<div>C</div>

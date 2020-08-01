@@ -1,9 +1,10 @@
 module.exports = {
 	plugins: [
-		require('autoprefixer')(),
+		// require('autoprefixer')(),
 		require('postcss-preset-env')({
 			features: {
-				'nesting-rules': true
+				'nesting-rules': true,
+				'gap-properties': false,
 			}
 		}),
 		require('./index.js')()

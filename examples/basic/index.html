@@ -15,8 +15,20 @@
 	}
 
 	.outline {
-		outline: dotted;
+		outline: 1px dotted black;
 		display: flow-root;
+		position: relative;
+
+		/* & ::after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: -1px;
+			bottom: -1px;
+			left: -1px;
+			right: -1px;
+			border: 1px dotted black;
+		} */
 	}
 
 	.example {
@@ -75,7 +87,6 @@
 
 	.gap-20px {
 	display: flex;
-	grid-gap: 20px;
 	--fgp-has-polyfil_gap-container: initial;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 20px)) !important;
 	pointer-events: none;
@@ -107,23 +118,22 @@
 	.gap-40px > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
-	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 50px) !important;
-	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 50px) !important;
+	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 40px) !important;
+	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 40px) !important;
 	--fgp-gap_row: var(--fgp-gap_item_row);
 	margin-top: var(--fgp-gap_row);
 	pointer-events: all;
 	--fgp-gap_container_column: initial;
-	--fgp-gap_parent_column: var(--fgp-has-polyfil_gap-item, 50px) !important;
-	--fgp-gap_item_column: var(--fgp-has-polyfil_gap-item, 50px) !important;
+	--fgp-gap_parent_column: var(--fgp-has-polyfil_gap-item, 40px) !important;
+	--fgp-gap_item_column: var(--fgp-has-polyfil_gap-item, 40px) !important;
 	--fgp-gap_column: var(--fgp-gap_item_column);
 	margin-right: var(--fgp-gap_column);
 }
 
 	.gap-40px {
 	display: flex;
-	grid-gap: 50px;
 	--fgp-has-polyfil_gap-container: initial;
-	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 50px)) !important;
+	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 40px)) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
 	--fgp-gap_item_row: initial;
@@ -131,7 +141,7 @@
 	padding-top: 0.02px;
 	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
 	margin-top: var(--fgp-margin-top) !important;
-	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 50px)) !important;
+	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 40px)) !important;
 	pointer-events: none;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
@@ -141,16 +151,16 @@
 	margin-right: var(--fgp-margin-right) !important;
 	}
 
-	.gap-3% > * {
+	.gap-3\% > * {
 	--fgp-has-polyfil_gap-item: initial;
 }
 
-	.gap-3% > * > * {
+	.gap-3\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-	.gap-3% > * {
+	.gap-3\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 3%) !important;
@@ -164,9 +174,8 @@
 	margin-right: var(--fgp-gap_column);
 }
 
-	.gap-3% {
+	.gap-3\% {
 	display: flex;
-	grid-gap: 3%;
 	--fgp-has-polyfil_gap-container: initial;
 	--fgp-gap_percentage-decimal_row: 0.03;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_row, calc( ((var(--fgp-gap_parent_row, 0%) - 3%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 3) * 100))) !important;
@@ -186,16 +195,16 @@
 	margin-right: var(--fgp-margin-right) !important;
 	}
 
-	.gap-6% > * {
+	.gap-6\% > * {
 	--fgp-has-polyfil_gap-item: initial;
 }
 
-	.gap-6% > * > * {
+	.gap-6\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-	.gap-6% > * {
+	.gap-6\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 6%) !important;
@@ -209,9 +218,8 @@
 	margin-right: var(--fgp-gap_column);
 }
 
-	.gap-6% {
+	.gap-6\% {
 	display: flex;
-	grid-gap: 6%;
 	--fgp-has-polyfil_gap-container: initial;
 	--fgp-gap_percentage-decimal_row: 0.06;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_row, calc( ((var(--fgp-gap_parent_row, 0%) - 6%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 6) * 100))) !important;
@@ -235,6 +243,14 @@
 <h1>Flex Gap Polyfill</p>
 
 <h4>Basic</h4>
+<pre>
+.example {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+</pre>
+
 <div class="outline">
 	<div class="example gap-20px flex-wrap">
 		<div><a href="/">One</a></div>
@@ -245,14 +261,29 @@
 	</div>
 </div>
 
-<h4>No gaps > Pixels</h4>
+<h4>Nested</h4>
+
+<pre>
+.example {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.example .example {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+}
+</pre>
+
 <div class="outline">
-	<div class="example">
+	<div class="example gap-40px flex-wrap">
 		<div><a href="/">A</a></div>
 		<div>B</div>
 		<div>C</div>
 		<div>D</div>
-		<div class="example gap-20px">
+		<div class="example gap-20px flex-wrap">
 			<div>A</div>
 			<div>B</div>
 			<div>C</div>
@@ -261,14 +292,42 @@
 	</div>
 </div>
 
-<h4>Pixels > Pixels</h4>
+<h4>Percentages</h4>
+
+<pre>
+.example
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3%;
+}
+</pre>
+
 <div class="outline">
-	<div class="example gap-20px flex-wrap">
+	<div class="example gap-3% flex-wrap">
 		<div><a href="/">A</a></div>
 		<div>B</div>
 		<div>C</div>
 		<div>D</div>
-		<div class="example gap-40px flex-wrap">
+	</div>
+</div>
+
+<h4>Combination</h4>
+
+<pre>
+.example
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3%;
+}
+</pre>
+
+<div class="outline">
+	<div class="example gap-3% flex-wrap">
+		<div><a href="/">A</a></div>
+		<div>B</div>
+		<div>C</div>
+		<div>D</div>
+		<div class="example gap-6% flex-wrap">
 			<div>A</div>
 			<div>B</div>
 			<div>C</div>
