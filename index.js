@@ -66,7 +66,8 @@ function addGap(rule, values, marginValues, opts) {
 
     var number = valueParser.unit(value).number;
     var unit = valueParser.unit(value).unit;
-    var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "_row"; // Percentages
+    var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "_row";
+    console.log(percentageRowGaps); // Percentages
 
     if (unit === "%") {
       // formula: (parent - self) / (100 - self) * 100
@@ -217,6 +218,12 @@ var index = postcss.plugin("postcss-gap", opts => {
   // if (opts && opts.webComponents) {
   // 	webComponents = true;
   // }
+  // if (!opts) {
+  // 	opts = {}
+  // 	// opts.percentageRowGaps = false;
+  // 	// opts.webComponents = false;
+  // }
+  opts = opts || {};
   return function (css) {
     const root = postcss.rule({
       selector: ":root"
