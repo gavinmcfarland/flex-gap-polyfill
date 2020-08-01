@@ -102,7 +102,8 @@ function addGap(rule, values, marginValues, opts) {
 		);
 
 		item.append(
-			`${pf}gap_container${axis}: initial;
+			`pointer-events: all;
+			${pf}gap_container${axis}: initial;
 			${pf}gap_parent${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap_item${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap${axis}: var(${pf}gap_item${axis});`
@@ -125,7 +126,8 @@ function addGap(rule, values, marginValues, opts) {
 		}
 
 		container.append(
-			`${pf}gap_parent${axis}: initial;
+			`pointer-events: none;
+			${pf}gap_parent${axis}: initial;
 			${pf}gap_item${axis}: initial;
 			${pf}gap${axis}: var(${pf}gap_container${axis}) !important;
 			padding-top: 0.02px;`

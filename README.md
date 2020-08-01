@@ -36,7 +36,7 @@ Becomes:
 }
 
 .container {
-    --fgp-gap_container: calc(var(--fgp-gap-parent, 0px) - 40px) !important;
+    --fgp-gap-container: calc(var(--fgp-gap-parent, 0px) - 40px) !important;
     --fgp-gap: var(--fgp-gap-container);
     margin-top: var(--fgp-gap);
     margin-right: var(--fgp-gap);
