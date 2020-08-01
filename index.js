@@ -79,7 +79,8 @@ function addGap(rule, values, marginValues, opts) {
       }
 
     reset.append(`${pf}gap_item${axis}: initial;`);
-    item.append(`${pf}gap_container${axis}: initial;
+    item.append(`pointer-events: all;
+			${pf}gap_container${axis}: initial;
 			${pf}gap_parent${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap_item${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap${axis}: var(${pf}gap_item${axis});`);
@@ -94,7 +95,8 @@ function addGap(rule, values, marginValues, opts) {
       item.append(`margin-right: var(${pf}gap${axis});`);
     }
 
-    container.append(`${pf}gap_parent${axis}: initial;
+    container.append(`pointer-events: none;
+			${pf}gap_parent${axis}: initial;
 			${pf}gap_item${axis}: initial;
 			${pf}gap${axis}: var(${pf}gap_container${axis}) !important;
 			padding-top: 0.02px;`);
