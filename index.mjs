@@ -64,8 +64,7 @@ function addGap(rule, values, marginValues, opts) {
 
     var number = valueParser.unit(value).number;
     var unit = valueParser.unit(value).unit;
-    var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "_row";
-    console.log(percentageRowGaps); // Percentages
+    var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "_row"; // Percentages
 
     if (unit === "%") {
       // formula: (parent - self) / (100 - self) * 100
