@@ -6,16 +6,22 @@
 	}
 
 	body {
-		padding: 100px;
+		padding: 2em;
 		font-family: sans-serif;
 	}
 
+	.page {
+		max-width: 50em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.outline {
-		outline: 1px dotted black;
 		display: flow-root;
 		position: relative;
+		margin-bottom: 4em;
 
-		/* & ::after {
+		&::after {
 			content: '';
 			display: block;
 			position: absolute;
@@ -24,12 +30,14 @@
 			left: -1px;
 			right: -1px;
 			border: 1px dotted black;
-		} */
+			pointer-events: none;
+		}
 	}
 
-	.example {
+	.container {
 		padding: 0 !important;
 		background: transparent !important;
+		font-size: 13px;
 
 		& > {
 			& * {
@@ -37,19 +45,18 @@
 				background: pink;
 				border-radius: 5px;
 				padding: 1em;
-				font-size: 13px;
 				font-weight: bold;
 			}
 
-			& .example > * {
+			& .container > * {
 				background: aqua;
 			}
 
-			& .example > .example > * {
+			& .container > .container > * {
 				background: lightgrey;
 			}
 
-			& .example > .example > .example > * {
+			& .container > .container > .container > * {
 				background: yellow;
 			}
 		}
@@ -61,7 +68,9 @@
 
 	.gap-20px {
 		display: flex;
-		gap: 20px;
+		--gap: 20px;
+		gap: var(--gap);
+
 	}
 
 	.gap-40px {
@@ -78,100 +87,247 @@
 		display: flex;
 		gap: 6%;
 	}
+
+	.gap-2em {
+		display: flex;
+		gap: 2em;
+	}
+
+	.gap-20px.margin-20px {
+		display: flex;
+		gap: 20px;
+		margin: 20px;
+	}
+
+	.space-evenly {
+		justify-content: space-evenly;
+	}
+
+	.justify-flex-end {
+		justify-content: flex-end;
+	}
+
+	.grow {
+		flex-grow: 1;
+	}
+
+	.item-50\% {
+		width: calc(50% - var(--gap));
+	}
 </style>
 
-<h1>Flex Gap Polyfill</p>
+<div class="page">
 
-<h4>Basic</h4>
-<pre>
-.example {
+	<h1>Flex Gap Polyfill</h1>
+
+	<p>Below are a list of test cases demonstrating scenarios this polyfill works with.</p>
+	<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a>.</p>
+
+	<h4>Basic</h4>
+	<pre>
+.container {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 }
-</pre>
+	</pre>
 
-<div class="outline">
-	<div class="example gap-20px flex-wrap">
-		<div><a href="/">One</a></div>
-		<div>Two</div>
-		<div>Three</div>
-		<div>Four</div>
-		<div>Five</div>
+	<div class="outline">
+		<div class="container gap-20px flex-wrap">
+			<div>One</div>
+			<div>Two</div>
+			<div>Three</div>
+			<div>Four</div>
+			<div>Five</div>
+		</div>
 	</div>
-</div>
 
-<h4>Nested</h4>
+	<h3>Nested</h3>
 
-<pre>
-.example {
+	<pre>
+.container {
 	display: flex;
 	gap: 20px;
 	flex-wrap: wrap;
 }
 
-.example .example {
+.container .container {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 40px;
 }
-</pre>
+	</pre>
 
-<div class="outline">
-	<div class="example gap-40px flex-wrap">
-		<div><a href="/">A</a></div>
-		<div>B</div>
-		<div>C</div>
-		<div>D</div>
-		<div class="example gap-20px flex-wrap">
+	<div class="outline">
+		<div class="container gap-40px flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div class="container gap-20px flex-wrap">
+				<div>A</div>
+				<div>B</div>
+				<div>C</div>
+				<div>D</div>
+			</div>
+		</div>
+	</div>
+
+	<h3>Percentages</h3>
+
+	<p>(Percentage row gaps only appear when height is specified, disabled in polyfill for now).</p>
+
+	<pre>
+.container
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6%;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-6% flex-wrap">
 			<div>A</div>
 			<div>B</div>
 			<div>C</div>
 			<div>D</div>
 		</div>
 	</div>
-</div>
 
-<h4>Percentages</h4>
+		<h3>Ems</h3>
 
-<pre>
-.example
+	<pre>
+.container
 	display: flex;
 	flex-wrap: wrap;
-	gap: 3%;
+	gap: 2em;
 }
-</pre>
+	</pre>
 
-<div class="outline">
-	<div class="example gap-3% flex-wrap">
-		<div><a href="/">A</a></div>
-		<div>B</div>
-		<div>C</div>
-		<div>D</div>
-	</div>
-</div>
-
-<h4>Combination</h4>
-
-<pre>
-.example
-	display: flex;
-	flex-wrap: wrap;
-	gap: 3%;
-}
-</pre>
-
-<div class="outline">
-	<div class="example gap-3% flex-wrap">
-		<div><a href="/">A</a></div>
-		<div>B</div>
-		<div>C</div>
-		<div>D</div>
-		<div class="example gap-6% flex-wrap">
+	<div class="outline">
+		<div class="container gap-2em flex-wrap">
 			<div>A</div>
 			<div>B</div>
 			<div>C</div>
 			<div>D</div>
 		</div>
 	</div>
+
+	<h3>Combination (% > px, px > %, em > px, etc)</h3>
+
+	<pre>
+.container
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6%;
+}
+
+.container .container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-6% flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div class="container gap-20px flex-wrap">
+				<div>A</div>
+				<div>B</div>
+				<div>C</div>
+				<div>D</div>
+			</div>
+		</div>
+	</div>
+
+	<h3>Margin + Gap</h3>
+
+	<pre>
+.container
+	display: flex;
+	flex-wrap: wrap;
+	margin: 20px;
+	gap: 3%;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-20px margin-20px flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+		</div>
+	</div>
+
+	<h3>Justify End</h3>
+
+	<pre>
+.container
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 3%;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-40px flex-wrap space-evenly justify-flex-end">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+		</div>
+	</div>
+
+	<h3>Space Evenly</h3>
+
+	<pre>
+.container
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3%;
+	justify-content: space-evenly;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-40px flex-wrap space-evenly">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+		</div>
+	</div>
+
+	<h3>Grid</h3>
+
+	<pre>
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	--gap: 20px;
+	gap: var(--gap);
+}
+
+.item-50% {
+	width: calc(50% - var(--gap))
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-20px flex-wrap grow">
+			<div class="item-50%">A</div>
+			<div class="item-50%">B</div>
+			<div class="item-50%">C</div>
+			<div class="item-50%">D</div>
+		</div>
+	</div>
+
 </div>
+

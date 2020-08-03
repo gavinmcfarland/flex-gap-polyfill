@@ -68,8 +68,22 @@ function addGap(rule, values, marginValues, opts) {
 
     if (unit === "%") {
       // formula: (parent - self) / (100 - self) * 100
-      container.append(`${pf}gap_percentage-decimal${axis}: ${number / 100};
+      if (axis === "_column") {
+        container.append(`${pf}gap_percentage-decimal${axis}: ${number / 100};
 				${pf}gap_container${axis}: var(${pf}has-polyfil_gap-container, var(${pf}gap_percentage-to-pixels${axis}, calc( ((var(${pf}gap_parent${axis}, 0%) - ${value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`);
+      }
+
+      if (percentageRowGaps) {
+        if (axis === "_row") {
+          // formula: (parent - self) / (100 - self) * 100
+          container.append(`${pf}gap_percentage-decimal${axis}: ${number / 100};
+				${pf}gap_container${axis}: var(${pf}has-polyfil_gap-container, var(${pf}gap_percentage-to-pixels${axis}, calc( ((var(${pf}gap_parent${axis}, 0%) - ${value}) * var(${pf}width_percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`);
+        }
+      } else {
+        if (axis === "_row") {
+          container.append(`${pf}gap_container${axis}: var(--fgp-gap_item_row) !important;`);
+        }
+      }
     } // Pixels, Ems
     else {
         // formula: (parent - self)
@@ -79,18 +93,19 @@ function addGap(rule, values, marginValues, opts) {
     reset.append(`${pf}gap_item${axis}: initial;`);
     item.append(`pointer-events: all;
 			${pf}gap_container${axis}: initial;
-			${pf}gap_parent${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap_item${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
 			${pf}gap${axis}: var(${pf}gap_item${axis});`);
 
     if (percentageRowGaps) {
       if (axis === "_row") {
-        item.append(`margin-top: var(${pf}gap${axis});`);
+        item.append(`${pf}gap_parent${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
+					margin-top: var(${pf}gap${axis});`);
       }
     }
 
     if (axis === "_column") {
-      item.append(`margin-right: var(${pf}gap${axis});`);
+      item.append(`${pf}gap_parent${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
+				margin-right: var(${pf}gap${axis});`);
     }
 
     container.append(`pointer-events: none;

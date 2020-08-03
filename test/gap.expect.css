@@ -166,8 +166,6 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	--fgp-gap_percentage-decimal_column: 0.1;
-	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_column, calc( ((var(--fgp-gap_parent_column, 0%) - 10%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 10) * 100))) !important;
 	pointer-events: none;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
@@ -227,8 +225,6 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	--fgp-gap_percentage-decimal_column: 0.3;
-	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_column, calc( ((var(--fgp-gap_parent_column, 0%) - 30%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 30) * 100))) !important;
 	pointer-events: none;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
@@ -288,8 +284,6 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	--fgp-gap_percentage-decimal_column: 0.25;
-	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_column, calc( ((var(--fgp-gap_parent_column, 0%) - 25%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 25) * 100))) !important;
 	pointer-events: none;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
@@ -349,8 +343,6 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	--fgp-gap_percentage-decimal_column: 0.03;
-	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_column, calc( ((var(--fgp-gap_parent_column, 0%) - 3%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 3) * 100))) !important;
 	pointer-events: none;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;
@@ -410,8 +402,6 @@
 	--fgp-gap_item_row: initial;
 	--fgp-gap_row: var(--fgp-gap_container_row) !important;
 	padding-top: 0.02px;
-	--fgp-gap_percentage-decimal_column: 0.06;
-	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, var(--fgp-gap_percentage-to-pixels_column, calc( ((var(--fgp-gap_parent_column, 0%) - 6%) * var(--fgp-width_percentages-decimal, 1)) / (100 - 6) * 100))) !important;
 	pointer-events: none;
 	--fgp-gap_parent_column: initial;
 	--fgp-gap_item_column: initial;

@@ -53,17 +53,6 @@ module.exports = {
 					return str()
 				}
 			}
-		},
-		{
-			name: 'width',
-			class: 'w',
-			style({ rule, str }) {
-				if (rule.args) {
-					str`--${rule.class}: ${rule.args[0]};\n`
-
-					return str()
-				}
-			}
-		},
+		}
 	]
 }
