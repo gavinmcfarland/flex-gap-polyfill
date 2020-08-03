@@ -12,6 +12,8 @@ This is a PostCSS plugin that emulates flex gap using margins.
 - No way to detect browsers which support flex-gap, so polyfill is always used.
 - Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway.
 
+View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
+
 ## Example
 
 ```css
@@ -42,8 +44,6 @@ Becomes:
     margin-right: var(--fgp-gap);
 }
 ```
-
-You can view [several test cases](https://limitlessloop.github.io/flex-gap-polyfill/).
 
 It works by emulating flex gap by adding margins to each child element and applying a negative margin to the container.
 
@@ -91,7 +91,7 @@ postcss([
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
 [PostCSS]: https://github.com/postcss/postcss
-[Flex Gap Polyfil]: https://github.com/limitlessloop/flex-gap-polyfill
+[Flex Gap Polyfill]: https://github.com/limitlessloop/flex-gap-polyfill
 
 ## Options
 
