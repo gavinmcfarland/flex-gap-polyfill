@@ -27,7 +27,7 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "postcss": "7.0.32"
+    "postcss": "^7.0.35"
   },
   "devDependencies": {
     "@babel/core": "7.7.2",
