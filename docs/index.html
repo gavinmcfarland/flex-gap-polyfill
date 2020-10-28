@@ -354,9 +354,13 @@
 
 	.item-50\% {
 	width: calc(50% - var(--gap));
-	--fgp-gap_percentage-to-pixels_column: calc(-calc(50% - var(--gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
-	--fgp-gap_percentage-to-pixels_row: calc(-calc(50% - var(--gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
+	--fgp-gap_percentage-to-pixels_column: calc(-1 * calc(50% - var(--gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
+	--fgp-gap_percentage-to-pixels_row: calc(-1 * calc(50% - var(--gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(calc(50% - var(--gap)) - var(--fgp-gap_container_column, 0%)) !important;
+	}
+
+	.w {
+		width: auto;
 	}
 </style>
 
@@ -391,8 +395,8 @@
 	<pre>
 .container {
 	display: flex;
-	gap: 20px;
 	flex-wrap: wrap;
+	gap: 20px;
 }
 
 .container .container {
