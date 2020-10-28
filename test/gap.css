@@ -125,3 +125,7 @@
 .wg_50\% {
 	width: calc(50% - var(--fl-column-gap));
 }
+
+.w_auto {
+	width: auto;
+}

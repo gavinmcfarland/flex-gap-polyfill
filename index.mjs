@@ -184,45 +184,47 @@ function addWidth(decl) {
     decl.value = "0px";
   }
 
-  const container = decl.parent;
-  const reset = postcss.rule({
-    selector: container.selector + CS
-  });
-  container.before(reset);
-  let axis = "";
+  if (decl.value !== "auto") {
+    const container = decl.parent;
+    const reset = postcss.rule({
+      selector: container.selector + CS
+    });
+    container.before(reset);
+    let axis = "";
 
-  if (prop === "width") {
-    axis = "_column";
-  } else {
-    axis = "_row";
-  } // Percentages
+    if (prop === "width") {
+      axis = "_column";
+    } else {
+      axis = "_row";
+    } // Percentages
 
 
-  if (value.unit === "%") {
-    container.append(`${pf}${prop}_percentages-decimal: ${value.number / 100} !important;`); // container.append(
-    // 	`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`
-    // );
+    if (value.unit === "%") {
+      container.append(`${pf}${prop}_percentages-decimal: ${value.number / 100} !important;`); // container.append(
+      // 	`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`
+      // );
 
-    reset.append(`${pf}${prop}_percentages-decimal: initial;`);
-  } // Pixels, Ems
-  else {
-      container.append(`${pf}gap_percentage-to-pixels_column: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;
-			${pf}gap_percentage-to-pixels_row: calc(${"-" + decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;`);
-      container.append(`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`);
-      reset.append(`${pf}gap_percentage-to-pixels_column: initial;
+      reset.append(`${pf}${prop}_percentages-decimal: initial;`);
+    } // Pixels, Ems
+    else {
+        container.append(`${pf}gap_percentage-to-pixels_column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;
+			${pf}gap_percentage-to-pixels_row: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal${axis})) !important;`);
+        container.append(`${pf}${prop}: calc(${decl.value} - var(${pf}gap_container${axis}, 0%)) !important;`);
+        reset.append(`${pf}gap_percentage-to-pixels_column: initial;
 			${pf}gap_percentage-to-pixels_row: initial;`);
-    } // decl.before(
-  // 	`${prop}: var(${pf}${prop});`
-  // );
-  // decl.remove();
+      } // decl.before(
+    // 	`${prop}: var(${pf}${prop});`
+    // );
+    // decl.remove();
 
 
-  container.walk(i => {
-    i.raws.before = "\n\t";
-  });
-  reset.walk(i => {
-    i.raws.before = "\n\t";
-  });
+    container.walk(i => {
+      i.raws.before = "\n\t";
+    });
+    reset.walk(i => {
+      i.raws.before = "\n\t";
+    });
+  }
 }
 
 var index = postcss.plugin("postcss-gap", opts => {
