@@ -543,3 +543,7 @@
 .w_auto {
 	width: auto;
 }
+
+.w_fit-content {
+	width: fit-content;
+}

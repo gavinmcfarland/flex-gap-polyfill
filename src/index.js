@@ -234,7 +234,7 @@ function addWidth(decl) {
 		decl.value = "0px";
 	}
 
-	if (decl.value !== "auto") {
+	if (!(decl.value === "auto" || decl.value === "fit-content")) {
 		const container = decl.parent;
 		const reset = postcss.rule({ selector: container.selector + CS });
 

@@ -27,19 +27,19 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "postcss": "^7.0.35"
+    "postcss": "^8.2.4"
   },
   "devDependencies": {
     "@babel/core": "7.7.2",
     "@babel/preset-env": "7.7.1",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "10.0.3",
-    "chokidar": "^3.4.1",
+    "chokidar": "^3.5.0",
     "common-tags": "^1.8.0",
     "eslint": "6.6.0",
     "fs-extra": "^9.0.1",
     "phtml-utility-class": "^3.0.3",
-    "postcss-load-config": "^2.1.0",
+    "postcss-load-config": "^2.1.2",
     "postcss-preset-env": "^6.7.0",
     "postcss-tape": "5.0.2",
     "postcss-value-parser": "^4.1.0",
