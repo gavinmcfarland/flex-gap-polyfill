@@ -133,3 +133,7 @@
 .w_fit-content {
 	width: fit-content;
 }
+
+.w_max-content {
+	width: max-content;
+}

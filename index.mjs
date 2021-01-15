@@ -184,7 +184,12 @@ function addWidth(decl) {
     decl.value = "0px";
   }
 
-  if (!(decl.value === "auto" || decl.value === "fit-content")) {
+  function ifUnit(value) {
+    var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/;
+    return regex.test(value);
+  }
+
+  if (ifUnit(decl.value)) {
     const container = decl.parent;
     const reset = postcss.rule({
       selector: container.selector + CS
