@@ -247,7 +247,7 @@ var index = postcss.plugin("postcss-gap", opts => {
       i.raws.before = "\n\t";
     });
     css.walkRules(rule => {
-      var gapValue = ['', ''];
+      var gapValue = ['0px', '0px'];
       var marginValues = ['0px', '0px'];
       var hasGap = false;
       var hassFlex = false;

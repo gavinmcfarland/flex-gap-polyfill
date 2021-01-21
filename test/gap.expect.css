@@ -426,6 +426,120 @@
 	--fl-column-gap: 6%;
 }
 
+.r_20px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.r_20px > * > * {
+	--fgp-gap_item_row: initial;
+	--fgp-gap_item_column: initial;
+}
+
+.r_20px > * {
+	pointer-events: all;
+	--fgp-gap_container_row: initial;
+	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 20px) !important;
+	--fgp-gap_row: var(--fgp-gap_item_row);
+	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 20px) !important;
+	margin-top: var(--fgp-gap_row);
+	pointer-events: all;
+	--fgp-gap_container_column: initial;
+	--fgp-gap_item_column: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	--fgp-gap_column: var(--fgp-gap_item_column);
+	--fgp-gap_parent_column: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	margin-right: var(--fgp-gap_column);
+}
+
+.r_20px {
+	display: flex;
+	--fl-row-gap: 0px;
+	--fgp-has-polyfil_gap-container: initial;
+	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 20px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_row: initial;
+	--fgp-gap_item_row: initial;
+	--fgp-gap_row: var(--fgp-gap_container_row) !important;
+	padding-top: 0.02px;
+	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
+	margin-top: var(--fgp-margin-top) !important;
+	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 0px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_column: initial;
+	--fgp-gap_item_column: initial;
+	--fgp-gap_column: var(--fgp-gap_container_column) !important;
+	padding-top: 0.02px;
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
+}
+
+.r_20px > ::slotted(*) {
+	--fgp-gap_parent_row: 20px;
+	--fgp-gap_item_row: 20px;
+	--fgp-gap_row: var(--fgp-gap_item_row);
+	margin-top: var(--fgp-gap_row) !important;
+	--fgp-gap_parent_column: 0px;
+	--fgp-gap_item_column: 0px;
+	--fgp-gap_column: var(--fgp-gap_item_column);
+	margin-right: var(--fgp-gap_column) !important;
+}
+
+.c_20px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.c_20px > * > * {
+	--fgp-gap_item_row: initial;
+	--fgp-gap_item_column: initial;
+}
+
+.c_20px > * {
+	pointer-events: all;
+	--fgp-gap_container_row: initial;
+	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	--fgp-gap_row: var(--fgp-gap_item_row);
+	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	margin-top: var(--fgp-gap_row);
+	pointer-events: all;
+	--fgp-gap_container_column: initial;
+	--fgp-gap_item_column: var(--fgp-has-polyfil_gap-item, 20px) !important;
+	--fgp-gap_column: var(--fgp-gap_item_column);
+	--fgp-gap_parent_column: var(--fgp-has-polyfil_gap-item, 20px) !important;
+	margin-right: var(--fgp-gap_column);
+}
+
+.c_20px {
+	display: flex;
+	--fl-column-gap: 0px;
+	--fgp-has-polyfil_gap-container: initial;
+	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 0px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_row: initial;
+	--fgp-gap_item_row: initial;
+	--fgp-gap_row: var(--fgp-gap_container_row) !important;
+	padding-top: 0.02px;
+	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
+	margin-top: var(--fgp-margin-top) !important;
+	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 20px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_column: initial;
+	--fgp-gap_item_column: initial;
+	--fgp-gap_column: var(--fgp-gap_container_column) !important;
+	padding-top: 0.02px;
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
+}
+
+.c_20px > ::slotted(*) {
+	--fgp-gap_parent_row: 0px;
+	--fgp-gap_item_row: 0px;
+	--fgp-gap_row: var(--fgp-gap_item_row);
+	margin-top: var(--fgp-gap_row) !important;
+	--fgp-gap_parent_column: 20px;
+	--fgp-gap_item_column: 20px;
+	--fgp-gap_column: var(--fgp-gap_item_column);
+	margin-right: var(--fgp-gap_column) !important;
+}
+
 .w_400px > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;

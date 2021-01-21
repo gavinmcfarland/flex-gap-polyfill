@@ -86,6 +86,18 @@
 	--fl-column-gap: 6%;
 }
 
+.r_20px {
+	display: flex;
+	row-gap: 20px;
+	--fl-row-gap: 0px;
+}
+
+.c_20px {
+	display: flex;
+	column-gap: 20px;
+	--fl-column-gap: 0px;
+}
+
 .w_400px {
 	width: 400px;
 }

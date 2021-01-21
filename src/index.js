@@ -317,7 +317,7 @@ export default postcss.plugin("postcss-gap", (opts) => {
 
 
 		css.walkRules(rule => {
-			var gapValue = ['', '']
+			var gapValue = ['0px', '0px']
 			var marginValues = ['0px', '0px'];
 			var hasGap = false;
 			var hassFlex = false;
