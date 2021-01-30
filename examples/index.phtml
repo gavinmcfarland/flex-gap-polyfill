@@ -78,6 +78,16 @@
 		gap: 40px;
 	}
 
+	.row-gap-40px {
+		display: flex;
+		row-gap: 40px;
+	}
+
+	.column-gap-20px {
+		display: flex;
+		column-gap: 20px;
+	}
+
 	.gap-3\% {
 		display: flex;
 		gap: 3%;
@@ -330,6 +340,37 @@
 			<div class="item-50%">B</div>
 			<div class="item-50%">C</div>
 			<div class="item-50%">D</div>
+		</div>
+	</div>
+
+	<h3>Columns and Rows Independently</h3>
+
+	<pre>
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 40px;
+}
+
+.container .container {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 20px;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container row-gap-40px flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div class="container column-gap-20px flex-wrap">
+				<div>A</div>
+				<div>B</div>
+				<div>C</div>
+				<div>D</div>
+			</div>
 		</div>
 	</div>
 
