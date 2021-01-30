@@ -160,6 +160,97 @@
 	margin-right: var(--fgp-margin-right) !important;
 	}
 
+	.row-gap-40px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+	.row-gap-40px > * > * {
+	--fgp-gap_item_row: initial;
+	--fgp-gap_item_column: initial;
+}
+
+	.row-gap-40px > * {
+	pointer-events: all;
+	--fgp-gap_container_row: initial;
+	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 40px) !important;
+	--fgp-gap_row: var(--fgp-gap_item_row);
+	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 40px) !important;
+	margin-top: var(--fgp-gap_row);
+	pointer-events: all;
+	--fgp-gap_container_column: initial;
+	--fgp-gap_item_column: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	--fgp-gap_column: var(--fgp-gap_item_column);
+	--fgp-gap_parent_column: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	margin-right: var(--fgp-gap_column);
+}
+
+	.row-gap-40px {
+	display: flex;
+	--fgp-has-polyfil_gap-container: initial;
+	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 40px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_row: initial;
+	--fgp-gap_item_row: initial;
+	--fgp-gap_row: var(--fgp-gap_container_row) !important;
+	padding-top: 0.02px;
+	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
+	margin-top: var(--fgp-margin-top) !important;
+	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 0px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_column: initial;
+	--fgp-gap_item_column: initial;
+	--fgp-gap_column: var(--fgp-gap_container_column) !important;
+	padding-top: 0.02px;
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
+	}
+
+	.column-gap-20px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+	.column-gap-20px > * > * {
+	--fgp-gap_item_row: initial;
+	--fgp-gap_item_column: initial;
+}
+
+	.column-gap-20px > * {
+	pointer-events: all;
+	--fgp-gap_container_row: initial;
+	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	--fgp-gap_row: var(--fgp-gap_item_row);
+	--fgp-gap_parent_row: var(--fgp-has-polyfil_gap-item, 0px) !important;
+	margin-top: var(--fgp-gap_row);
+	pointer-events: all;
+	--fgp-gap_container_column: initial;
+	--fgp-gap_item_column: var(--fgp-has-polyfil_gap-item, 20px) !important;
+	--fgp-gap_column: var(--fgp-gap_item_column);
+	--fgp-gap_parent_column: var(--fgp-has-polyfil_gap-item, 20px) !important;
+	margin-right: var(--fgp-gap_column);
+}
+
+	.column-gap-20px {
+	display: flex;
+	-moz-column-gap: 20px;
+	--fgp-has-polyfil_gap-container: initial;
+	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 0px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_row: initial;
+	--fgp-gap_item_row: initial;
+	--fgp-gap_row: var(--fgp-gap_container_row) !important;
+	padding-top: 0.02px;
+	--fgp-margin-top: calc(var(--fgp-gap_row) + 0px);
+	margin-top: var(--fgp-margin-top) !important;
+	--fgp-gap_container_column: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_column, 0px) - 20px)) !important;
+	pointer-events: none;
+	--fgp-gap_parent_column: initial;
+	--fgp-gap_item_column: initial;
+	--fgp-gap_column: var(--fgp-gap_container_column) !important;
+	padding-top: 0.02px;
+	--fgp-margin-right: calc(var(--fgp-gap_column) + 0px);
+	margin-right: var(--fgp-margin-right) !important;
+	}
+
 	.gap-3\% > * {
 	--fgp-has-polyfil_gap-item: initial;
 }
@@ -574,6 +665,37 @@
 			<div class="item-50%">B</div>
 			<div class="item-50%">C</div>
 			<div class="item-50%">D</div>
+		</div>
+	</div>
+
+	<h3>Columns and Rows Independently</h3>
+
+	<pre>
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 40px;
+}
+
+.container .container {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 20px;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container row-gap-40px flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div class="container column-gap-20px flex-wrap">
+				<div>A</div>
+				<div>B</div>
+				<div>C</div>
+				<div>D</div>
+			</div>
 		</div>
 	</div>
 
