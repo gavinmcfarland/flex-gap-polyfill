@@ -234,93 +234,98 @@ function addWidth(decl) {
   }
 }
 
-var index = postcss.plugin("postcss-gap", opts => {
+module.exports = (opts = {}) => {
   opts = opts || {};
-  return function (css) {
-    const root = postcss.rule({
-      selector: ":root"
-    });
-    css.prepend(root);
-    root.append(`${pf}has-polyfil_gap-container: 0px;
+  return {
+    postcssPlugin: 'postcss-gap',
+
+    Once(css) {
+      const root = postcss.rule({
+        selector: ":root"
+      });
+      css.prepend(root);
+      root.append(`${pf}has-polyfil_gap-container: 0px;
 			${pf}has-polyfil_gap-item: 0px;`);
-    root.walk(i => {
-      i.raws.before = "\n\t";
-    });
-    css.walkRules(rule => {
-      var gapValue = ['0px', '0px'];
-      var marginValues = ['0px', '0px'];
-      var hasGap = false;
-      var hassFlex = false;
-      rule.walkDecls(function (decl) {
-        if (decl.prop === "width" || decl.prop === "height") {
-          addWidth(decl);
-        }
-
-        if (decl.prop === "display") {
-          hasFlex(decl);
-        } // var regex = /(?:(\w+)-)?(gap)/gi
-        // /^gap|gap$/.test(decl.prop)
-
-
-        if (decl.prop === "gap" || decl.prop === "column-gap" || decl.prop === "row-gap") {
-          hasGap = true;
-
-          if (decl.prop === "row-gap") {
-            gapValue[0] = decl.value;
+      root.walk(i => {
+        i.raws.before = "\n\t";
+      });
+      css.walkRules(rule => {
+        var gapValue = ['0px', '0px'];
+        var marginValues = ['0px', '0px'];
+        var hasGap = false;
+        var hassFlex = false;
+        rule.walkDecls(function (decl) {
+          if (decl.prop === "width" || decl.prop === "height") {
+            addWidth(decl);
           }
 
-          if (decl.prop === "column-gap") {
-            gapValue[1] = decl.value;
-          }
+          if (decl.prop === "display") {
+            hasFlex(decl);
+          } // var regex = /(?:(\w+)-)?(gap)/gi
+          // /^gap|gap$/.test(decl.prop)
 
-          if (decl.prop === "gap") {
-            gapValue = postcss.list.space(decl.value);
 
-            if (gapValue.length === 1) {
-              gapValue.push(gapValue[0]);
-            }
-          }
-        }
+          if (decl.prop === "gap" || decl.prop === "column-gap" || decl.prop === "row-gap") {
+            hasGap = true;
 
-        if (decl.prop === "display" && decl.value === "flex") {
-          hassFlex = true;
-        }
-
-        if (decl.prop === "display" && decl.value === "inline-flex") {
-          hassFlex = true;
-        }
-
-        if (decl.prop === "margin" || decl.prop === "margin-right" || decl.prop === "margin-top") {
-          if (decl.prop === "margin-top") {
-            marginValues[0] = decl.value;
-          }
-
-          if (decl.prop === "margin-right") {
-            marginValues[1] = decl.value;
-          }
-
-          if (decl.prop === "margin") {
-            marginValues = postcss.list.space(decl.value);
-
-            if (marginValues.length === 1) {
-              marginValues.push(marginValues[0]);
+            if (decl.prop === "row-gap") {
+              gapValue[0] = decl.value;
             }
 
-            if (marginValues.length > 1) {
-              marginValues = marginValues.slice(0, 2);
+            if (decl.prop === "column-gap") {
+              gapValue[1] = decl.value;
+            }
+
+            if (decl.prop === "gap") {
+              gapValue = postcss.list.space(decl.value);
+
+              if (gapValue.length === 1) {
+                gapValue.push(gapValue[0]);
+              }
             }
           }
+
+          if (decl.prop === "display" && decl.value === "flex") {
+            hassFlex = true;
+          }
+
+          if (decl.prop === "display" && decl.value === "inline-flex") {
+            hassFlex = true;
+          }
+
+          if (decl.prop === "margin" || decl.prop === "margin-right" || decl.prop === "margin-top") {
+            if (decl.prop === "margin-top") {
+              marginValues[0] = decl.value;
+            }
+
+            if (decl.prop === "margin-right") {
+              marginValues[1] = decl.value;
+            }
+
+            if (decl.prop === "margin") {
+              marginValues = postcss.list.space(decl.value);
+
+              if (marginValues.length === 1) {
+                marginValues.push(marginValues[0]);
+              }
+
+              if (marginValues.length > 1) {
+                marginValues = marginValues.slice(0, 2);
+              }
+            }
+          }
+        });
+
+        if (hasGap && hassFlex) {
+          addGap(rule, gapValue, marginValues, opts);
+          removeGap(rule); // removeMargin(rule);
+          // supportNativeSolution(decl);
         }
       });
+    }
 
-      if (hasGap && hassFlex) {
-        addGap(rule, gapValue, marginValues, opts);
-        removeGap(rule); // removeMargin(rule);
-        // supportNativeSolution(decl);
-      }
-    });
   };
-});
+};
 
-module.exports = index;
+module.exports.postcss = true;
 //# sourceMappingURL=index.js.map

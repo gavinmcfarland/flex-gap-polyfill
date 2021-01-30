@@ -26,27 +26,28 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "dependencies": {
-    "postcss": "^8.2.4"
-  },
   "devDependencies": {
     "@babel/core": "7.7.2",
     "@babel/preset-env": "7.7.1",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "10.0.3",
-    "chokidar": "^3.5.0",
+    "chokidar": "^3.5.1",
     "common-tags": "^1.8.0",
     "eslint": "6.6.0",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^9.1.0",
     "phtml-utility-class": "^3.0.3",
+    "postcss": "^8.2.4",
     "postcss-load-config": "^2.1.2",
     "postcss-preset-env": "^6.7.0",
-    "postcss-tape": "5.0.2",
+    "postcss-tape": "^6.0.0",
     "postcss-value-parser": "^4.1.0",
     "pre-commit": "1.2.2",
     "rollup": "1.26.3",
     "rollup-plugin-babel": "4.3.3",
     "uniqid": "^5.2.0"
+  },
+  "peerDependencies": {
+    "postcss": "^8.2.4"
   },
   "eslintConfig": {
     "env": {
@@ -73,5 +74,6 @@
     "flex",
     "flexbox",
     "polyfill"
-  ]
+  ],
+  "dependencies": {}
 }

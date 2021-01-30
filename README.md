@@ -61,7 +61,7 @@ Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
 Add [Flex Gap Polyfill] to your project:
 
 ```bash
-npm install flex-gap-polyfill --save-dev
+npm install flex-gap-polyfill postcss --save-dev
 ```
 
 Use **Flex Gap Polyfill** to process your CSS:
