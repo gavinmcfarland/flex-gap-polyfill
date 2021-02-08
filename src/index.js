@@ -143,7 +143,7 @@ function addGap(rule, values, marginValues, opts) {
 		if (axis === "_column") {
 			item.append(
 				`${pf}gap_parent${axis}: var(${pf}has-polyfil_gap-item, ${value}) !important;
-				margin-right: var(${pf}gap${axis});`
+				margin-left: var(${pf}gap${axis});`
 			);
 		}
 
@@ -165,8 +165,8 @@ function addGap(rule, values, marginValues, opts) {
 		}
 		if (axis === "_column") {
 			container.append(
-				`${pf}margin-right: calc(var(${pf}gap${axis}) + ${marginValues[1]});
-				margin-right: var(${pf}margin-right) !important;`
+				`${pf}margin-left: calc(var(${pf}gap${axis}) + ${marginValues[1]});
+				margin-left: var(${pf}margin-left) !important;`
 			);
 		}
 
@@ -190,7 +190,7 @@ function addGap(rule, values, marginValues, opts) {
 
 			if (axis === "_column") {
 				slotted.append(
-					`margin-right: var(${pf}gap${axis}) !important;`
+					`margin-left: var(${pf}gap${axis}) !important;`
 				);
 			}
 		}
@@ -219,7 +219,7 @@ function removeGap(rule) {
 
 // function removeMargin(rule) {
 // 	rule.walkDecls((decl) => {
-// 		if (decl.prop === "margin-right" || decl.prop === "margin-top") {
+// 		if (decl.prop === "margin-left" || decl.prop === "margin-top") {
 // 			decl.remove()
 // 		}
 // 	})
@@ -370,12 +370,12 @@ module.exports = (opts = {}) => {
 						hassFlex = true;
 					}
 
-					if (decl.prop === "margin" || decl.prop === "margin-right" || decl.prop === "margin-top") {
+					if (decl.prop === "margin" || decl.prop === "margin-left" || decl.prop === "margin-top") {
 						if (decl.prop === "margin-top") {
 							marginValues[0] = decl.value
 						}
 
-						if (decl.prop === "margin-right") {
+						if (decl.prop === "margin-left") {
 							marginValues[1] = decl.value
 						}
 

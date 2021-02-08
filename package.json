@@ -16,7 +16,7 @@
     "index.mjs.map"
   ],
   "scripts": {
-    "build": "rollup --config .rollup.js --silent",
+    "build": "rollup --config .rollup.js --silent && node preprocess.js",
     "prepublishOnly": "npm test",
     "pretest:tape": "npm run build",
     "test": "npm run test:js && npm run test:tape",

@@ -31,7 +31,7 @@ function processPHTML(dir) {
 
 	});
 }
-processPHTML('examples/')
+processPHTML('docs/')
 
 
 
