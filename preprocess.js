@@ -10,7 +10,7 @@ let options = {
 function processPHTML(dir) {
 	// var dir = path.dirname(input);
 
-	console.log("Whatching for changes to phtml files...")
+	console.log("Watching for changes to phtml files...")
 	chokidar.watch(dir).on('all', (event, filepath) => {
 
 		if (/.phtml$/.test(filepath)) {

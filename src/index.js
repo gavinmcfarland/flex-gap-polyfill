@@ -303,21 +303,26 @@ module.exports = (opts = {}) => {
 	opts = opts || {}
 	return {
 		postcssPlugin: 'postcss-gap',
-		Once(css) {
-			const root = postcss.rule({ selector: ":root" });
+		Once(root) {
 
-			css.prepend(root);
+			var fileName = root.source.input.file
 
-			root.append(
-				`${pf}has-polyfil_gap-container: 0px;
+			// This avoids adding :root selector to module files used by Next.js
+			if (!fileName?.endsWith(".module.css")) {
+				const rootRule = postcss.rule({ selector: ":root" });
+
+				root.prepend(rootRule);
+
+				rootRule.append(
+					`${pf}has-polyfil_gap-container: 0px;
 			${pf}has-polyfil_gap-item: 0px;`
-			);
+				);
 
-			root.walk(i => { i.raws.before = "\n\t"; });
+				rootRule.walk(i => { i.raws.before = "\n\t"; });
 
+			}
 
-
-			css.walkRules(rule => {
+			root.walkRules(rule => {
 				var gapValue = ['0px', '0px']
 				var marginValues = ['0px', '0px'];
 				var hasGap = false;
@@ -395,6 +400,8 @@ module.exports = (opts = {}) => {
 					// supportNativeSolution(decl);
 				}
 			})
+
+
 		}
 	}
 }
