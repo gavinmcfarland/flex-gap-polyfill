@@ -242,7 +242,7 @@ module.exports = (opts = {}) => {
     Once(root) {
       var fileName = root.source.input.file; // This avoids adding :root selector to module files used by Next.js
 
-      if (!fileName?.endsWith(".module.css")) {
+      if (!(fileName && fileName.endsWith(".module.css"))) {
         const rootRule = postcss.rule({
           selector: ":root"
         });
