@@ -44,6 +44,7 @@
     "pre-commit": "1.2.2",
     "rollup": "1.26.3",
     "rollup-plugin-babel": "4.3.3",
+    "stylup": "0.0.0-alpha.3",
     "uniqid": "^5.2.0"
   },
   "peerDependencies": {
@@ -75,5 +76,7 @@
     "flexbox",
     "polyfill"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "postcss-nested": "^5.0.3"
+  }
 }
