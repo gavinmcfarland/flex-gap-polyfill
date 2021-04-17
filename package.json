@@ -41,6 +41,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-tape": "^6.0.0",
     "postcss-value-parser": "^4.1.0",
+    "postcss-values-parser": "^5.0.0",
     "pre-commit": "1.2.2",
     "rollup": "1.26.3",
     "rollup-plugin-babel": "4.3.3",
@@ -77,6 +78,7 @@
     "polyfill"
   ],
   "dependencies": {
-    "postcss-nested": "^5.0.3"
+    "postcss-nested": "^5.0.3",
+    "yarn": "^1.22.10"
   }
 }
