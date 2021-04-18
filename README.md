@@ -101,6 +101,12 @@ postcss([
 
     Specify a selector to use when flex gap is not supported via [detection by JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js) by adding a class, eg `flexGapNotSupported: '.flexGapNotSupported'`.
 
+- `tailwindCSS`
+
+    __Type__: Boolean __Default__: false
+
+    When `true` polyfill will add extra CSS for support for tailwindCSS.
+
 - `webComponents`
 
     __Type__: Boolean __Default__: false

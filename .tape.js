@@ -3,7 +3,8 @@ module.exports = {
 		message: 'supports gap property',
 		options: {
 			webComponents: true,
-			flexGapNotSupported: '.flexGapNotSupported'
+			flexGapNotSupported: '.flexGapNotSupported',
+			tailwindCSS: true
 		}
 	}
 };

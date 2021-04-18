@@ -1,3 +1,9 @@
+/* TailwindCSS Test*/
+.gap-1 {
+	row-gap: 20px;
+	column-gap: 20px;
+}
+
 .g_20px {
 	display: flex;
 	/* gap: 20px 10px; */
