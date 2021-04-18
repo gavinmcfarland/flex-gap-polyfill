@@ -11,13 +11,13 @@ module.exports = (opts = {}) => {
   const pf = "--fgp-";
   const flexGapNotSupported = opts.flexGapNotSupported ? opts.flexGapNotSupported + " " : "";
 
-  function hasFlex(decl, obj) {
+  function getFlex(decl, obj) {
     if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
       obj.hasFlex = true;
     }
   }
 
-  function hasWidth(decl, obj) {
+  function getWidth(decl, obj) {
     if (decl.prop === "width") {
       obj.hasWidth = true;
     }
@@ -27,7 +27,7 @@ module.exports = (opts = {}) => {
     }
   }
 
-  function hasGap(decl, obj) {
+  function getGap(decl, obj) {
     if (decl.prop === "gap" || decl.prop === "column-gap" || decl.prop === "row-gap") {
       obj.hasGap = true;
 
@@ -49,7 +49,7 @@ module.exports = (opts = {}) => {
     }
   }
 
-  function hasMargin(decl, obj) {
+  function getMargin(decl, obj) {
     if (decl.prop === "margin" || decl.prop === "margin-left" || decl.prop === "margin-top") {
       if (decl.prop === "margin-top") {
         obj.marginValues[0] = decl.value;
@@ -151,6 +151,45 @@ module.exports = (opts = {}) => {
     }
   }
 
+  function getRules(rule, obj) {
+    obj.rules.orig = rule;
+    const rules = {
+      orig: rule
+    };
+    var selector;
+
+    if (obj.hasGap && obj.hasFlex) {
+      selector = {
+        container: `${flexGapNotSupported}${obj.rules.orig.selector}`,
+        item: `${flexGapNotSupported}${obj.rules.orig.selector} > *`,
+        reset: `${flexGapNotSupported}${obj.rules.orig.selector} > * > *`,
+        slotted: `${flexGapNotSupported}${obj.rules.orig.selector} > ::slotted(*)`
+      };
+    }
+
+    if (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
+      selector = {
+        container: `${flexGapNotSupported}.flex${rules.orig.selector}, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector}`,
+        item: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > *, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > *`,
+        reset: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > * > *, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > * > *`,
+        slotted: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > ::slotted(*), ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > ::slotted(*)`
+      };
+    }
+
+    obj.rules.container = postcss.rule({
+      selector: selector.container
+    });
+    obj.rules.item = postcss.rule({
+      selector: selector.item
+    });
+    obj.rules.reset = postcss.rule({
+      selector: selector.reset
+    });
+    obj.rules.slotted = postcss.rule({
+      selector: selector.slotted
+    });
+  }
+
   function addFlex(rule, obj) {
     if (obj.hasFlex) {
       const origContainer = obj.rules.orig;
@@ -172,6 +211,7 @@ module.exports = (opts = {}) => {
     const item = obj.rules.item;
     const reset = obj.rules.reset;
     const slotted = obj.rules.slotted;
+    const properties = [["row", "top"], ["column", "left"]];
     origContainer.after(container);
     container.before(item);
     item.before(reset); // Just a precaution incase flex gap detection has false positive
@@ -180,7 +220,6 @@ module.exports = (opts = {}) => {
       container.append(`gap: 0;`);
     }
 
-    const properties = [["row", "top"], ["column", "left"]];
     properties.forEach((property, index) => {
       var axis = property[0];
       var side = property[1];
@@ -281,51 +320,16 @@ module.exports = (opts = {}) => {
           hasGap: false,
           hasFlex: false
         };
-        rule.walkDecls(function (decl) {
-          hasFlex(decl, obj);
-          hasGap(decl, obj);
-          hasMargin(decl, obj);
-          hasWidth(decl, obj);
-        });
-        addWidth(rule, obj); // Create rules
+        rule.walkDecls(decl => {
+          getFlex(decl, obj);
+          getGap(decl, obj);
+          getMargin(decl, obj);
+          getWidth(decl, obj);
+        }); // Create rules
 
         if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-          obj.rules.orig = rule;
-          const rules = {
-            orig: rule
-          };
-          var selector;
-
-          if (obj.hasGap && obj.hasFlex) {
-            selector = {
-              container: `${flexGapNotSupported}${obj.rules.orig.selector}`,
-              item: `${flexGapNotSupported}${obj.rules.orig.selector} > *`,
-              reset: `${flexGapNotSupported}${obj.rules.orig.selector} > * > *`,
-              slotted: `${flexGapNotSupported}${obj.rules.orig.selector} > ::slotted(*)`
-            };
-          }
-
-          if (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-            selector = {
-              container: `${flexGapNotSupported}.flex${rules.orig.selector}, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector}`,
-              item: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > *, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > *`,
-              reset: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > * > *, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > * > *`,
-              slotted: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > ::slotted(*), ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > ::slotted(*)`
-            };
-          }
-
-          obj.rules.container = postcss.rule({
-            selector: selector.container
-          });
-          obj.rules.item = postcss.rule({
-            selector: selector.item
-          });
-          obj.rules.reset = postcss.rule({
-            selector: selector.reset
-          });
-          obj.rules.slotted = postcss.rule({
-            selector: selector.slotted
-          });
+          addWidth(rule, obj);
+          getRules(rule, obj);
           addFlex(rule, obj);
           addGap(rule, obj, opts);
           removeGap(rule);
