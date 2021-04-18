@@ -1,0 +1,71 @@
+:root {
+	--fgp-has-polyfil-gap-container: 0px;
+	--fgp-has-polyfil-gap-item: 0px;
+}
+
+.pixels {
+	display: flex;
+	gap: 20px;
+}
+
+.flexGapNotSupported .pixels > * > * {
+	--fgp-gap-item-row: initial;
+	--fgp-gap-item-column: initial;
+}
+
+.flexGapNotSupported .pixels > * {
+	pointer-events: all;
+	--fgp-gap-container-row: initial;
+	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	--fgp-gap-row: var(--fgp-gap-item-row);
+	--fgp-gap-parent-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	margin-top: var(--fgp-gap-row);
+	pointer-events: all;
+	--fgp-gap-container-column: initial;
+	--fgp-gap-item-column: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	--fgp-gap-column: var(--fgp-gap-item-column);
+	--fgp-gap-parent-column: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	margin-left: var(--fgp-gap-column);
+}
+
+.flexGapNotSupported .pixels {
+	gap: 0;
+	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
+	pointer-events: none;
+	--fgp-gap-parent-row: initial;
+	--fgp-gap-item-row: initial;
+	--fgp-gap-row: var(--fgp-gap-container-row) !important;
+	padding-top: 0.02px;
+	--fgp-margin-top: calc(var(--fgp-gap-row) + 0px) !important;
+	margin-top: var(--fgp-margin-top);
+	--fgp-gap-container-column: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-column, 0px) - 20px)) !important;
+	pointer-events: none;
+	--fgp-gap-parent-column: initial;
+	--fgp-gap-item-column: initial;
+	--fgp-gap-column: var(--fgp-gap-container-column) !important;
+	padding-top: 0.02px;
+	--fgp-margin-left: calc(var(--fgp-gap-column) + 0px) !important;
+	margin-left: var(--fgp-margin-left);
+}
+
+.flexGapNotSupported .pixels > * {
+	--fgp-has-polyfil-gap-item: initial;
+}
+
+.flexGapNotSupported .pixels {--fgp-has-polyfil-gap-container: initial;
+}
+
+.width-400 {
+	width: 400px;
+}
+
+.flexGapNotSupported .width-400 > * > * {
+	--fgp-gap-percentage-to-pixels-column: initial;
+	--fgp-gap-percentage-to-pixels-row: initial;
+}
+
+.flexGapNotSupported .width-400 {
+	--fgp-gap-percentage-to-pixels-column: calc(-1 * 400px * var(--fgp-gap_percentage-decimal-column)) !important;
+	--fgp-gap-percentage-to-pixels-row: calc(-1 * 400px * var(--fgp-gap-percentage-decimal-column)) !important;
+	--fgp-width: calc(400px - var(--fgp-gap-container-column, 0%)) !important;
+}

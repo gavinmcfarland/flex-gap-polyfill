@@ -7,13 +7,13 @@
   "repository": "limitlessloop/flex-gap-polyfill",
   "homepage": "https://github.com/limitlessloop/flex-gap-polyfills#readme",
   "bugs": "https://github.com/limitlessloop/flex-gap-polyfills/issues",
-  "main": "index.js",
+  "main": "dist/index.js",
   "module": "index.mjs",
   "files": [
-    "index.js",
-    "index.js.map",
-    "index.mjs",
-    "index.mjs.map"
+    "dist/index.js",
+    "dist/index.js.map",
+    "dist/index.mjs",
+    "dist/index.mjs.map"
   ],
   "scripts": {
     "build": "rollup --config .rollup.js --silent && node preprocess.js",
