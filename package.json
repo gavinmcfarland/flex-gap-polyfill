@@ -1,7 +1,7 @@
 {
   "name": "flex-gap-polyfill",
   "version": "2.2.1",
-  "description": "A PostCSS polyfill for adding gap between flex items, following the CSS Gap specification.",
+  "description": "A PostCSS polyfill for adding gap between flex items",
   "author": "Gavin <someotter@tadpot.com>",
   "license": "CC0-1.0",
   "repository": "limitlessloop/flex-gap-polyfill",
@@ -40,13 +40,14 @@
     "postcss-load-config": "^2.1.2",
     "postcss-preset-env": "^6.7.0",
     "postcss-tape": "^6.0.0",
-    "postcss-value-parser": "^4.1.0",
     "postcss-values-parser": "^5.0.0",
     "pre-commit": "1.2.2",
     "rollup": "1.26.3",
     "rollup-plugin-babel": "4.3.3",
     "stylup": "0.0.0-alpha.3",
-    "uniqid": "^5.2.0"
+    "uniqid": "^5.2.0",
+    "postcss-nested": "^5.0.3",
+    "yarn": "^1.22.10"
   },
   "peerDependencies": {
     "postcss": "^8.2.4"
@@ -76,9 +77,5 @@
     "flex",
     "flexbox",
     "polyfill"
-  ],
-  "dependencies": {
-    "postcss-nested": "^5.0.3",
-    "yarn": "^1.22.10"
-  }
+  ]
 }

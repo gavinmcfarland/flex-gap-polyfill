@@ -323,10 +323,10 @@ module.exports = (opts = {}) => {
           getGap(decl, obj);
           getMargin(decl, obj);
           getWidth(decl, obj);
-        }); // Create rules
+        });
+        addWidth(rule, obj); // Create rules
 
         if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-          addWidth(rule, obj);
           getRules(rule, obj);
           addFlex(rule, obj);
           addGap(rule, obj, opts);
