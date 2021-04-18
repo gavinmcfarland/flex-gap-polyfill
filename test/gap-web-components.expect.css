@@ -13,6 +13,7 @@
 }
 
 .pixels > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
@@ -28,6 +29,7 @@
 }
 
 .pixels {
+	--fgp-has-polyfil-gap-container: initial;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
 	pointer-events: none;
 	--fgp-gap-parent-row: initial;
@@ -55,13 +57,6 @@
 	--fgp-gap-item-column: 20px;
 	--fgp-gap-column: var(--fgp-gap-item-column);
 	margin-left: var(--fgp-gap-column) !important;
-}
-
-.pixels > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.pixels {--fgp-has-polyfil-gap-container: initial;
 }
 
 .width-400 {

@@ -14,6 +14,7 @@
 }
 
 .flexGapNotSupported .pixels > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
@@ -29,6 +30,7 @@
 }
 
 .flexGapNotSupported .pixels {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
 	pointer-events: none;
@@ -46,13 +48,6 @@
 	padding-top: 0.02px;
 	--fgp-margin-left: calc(var(--fgp-gap-column) + 0px) !important;
 	margin-left: var(--fgp-margin-left);
-}
-
-.flexGapNotSupported .pixels > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .pixels {--fgp-has-polyfil-gap-container: initial;
 }
 
 .width-400 {

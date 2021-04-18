@@ -75,6 +75,7 @@
 }
 
 	.flexGapNotSupported .gap-20px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, var(--gap)) !important;
@@ -90,6 +91,7 @@
 }
 
 	.flexGapNotSupported .gap-20px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - var(--gap))) !important;
 	pointer-events: none;
@@ -109,13 +111,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .gap-20px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .gap-20px {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.gap-40px {
 		display: flex;
 		gap: 40px;
@@ -127,6 +122,7 @@
 }
 
 	.flexGapNotSupported .gap-40px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 40px) !important;
@@ -142,6 +138,7 @@
 }
 
 	.flexGapNotSupported .gap-40px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 40px)) !important;
 	pointer-events: none;
@@ -161,13 +158,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .gap-40px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .gap-40px {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.row-gap-40px {
 		display: flex;
 		row-gap: 40px;
@@ -179,6 +169,7 @@
 }
 
 	.flexGapNotSupported .row-gap-40px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 40px) !important;
@@ -194,6 +185,7 @@
 }
 
 	.flexGapNotSupported .row-gap-40px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 40px)) !important;
 	pointer-events: none;
@@ -213,13 +205,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .row-gap-40px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .row-gap-40px {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.column-gap-20px {
 		display: flex;
 		-moz-column-gap: 20px;
@@ -232,6 +217,7 @@
 }
 
 	.flexGapNotSupported .column-gap-20px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 0px) !important;
@@ -247,6 +233,7 @@
 }
 
 	.flexGapNotSupported .column-gap-20px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 0px)) !important;
 	pointer-events: none;
@@ -266,13 +253,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .column-gap-20px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .column-gap-20px {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.gap-3\% {
 		display: flex;
 		gap: 3%;
@@ -284,6 +264,7 @@
 }
 
 	.flexGapNotSupported .gap-3\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 3%) !important;
@@ -297,6 +278,7 @@
 }
 
 	.flexGapNotSupported .gap-3\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -315,13 +297,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .gap-3\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .gap-3\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.gap-6\% {
 		display: flex;
 		gap: 6%;
@@ -333,6 +308,7 @@
 }
 
 	.flexGapNotSupported .gap-6\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 6%) !important;
@@ -346,6 +322,7 @@
 }
 
 	.flexGapNotSupported .gap-6\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -364,13 +341,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .gap-6\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .gap-6\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.gap-2em {
 		display: flex;
 		gap: 2em;
@@ -382,6 +352,7 @@
 }
 
 	.flexGapNotSupported .gap-2em > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 2em) !important;
@@ -397,6 +368,7 @@
 }
 
 	.flexGapNotSupported .gap-2em {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 2em)) !important;
 	pointer-events: none;
@@ -416,13 +388,6 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-	.flexGapNotSupported .gap-2em > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .gap-2em {--fgp-has-polyfil-gap-container: initial;
-}
-
 	.gap-20px.margin-20px {
 		display: flex;
 		gap: 20px;
@@ -435,6 +400,7 @@
 }
 
 	.flexGapNotSupported .gap-20px.margin-20px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
@@ -450,6 +416,7 @@
 }
 
 	.flexGapNotSupported .gap-20px.margin-20px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
 	pointer-events: none;
@@ -467,13 +434,6 @@
 	padding-top: 0.02px;
 	--fgp-margin-left: calc(var(--fgp-gap-column) + 20px) !important;
 	margin-left: var(--fgp-margin-left);
-}
-
-	.flexGapNotSupported .gap-20px.margin-20px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-	.flexGapNotSupported .gap-20px.margin-20px {--fgp-has-polyfil-gap-container: initial;
 }
 
 	.space-evenly {

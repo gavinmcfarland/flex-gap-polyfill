@@ -70,6 +70,7 @@
 }
 
 .flexGapNotSupported .g_20px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
@@ -85,6 +86,7 @@
 }
 
 .flexGapNotSupported .g_20px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
 	pointer-events: none;
@@ -115,13 +117,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_20px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_20px {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_20px > * {
 	--fl-row-gap: 20px;
 	--fl-column-gap: 20px;
@@ -142,6 +137,7 @@
 }
 
 .flexGapNotSupported .g_40px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 40px) !important;
@@ -157,6 +153,7 @@
 }
 
 .flexGapNotSupported .g_40px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 40px)) !important;
 	pointer-events: none;
@@ -187,13 +184,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_40px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_40px {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_40px > * {
 	--fl-row-gap: 40px;
 	--fl-column-gap: 40px;
@@ -212,6 +202,7 @@
 }
 
 .flexGapNotSupported .g_10\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 10%) !important;
@@ -225,6 +216,7 @@
 }
 
 .flexGapNotSupported .g_10\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -253,13 +245,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_10\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_10\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_10\% > * {
 	--fl-row-gap: 10%;
 	--fl-column-gap: 10%;
@@ -278,6 +263,7 @@
 }
 
 .flexGapNotSupported .g_30\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 30%) !important;
@@ -291,6 +277,7 @@
 }
 
 .flexGapNotSupported .g_30\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -319,13 +306,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_30\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_30\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_30\% > * {
 	--fl-row-gap: 30%;
 	--fl-column-gap: 30%;
@@ -344,6 +324,7 @@
 }
 
 .flexGapNotSupported .g_25\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 25%) !important;
@@ -357,6 +338,7 @@
 }
 
 .flexGapNotSupported .g_25\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -385,13 +367,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_25\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_25\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_25\% > * {
 	--fl-row-gap: 25%;
 	--fl-column-gap: 25%;
@@ -410,6 +385,7 @@
 }
 
 .flexGapNotSupported .g_3\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 3%) !important;
@@ -423,6 +399,7 @@
 }
 
 .flexGapNotSupported .g_3\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -451,13 +428,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_3\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_3\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_3\% > * {
 	--fl-row-gap: 3%;
 	--fl-column-gap: 3%;
@@ -476,6 +446,7 @@
 }
 
 .flexGapNotSupported .g_6\% > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 6%) !important;
@@ -489,6 +460,7 @@
 }
 
 .flexGapNotSupported .g_6\% {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-gap-item-row) !important;
 	pointer-events: none;
@@ -517,13 +489,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .g_6\% > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .g_6\% {--fgp-has-polyfil-gap-container: initial;
-}
-
 .g_6\% > * {
 	--fl-row-gap: 6%;
 	--fl-column-gap: 6%;
@@ -541,6 +506,7 @@
 }
 
 .flexGapNotSupported .r_20px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
@@ -556,6 +522,7 @@
 }
 
 .flexGapNotSupported .r_20px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
 	pointer-events: none;
@@ -586,13 +553,6 @@
 	margin-left: var(--fgp-gap-column) !important;
 }
 
-.flexGapNotSupported .r_20px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .r_20px {--fgp-has-polyfil-gap-container: initial;
-}
-
 .c_20px {
 	display: flex;
 	column-gap: 20px;
@@ -605,6 +565,7 @@
 }
 
 .flexGapNotSupported .c_20px > * {
+	--fgp-has-polyfil-gap-item: initial;
 	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 0px) !important;
@@ -620,6 +581,7 @@
 }
 
 .flexGapNotSupported .c_20px {
+	--fgp-has-polyfil-gap-container: initial;
 	gap: 0;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 0px)) !important;
 	pointer-events: none;
@@ -648,13 +610,6 @@
 	--fgp-gap-item-column: 20px;
 	--fgp-gap-column: var(--fgp-gap-item-column);
 	margin-left: var(--fgp-gap-column) !important;
-}
-
-.flexGapNotSupported .c_20px > * {
-	--fgp-has-polyfil-gap-item: initial;
-}
-
-.flexGapNotSupported .c_20px {--fgp-has-polyfil-gap-container: initial;
 }
 
 .w_400px {
