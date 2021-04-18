@@ -248,8 +248,7 @@ module.exports = (opts = {}) => {
         }
 
       reset.append(`${pf}gap-item-${axis}: initial;`);
-      item.append(`pointer-events: all;
-			${pf}gap-container-${axis}: initial;
+      item.append(`${pf}gap-container-${axis}: initial;
 			${pf}gap-item-${axis}: var(${pf}has-polyfil-gap-item, ${value}) !important;
 			${pf}gap-${axis}: var(${pf}gap-item-${axis});`);
 
@@ -258,11 +257,9 @@ module.exports = (opts = {}) => {
 					margin-${side}: var(${pf}gap-${axis});`);
       }
 
-      container.append(`pointer-events: none;
-			${pf}gap-parent-${axis}: initial;
+      container.append(`${pf}gap-parent-${axis}: initial;
 			${pf}gap-item-${axis}: initial;
-			${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;
-			padding-top: 0.02px;`);
+			${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;`);
 
       if (percentageRowGaps && axis === "row" || axis === "column") {
         // Moved !important to from margin property to custom property. Not sure if this breaks anything
@@ -282,6 +279,9 @@ module.exports = (opts = {}) => {
         }
       }
     });
+    item.append(`pointer-events: all;`);
+    container.append(`pointer-events: none;
+		padding-top: 0.02px;`);
     container.walk(i => {
       i.raws.before = "\n\t";
     });
@@ -325,7 +325,8 @@ module.exports = (opts = {}) => {
           getGap(decl, obj);
           getMargin(decl, obj);
           getWidth(decl, obj);
-        });
+        }); // Rules not defined for width at this point
+
         addWidth(rule, obj); // Create rules
 
         if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {

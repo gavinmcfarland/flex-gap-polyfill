@@ -14,38 +14,35 @@
 
 .pixels > * {
 	--fgp-has-polyfil-gap-item: initial;
-	pointer-events: all;
 	--fgp-gap-container-row: initial;
 	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
 	--fgp-gap-row: var(--fgp-gap-item-row);
 	--fgp-gap-parent-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
 	margin-top: var(--fgp-gap-row);
-	pointer-events: all;
 	--fgp-gap-container-column: initial;
 	--fgp-gap-item-column: var(--fgp-has-polyfil-gap-item, 20px) !important;
 	--fgp-gap-column: var(--fgp-gap-item-column);
 	--fgp-gap-parent-column: var(--fgp-has-polyfil-gap-item, 20px) !important;
 	margin-left: var(--fgp-gap-column);
+	pointer-events: all;
 }
 
 .pixels {
 	--fgp-has-polyfil-gap-container: initial;
 	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
-	pointer-events: none;
 	--fgp-gap-parent-row: initial;
 	--fgp-gap-item-row: initial;
 	--fgp-gap-row: var(--fgp-gap-container-row) !important;
-	padding-top: 0.02px;
 	--fgp-margin-top: calc(var(--fgp-gap-row) + 0px) !important;
 	margin-top: var(--fgp-margin-top);
 	--fgp-gap-container-column: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-column, 0px) - 20px)) !important;
-	pointer-events: none;
 	--fgp-gap-parent-column: initial;
 	--fgp-gap-item-column: initial;
 	--fgp-gap-column: var(--fgp-gap-container-column) !important;
-	padding-top: 0.02px;
 	--fgp-margin-left: calc(var(--fgp-gap-column) + 0px) !important;
 	margin-left: var(--fgp-margin-left);
+	pointer-events: none;
+	padding-top: 0.02px;
 }
 
 .pixels > ::slotted(*) {

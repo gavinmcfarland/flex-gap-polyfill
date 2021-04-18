@@ -280,8 +280,7 @@ module.exports = (opts = {}) => {
 			);
 
 			item.append(
-				`pointer-events: all;
-			${pf}gap-container-${axis}: initial;
+				`${pf}gap-container-${axis}: initial;
 			${pf}gap-item-${axis}: var(${pf}has-polyfil-gap-item, ${value}) !important;
 			${pf}gap-${axis}: var(${pf}gap-item-${axis});`
 			);
@@ -295,11 +294,9 @@ module.exports = (opts = {}) => {
 			}
 
 			container.append(
-				`pointer-events: none;
-			${pf}gap-parent-${axis}: initial;
+				`${pf}gap-parent-${axis}: initial;
 			${pf}gap-item-${axis}: initial;
-			${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;
-			padding-top: 0.02px;`
+			${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;`
 			);
 
 			if ((percentageRowGaps && axis === "row") || axis === "column") {
@@ -328,6 +325,11 @@ module.exports = (opts = {}) => {
 			}
 
 		});
+
+		item.append(`pointer-events: all;`)
+		container.append(
+			`pointer-events: none;
+		padding-top: 0.02px;`)
 
 		container.walk(i => { i.raws.before = "\n\t" });
 		item.walk(i => { i.raws.before = "\n\t" });
@@ -369,6 +371,7 @@ module.exports = (opts = {}) => {
 					getWidth(decl, obj)
 				});
 
+				// Rules not defined for width at this point
 				addWidth(rule, obj);
 
 				// Create rules
