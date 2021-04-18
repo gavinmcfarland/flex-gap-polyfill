@@ -34,14 +34,14 @@ Becomes:
     --fgp-gap-item: 40px !important;
     --fgp-gap: var(--fgp-gap-item) !important;
     margin-top: var(--fgp-gap);
-    margin-right: var(--fgp-gap);
+    margin-left: var(--fgp-gap);
 }
 
 .container {
     --fgp-gap-container: calc(var(--fgp-gap-parent, 0px) - 40px) !important;
     --fgp-gap: var(--fgp-gap-container);
     margin-top: var(--fgp-gap);
-    margin-right: var(--fgp-gap);
+    margin-left: var(--fgp-gap);
 }
 ```
 
@@ -94,6 +94,12 @@ postcss([
 [Flex Gap Polyfill]: https://github.com/limitlessloop/flex-gap-polyfill
 
 ## Options
+
+- `flexGapNotSupported`
+
+    __Type__: String __Default__: false
+
+    Specify a selector to use when support for [flex gap can be detected via JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js). eg `flexGapNotSupported: '.flexGapNotSupported'`.
 
 - `webComponents`
 

@@ -3,16 +3,21 @@
 	--fgp-has-polyfil_gap-item: 0px;
 }
 
-.g_20px > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_20px {
+	display: flex;
+	/* gap: 20px 10px; */
+	row-gap: 20px;
+	column-gap: 20px;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_20px > * > * {
+.flexGapNotSupported .g_20px > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_20px > * {
+.flexGapNotSupported .g_20px > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 20px) !important;
@@ -27,12 +32,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_20px {
-	display: flex;
-	/* gap: 20px 10px; */
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_20px {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 20px)) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -51,7 +52,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_20px > ::slotted(*) {
+.flexGapNotSupported .g_20px > ::slotted(*) {
 	--fgp-gap_parent_row: 20px;
 	--fgp-gap_item_row: 20px;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -62,21 +63,33 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_20px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_20px {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_20px > * {
 	--fl-row-gap: 20px;
 	--fl-column-gap: 20px;
 }
 
-.g_40px > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_40px {
+	display: flex;
+	/* gap: 40px 10px; */
+	row-gap: 40px;
+	column-gap: 40px;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_40px > * > * {
+.flexGapNotSupported .g_40px > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_40px > * {
+.flexGapNotSupported .g_40px > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 40px) !important;
@@ -91,12 +104,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_40px {
-	display: flex;
-	/* gap: 40px 10px; */
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_40px {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 40px)) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -115,7 +124,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_40px > ::slotted(*) {
+.flexGapNotSupported .g_40px > ::slotted(*) {
 	--fgp-gap_parent_row: 40px;
 	--fgp-gap_item_row: 40px;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -126,21 +135,31 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_40px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_40px {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_40px > * {
 	--fl-row-gap: 40px;
 	--fl-column-gap: 40px;
 }
 
-.g_10\% > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_10\% {
+	display: flex;
+	gap: 10%;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_10\% > * > * {
+.flexGapNotSupported .g_10\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_10\% > * {
+.flexGapNotSupported .g_10\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 10%) !important;
@@ -153,11 +172,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_10\% {
-	display: flex;
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_10\% {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-gap_item_row) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -175,7 +191,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_10\% > ::slotted(*) {
+.flexGapNotSupported .g_10\% > ::slotted(*) {
 	--fgp-gap_parent_row: 10%;
 	--fgp-gap_item_row: 10%;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -185,21 +201,31 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_10\% > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_10\% {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_10\% > * {
 	--fl-row-gap: 10%;
 	--fl-column-gap: 10%;
 }
 
-.g_30\% > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_30\% {
+	display: flex;
+	gap: 30%;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_30\% > * > * {
+.flexGapNotSupported .g_30\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_30\% > * {
+.flexGapNotSupported .g_30\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 30%) !important;
@@ -212,11 +238,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_30\% {
-	display: flex;
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_30\% {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-gap_item_row) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -234,7 +257,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_30\% > ::slotted(*) {
+.flexGapNotSupported .g_30\% > ::slotted(*) {
 	--fgp-gap_parent_row: 30%;
 	--fgp-gap_item_row: 30%;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -244,21 +267,31 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_30\% > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_30\% {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_30\% > * {
 	--fl-row-gap: 30%;
 	--fl-column-gap: 30%;
 }
 
-.g_25\% > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_25\% {
+	display: flex;
+	gap: 25%;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_25\% > * > * {
+.flexGapNotSupported .g_25\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_25\% > * {
+.flexGapNotSupported .g_25\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 25%) !important;
@@ -271,11 +304,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_25\% {
-	display: flex;
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_25\% {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-gap_item_row) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -293,7 +323,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_25\% > ::slotted(*) {
+.flexGapNotSupported .g_25\% > ::slotted(*) {
 	--fgp-gap_parent_row: 25%;
 	--fgp-gap_item_row: 25%;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -303,21 +333,31 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_25\% > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_25\% {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_25\% > * {
 	--fl-row-gap: 25%;
 	--fl-column-gap: 25%;
 }
 
-.g_3\% > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_3\% {
+	display: flex;
+	gap: 3%;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_3\% > * > * {
+.flexGapNotSupported .g_3\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_3\% > * {
+.flexGapNotSupported .g_3\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 3%) !important;
@@ -330,11 +370,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_3\% {
-	display: flex;
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_3\% {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-gap_item_row) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -352,7 +389,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_3\% > ::slotted(*) {
+.flexGapNotSupported .g_3\% > ::slotted(*) {
 	--fgp-gap_parent_row: 3%;
 	--fgp-gap_item_row: 3%;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -362,21 +399,31 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_3\% > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_3\% {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_3\% > * {
 	--fl-row-gap: 3%;
 	--fl-column-gap: 3%;
 }
 
-.g_6\% > * {
-	--fgp-has-polyfil_gap-item: initial;
+.g_6\% {
+	display: flex;
+	gap: 6%;
+	--fl-row-gap: 0px;
+	--fl-column-gap: 0px;
 }
 
-.g_6\% > * > * {
+.flexGapNotSupported .g_6\% > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.g_6\% > * {
+.flexGapNotSupported .g_6\% > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 6%) !important;
@@ -389,11 +436,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.g_6\% {
-	display: flex;
-	--fl-row-gap: 0px;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .g_6\% {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-gap_item_row) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -411,7 +455,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.g_6\% > ::slotted(*) {
+.flexGapNotSupported .g_6\% > ::slotted(*) {
 	--fgp-gap_parent_row: 6%;
 	--fgp-gap_item_row: 6%;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -421,21 +465,30 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
+.flexGapNotSupported .g_6\% > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .g_6\% {--fgp-has-polyfil_gap-container: initial;
+}
+
 .g_6\% > * {
 	--fl-row-gap: 6%;
 	--fl-column-gap: 6%;
 }
 
-.r_20px > * {
-	--fgp-has-polyfil_gap-item: initial;
+.r_20px {
+	display: flex;
+	row-gap: 20px;
+	--fl-row-gap: 0px;
 }
 
-.r_20px > * > * {
+.flexGapNotSupported .r_20px > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.r_20px > * {
+.flexGapNotSupported .r_20px > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 20px) !important;
@@ -450,10 +503,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.r_20px {
-	display: flex;
-	--fl-row-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .r_20px {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 20px)) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -472,7 +523,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.r_20px > ::slotted(*) {
+.flexGapNotSupported .r_20px > ::slotted(*) {
 	--fgp-gap_parent_row: 20px;
 	--fgp-gap_item_row: 20px;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -483,16 +534,25 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
-.c_20px > * {
+.flexGapNotSupported .r_20px > * {
 	--fgp-has-polyfil_gap-item: initial;
 }
 
-.c_20px > * > * {
+.flexGapNotSupported .r_20px {--fgp-has-polyfil_gap-container: initial;
+}
+
+.c_20px {
+	display: flex;
+	column-gap: 20px;
+	--fl-column-gap: 0px;
+}
+
+.flexGapNotSupported .c_20px > * > * {
 	--fgp-gap_item_row: initial;
 	--fgp-gap_item_column: initial;
 }
 
-.c_20px > * {
+.flexGapNotSupported .c_20px > * {
 	pointer-events: all;
 	--fgp-gap_container_row: initial;
 	--fgp-gap_item_row: var(--fgp-has-polyfil_gap-item, 0px) !important;
@@ -507,10 +567,8 @@
 	margin-left: var(--fgp-gap_column);
 }
 
-.c_20px {
-	display: flex;
-	--fl-column-gap: 0px;
-	--fgp-has-polyfil_gap-container: initial;
+.flexGapNotSupported .c_20px {
+	gap: 0;
 	--fgp-gap_container_row: var(--fgp-has-polyfil_gap-container, calc(var(--fgp-gap_parent_row, 0px) - 0px)) !important;
 	pointer-events: none;
 	--fgp-gap_parent_row: initial;
@@ -529,7 +587,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.c_20px > ::slotted(*) {
+.flexGapNotSupported .c_20px > ::slotted(*) {
 	--fgp-gap_parent_row: 0px;
 	--fgp-gap_item_row: 0px;
 	--fgp-gap_row: var(--fgp-gap_item_row);
@@ -540,115 +598,152 @@
 	margin-left: var(--fgp-gap_column) !important;
 }
 
-.w_400px > * {
-	--fgp-gap_percentage-to-pixels_column: initial;
-	--fgp-gap_percentage-to-pixels_row: initial;
+.flexGapNotSupported .c_20px > * {
+	--fgp-has-polyfil_gap-item: initial;
+}
+
+.flexGapNotSupported .c_20px {--fgp-has-polyfil_gap-container: initial;
 }
 
 .w_400px {
 	width: 400px;
+}
+
+.flexGapNotSupported .w_400px > * {
+	--fgp-gap_percentage-to-pixels_column: initial;
+	--fgp-gap_percentage-to-pixels_row: initial;
+}
+
+.flexGapNotSupported .w_400px {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * 400px * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * 400px * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(400px - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.w_600px > * {
+.w_600px {
+	width: 600px;
+}
+
+.flexGapNotSupported .w_600px > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;
 }
 
-.w_600px {
-	width: 600px;
+.flexGapNotSupported .w_600px {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * 600px * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * 600px * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(600px - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.w_800px > * {
+.w_800px {
+	width: 800px;
+}
+
+.flexGapNotSupported .w_800px > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;
 }
 
-.w_800px {
-	width: 800px;
+.flexGapNotSupported .w_800px {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * 800px * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * 800px * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(800px - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.w_25\% > * {
-	--fgp-width_percentages-decimal: initial;
-}
-
 .w_25\% {
 	width: 25%;
-	--fgp-width_percentages-decimal: NaN !important;
 }
 
-.w_50\% > * {
+.flexGapNotSupported .w_25\% > * {
 	--fgp-width_percentages-decimal: initial;
+}
+
+.flexGapNotSupported .w_25\% {
+	--fgp-width_percentages-decimal: NaN !important;
 }
 
 .w_50\% {
 	width: 50%;
-	--fgp-width_percentages-decimal: NaN !important;
 }
 
-.wg_400px > * {
-	--fgp-gap_percentage-to-pixels_column: initial;
-	--fgp-gap_percentage-to-pixels_row: initial;
+.flexGapNotSupported .w_50\% > * {
+	--fgp-width_percentages-decimal: initial;
+}
+
+.flexGapNotSupported .w_50\% {
+	--fgp-width_percentages-decimal: NaN !important;
 }
 
 .wg_400px {
 	width: calc(400px - var(--fl-column-gap));
+}
+
+.flexGapNotSupported .wg_400px > * {
+	--fgp-gap_percentage-to-pixels_column: initial;
+	--fgp-gap_percentage-to-pixels_row: initial;
+}
+
+.flexGapNotSupported .wg_400px {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * calc(400px - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * calc(400px - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(calc(400px - var(--fl-column-gap)) - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.wg_600px > * {
+.wg_600px {
+	width: calc(600px - var(--fl-column-gap));
+}
+
+.flexGapNotSupported .wg_600px > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;
 }
 
-.wg_600px {
-	width: calc(600px - var(--fl-column-gap));
+.flexGapNotSupported .wg_600px {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * calc(600px - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * calc(600px - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(calc(600px - var(--fl-column-gap)) - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.wg_800px > * {
+.wg_800px {
+	width: calc(800px - var(--fl-column-gap));
+}
+
+.flexGapNotSupported .wg_800px > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;
 }
 
-.wg_800px {
-	width: calc(800px - var(--fl-column-gap));
+.flexGapNotSupported .wg_800px {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * calc(800px - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * calc(800px - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(calc(800px - var(--fl-column-gap)) - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.wg_25\% > * {
+.wg_25\% {
+	width: calc(25% - var(--fl-column-gap));
+}
+
+.flexGapNotSupported .wg_25\% > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;
 }
 
-.wg_25\% {
-	width: calc(25% - var(--fl-column-gap));
+.flexGapNotSupported .wg_25\% {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * calc(25% - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * calc(25% - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(calc(25% - var(--fl-column-gap)) - var(--fgp-gap_container_column, 0%)) !important;
 }
 
-.wg_50\% > * {
+.wg_50\% {
+	width: calc(50% - var(--fl-column-gap));
+}
+
+.flexGapNotSupported .wg_50\% > * {
 	--fgp-gap_percentage-to-pixels_column: initial;
 	--fgp-gap_percentage-to-pixels_row: initial;
 }
 
-.wg_50\% {
-	width: calc(50% - var(--fl-column-gap));
+.flexGapNotSupported .wg_50\% {
 	--fgp-gap_percentage-to-pixels_column: calc(-1 * calc(50% - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-gap_percentage-to-pixels_row: calc(-1 * calc(50% - var(--fl-column-gap)) * var(--fgp-gap_percentage-decimal_column)) !important;
 	--fgp-width: calc(calc(50% - var(--fl-column-gap)) - var(--fgp-gap_container_column, 0%)) !important;

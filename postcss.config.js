@@ -7,6 +7,8 @@ module.exports = {
 				'gap-properties': false,
 			}
 		}),
-		require('./index.js')()
+		require('./index.js')({
+			flexGapNotSupported: ".flexGapNotSupported"
+		})
 	]
 };
