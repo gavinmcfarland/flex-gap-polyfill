@@ -99,7 +99,7 @@ postcss([
 
     __Type__: String __Default__: false
 
-    Specify a selector to use when support for flex gap can be [detected via JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js) by adding a class. eg `flexGapNotSupported: '.flexGapNotSupported'`.
+    Specify a selector to use when flex gap is not supported via [detection by JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js) by adding a class, eg `flexGapNotSupported: '.flexGapNotSupported'`.
 
 - `webComponents`
 
