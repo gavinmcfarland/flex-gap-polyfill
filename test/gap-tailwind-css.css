@@ -5,3 +5,21 @@
 .width-400 {
 	width: 400px;
 }
+
+.m-4 {
+	margin: 20px;
+}
+
+.my-4 {
+	margin-top: 20px;
+}
+
+.my-4 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.mx-4 {
+	margin-left: 20px;
+	margin-right: 20px;
+}

@@ -9,7 +9,7 @@ This is a PostCSS plugin that emulates flex gap using margins.
 
 ## Known issues
 
-- No way to detect browsers which support flex-gap, so polyfill is always used.
+- Polyfill is incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to.
 - Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway.
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
