@@ -5,12 +5,13 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-This is a PostCSS plugin that emulates flex gap using margins.
+This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 
-## Known issues
+## Limitations
 
-- Polyfill is incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to.
-- Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway.
+- Polyfill is incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
+- Limited to use cases where `display: flex | inline` and `gap | row-gap | column-gap` exist inside the same CSS rule
+- Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
 
@@ -48,13 +49,13 @@ Becomes:
 It works by emulating flex gap by adding margins to each child element and applying a negative margin to the container.
 
 - Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc.
-- No additional class names or divs needed.
+- No additional class names or divs needed (except when using `margin: auto`).
 - Style borders and padding as normal.
 - Supports `gap`, `row-gap` and `column-gap`.
 
 ## Browsers
 
-Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera.
+Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera (any browser that supports `calc()` and `var()`).
 
 ## Usage
 
