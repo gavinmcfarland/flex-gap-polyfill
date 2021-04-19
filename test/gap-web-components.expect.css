@@ -1,6 +1,6 @@
 :root {
-	--fgp-has-polyfil-gap-container: 0px;
-	--fgp-has-polyfil-gap-item: 0px;
+	--fgp-has-polyfill-gap-container: 0px;
+	--fgp-has-polyfill-gap-item: 0px;
 }
 
 .pixels {
@@ -13,29 +13,29 @@
 }
 
 .pixels > * {
-	--fgp-has-polyfil-gap-item: initial;
+	--fgp-has-polyfill-gap-item: initial;
 	--fgp-gap-container-row: initial;
-	--fgp-gap-item-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	--fgp-gap-item-row: var(--fgp-has-polyfill-gap-item, 20px) !important;
 	--fgp-gap-row: var(--fgp-gap-item-row);
-	--fgp-gap-parent-row: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	--fgp-gap-parent-row: var(--fgp-has-polyfill-gap-item, 20px) !important;
 	margin-top: var(--fgp-gap-row);
 	--fgp-gap-container-column: initial;
-	--fgp-gap-item-column: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	--fgp-gap-item-column: var(--fgp-has-polyfill-gap-item, 20px) !important;
 	--fgp-gap-column: var(--fgp-gap-item-column);
-	--fgp-gap-parent-column: var(--fgp-has-polyfil-gap-item, 20px) !important;
+	--fgp-gap-parent-column: var(--fgp-has-polyfill-gap-item, 20px) !important;
 	margin-left: var(--fgp-gap-column);
 	pointer-events: all;
 }
 
 .pixels {
-	--fgp-has-polyfil-gap-container: initial;
-	--fgp-gap-container-row: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
+	--fgp-has-polyfill-gap-container: initial;
+	--fgp-gap-container-row: var(--fgp-has-polyfill-gap-container, calc(var(--fgp-gap-parent-row, 0px) - 20px)) !important;
 	--fgp-gap-parent-row: initial;
 	--fgp-gap-item-row: initial;
 	--fgp-gap-row: var(--fgp-gap-container-row) !important;
 	--fgp-margin-top: calc(var(--fgp-gap-row) + 0px) !important;
 	margin-top: var(--fgp-margin-top);
-	--fgp-gap-container-column: var(--fgp-has-polyfil-gap-container, calc(var(--fgp-gap-parent-column, 0px) - 20px)) !important;
+	--fgp-gap-container-column: var(--fgp-has-polyfill-gap-container, calc(var(--fgp-gap-parent-column, 0px) - 20px)) !important;
 	--fgp-gap-parent-column: initial;
 	--fgp-gap-item-column: initial;
 	--fgp-gap-column: var(--fgp-gap-container-column) !important;
@@ -60,12 +60,12 @@
 	width: 400px;
 }
 
-.width-400 > * > * {
+.flex.width-400 > * > *, .inline-flex.width-400 > * > * {
 	--fgp-gap-percentage-to-pixels-column: initial;
 	--fgp-gap-percentage-to-pixels-row: initial;
 }
 
-.width-400 {
+.flex.width-400, .inline-flex.width-400 {
 	--fgp-gap-percentage-to-pixels-column: calc(-1 * 400px * var(--fgp-gap_percentage-decimal-column)) !important;
 	--fgp-gap-percentage-to-pixels-row: calc(-1 * 400px * var(--fgp-gap-percentage-decimal-column)) !important;
 	--fgp-width: calc(400px - var(--fgp-gap-container-column, 0%)) !important;

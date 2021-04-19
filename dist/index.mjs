@@ -69,6 +69,51 @@ module.exports = (opts = {}) => {
         }
       }
     }
+  } // TODO: Try moving this function to walking decls
+
+
+  function getRules(decl, obj, root) {
+    var fileName = root.source.input.file;
+    obj.rules.orig = decl.parent;
+    var selector; // These are needed to specifiy global scope for CSS modules
+
+    var cssModule = "";
+    var cssModuleEnd = "";
+
+    if (fileName && fileName.endsWith(".module.css") && opts.flexGapNotSupported) {
+      cssModule = ":global(";
+      cssModuleEnd = ") ";
+    } // if (obj.hasGap && obj.hasFlex) {
+
+
+    selector = {
+      container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector}`,
+      item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > *`,
+      reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > * > *`,
+      slotted: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::slotted(*)`
+    }; // }
+
+    if (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(obj.rules.orig.selector) && !obj.hasFlex || obj.hasWidth || obj.hasHeight) {
+      selector = {
+        container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector}, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector}`,
+        item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > *, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > *`,
+        reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > * > *, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > * > *`,
+        slotted: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > ::slotted(*), ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > ::slotted(*)`
+      };
+    }
+
+    obj.rules.container = postcss.rule({
+      selector: selector.container
+    });
+    obj.rules.item = postcss.rule({
+      selector: selector.item
+    });
+    obj.rules.reset = postcss.rule({
+      selector: selector.reset
+    });
+    obj.rules.slotted = postcss.rule({
+      selector: selector.slotted
+    });
   }
 
   function addRootSelector(root) {
@@ -79,8 +124,8 @@ module.exports = (opts = {}) => {
         selector: ":root"
       });
       root.prepend(rootRule);
-      rootRule.append(`${pf}has-polyfil-gap-container: 0px;
-			${pf}has-polyfil-gap-item: 0px;`);
+      rootRule.append(`${pf}has-polyfill-gap-container: 0px;
+			${pf}has-polyfill-gap-item: 0px;`);
       rootRule.walk(i => {
         i.raws.before = "\n\t";
       });
@@ -103,25 +148,9 @@ module.exports = (opts = {}) => {
         }
 
         if (ifUnit(decl.value)) {
-          const origContainer = decl.parent;
-          var selector = {
-            container: `${flexGapNotSupported}${origContainer.selector}`,
-            reset: `${flexGapNotSupported}${origContainer.selector} > * > *`
-          };
-
-          if (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(origContainer.selector) && !obj.hasFlex) {
-            selector = {
-              container: `${flexGapNotSupported}.flex${origContainer.selector}, ${flexGapNotSupported}.inline-flex${origContainer.selector}`,
-              reset: `${flexGapNotSupported}.flex${origContainer.selector} > * > *, ${flexGapNotSupported}.inline-flex${origContainer.selector} > * > *`
-            };
-          }
-
-          const container = postcss.rule({
-            selector: selector.container
-          });
-          const reset = postcss.rule({
-            selector: selector.reset
-          });
+          const origContainer = obj.rules.orig;
+          const container = obj.rules.container;
+          const reset = obj.rules.reset;
           origContainer.after(container);
           container.before(reset);
           let axis = prop === "width" ? "column" : "row"; // Percentages
@@ -149,58 +178,18 @@ module.exports = (opts = {}) => {
     }
   }
 
-  function getRules(rule, obj) {
-    obj.rules.orig = rule;
-    const rules = {
-      orig: rule
-    };
-    var selector;
-
-    if (obj.hasGap && obj.hasFlex) {
-      selector = {
-        container: `${flexGapNotSupported}${obj.rules.orig.selector}`,
-        item: `${flexGapNotSupported}${obj.rules.orig.selector} > *`,
-        reset: `${flexGapNotSupported}${obj.rules.orig.selector} > * > *`,
-        slotted: `${flexGapNotSupported}${obj.rules.orig.selector} > ::slotted(*)`
-      };
-    }
-
-    if (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-      selector = {
-        container: `${flexGapNotSupported}.flex${rules.orig.selector}, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector}`,
-        item: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > *, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > *`,
-        reset: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > * > *, ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > * > *`,
-        slotted: `${flexGapNotSupported}.flex${obj.rules.orig.selector} > ::slotted(*), ${flexGapNotSupported}.inline-flex${obj.rules.orig.selector} > ::slotted(*)`
-      };
-    }
-
-    obj.rules.container = postcss.rule({
-      selector: selector.container
-    });
-    obj.rules.item = postcss.rule({
-      selector: selector.item
-    });
-    obj.rules.reset = postcss.rule({
-      selector: selector.reset
-    });
-    obj.rules.slotted = postcss.rule({
-      selector: selector.slotted
-    });
-  }
-
   function addFlex(rule, obj) {
-    if (obj.hasFlex) {
-      const origContainer = obj.rules.orig;
-      const container = obj.rules.container;
-      const item = obj.rules.item;
-      origContainer.after(container);
-      container.before(item);
-      container.append(`${pf}has-polyfil-gap-container: initial;`);
-      item.append(`${pf}has-polyfil-gap-item: initial;`);
-      item.walk(i => {
-        i.raws.before = "\n\t";
-      });
-    }
+    // if (obj.hasFlex) {
+    const origContainer = obj.rules.orig;
+    const container = obj.rules.container;
+    const item = obj.rules.item;
+    origContainer.after(container);
+    container.before(item);
+    container.append(`${pf}has-polyfill-gap-container: initial;`);
+    item.append(`${pf}has-polyfill-gap-item: initial;`);
+    item.walk(i => {
+      i.raws.before = "\n\t";
+    }); // }
   }
 
   function addGap(rule, obj, opts) {
@@ -235,23 +224,23 @@ module.exports = (opts = {}) => {
         // formula: (parent - self) / (100 - self) * 100
         if (percentageRowGaps && axis === "row" || axis === "column") {
           container.append(`${pf}gap-percentage-decimal-${axis}: ${number / 100};
-				${pf}gap-container-${axis}: var(${pf}has-polyfil-gap-container, var(${pf}gap-percentage-to-pixels-${axis}, calc( ((var(${pf}gap-parent-${axis}, 0%) - ${value}) * var(${pf}width-percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`);
+				${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, var(${pf}gap-percentage-to-pixels-${axis}, calc( ((var(${pf}gap-parent-${axis}, 0%) - ${value}) * var(${pf}width-percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`);
         } else {
           container.append(`${pf}gap-container-${axis}: var(--fgp-gap-item-row) !important;`);
         }
       } // Pixels, Ems
       else {
           // formula: (parent - self)
-          container.append(`${pf}gap-container-${axis}: var(${pf}has-polyfil-gap-container, calc(var(${pf}gap-parent-${axis}, 0px) - ${value})) !important;`);
+          container.append(`${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, calc(var(${pf}gap-parent-${axis}, 0px) - ${value})) !important;`);
         }
 
       reset.append(`${pf}gap-item-${axis}: initial;`);
       item.append(`${pf}gap-container-${axis}: initial;
-			${pf}gap-item-${axis}: var(${pf}has-polyfil-gap-item, ${value}) !important;
+			${pf}gap-item-${axis}: var(${pf}has-polyfill-gap-item, ${value}) !important;
 			${pf}gap-${axis}: var(${pf}gap-item-${axis});`);
 
       if (percentageRowGaps && axis === "row" || axis === "column") {
-        item.append(`${pf}gap-parent-${axis}: var(${pf}has-polyfil-gap-item, ${value}) !important;
+        item.append(`${pf}gap-parent-${axis}: var(${pf}has-polyfill-gap-item, ${value}) !important;
 					margin-${side}: var(${pf}gap-${axis});`);
       }
 
@@ -260,8 +249,10 @@ module.exports = (opts = {}) => {
 			${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;`);
 
       if (percentageRowGaps && axis === "row" || axis === "column") {
-        // Moved !important to from margin property to custom property. Not sure if this breaks anything
-        container.append(`${pf}margin-${side}: calc(var(${pf}gap-${axis}) + ${obj.marginValues[0]}) !important;
+        // Needed to switch margin values depending on row/top or column/left marginValues => [top, left] // may need changing to [top, right, bottom, left]?
+        var axisNumber = axis === "row" ? 0 : 1; // Moved !important to from margin property to custom property. Not sure if this breaks anything
+
+        container.append(`${pf}margin-${side}: calc(var(${pf}gap-${axis}) + ${obj.marginValues[axisNumber]}) !important;
 					margin-${side}: var(${pf}margin-${side});`);
       } // If web components
 
@@ -323,12 +314,11 @@ module.exports = (opts = {}) => {
           getGap(decl, obj);
           getMargin(decl, obj);
           getWidth(decl, obj);
-        }); // Rules not defined for width at this point
-
-        addWidth(rule, obj); // Create rules
+          getRules(decl, obj, root);
+        });
+        addWidth(rule, obj);
 
         if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-          getRules(rule, obj);
           addFlex(rule, obj);
           addGap(rule, obj, opts);
           removeGap(rule);
