@@ -8,7 +8,7 @@ const {
 
 module.exports = (opts = {}) => {
   opts = opts || {};
-  const pf = "--fgp-";
+  const pf = "fgp-";
   const flexGapNotSupported = opts.flexGapNotSupported ? opts.flexGapNotSupported + " " : "";
 
   function getFlex(decl, obj) {
@@ -116,83 +116,84 @@ module.exports = (opts = {}) => {
     obj.rules.slotted = postcss.rule({
       selector: selector.slotted
     });
-  }
+  } // function addRootSelector(root) {
+  // 	var fileName = root.source.input.file
+  // 	// This avoids adding :root selector to module files used by Next.js
+  // 	if (!(fileName && fileName.endsWith(".module.css"))) {
+  // 		const rootRule = postcss.rule({ selector: ":root" });
+  // 		root.prepend(rootRule);
+  // 		rootRule.append(
+  // 			`${pf}has-polyfill-gap-container: 0px;
+  // 		${pf}has-polyfill-gap-item: 0px;`
+  // 		);
+  // 		rootRule.walk(i => { i.raws.before = "\n\t"; });
+  // 	}
+  // }
+  // function addWidth(rule, obj) {
+  // 	function ifUnit(value) {
+  // 		var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/
+  // 		return regex.test(value)
+  // 	}
+  // 	if (obj.hasWidth || obj.hasHeight) {
+  // 		rule.walkDecls((decl) => {
+  // 			var value = parse(decl.value).nodes[0];
+  // 			let prop = decl.prop;
+  // 			if (decl.value === 0) {
+  // 				decl.value = "0px";
+  // 			}
+  // 			if (ifUnit(decl.value)) {
+  // 				const origContainer = obj.rules.orig;
+  // 				const container = obj.rules.container
+  // 				const reset = obj.rules.reset;
+  // 				origContainer.after(container);
+  // 				container.before(reset);
+  // 				let axis = prop === "width" ? "column" : "row";
+  // 				// Percentages
+  // 				if (value.unit === "%") {
+  // 					container.append(
+  // 						`${pf}${prop}-percentages-decimal: ${value.number / 100} !important;`
+  // 					);
+  // 					reset.append(
+  // 						`${pf}${prop}-percentages-decimal: initial;`
+  // 					);
+  // 				}
+  // 				// Pixels, Ems
+  // 				else {
+  // 					container.append(
+  // 						`${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
+  // 		${pf}gap-percentage-to-pixels-row: calc(-1 * ${decl.value} * var(${pf}gap-percentage-decimal-${axis})) !important;`
+  // 					);
+  // 					container.append(
+  // 						`${pf}${prop}: calc(${decl.value} - var(${pf}gap-container-${axis}, 0%)) !important;`
+  // 					);
+  // 					reset.append(
+  // 						`${pf}gap-percentage-to-pixels-column: initial;
+  // 		${pf}gap-percentage-to-pixels-row: initial;`
+  // 					);
+  // 				}
+  // 				container.walk(i => { i.raws.before = "\n\t"; });
+  // 				reset.walk(i => { i.raws.before = "\n\t"; });
+  // 			}
+  // 		})
+  // 	}
+  // }
+  // function addFlex(rule, obj) {
+  // 	// if (obj.hasFlex) {
+  // 	const origContainer = obj.rules.orig;
+  // 	const container = obj.rules.container;
+  // 	const item = obj.rules.item
+  // 	origContainer.after(container);
+  // 	container.before(item);
+  // 	container.append(
+  // 		`${pf}has-polyfill-gap-container: initial;`
+  // 	);
+  // 	item.append(
+  // 		`${pf}has-polyfill-gap-item: initial;`
+  // 	);
+  // 	item.walk(i => { i.raws.before = "\n\t" });
+  // 	// }
+  // }
 
-  function addRootSelector(root) {
-    var fileName = root.source.input.file; // This avoids adding :root selector to module files used by Next.js
-
-    if (!(fileName && fileName.endsWith(".module.css"))) {
-      const rootRule = postcss.rule({
-        selector: ":root"
-      });
-      root.prepend(rootRule);
-      rootRule.append(`${pf}has-polyfill-gap-container: 0px;
-			${pf}has-polyfill-gap-item: 0px;`);
-      rootRule.walk(i => {
-        i.raws.before = "\n\t";
-      });
-    }
-  }
-
-  function addWidth(rule, obj) {
-    function ifUnit(value) {
-      var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/;
-      return regex.test(value);
-    }
-
-    if (obj.hasWidth || obj.hasHeight) {
-      rule.walkDecls(decl => {
-        var value = parse(decl.value).nodes[0];
-        let prop = decl.prop;
-
-        if (decl.value === 0) {
-          decl.value = "0px";
-        }
-
-        if (ifUnit(decl.value)) {
-          const origContainer = obj.rules.orig;
-          const container = obj.rules.container;
-          const reset = obj.rules.reset;
-          origContainer.after(container);
-          container.before(reset);
-          let axis = prop === "width" ? "column" : "row"; // Percentages
-
-          if (value.unit === "%") {
-            container.append(`${pf}${prop}-percentages-decimal: ${value.number / 100} !important;`);
-            reset.append(`${pf}${prop}-percentages-decimal: initial;`);
-          } // Pixels, Ems
-          else {
-              container.append(`${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
-			${pf}gap-percentage-to-pixels-row: calc(-1 * ${decl.value} * var(${pf}gap-percentage-decimal-${axis})) !important;`);
-              container.append(`${pf}${prop}: calc(${decl.value} - var(${pf}gap-container-${axis}, 0%)) !important;`);
-              reset.append(`${pf}gap-percentage-to-pixels-column: initial;
-			${pf}gap-percentage-to-pixels-row: initial;`);
-            }
-
-          container.walk(i => {
-            i.raws.before = "\n\t";
-          });
-          reset.walk(i => {
-            i.raws.before = "\n\t";
-          });
-        }
-      });
-    }
-  }
-
-  function addFlex(rule, obj) {
-    // if (obj.hasFlex) {
-    const origContainer = obj.rules.orig;
-    const container = obj.rules.container;
-    const item = obj.rules.item;
-    origContainer.after(container);
-    container.before(item);
-    container.append(`${pf}has-polyfill-gap-container: initial;`);
-    item.append(`${pf}has-polyfill-gap-item: initial;`);
-    item.walk(i => {
-      i.raws.before = "\n\t";
-    }); // }
-  }
 
   function addGap(rule, obj, opts) {
     const origContainer = obj.rules.orig;
@@ -220,55 +221,60 @@ module.exports = (opts = {}) => {
 
       var number = parse(value).nodes[0].value;
       var unit = parse(value).nodes[0].unit;
-      var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "row"; // Percentages
+      var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "row";
+      var axisNumber = axis === "row" ? 0 : 1; // Percentages
 
       if (unit === "%") {
-        // formula: (parent - self) / (100 - self) * 100
-        if (percentageRowGaps && axis === "row" || axis === "column") {
-          container.append(`${pf}gap-percentage-decimal-${axis}: ${number / 100};
-				${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, var(${pf}gap-percentage-to-pixels-${axis}, calc( ((var(${pf}gap-parent-${axis}, 0%) - ${value}) * var(${pf}width-percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`);
-        } else {
-          container.append(`${pf}gap-container-${axis}: var(--fgp-gap-item-row) !important;`);
-        }
+        // // formula: (parent - self) / (100 - self) * 100
+        container.append(`--${pf}orig-margin-${side}: ${obj.marginValues[axisNumber]};
+					--${pf}gap-${axis}: ${value};
+					--${pf}margin-${side}: calc(
+						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - ${number}) * 100)
+						+ var(--${pf}orig-margin-${side})
+						) !important;
+					margin-${side}: var(--${pf}margin-${side});`); // if ((percentageRowGaps && axis === "row") || axis === "column") {
+        // 	container.append(
+        // 		`${pf}gap-percentage-decimal-${axis}: ${number / 100};
+        // ${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, var(${pf}gap-percentage-to-pixels-${axis}, calc( ((var(${pf}gap-parent-${axis}, 0%) - ${value}) * var(${pf}width-percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`
+        // 	);
+        // }
+        // else {
+        // 	container.append(
+        // 		`${pf}gap-container-${axis}: var(--fgp-gap-item-row) !important;`
+        // 	);
+        // }
       } // Pixels, Ems
       else {
           // formula: (parent - self)
-          container.append(`${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, calc(var(${pf}gap-parent-${axis}, 0px) - ${value})) !important;`);
-        }
-
-      reset.append(`${pf}gap-item-${axis}: initial;`);
-      item.append(`${pf}gap-container-${axis}: initial;
-			${pf}gap-item-${axis}: var(${pf}has-polyfill-gap-item, ${value}) !important;
-			${pf}gap-${axis}: var(${pf}gap-item-${axis});`);
-
-      if (percentageRowGaps && axis === "row" || axis === "column") {
-        item.append(`${pf}gap-parent-${axis}: var(${pf}has-polyfill-gap-item, ${value}) !important;
-					margin-${side}: var(${pf}gap-${axis});`);
-      }
-
-      container.append(`${pf}gap-parent-${axis}: initial;
-			${pf}gap-item-${axis}: initial;
-			${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;`);
-
-      if (percentageRowGaps && axis === "row" || axis === "column") {
-        // Needed to switch margin values depending on row/top or column/left marginValues => [top, left] // may need changing to [top, right, bottom, left]?
-        var axisNumber = axis === "row" ? 0 : 1; // Moved !important to from margin property to custom property. Not sure if this breaks anything
-
-        container.append(`${pf}margin-${side}: calc(var(${pf}gap-${axis}) + ${obj.marginValues[axisNumber]}) !important;
-					margin-${side}: var(${pf}margin-${side});`);
-      } // If web components
+          container.append(`--${pf}orig-margin-${side}: ${obj.marginValues[axisNumber]};
+					--${pf}gap-${axis}: ${value};
+					--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--${pf}orig-margin-${side})) !important;
+					margin-${side}: var(--${pf}margin-${side});`); // ${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, calc(var(${pf}gap-parent-${axis}, 0px) - ${value})) !important;
+        } // reset.append(
+      // 	`${pf}gap-item-${axis}: initial;`
+      // );
 
 
-      if (opts.webComponents === true) {
-        container.before(slotted);
-        slotted.append(`${pf}gap-parent-${axis}: ${value};
-				${pf}gap-item-${axis}: ${value};
-				${pf}gap-${axis}: var(${pf}gap-item-${axis});`);
+      item.append(`--${pf}parent-gap-${axis}: ${value};
+				--${pf}margin-${side}: var(--${pf}gap-${axis});
+				margin-${side}: var(--${pf}margin-${side});`); // ${pf}gap-container-${axis}: initial;
+      // 	`${pf}gap-parent-${axis}: initial;
+      // ${pf}gap-item-${axis}: initial;
+      // ${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;`
+      // );
+      // if ((percentageRowGaps && axis === "row") || axis === "column") {
+      // 	// Needed to switch margin values depending on row/top or column/left marginValues => [top, left] // may need changing to [top, right, bottom, left]?
+      // 	var axisNumber = axis === "row" ? 0 : 1
+      // 	// Moved !important to from margin property to custom property. Not sure if this breaks anything
+      // 	container.append(
+      // 		`${pf}margin-${side}: calc(var(${pf}gap-${axis}) + ${obj.marginValues[axisNumber]}) !important;
+      // 		margin-${side}: var(${pf}margin-${side});`
+      // 	);
+      // }
+      // If web components
 
-        if (percentageRowGaps && axis === "row" || axis === "column") {
-          slotted.append(`margin-${side}: var(${pf}gap-${axis}) !important;`);
-        }
-      }
+
+      if (opts.webComponents === true) ;
     });
     item.append(`pointer-events: all;`);
     container.append(`pointer-events: none;
@@ -341,7 +347,7 @@ module.exports = (opts = {}) => {
     postcssPlugin: 'postcss-gap',
 
     Once(root) {
-      addRootSelector(root);
+      // addRootSelector(root)
       root.walkRules(rule => {
         var obj = {
           rules: {},
@@ -356,12 +362,12 @@ module.exports = (opts = {}) => {
           getMargin(decl, obj);
           getWidth(decl, obj);
           getRules(decl, obj, root);
-        });
-        addWidth(rule, obj);
+        }); // addWidth(rule, obj);
+
         addMargin(rule, obj);
 
         if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-          addFlex(rule, obj);
+          // addFlex(rule, obj);
           addGap(rule, obj, opts);
           removeGap(rule);
         }
