@@ -252,6 +252,35 @@
 		</div>
 	</div>
 
+	<pre>
+.container
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6%;
+}
+
+.container .container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3%;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container gap-6% flex-wrap">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div class="container gap-3% flex-wrap">
+				<div>A</div>
+				<div>B</div>
+				<div>C</div>
+				<div>D</div>
+			</div>
+		</div>
+	</div>
+
 	<h3>Margin + Gap</h3>
 
 	<pre>
