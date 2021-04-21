@@ -245,7 +245,7 @@ module.exports = (opts = {}) => {
 			if (value === "0") {
 				value = "0px";
 			}
-			var number = parse(value).nodes[0].value
+
 			var unit = parse(value).nodes[0].unit;
 
 			var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "row";
@@ -253,14 +253,14 @@ module.exports = (opts = {}) => {
 
 			// Percentages
 			if (unit === "%") {
-				// // formula: (parent - self) / (100 - self) * 100
-
+				// formula: (parent - self) / (100 - self) * 100
+				var unitlessPercentage = parse(value).nodes[0].value
 
 				container.append(
 					`--${pf}orig-margin-${side}: ${obj.marginValues[axisNumber]};
 					--${pf}gap-${axis}: ${value};
 					--${pf}margin-${side}: calc(
-						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - ${number}) * 100)
+						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - ${unitlessPercentage}) * 100)
 						+ var(--${pf}orig-margin-${side})
 						) !important;
 					margin-${side}: var(--${pf}margin-${side});`

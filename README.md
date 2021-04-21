@@ -11,6 +11,7 @@ This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 
 - Polyfill is incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
 - Limited to use cases where `display: flex | inline` and `gap | row-gap | column-gap` exist inside the same CSS rule
+- Percentage gaps aren't reliable if the container itself doesn't fill 100% of its parent
 - Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
@@ -93,6 +94,24 @@ postcss([
 
 [PostCSS]: https://github.com/postcss/postcss
 [Flex Gap Polyfill]: https://github.com/limitlessloop/flex-gap-polyfill
+
+## Workarounds
+
+If separate classes control the display and gap properties you can tell the polyfill to optionaly polyfill these properties.
+
+```css
+.gap-20 {
+    /* @fgp */
+    gap: 20px;
+}
+```
+
+```css
+.margin-20 {
+    /* @fgp */
+    margin: 20px;
+}
+```
 
 ## Options
 
