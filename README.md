@@ -10,7 +10,6 @@ This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 ## Limitations
 
 - Polyfill is incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
-- Limited to use cases where `display: flex | inline` and `gap | row-gap | column-gap` exist inside the same CSS rule
 - Percentage gaps aren't reliable if the container itself doesn't fill 100% of its parent
 - Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway
 
