@@ -108,7 +108,7 @@ If separate classes control the display and gap properties you can tell the poly
 ```css
 .margin-20 {
     /* @fgp */
-    margin: 20px;
+    margin: calc(20px + var(--fgp-ml));
 }
 ```
 

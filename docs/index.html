@@ -188,16 +188,16 @@
 
 	.gap-3\% {
 		display: flex;
-		gap: 3%;
+		gap: 10%;
 	}
 
 	.flexGapNotSupported .gap-3\% > * > * {}
 
 	.flexGapNotSupported .gap-3\% > * {
-	--fgp-parent-gap-row: 3%;
+	--fgp-parent-gap-row: 10%;
 	--fgp-margin-top: var(--fgp-gap-row);
 	margin-top: var(--fgp-margin-top);
-	--fgp-parent-gap-column: 3%;
+	--fgp-parent-gap-column: 10%;
 	--fgp-margin-left: var(--fgp-gap-column);
 	margin-left: var(--fgp-margin-left);
 	pointer-events: all;
@@ -206,16 +206,16 @@
 	.flexGapNotSupported .gap-3\% {
 	gap: 0;
 	--fgp-orig-margin-top: 0px;
-	--fgp-gap-row: 3%;
+	--fgp-gap-row: 10%;
 	--fgp-margin-top: calc(
-						(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) / (100 - 3) * 100)
+						(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) / (100 - 10) * 100)
 						+ var(--fgp-orig-margin-top)
 						) !important;
 	margin-top: var(--fgp-margin-top);
 	--fgp-orig-margin-left: 0px;
-	--fgp-gap-column: 3%;
+	--fgp-gap-column: 10%;
 	--fgp-margin-left: calc(
-						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - 3) * 100)
+						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - 10) * 100)
 						+ var(--fgp-orig-margin-left)
 						) !important;
 	margin-left: var(--fgp-margin-left);
@@ -225,16 +225,16 @@
 
 	.gap-6\% {
 		display: flex;
-		gap: 6%;
+		gap: 16%;
 	}
 
 	.flexGapNotSupported .gap-6\% > * > * {}
 
 	.flexGapNotSupported .gap-6\% > * {
-	--fgp-parent-gap-row: 6%;
+	--fgp-parent-gap-row: 16%;
 	--fgp-margin-top: var(--fgp-gap-row);
 	margin-top: var(--fgp-margin-top);
-	--fgp-parent-gap-column: 6%;
+	--fgp-parent-gap-column: 16%;
 	--fgp-margin-left: var(--fgp-gap-column);
 	margin-left: var(--fgp-margin-left);
 	pointer-events: all;
@@ -243,16 +243,16 @@
 	.flexGapNotSupported .gap-6\% {
 	gap: 0;
 	--fgp-orig-margin-top: 0px;
-	--fgp-gap-row: 6%;
+	--fgp-gap-row: 16%;
 	--fgp-margin-top: calc(
-						(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) / (100 - 6) * 100)
+						(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) / (100 - 16) * 100)
 						+ var(--fgp-orig-margin-top)
 						) !important;
 	margin-top: var(--fgp-margin-top);
 	--fgp-orig-margin-left: 0px;
-	--fgp-gap-column: 6%;
+	--fgp-gap-column: 16%;
 	--fgp-margin-left: calc(
-						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - 6) * 100)
+						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - 16) * 100)
 						+ var(--fgp-orig-margin-left)
 						) !important;
 	margin-left: var(--fgp-margin-left);
