@@ -8,7 +8,7 @@
   "homepage": "https://github.com/limitlessloop/flex-gap-polyfills#readme",
   "bugs": "https://github.com/limitlessloop/flex-gap-polyfills/issues",
   "main": "dist/index.js",
-  "module": "index.mjs",
+  "module": "dist/index.mjs",
   "files": [
     "dist/index.js",
     "dist/index.js.map",
