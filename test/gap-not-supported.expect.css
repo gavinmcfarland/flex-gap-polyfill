@@ -1,32 +1,7 @@
 .pixels {
 	display: flex;
 	gap: 20px;
-}
-
-.flexGapNotSupported .pixels > * > * {}
-
-.flexGapNotSupported .pixels > * {
-	--fgp-parent-gap-row: 20px;
-	--fgp-margin-top: var(--fgp-gap-row);
-	margin-top: var(--fgp-margin-top);
-	--fgp-parent-gap-column: 20px;
-	--fgp-margin-left: var(--fgp-gap-column);
-	margin-left: var(--fgp-margin-left);
-	pointer-events: all;
-}
-
-.flexGapNotSupported .pixels {
-	gap: 0;
-	--fgp-orig-margin-top: 0px;
-	--fgp-gap-row: 20px;
-	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--fgp-orig-margin-top)) !important;
-	margin-top: var(--fgp-margin-top);
-	--fgp-orig-margin-left: 0px;
-	--fgp-gap-column: 20px;
-	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--fgp-orig-margin-left)) !important;
-	margin-left: var(--fgp-margin-left);
-	pointer-events: none;
-	padding-top: 0.02px;
+	--has-display-flex: ;
 }
 
 .width-400 {

@@ -73,6 +73,10 @@
 		gap: 40px;
 	}
 
+	.gap-40px-no-flex {
+		gap: 40px;
+	}
+
 	.row-gap-40px {
 		display: flex;
 		row-gap: 40px;
@@ -118,6 +122,10 @@
 
 	.item-50\% {
 		width: calc(50% - var(--gap));
+	}
+
+	.grid {
+		display: grid;
 	}
 
 	.w {
@@ -423,6 +431,24 @@
 				<div>C</div>
 				<div>D</div>
 			</div>
+		</div>
+	</div>
+
+	<h3>When container doesn't have flex</h3>
+
+	<pre>
+.container {
+	display: grid;
+	gap: 40px;
+}
+	</pre>
+
+	<div class="outline">
+		<div class="container grid gap-40px-no-flex">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
 		</div>
 	</div>
 
