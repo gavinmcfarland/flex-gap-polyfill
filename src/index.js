@@ -230,7 +230,7 @@ module.exports = (opts = {}) => {
 
 	function rewriteMargin(rule, obj) {
 
-		let { orig, container } = obj.rules
+		let { orig, container, item } = obj.rules
 
 		// 1. Replace existing margin-left and margin-top
 		// TODO: Needs to also work for margin
@@ -270,10 +270,17 @@ module.exports = (opts = {}) => {
 				}
 
 				orig.after(container);
+				container.after(item);
+
 				container.append(
 					`--${pf}gap-${axis}: ${value};
 					--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--${pf}orig-margin-${side})) !important;`
 				);
+
+				item.append(
+					`--${pf}parent-gap-${axis}: ${value};
+					--${pf}margin-${side}: var(--${pf}gap-${axis});`
+				)
 
 			}
 		})

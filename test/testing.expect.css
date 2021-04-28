@@ -11,6 +11,13 @@
 	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--fgp-orig-margin-left)) !important;
 }
 
+.gap-and-no-flex > * {
+	--fgp-parent-gap-row: 20px;
+	--fgp-margin-top: var(--fgp-gap-row);
+	--fgp-parent-gap-column: 20px;
+	--fgp-margin-left: var(--fgp-gap-column);
+}
+
 .flex-and-gap {
 	display: flex;
 	--has-display-flex: ;
@@ -24,6 +31,13 @@
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--fgp-orig-margin-top)) !important;
 	--fgp-gap-column: 20px;
 	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--fgp-orig-margin-left)) !important;
+}
+
+.flex-and-gap > * {
+	--fgp-parent-gap-row: 20px;
+	--fgp-margin-top: var(--fgp-gap-row);
+	--fgp-parent-gap-column: 20px;
+	--fgp-margin-left: var(--fgp-gap-column);
 }
 
 .gap-and-no-flex {

@@ -20,3 +20,4 @@
         1. If `percentages` use one calculation, else use a different calculation
             1. Don't apply if `marginValues[] !== null` (this is to avoid duplicating the declaration)
             2. Add custom properties used by polyfill
+            3. Add custom properties to `item` of container
