@@ -1,4 +1,4 @@
-# Info
+# Spec
 
 1. Loop through each rule and get computed/resolved properties
     1. Check if rule has `display: flex | inline-flex`
