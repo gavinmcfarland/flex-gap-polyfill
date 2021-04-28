@@ -17,5 +17,6 @@
 3. Overwrite all occurances of `margin-left`, `margin-top` and `margin`
 4. Add `margin-left` and `margin-top` to every rule where `gapValues[] !== null`
     1. <mark>Caution:</mark> This must apply to anything where `gapValues[] !== null` because user could dynamically add or remove `diplay: flex`
-        1. Must not apply if `marginValues[] !== null`
-        2. Add custom properties used by polyfill
+        1. If `percentages` use one calculation, else use a different calculation
+            1. Don't apply if `marginValues[] !== null` (this is to avoid duplicating the declaration)
+            2. Add custom properties used by polyfill
