@@ -236,10 +236,10 @@ module.exports = (opts = {}) => {
         value = "0px";
       } // var unit = parse(value).nodes[0].unit;
       // var unitlessPercentage = parse(value).nodes[0].value
-      // Only add if gap is not null and rule has flex
+      // Only add if gap is not null
 
 
-      if (obj.gapValues[gapNumber] !== null && obj.hasFlex) {
+      if (obj.gapValues[gapNumber] !== null) {
         // Don't add margin if rule already contains margin
         if (!obj.marginValues[marginNumber] && obj.marginValues[marginNumber] !== 0) {
           orig.append(`margin-${side}: var(--has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`);

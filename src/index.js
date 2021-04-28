@@ -260,8 +260,8 @@ module.exports = (opts = {}) => {
 			// var unit = parse(value).nodes[0].unit;
 			// var unitlessPercentage = parse(value).nodes[0].value
 
-			// Only add if gap is not null and rule has flex
-			if ((obj.gapValues[gapNumber] !== null) && obj.hasFlex) {
+			// Only add if gap is not null
+			if ((obj.gapValues[gapNumber] !== null)) {
 
 
 				// Don't add margin if rule already contains margin
