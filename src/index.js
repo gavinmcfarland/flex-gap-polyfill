@@ -237,7 +237,7 @@ module.exports = (opts = {}) => {
 		orig.walkDecls((decl) => {
 			if (decl.prop === "margin-top" || decl.prop === "margin-left") {
 				decl.before(`--orig-${decl.prop}: ${decl.value};`);
-				decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}));`
+				decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}))`
 			}
 		})
 
