@@ -1,0 +1,30 @@
+.gap-and-no-flex {
+	gap: 20px;
+}
+
+.flex-and-gap {
+	display: flex;
+	--has-display-flex: ;
+	--orig-margin-top: 1em;
+	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));;
+	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
+}
+
+.flex-and-gap {
+	--fgp-gap-row: 20px;
+	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--fgp-orig-margin-top)) !important;
+	--fgp-gap-column: 20px;
+	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--fgp-orig-margin-left)) !important;
+}
+
+.gap-and-no-flex {
+	--orig-margin-top: 20px;
+	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));;
+	--orig-margin-left: 1em;
+	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));;
+	margin-right: 2em;
+}
+
+.width-400 {
+	width: 400px;
+}

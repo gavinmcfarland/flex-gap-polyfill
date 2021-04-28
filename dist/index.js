@@ -200,39 +200,60 @@ module.exports = (opts = {}) => {
 
 
   function rewriteFlex(rule, obj) {
-    if (obj.hasFlex) {
-      obj.rules.orig.append(`--has-display-flex: ;`); // obj.rules.orig.append({ prop: '--has-flex', value: ' ' })
-
-      obj.rules.orig.walk(i => {
-        i.raws.before = "\n\t";
-      });
-    }
+    rule.walkDecls(decl => {
+      if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
+        decl.after(`--has-display-flex: ;`);
+      }
+    });
+    obj.rules.orig.walk(i => {
+      i.raws.before = "\n\t";
+    });
   }
 
   function rewriteMargin(rule, obj) {
-    // If doesn't have flex in rule
-    if (!obj.hasFlex) {
-      // Remove margins? Maybe easier to just update value?
-      obj.rules.orig.walkDecls(decl => {
-        if (decl.prop === "margin-top" || decl.prop === "margin-left") {
-          decl.value = `var(--has-display-flex) calc(${decl.value} + var(--${pf}${decl.prop}));`;
-        }
-      });
-    } // const properties = [
-    // 	["row", "top"],
-    // 	["column", "left"]
-    // ];
-    // // Rewrite margins
-    // properties.forEach((property) => {
-    // 	var axis = property[0];
-    // 	var side = property[1];
-    // 	var axisNumber = axis === "row" ? 0 : 1
-    // 	if (obj.marginValues[axisNumber] !== null || obj.marginValues[axisNumber] !== null) {
-    // 		// Clean up
-    // 		obj.rules.orig.walk(i => { i.raws.before = "\n\t" });
-    // 	}
-    // })
+    let {
+      orig,
+      container
+    } = obj.rules; // 1. Replace existing margin-left and margin-top
+    // TODO: Needs to also work for margin
 
+    orig.walkDecls(decl => {
+      if (decl.prop === "margin-top" || decl.prop === "margin-left") {
+        decl.before(`--orig-${decl.prop}: ${decl.value};`);
+        decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}));`;
+      }
+    }); // 2. Add margin when gap present
+
+    const properties = [["row", "top"], ["column", "left"]];
+    properties.forEach((property, index) => {
+      var axis = property[0];
+      var side = property[1];
+      var value = obj.gapValues[index];
+      var gapNumber = axis === "row" ? 0 : 1;
+      var marginNumber = axis === "row" ? 0 : 3;
+
+      if (value === "0") {
+        value = "0px";
+      } // var unit = parse(value).nodes[0].unit;
+      // var unitlessPercentage = parse(value).nodes[0].value
+      // Only add if gap is not null and rule has flex
+
+
+      if (obj.gapValues[gapNumber] !== null && obj.hasFlex) {
+        // Don't add margin if rule already contains margin
+        if (!obj.marginValues[marginNumber] && obj.marginValues[marginNumber] !== 0) {
+          orig.append(`margin-${side}: var(--has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`);
+        }
+
+        orig.after(container);
+        container.append(`--${pf}gap-${axis}: ${value};
+					--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--${pf}orig-margin-${side})) !important;`);
+      }
+    }); // Clean
+
+    orig.walk(i => {
+      i.raws.before = "\n\t";
+    });
   } // function addGap(rule, obj, opts) {
   // 	const origContainer = obj.rules.orig;
   // 	const container = obj.rules.container
@@ -413,7 +434,7 @@ module.exports = (opts = {}) => {
       root.walkRules(rule => {
         var obj = {
           rules: {},
-          gapValues: ['0px', '0px'],
+          gapValues: [null, null],
           marginValues: [null, null, null, null],
           hasGap: false,
           hasFlex: false
