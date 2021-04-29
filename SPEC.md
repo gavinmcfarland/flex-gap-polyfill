@@ -21,3 +21,4 @@
             1. Don't apply if `marginValues[] !== null` (this is to avoid duplicating the declaration)
             2. Add custom properties used by polyfill
             3. Add custom properties to `item` of container
+            4. Add `margin-left` and `margin-top`

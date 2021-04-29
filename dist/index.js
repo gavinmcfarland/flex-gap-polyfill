@@ -75,8 +75,7 @@ module.exports = (opts = {}) => {
         }
       }
     }
-  } // TODO: Try moving this function to walking decls
-
+  }
 
   function getRules(decl, obj, root) {
     var fileName = root.source.input.file;
@@ -120,6 +119,18 @@ module.exports = (opts = {}) => {
     obj.rules.slotted = postcss.rule({
       selector: selector.slotted
     });
+    obj.rules.container.prepend(postcss.comment({
+      text: '-fgp'
+    }));
+    obj.rules.item.prepend(postcss.comment({
+      text: '-fgp'
+    }));
+    obj.rules.reset.prepend(postcss.comment({
+      text: '-fgp'
+    }));
+    obj.rules.slotted.prepend(postcss.comment({
+      text: '-fgp'
+    }));
   } // function addRootSelector(root) {
   // 	var fileName = root.source.input.file
   // 	// This avoids adding :root selector to module files used by Next.js
@@ -205,7 +216,7 @@ module.exports = (opts = {}) => {
         decl.after(`--has-display-flex: ;`);
       }
     });
-    obj.rules.orig.walk(i => {
+    obj.rules.orig?.walk(i => {
       i.raws.before = "\n\t";
     });
   }
@@ -216,16 +227,23 @@ module.exports = (opts = {}) => {
       container,
       item
     } = obj.rules; // 1. Replace existing margin-left and margin-top
-    // TODO: Needs to also work for margin
+    // TODO: Needs to also work for margin shorthand
 
     orig.walkDecls(decl => {
       if (decl.prop === "margin-top" || decl.prop === "margin-left") {
-        decl.before(`--orig-${decl.prop}: ${decl.value};`);
-        decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}))`;
+        // don't do this is margin is auto because cannot calc with auto
+        if (decl.value !== "auto") {
+          decl.before(`--orig-${decl.prop}: ${decl.value};`);
+          decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}))`;
+          orig.after(item);
+          item.append(`--orig-${decl.prop}: initial;`);
+        }
       }
     }); // 2. Add margin when gap present
 
-    const properties = [["row", "top"], ["column", "left"]];
+    const properties = [["row", "top"], ["column", "left"]]; // Disable gap
+
+    container.append(`gap: 0;`);
     properties.forEach((property, index) => {
       var axis = property[0];
       var side = property[1];
@@ -249,13 +267,21 @@ module.exports = (opts = {}) => {
         orig.after(container);
         container.after(item);
         container.append(`--${pf}gap-${axis}: ${value};
-					--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--${pf}orig-margin-${side})) !important;`);
+					--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`);
         item.append(`--${pf}parent-gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--${pf}gap-${axis});`);
+					--${pf}margin-${side}: var(--${pf}gap-${axis});`); // Add margin to items
+
+        item.append(`margin-${side}: var(--has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`);
       }
     }); // Clean
 
     orig.walk(i => {
+      i.raws.before = "\n\t";
+    });
+    container.walk(i => {
+      i.raws.before = "\n\t";
+    });
+    item.walk(i => {
       i.raws.before = "\n\t";
     });
   } // function addGap(rule, obj, opts) {
@@ -378,57 +404,53 @@ module.exports = (opts = {}) => {
   // 	reset.walk(i => { i.raws.before = "\n\t" });
   // 	slotted.walk(i => { i.raws.before = "\n\t" });
   // }
+  // function addMargin(rule, obj) {
+  // 	// Rewrites margin properties for:
+  // 	// margin: 1em; => margin: calc() 1em calc();
+  // 	// margin-top: 1em; => margin-top: calc();
+  // 	// margin-left: 1em; => margin-left: calc();
+  // 	function ifUnit(value) {
+  // 		var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/
+  // 		return regex.test(value)
+  // 	}
+  // 	const origContainer = obj.rules.orig;
+  // 	const container = obj.rules.container
+  // 	if ((opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig?.selector))) {
+  // 		rule.walkDecls((decl) => {
+  // 			if (ifUnit(decl.value)) {
+  // 				origContainer.after(container);
+  // 				if (decl.prop === "margin") {
+  // 					container.append(
+  // 						`margin: calc(var(${pf}gap-row) + ${obj.marginValues[0]}) ${obj.marginValues[1]} calc(var(${pf}gap-column) + ${obj.marginValues[0]})`
+  // 					)
+  // 				}
+  // 				if (decl.prop === "margin-top") {
+  // 					container.append(
+  // 						`margin-top: calc(var(${pf}gap-row) + ${obj.marginValues[0]})`
+  // 					)
+  // 				}
+  // 				if (decl.prop === "margin-left") {
+  // 					container.append(
+  // 						`margin-left: calc(var(${pf}gap-column) + ${obj.marginValues[1]})`
+  // 					)
+  // 				}
+  // 				// let axis = prop === "width" ? "column" : "row";
+  // 				container.walk(i => { i.raws.before = "\n\t"; });
+  // 			}
+  // 		})
+  // 	}
+  // }
+  // function removeGap(rule) {
+  // 	rule.walkDecls((decl) => {
+  // 		if (decl.prop === "gap" || decl.prop === "column-gap" || decl.prop === "row-gap") {
+  // 			// FIXME: Prevent gap from being deletec in certain scenarios // Thing this is working?
+  // 			if (!(opts.flexGapNotSupported || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector)))) {
+  // 				decl.remove()
+  // 			}
+  // 		}
+  // 	})
+  // }
 
-
-  function addMargin(rule, obj) {
-    // Rewrites margin properties for:
-    // margin: 1em; => margin: calc() 1em calc();
-    // margin-top: 1em; => margin-top: calc();
-    // margin-left: 1em; => margin-left: calc();
-    function ifUnit(value) {
-      var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/;
-      return regex.test(value);
-    }
-
-    const origContainer = obj.rules.orig;
-    const container = obj.rules.container;
-
-    if (opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig?.selector)) {
-      rule.walkDecls(decl => {
-        if (ifUnit(decl.value)) {
-          origContainer.after(container);
-
-          if (decl.prop === "margin") {
-            container.append(`margin: calc(var(${pf}gap-row) + ${obj.marginValues[0]}) ${obj.marginValues[1]} calc(var(${pf}gap-column) + ${obj.marginValues[0]})`);
-          }
-
-          if (decl.prop === "margin-top") {
-            container.append(`margin-top: calc(var(${pf}gap-row) + ${obj.marginValues[0]})`);
-          }
-
-          if (decl.prop === "margin-left") {
-            container.append(`margin-left: calc(var(${pf}gap-column) + ${obj.marginValues[1]})`);
-          } // let axis = prop === "width" ? "column" : "row";
-
-
-          container.walk(i => {
-            i.raws.before = "\n\t";
-          });
-        }
-      });
-    }
-  }
-
-  function removeGap(rule) {
-    rule.walkDecls(decl => {
-      if (decl.prop === "gap" || decl.prop === "column-gap" || decl.prop === "row-gap") {
-        // FIXME: Prevent gap from being deletec in certain scenarios // Thing this is working?
-        if (!(opts.flexGapNotSupported || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector))) {
-          decl.remove();
-        }
-      }
-    });
-  }
 
   return {
     postcssPlugin: 'postcss-gap',
@@ -436,29 +458,40 @@ module.exports = (opts = {}) => {
     Once(root) {
       // addRootSelector(root)
       root.walkRules(rule => {
-        var obj = {
-          rules: {},
-          gapValues: [null, null],
-          marginValues: [null, null, null, null],
-          hasGap: false,
-          hasFlex: false
-        };
+        // To check if rule original or added by plugin
+        var origRule = true;
         rule.walkDecls(decl => {
-          getFlex(decl, obj);
-          getGap(decl, obj);
-          getMargin(decl, obj);
-          getWidth(decl, obj);
-          getRules(decl, obj, root);
-        }); // addWidth(rule, obj);
+          if (decl.prop.startsWith("--fgp") || decl.prop.startsWith("--has")) {
+            origRule = false;
+          }
+        });
+        rule.walkComments(comment => {
+          if (comment.text === "-fgp") {
+            origRule = false;
+          }
+        });
 
-        rewriteFlex(rule, obj);
-        addMargin(rule, obj);
-        rewriteMargin(rule, obj);
+        if (origRule) {
+          var obj = {
+            rules: {},
+            gapValues: [null, null],
+            marginValues: [null, null, null, null],
+            hasGap: false,
+            hasFlex: false
+          };
+          rule.walkDecls(decl => {
+            getRules(decl, obj, root);
+            getFlex(decl, obj);
+            getGap(decl, obj);
+            getMargin(decl, obj);
+            getWidth(decl, obj);
+          }); // addWidth(rule, obj);
 
-        if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) {
-          // addFlex(rule, obj);
-          // addGap(rule, obj, opts);
-          removeGap(rule);
+          rewriteFlex(rule, obj); // addMargin(rule, obj)
+
+          rewriteMargin(rule, obj);
+
+          if (obj.hasGap && obj.hasFlex || opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex) ;
         }
       });
     }
