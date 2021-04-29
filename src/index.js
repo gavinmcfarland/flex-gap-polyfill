@@ -119,24 +119,24 @@ module.exports = (opts = {}) => {
 		obj.rules.slotted.prepend(postcss.comment({ text: '-fgp' }))
 	}
 
-	// function addRootSelector(root) {
-	// 	var fileName = root.source.input.file
+	function addRootSelector(root) {
+		var fileName = root.source.input.file
 
-	// 	// This avoids adding :root selector to module files used by Next.js
-	// 	if (!(fileName && fileName.endsWith(".module.css"))) {
-	// 		const rootRule = postcss.rule({ selector: ":root" });
+		// This avoids adding :root selector to module files used by Next.js
+		if (!(fileName && fileName.endsWith(".module.css"))) {
+			const rootRule = postcss.rule({ selector: ":root" });
 
-	// 		root.prepend(rootRule);
+			root.prepend(rootRule);
 
-	// 		rootRule.append(
-	// 			`${pf}has-polyfill-gap-container: 0px;
-	// 		${pf}has-polyfill-gap-item: 0px;`
-	// 		);
+			rootRule.append(
+				`--has-display-flex: initial;
+				--parent-has-display-flex: initial;`
+			);
 
-	// 		rootRule.walk(i => { i.raws.before = "\n\t"; });
+			rootRule.walk(i => { i.raws.before = "\n\t"; });
 
-	// 	}
-	// }
+		}
+	}
 
 	// function addWidth(rule, obj) {
 	// 	function ifUnit(value) {
@@ -225,6 +225,16 @@ module.exports = (opts = {}) => {
 		rule.walkDecls((decl) => {
 			if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
 				decl.after(`--has-display-flex: ;`)
+
+				obj.rules.orig.before(obj.rules.item)
+
+				obj.rules.item.before(obj.rules.reset)
+
+				obj.rules.item.append(`--has-display-flex: initial;
+				--parent-has-display-flex: !important;`)
+
+				obj.rules.reset.append(`--parent-has-display-flex: initial;`)
+
 			}
 
 		})
@@ -238,6 +248,9 @@ module.exports = (opts = {}) => {
 
 		// 1. Replace existing margin-left and margin-top
 		// TODO: Needs to also work for margin shorthand
+		orig.before(container);
+		container.before(item)
+
 		orig.walkDecls((decl) => {
 			if (decl.prop === "margin-top" || decl.prop === "margin-left") {
 				// don't do this is margin is auto because cannot calc with auto
@@ -245,7 +258,7 @@ module.exports = (opts = {}) => {
 					decl.before(`--orig-${decl.prop}: ${decl.value};`);
 					decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}))`
 
-					orig.after(item)
+
 
 					item.append(`--orig-${decl.prop}: initial;`)
 				}
@@ -283,8 +296,7 @@ module.exports = (opts = {}) => {
 					orig.append(`margin-${side}: var(--has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`)
 				}
 
-				orig.after(container);
-				container.after(item);
+
 
 				container.append(
 					`--${pf}gap-${axis}: ${value};
@@ -297,7 +309,7 @@ module.exports = (opts = {}) => {
 				)
 
 				// Add margin to items
-				item.append(`margin-${side}: var(--has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`)
+				item.append(`margin-${side}: var(--parent-has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`)
 
 			}
 		})
@@ -523,7 +535,7 @@ module.exports = (opts = {}) => {
 		postcssPlugin: 'postcss-gap',
 		Once(root) {
 
-			// addRootSelector(root)
+			addRootSelector(root)
 
 			root.walkRules(rule => {
 
