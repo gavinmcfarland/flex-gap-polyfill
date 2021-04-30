@@ -256,12 +256,21 @@ module.exports = (opts = {}) => {
 				// don't do this is margin is auto because cannot calc with auto
 				if (decl.value !== "auto") {
 					decl.before(`--orig-${decl.prop}: ${decl.value};`);
-					decl.value = `var(--has-display-flex) calc(var(--orig-${decl.prop}, 0px) + var(--${pf}${decl.prop}))`
+					decl.value = `var(--${pf}${decl.prop})`
 
 
 
 					item.append(`--orig-${decl.prop}: initial;`)
 				}
+			}
+
+			if (decl.prop === "margin") {
+				// TODO: Need to catch when value is auto as can't work with calc
+					decl.before(`--orig-margin-top: ${obj.marginValues[0]};`);
+					decl.before(`--orig-margin-right: ${obj.marginValues[1]};`);
+					decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);
+					decl.before(`--orig-margin-left: ${obj.marginValues[3]};`);
+				decl.value = `var(--${pf}margin-top) var(--orig-margin-right) var(--orig-margin-bottom) var(--${pf}margin-left)`
 			}
 		})
 
@@ -300,23 +309,23 @@ module.exports = (opts = {}) => {
 
 				// Don't add margin if rule already contains margin
 				if (!obj.marginValues[marginNumber] && obj.marginValues[marginNumber] !== 0) {
-					orig.append(`margin-${side}: var(--has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`)
+					orig.append(`margin-${side}: var(--${pf}margin-${side});`)
 				}
 
 
 
 				container.append(
 					`--${pf}gap-${axis}: ${value};
-					--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`
+					--${pf}margin-${side}: var(--has-display-flex) calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`
 				);
 
 				item.append(
 					`--${pf}parent-gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--${pf}gap-${axis});`
+					--${pf}margin-${side}: var(--parent-has-display-flex) var(--${pf}gap-${axis});`
 				)
 
 				// Add margin to items
-				item.append(`margin-${side}: var(--parent-has-display-flex) calc(var(--orig-margin-${side}, 0px) + var(--${pf}margin-${side}));`)
+				item.append(`margin-${side}: var(--${pf}margin-${side});`)
 
 			}
 		})

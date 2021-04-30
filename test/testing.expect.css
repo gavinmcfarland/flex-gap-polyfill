@@ -6,25 +6,25 @@
 .gap-and-no-flex > * {
 	/* -fgp */
 	--fgp-parent-gap-row: 20px;
-	--fgp-margin-top: var(--fgp-gap-row);
-	margin-top: var(--parent-has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
+	--fgp-margin-top: var(--parent-has-display-flex) var(--fgp-gap-row);
+	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 20px;
-	--fgp-margin-left: var(--fgp-gap-column);
-	margin-left: var(--parent-has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
+	--fgp-margin-left: var(--parent-has-display-flex) var(--fgp-gap-column);
+	margin-left: var(--fgp-margin-left);
 }
 
 .gap-and-no-flex {
 	/* -fgp */
 	--fgp-gap-row: 20px;
-	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
+	--fgp-margin-top: var(--has-display-flex) calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
-	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
+	--fgp-margin-left: var(--has-display-flex) calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
 .gap-and-no-flex {
 	gap: var(--has-display-flex, 20px) 0;
-	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
-	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
+	margin-top: var(--fgp-margin-top);
+	margin-left: var(--fgp-margin-left);
 }
 
 .flex-and-gap > * > * {
@@ -34,9 +34,9 @@
 .flex-and-gap {
 	/* -fgp */
 	--fgp-gap-row: 20px;
-	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
+	--fgp-margin-top: var(--has-display-flex) calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
-	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
+	--fgp-margin-left: var(--has-display-flex) calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
 .flex-and-gap > * {
@@ -45,11 +45,11 @@
 	--parent-has-display-flex: !important;
 	--orig-margin-top: initial;
 	--fgp-parent-gap-row: 20px;
-	--fgp-margin-top: var(--fgp-gap-row);
-	margin-top: var(--parent-has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
+	--fgp-margin-top: var(--parent-has-display-flex) var(--fgp-gap-row);
+	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 20px;
-	--fgp-margin-left: var(--fgp-gap-column);
-	margin-left: var(--parent-has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
+	--fgp-margin-left: var(--parent-has-display-flex) var(--fgp-gap-column);
+	margin-left: var(--fgp-margin-left);
 }
 
 .flex-and-gap {
@@ -57,8 +57,8 @@
 	--has-display-flex: ;
 	gap: var(--has-display-flex, 20px) 0;
 	--orig-margin-top: 1em;
-	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
-	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
+	margin-top: var(--fgp-margin-top);
+	margin-left: var(--fgp-margin-left);
 }
 
 .gap-and-no-flex > * {
@@ -73,9 +73,9 @@
 
 .gap-and-no-flex {
 	--orig-margin-top: 20px;
-	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
+	margin-top: var(--fgp-margin-top);
 	--orig-margin-left: 1em;
-	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
+	margin-left: var(--fgp-margin-left);
 	margin-right: 2em;
 }
 
