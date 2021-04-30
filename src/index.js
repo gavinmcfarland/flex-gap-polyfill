@@ -1,5 +1,5 @@
 import postcss from "postcss";
-// const { parse } = require('postcss-values-parser');
+const { parse } = require('postcss-values-parser');
 
 // var twMarginRegex = /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi
 
@@ -274,7 +274,7 @@ module.exports = (opts = {}) => {
 		orig.walkDecls((decl) => {
 			if (decl.prop === "gap" || decl.prop === "row-gap" || decl.prop === "column-gap") {
 				// don't do this is margin is auto because cannot calc with auto
-				decl.before(`--${pf}${decl.prop}: var(--has-display-flex, ${decl.value}) 0px`)
+				decl.before(`--${pf}${decl.prop}: var(--has-display-flex, ${decl.value})`)
 				decl.value = `var(--${pf}${decl.prop}, 0px)`
 			}
 		})
@@ -290,8 +290,7 @@ module.exports = (opts = {}) => {
 				value = "0px";
 			}
 
-			// var unit = parse(value).nodes[0].unit;
-			// var unitlessPercentage = parse(value).nodes[0].value
+
 
 			// Only add if gap is not null
 			if ((obj.gapValues[gapNumber] !== null)) {
@@ -303,11 +302,25 @@ module.exports = (opts = {}) => {
 				}
 
 
-
-				container.append(
-					`--${pf}gap-${axis}: ${value};
+				if (parse(value).nodes[0].unit === "%") {
+					var unitlessPercentage = parse(value).nodes[0].value
+					// formula: (parent - self) / (100 - self) * 100
+					container.append(
+						`--${pf}gap-${axis}: ${value};
+					--${pf}margin-${side}: calc(
+						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - ${unitlessPercentage}) * 100)
+						+ var(--${pf}orig-margin-${side}, 0px)
+						) !important`
+					);
+				}
+				else {
+					// formula: (parent - self)
+					container.append(
+						`--${pf}gap-${axis}: ${value};
 					--${pf}margin-${side}: var(--has-display-flex) calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`
-				);
+						);
+				}
+
 
 				item.append(
 					`--${pf}parent-gap-${axis}: ${value};

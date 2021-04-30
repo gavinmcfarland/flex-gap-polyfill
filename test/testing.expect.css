@@ -20,7 +20,7 @@ body {
 }
 
 .flex-and-gap {
-	display: flex;--has-display-flex: ;--fgp-gap: var(--has-display-flex, 20px) 0px;
+	display: flex;--has-display-flex: ;--fgp-gap: var(--has-display-flex, 20px);
 	gap: var(--fgp-gap, 0px);--orig-margin-top: 1em;
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
