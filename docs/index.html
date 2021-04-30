@@ -9,7 +9,6 @@
 
 	.flexGapNotSupported body {
 	/* -fgp */
-	gap: 0;
 }
 
 	body {
@@ -23,7 +22,6 @@
 
 	.flexGapNotSupported .page {
 	/* -fgp */
-	gap: 0;
 }
 
 	.page {
@@ -38,7 +36,6 @@
 
 	.flexGapNotSupported .outline {
 	/* -fgp */
-	gap: 0;
 }
 
 	.outline {
@@ -53,7 +50,6 @@
 
 	.flexGapNotSupported .outline::after {
 	/* -fgp */
-	gap: 0;
 }
 
 	.outline::after {
@@ -74,7 +70,6 @@
 
 	.flexGapNotSupported .container {
 	/* -fgp */
-	gap: 0;
 }
 
 	.container {
@@ -89,7 +84,6 @@
 
 	.flexGapNotSupported .container > * {
 	/* -fgp */
-	gap: 0;
 }
 
 	.container > * {
@@ -106,7 +100,6 @@
 
 	.flexGapNotSupported .container > .container > * {
 	/* -fgp */
-	gap: 0;
 }
 
 	.container > .container > * {
@@ -119,7 +112,6 @@
 
 	.flexGapNotSupported .container > .container > .container > * {
 	/* -fgp */
-	gap: 0;
 }
 
 	.container > .container > .container > * {
@@ -132,7 +124,6 @@
 
 	.flexGapNotSupported .container > .container > .container > .container > * {
 	/* -fgp */
-	gap: 0;
 }
 
 	.container > .container > .container > .container > * {
@@ -145,7 +136,6 @@
 
 	.flexGapNotSupported .flex-wrap {
 	/* -fgp */
-	gap: 0;
 }
 
 	.flexGapNotSupported .flex-wrap > * {
@@ -166,7 +156,6 @@
 
 	.flexGapNotSupported .gap-20px {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: var(--gap);
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: var(--gap);
@@ -189,7 +178,7 @@
 	display: flex;
 	--has-display-flex: ;
 	--gap: 20px;
-	gap: var(--gap);
+	gap: var(--has-display-flex, var(--gap)) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 
@@ -201,7 +190,6 @@
 
 	.flexGapNotSupported .gap-40px {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 40px;
@@ -223,7 +211,7 @@
 	.gap-40px {
 	display: flex;
 	--has-display-flex: ;
-	gap: 40px;
+	gap: var(--has-display-flex, 40px) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 	}
@@ -240,7 +228,6 @@
 
 	.flexGapNotSupported .flex.gap-40px-no-flex, .flexGapNotSupported .inline-flex.gap-40px-no-flex {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 40px;
@@ -248,7 +235,7 @@
 }
 
 	.gap-40px-no-flex {
-	gap: 40px;
+	gap: var(--has-display-flex, 40px) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 	}
@@ -259,7 +246,6 @@
 
 	.flexGapNotSupported .row-gap-40px {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 }
@@ -276,7 +262,7 @@
 	.row-gap-40px {
 	display: flex;
 	--has-display-flex: ;
-	row-gap: 40px;
+	row-gap: var(--has-display-flex, 40px) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	}
 
@@ -286,7 +272,6 @@
 
 	.flexGapNotSupported .column-gap-20px {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-column: 20px;
 	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
@@ -304,7 +289,7 @@
 	display: flex;
 	--has-display-flex: ;
 	-moz-column-gap: 20px;
-	column-gap: 20px;
+	column-gap: var(--has-display-flex, 20px) 0;
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 	}
 
@@ -314,7 +299,6 @@
 
 	.flexGapNotSupported .gap-3\% {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 10%;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 10%;
@@ -336,7 +320,7 @@
 	.gap-3\% {
 	display: flex;
 	--has-display-flex: ;
-	gap: 10%;
+	gap: var(--has-display-flex, 10%) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 	}
@@ -347,7 +331,6 @@
 
 	.flexGapNotSupported .gap-6\% {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 16%;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 16%;
@@ -369,7 +352,7 @@
 	.gap-6\% {
 	display: flex;
 	--has-display-flex: ;
-	gap: 16%;
+	gap: var(--has-display-flex, 16%) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 	}
@@ -380,7 +363,6 @@
 
 	.flexGapNotSupported .gap-2em {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 2em;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 2em;
@@ -402,7 +384,7 @@
 	.gap-2em {
 	display: flex;
 	--has-display-flex: ;
-	gap: 2em;
+	gap: var(--has-display-flex, 2em) 0;
 	margin-top: var(--has-display-flex) calc(var(--orig-margin-top, 0px) + var(--fgp-margin-top));
 	margin-left: var(--has-display-flex) calc(var(--orig-margin-left, 0px) + var(--fgp-margin-left));
 	}
@@ -413,7 +395,6 @@
 
 	.flexGapNotSupported .gap-20px.margin-20px {
 	/* -fgp */
-	gap: 0;
 	--fgp-gap-row: 20px;
 	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
@@ -435,7 +416,7 @@
 	.gap-20px.margin-20px {
 	display: flex;
 	--has-display-flex: ;
-	gap: 20px;
+	gap: var(--has-display-flex, 20px) 0;
 	margin: 20px;
 	}
 
@@ -445,7 +426,6 @@
 
 	.flexGapNotSupported .space-evenly {
 	/* -fgp */
-	gap: 0;
 }
 
 	.space-evenly {
@@ -458,7 +438,6 @@
 
 	.flexGapNotSupported .justify-flex-end {
 	/* -fgp */
-	gap: 0;
 }
 
 	.justify-flex-end {
@@ -471,7 +450,6 @@
 
 	.flexGapNotSupported .grow {
 	/* -fgp */
-	gap: 0;
 }
 
 	.grow {
@@ -484,7 +462,6 @@
 
 	.flexGapNotSupported .item-50\% {
 	/* -fgp */
-	gap: 0;
 }
 
 	.item-50\% {
@@ -497,11 +474,29 @@
 
 	.flexGapNotSupported .grid {
 	/* -fgp */
-	gap: 0;
 }
 
 	.grid {
 	display: grid;
+	}
+
+	.flexGapNotSupported .flex > * > * {
+	/* -fgp */--parent-has-display-flex: initial;
+}
+
+	.flexGapNotSupported .flex {
+	/* -fgp */
+}
+
+	.flexGapNotSupported .flex > * {
+	/* -fgp */
+	--has-display-flex: initial;
+	--parent-has-display-flex: !important;
+}
+
+	.flex {
+	display: flex;
+	--has-display-flex: ;
 	}
 
 	.flexGapNotSupported .w > * {
@@ -510,7 +505,6 @@
 
 	.flexGapNotSupported .w {
 	/* -fgp */
-	gap: 0;
 }
 
 	.w {

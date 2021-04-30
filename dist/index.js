@@ -250,9 +250,15 @@ module.exports = (opts = {}) => {
       }
     }); // 2. Add margin when gap present
 
-    const properties = [["row", "top"], ["column", "left"]]; // Disable gap
+    const properties = [["row", "top"], ["column", "left"]]; // Disable gap when element has display flex
+    // TODO: Needs modifying to work on gap shorthand
 
-    container.append(`gap: 0;`);
+    orig.walkDecls(decl => {
+      if (decl.prop === "gap" || decl.prop === "row-gap" || decl.prop === "column-gap") {
+        // don't do this is margin is auto because cannot calc with auto
+        decl.value = `var(--has-display-flex, ${decl.value}) 0`;
+      }
+    });
     properties.forEach((property, index) => {
       var axis = property[0];
       var side = property[1];

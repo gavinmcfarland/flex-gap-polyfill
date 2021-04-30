@@ -271,8 +271,15 @@ module.exports = (opts = {}) => {
 			["column", "left"]
 		];
 
-		// Disable gap
-		container.append(`gap: 0;`)
+		// Disable gap when element has display flex
+		// TODO: Needs modifying to work on gap shorthand
+		orig.walkDecls((decl) => {
+			if (decl.prop === "gap" || decl.prop === "row-gap" || decl.prop === "column-gap") {
+				// don't do this is margin is auto because cannot calc with auto
+				decl.value = `var(--has-display-flex, ${decl.value}) 0`
+			}
+		})
+
 
 		properties.forEach((property, index) => {
 			var axis = property[0];
