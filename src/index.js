@@ -5,6 +5,8 @@ const { parse } = require('postcss-values-parser');
 
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
 
+// TODO: Has display flex logic needs work. Test with when flexGapSupportedNot not applied.
+
 module.exports = (opts = {}) => {
 	opts = opts || {}
 
