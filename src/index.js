@@ -226,20 +226,13 @@ module.exports = (opts = {}) => {
 			if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
 				decl.after(`--has-display-flex: ;`)
 
-				obj.rules.orig.before(obj.rules.item)
-
-				obj.rules.item.before(obj.rules.reset)
-
-				obj.rules.item.append(`--has-display-flex: initial;
-				--parent-has-display-flex: !important;`)
+				obj.rules.item.append(`--parent-has-display-flex: !important;`)
 
 				obj.rules.reset.append(`--parent-has-display-flex: initial;`)
 
 			}
 
 		})
-
-		obj.rules.orig?.walk(i => { i.raws.before = "\n\t" });
 	}
 
 	function rewriteMargin(rule, obj) {
@@ -247,16 +240,12 @@ module.exports = (opts = {}) => {
 		let { orig, container, item} = obj.rules
 
 		// 1. Replace existing margin-left and margin-top
-		// TODO: Needs to also work for margin shorthand
-		orig.before(container);
-		container.before(item)
-
 		orig.walkDecls((decl) => {
 			if (decl.prop === "margin-top" || decl.prop === "margin-left") {
 				// don't do this is margin is auto because cannot calc with auto
 				if (decl.value !== "auto") {
 					decl.before(`--orig-${decl.prop}: ${decl.value};`);
-					decl.value = `var(--${pf}${decl.prop})`
+					decl.value = `var(--${pf}${decl.prop}, var(--orig-${decl.prop}))`
 
 
 
@@ -285,7 +274,8 @@ module.exports = (opts = {}) => {
 		orig.walkDecls((decl) => {
 			if (decl.prop === "gap" || decl.prop === "row-gap" || decl.prop === "column-gap") {
 				// don't do this is margin is auto because cannot calc with auto
-				decl.value = `var(--has-display-flex, ${decl.value}) 0`
+				decl.before(`--${pf}${decl.prop}: var(--has-display-flex, ${decl.value}) 0px`)
+				decl.value = `var(--${pf}${decl.prop}, 0px)`
 			}
 		})
 
@@ -309,7 +299,7 @@ module.exports = (opts = {}) => {
 
 				// Don't add margin if rule already contains margin
 				if (!obj.marginValues[marginNumber] && obj.marginValues[marginNumber] !== 0) {
-					orig.append(`margin-${side}: var(--${pf}margin-${side});`)
+					orig.append(`margin-${side}: var(--${pf}margin-${side}, var(--orig-margin-${side}));`)
 				}
 
 
@@ -331,9 +321,9 @@ module.exports = (opts = {}) => {
 		})
 
 		// Clean
-		orig.walk(i => { i.raws.before = "\n\t" });
-		container.walk(i => { i.raws.before = "\n\t" });
-		item.walk(i => { i.raws.before = "\n\t" });
+		// orig.walk(i => { i.raws.before = "\n\t" });
+		// container.walk(i => { i.raws.before = "\n\t" });
+		// item.walk(i => { i.raws.before = "\n\t" });
 	}
 
 	// function addGap(rule, obj, opts) {
@@ -595,6 +585,15 @@ module.exports = (opts = {}) => {
 						// addFlex(rule, obj);
 						// addGap(rule, obj, opts);
 						// removeGap(rule);
+					}
+
+					if (obj.hasFlex || obj.hasGap) {
+						obj.rules.orig.before(obj.rules.container);
+						obj.rules.container.before(obj.rules.item);
+						if (obj.hasGap) {
+							obj.rules.item.before(obj.rules.reset);
+						}
+
 					}
 				}
 			})
