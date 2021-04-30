@@ -48,6 +48,7 @@ Becomes:
 
 It works by emulating flex gap by adding margins to each child element and applying a negative margin to the container.
 
+- **New** Now works regardless of whether `display: flex` and `gap` are used in the same rule
 - Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc.
 - No additional class names or divs needed (except when using `margin: auto`).
 - Style borders and padding as normal.
