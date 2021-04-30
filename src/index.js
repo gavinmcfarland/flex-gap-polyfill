@@ -333,10 +333,6 @@ module.exports = (opts = {}) => {
 			}
 		})
 
-		// Clean
-		// orig.walk(i => { i.raws.before = "\n\t" });
-		// container.walk(i => { i.raws.before = "\n\t" });
-		// item.walk(i => { i.raws.before = "\n\t" });
 	}
 
 	// function addGap(rule, obj, opts) {
@@ -606,6 +602,14 @@ module.exports = (opts = {}) => {
 						if (obj.hasGap) {
 							obj.rules.item.before(obj.rules.reset);
 						}
+
+						// Clean
+						obj.rules.orig.walk(i => {
+							return i.raws.before = "\n\t"
+						});
+						obj.rules.container.walk(i => { i.raws.before = "\n\t" });
+						obj.rules.item.walk(i => { i.raws.before = "\n\t" });
+						obj.rules.reset.walk(i => { i.raws.before = "\n\t" });
 
 					}
 				}

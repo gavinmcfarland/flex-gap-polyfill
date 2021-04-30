@@ -300,10 +300,7 @@ module.exports = (opts = {}) => {
 
         item.append(`margin-${side}: var(--${pf}margin-${side});`);
       }
-    }); // Clean
-    // orig.walk(i => { i.raws.before = "\n\t" });
-    // container.walk(i => { i.raws.before = "\n\t" });
-    // item.walk(i => { i.raws.before = "\n\t" });
+    });
   } // function addGap(rule, obj, opts) {
   // 	const origContainer = obj.rules.orig;
   // 	const container = obj.rules.container
@@ -519,7 +516,21 @@ module.exports = (opts = {}) => {
 
             if (obj.hasGap) {
               obj.rules.item.before(obj.rules.reset);
-            }
+            } // Clean
+
+
+            obj.rules.orig.walk(i => {
+              return i.raws.before = "\n\t";
+            });
+            obj.rules.container.walk(i => {
+              i.raws.before = "\n\t";
+            });
+            obj.rules.item.walk(i => {
+              i.raws.before = "\n\t";
+            });
+            obj.rules.reset.walk(i => {
+              i.raws.before = "\n\t";
+            });
           }
         }
       });

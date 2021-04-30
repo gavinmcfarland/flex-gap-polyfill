@@ -19,7 +19,7 @@
     "build": "rollup --config .rollup.js --silent && node preprocess.js",
     "prepublishOnly": "npm test",
     "pretest:tape": "npm run build",
-    "test": "npm run test:js && npm run test:tape",
+    "test": "npm run test:js && npm run test:tape && node preprocess.js",
     "test:js": "eslint src/{*,**/*}.js --cache --ignore-path .gitignore --quiet",
     "test:tape": "postcss-tape"
   },

@@ -8,19 +8,36 @@ body {
 }
 
 .flex-and-gap > * > * {
-	/* -fgp */--parent-has-display-flex: initial;
+	/* -fgp */
+	--parent-has-display-flex: initial;
 }
 
 .flex-and-gap > * {
-	/* -fgp */--parent-has-display-flex: !important;--orig-margin-top: initial;--fgp-parent-gap-row: 20px;--fgp-margin-top: var(--parent-has-display-flex) var(--fgp-gap-row);margin-top: var(--fgp-margin-top);--fgp-parent-gap-column: 20px;--fgp-margin-left: var(--parent-has-display-flex) var(--fgp-gap-column);margin-left: var(--fgp-margin-left);
+	/* -fgp */
+	--parent-has-display-flex: !important;
+	--orig-margin-top: initial;
+	--fgp-parent-gap-row: 20px;
+	--fgp-margin-top: var(--parent-has-display-flex) var(--fgp-gap-row);
+	margin-top: var(--fgp-margin-top);
+	--fgp-parent-gap-column: 20px;
+	--fgp-margin-left: var(--parent-has-display-flex) var(--fgp-gap-column);
+	margin-left: var(--fgp-margin-left);
 }
 
 .flex-and-gap {
-	/* -fgp */--fgp-gap-row: 20px;--fgp-margin-top: var(--has-display-flex) calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;--fgp-gap-column: 20px;--fgp-margin-left: var(--has-display-flex) calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
+	/* -fgp */
+	--fgp-gap-row: 20px;
+	--fgp-margin-top: var(--has-display-flex) calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
+	--fgp-gap-column: 20px;
+	--fgp-margin-left: var(--has-display-flex) calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
 .flex-and-gap {
-	display: flex;--has-display-flex: ;--fgp-gap: var(--has-display-flex, 20px);
-	gap: var(--fgp-gap, 0px);--orig-margin-top: 1em;
-	margin-top: var(--fgp-margin-top, var(--orig-margin-top));margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+	display: flex;
+	--has-display-flex: ;
+	--fgp-gap: var(--has-display-flex, 20px);
+	gap: var(--fgp-gap, 0px);
+	--orig-margin-top: 1em;
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
