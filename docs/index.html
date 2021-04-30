@@ -499,6 +499,19 @@
 	--has-display-flex: ;
 	}
 
+	.no-flex {
+		--has-display-flex: initial;
+	}
+	.flexGapNotSupported .no-flex > * > * {
+	/* -fgp */
+}
+	.flexGapNotSupported .no-flex > * {
+	/* -fgp */
+}
+	.no-flex > * {
+	--parent-has-display-flex: initial !important;
+	}
+
 	.flexGapNotSupported .w > * {
 	/* -fgp */
 }

@@ -132,6 +132,13 @@
 		display: flex;
 	}
 
+	.no-flex {
+		--has-display-flex: initial;
+	}
+	.no-flex > * {
+		--parent-has-display-flex: initial !important;
+	}
+
 	.w {
 		width: auto;
 	}
