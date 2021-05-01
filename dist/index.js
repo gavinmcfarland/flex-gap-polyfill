@@ -300,10 +300,10 @@ module.exports = (opts = {}) => {
 
         if (parse(value).nodes[0].unit === "%") {
           item.append(`--${pf}parent-gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) / (1 + ${unitlessPercentage}));`);
+					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) / (1 + ${unitlessPercentage}) + var(--orig-margin-${side}, 0px));`);
         } else {
           item.append(`--${pf}parent-gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--parent-has-fgp) var(--${pf}gap-${axis});`);
+					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px));`);
         } // Add margin to items
 
 

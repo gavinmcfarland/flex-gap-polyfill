@@ -17,10 +17,10 @@ body {
 	--parent-has-fgp: !important;
 	--orig-margin-top: initial;
 	--fgp-parent-gap-row: 20px;
-	--fgp-margin-top: var(--parent-has-fgp) var(--fgp-gap-row);
+	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 20px;
-	--fgp-margin-left: var(--parent-has-fgp) var(--fgp-gap-column);
+	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
 }
 

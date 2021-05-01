@@ -1,5 +1,12 @@
 # Changes to postcss-gap-polyfil
 
+### 4.00 (1 May 2021)
+
+- Completely refactored from the ground up
+- Now supports use cases where `display: flex | inline-flex` and `gap` exist in two different classes
+- Now supports margins on items as well
+- More accurate calculation of percentage gaps
+
 ### 3.00 (18 Apr 2021)
 
 - Refactored plugin with optimisations

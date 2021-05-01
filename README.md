@@ -5,12 +5,12 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
+This is a pure CSS polyfill using PostCSS to emulate flex gap using margins. It should cover 90% of cases.
 
-## Limitations
+## Kown limitations
 
-- Polyfill is incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
-- Percentage gaps aren't reliable if the container itself doesn't fill 100% of its parent
+- Incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
+- Percentage gaps aren't that reliable if the container has a dynamic width, ie not full width of container or a fixed width (latter coming soon)
 - Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
@@ -31,28 +31,35 @@ Becomes:
 /* Output simplified for purpose of example */
 
 .container > * {
-    --fgp-gap-parent: 40px !important;
-    --fgp-gap-item: 40px !important;
-    --fgp-gap: var(--fgp-gap-item) !important;
-    margin-top: var(--fgp-gap);
-    margin-left: var(--fgp-gap);
+	--fgp-parent-gap-row: 40px;
+    --fgp-parent-gap-column: 40px;
+	--fgp-margin-top: calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
+	--fgp-margin-left: calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
+    margin-top: var(--fgp-margin-top);
+	margin-left: var(--fgp-margin-left);
 }
 
 .container {
-    --fgp-gap-container: calc(var(--fgp-gap-parent, 0px) - 40px) !important;
-    --fgp-gap: var(--fgp-gap-container);
-    margin-top: var(--fgp-gap);
-    margin-left: var(--fgp-gap);
+    --fgp-gap: var(--has-fgp, 40px);
+	--fgp-gap-row: 40px;
+    --fgp-gap-column: 40px;
+	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px));
+	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px));
+    display: flex;
+    gap: var(--fgp-gap, 0px);
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 ```
 
-It works by emulating flex gap by adding margins to each child element and applying a negative margin to the container.
+It emulates flex gap by adding margins to each child element and applying a negative margin to the container.
 
-- **New** Now works regardless of whether `display: flex` and `gap` are used in the same rule
-- Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc.
-- No additional class names or divs needed (except when using `margin: auto`).
-- Style borders and padding as normal.
-- Supports `gap`, `row-gap` and `column-gap`.
+- <mark>NEW</mark> Now works regardless of whether `display: flex` and `gap` are used in the same rule
+- Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc
+- No additional class names or divs needed (except when using `margin: auto`)
+- Works even when margin already exists on element (inline styles not supported)
+- Style margin, borders and padding as normal
+- Supports `gap`, `row-gap` and `column-gap`
 
 ## Browsers
 
@@ -95,23 +102,6 @@ postcss([
 [PostCSS]: https://github.com/postcss/postcss
 [Flex Gap Polyfill]: https://github.com/limitlessloop/flex-gap-polyfill
 
-## Workarounds
-
-If separate classes control the display and gap properties you can tell the polyfill to optionaly polyfill these properties.
-
-```css
-.gap-20 {
-    /* @fgp */
-    gap: 20px;
-}
-```
-
-```css
-.margin-20 {
-    /* @fgp */
-    margin: calc(20px + var(--fgp-ml));
-}
-```
 
 ## Options
 
