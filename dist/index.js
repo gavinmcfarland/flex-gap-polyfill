@@ -6,8 +6,9 @@ const {
   parse
 } = require('postcss-values-parser'); // var twMarginRegex = /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
-// TODO: Has display flex logic needs work. Test with when flexGapSupportedNot not applied.
-// Maybe it's not `--has-display-flex` that's needed. But `--fgp-polyfill-applied`
+// TODO: Test with example repos
+// TODO: Check webComponents option works
+// TODO: Check works with tailwind
 
 
 module.exports = (opts = {}) => {
@@ -55,16 +56,35 @@ module.exports = (opts = {}) => {
 
   function getMargin(decl, obj) {
     if (decl.prop === "margin" || decl.prop === "margin-left" || decl.prop === "margin-top") {
-      if (decl.prop === "margin-top") {
-        obj.marginValues[0] = decl.value;
-      }
+      var value;
+      obj.hasMargin = true;
 
-      if (decl.prop === "margin-left") {
-        obj.marginValues[3] = decl.value;
+      if (decl.prop === "margin-top") {
+        if (decl.value === "0") {
+          value = '0px';
+        }
+
+        obj.marginValues[0] = value;
       }
 
       if (decl.prop === "margin") {
         obj.marginValues = postcss.list.space(decl.value);
+
+        if (decl.prop === "margin-left") {
+          if (decl.value === "0") {
+            value = '0px';
+          }
+
+          obj.marginValues[3] = value;
+        }
+
+        if (obj.marginValues[0] === "0") {
+          obj.marginValues[0] = '0px';
+        }
+
+        if (obj.marginValues[1] === "0") {
+          obj.marginValues[1] = '0px';
+        }
 
         switch (obj.marginValues.length) {
           case 1:
@@ -239,7 +259,13 @@ module.exports = (opts = {}) => {
       if (decl.prop === "margin-top" || decl.prop === "margin-left") {
         // don't do this is margin is auto because cannot calc with auto
         if (decl.value !== "auto") {
-          decl.before(`--orig-${decl.prop}: ${decl.value};`);
+          var value = decl.value;
+
+          if (value === "0") {
+            value = "0px";
+          }
+
+          decl.before(`--orig-${decl.prop}: ${value};`);
           decl.value = `var(--${pf}${decl.prop}, var(--orig-${decl.prop}))`;
           item.append(`--orig-${decl.prop}: initial;`);
         }
@@ -251,7 +277,7 @@ module.exports = (opts = {}) => {
         decl.before(`--orig-margin-right: ${obj.marginValues[1]};`);
         decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);
         decl.before(`--orig-margin-left: ${obj.marginValues[3]};`);
-        decl.value = `var(--${pf}margin-top) var(--orig-margin-right) var(--orig-margin-bottom) var(--${pf}margin-left)`;
+        decl.value = `var(--${pf}margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--${pf}margin-left, var(--orig-margin-left))`;
         item.append(`--orig-margin-top: initial;`);
         item.append(`--orig-margin-right: initial;`);
         item.append(`--orig-margin-bottom: initial;`);
@@ -269,8 +295,12 @@ module.exports = (opts = {}) => {
         decl.value = `var(--${pf}${decl.prop}, 0px)`;
       }
     });
-    container.append(`pointer-events: none;`);
-    item.append(`pointer-events: initial;`);
+
+    if (obj.hasFlex || obj.hasGap) {
+      container.append(`pointer-events: var(--has-fgp) none;`);
+      item.append(`pointer-events: var(--parent-has-fgp) initial;`);
+    }
+
     properties.forEach((property, index) => {
       var axis = property[0];
       var side = property[1];
@@ -295,15 +325,16 @@ module.exports = (opts = {}) => {
           if (side !== "top") {
             container.append(`--${pf}gap-${axis}: ${value};
 						--${pf}-parent-gap-as-decimal: ${unitlessPercentage};
-					--${pf}margin-${side}: calc(
+						`);
+            container.append(`--${pf}margin-${side}: calc(
 						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - (1 + ${unitlessPercentage})) * 100)
 						+ var(--${pf}orig-margin-${side}, 0px)
 						) !important`);
           }
         } else {
           // formula: (parent - self)
-          container.append(`--${pf}gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--has-fgp) calc(var(--${pf}parent-gap-${axis}, 0px) / (1 + var(--${pf}-parent-gap-as-decimal, 0)) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`);
+          container.append(`--${pf}gap-${axis}: ${value};`);
+          container.append(`--${pf}margin-${side}: var(--has-fgp) calc(var(--${pf}parent-gap-${axis}, 0px) / (1 + var(--${pf}-parent-gap-as-decimal, 0)) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`);
         }
 
         if (parse(value).nodes[0].unit === "%") {
@@ -513,7 +544,8 @@ module.exports = (opts = {}) => {
             gapValues: [null, null],
             marginValues: [null, null, null, null],
             hasGap: false,
-            hasFlex: false
+            hasFlex: false,
+            hasMargin: false
           };
           rule.walkDecls(decl => {
             getRules(decl, obj, root);
@@ -535,22 +567,26 @@ module.exports = (opts = {}) => {
 
             if (obj.hasGap) {
               obj.rules.item.before(obj.rules.reset);
-            } // Clean
-
-
-            obj.rules.orig.walk(i => {
-              return i.raws.before = "\n\t";
-            });
-            obj.rules.container.walk(i => {
-              i.raws.before = "\n\t";
-            });
-            obj.rules.item.walk(i => {
-              i.raws.before = "\n\t";
-            });
-            obj.rules.reset.walk(i => {
-              i.raws.before = "\n\t";
-            });
+            }
           }
+
+          if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
+            obj.rules.orig.before(obj.rules.item);
+          } // Clean
+
+
+          obj.rules.orig.walk(i => {
+            return i.raws.before = "\n\t";
+          });
+          obj.rules.container.walk(i => {
+            i.raws.before = "\n\t";
+          });
+          obj.rules.item.walk(i => {
+            i.raws.before = "\n\t";
+          });
+          obj.rules.reset.walk(i => {
+            i.raws.before = "\n\t";
+          });
         }
       });
     }

@@ -9,7 +9,7 @@
 
 .gap-and-no-flex > * {
 	/* -fgp */
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -20,7 +20,7 @@
 
 .gap-and-no-flex {
 	/* -fgp */
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
@@ -43,7 +43,7 @@
 	/* -fgp */
 	--parent-has-fgp: !important;
 	--orig-margin-top: initial;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -55,7 +55,7 @@
 .flex-and-gap {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
@@ -68,11 +68,20 @@
 	gap: var(--fgp-gap, 0px);
 	--orig-margin-top: 1em;
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.gap-and-no-flex {--orig-margin-top: 20px;
-	margin-top: var(--fgp-margin-top, var(--orig-margin-top));--orig-margin-left: 1em;
+.gap-and-no-flex > * {
+	/* -fgp */
+	--orig-margin-top: initial;
+	--orig-margin-left: initial;
+}
+
+.gap-and-no-flex {
+	--orig-margin-top: 20px;
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	--orig-margin-left: 1em;
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 	margin-right: 2em;
 }

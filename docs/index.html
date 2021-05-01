@@ -8,6 +8,10 @@ body {
 	font-family: sans-serif;
 }
 
+.flexGapNotSupported .page > * {
+	/* -fgp */
+}
+
 .page {
 	max-width: 50em;
 	margin-left: auto;
@@ -21,15 +25,15 @@ body {
 }
 
 .outline::after {
-		content: '';
-		display: block;
-		position: absolute;
-		top: -1px;
-		bottom: -1px;
-		left: -1px;
-		right: -1px;
-		border: 1px dotted black;
-		pointer-events: none;
+	content: '';
+	display: block;
+	position: absolute;
+	top: -1px;
+	bottom: -1px;
+	left: -1px;
+	right: -1px;
+	border: 1px dotted black;
+	pointer-events: none;
 	}
 
 .container {
@@ -39,35 +43,35 @@ body {
 }
 
 .container > * {
-			box-sizing: border-box;
-			background: pink;
-			border-radius: 5px;
-			padding: 1em;
-			font-weight: bold;
+	box-sizing: border-box;
+	background: pink;
+	border-radius: 5px;
+	padding: 1em;
+	font-weight: bold;
 		}
 
 .container > .container > * {
-			background: aqua;
+	background: aqua;
 		}
 
 .container > .container > .container > * {
-			background: lightgrey;
+	background: lightgrey;
 		}
 
 .container > .container > .container > .container > * {
-			background: yellow;
+	background: yellow;
 		}
 
 .flexGapNotSupported .flex-wrap > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 }
 
 .flexGapNotSupported .flex-wrap {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 }
 
 .flex-wrap {
@@ -83,7 +87,7 @@ body {
 .flexGapNotSupported .gap-20px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: var(--gap);
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -95,7 +99,7 @@ body {
 .flexGapNotSupported .gap-20px {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: var(--gap);
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: var(--gap);
@@ -120,7 +124,7 @@ body {
 .flexGapNotSupported .gap-40px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -132,7 +136,7 @@ body {
 .flexGapNotSupported .gap-40px {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 40px;
@@ -153,7 +157,7 @@ body {
 
 .flexGapNotSupported .flex.gap-40px-no-flex > *, .flexGapNotSupported .inline-flex.gap-40px-no-flex > * {
 	/* -fgp */
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -164,7 +168,7 @@ body {
 
 .flexGapNotSupported .flex.gap-40px-no-flex, .flexGapNotSupported .inline-flex.gap-40px-no-flex {
 	/* -fgp */
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 40px;
@@ -186,7 +190,7 @@ body {
 .flexGapNotSupported .row-gap-40px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -195,7 +199,7 @@ body {
 .flexGapNotSupported .row-gap-40px {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 }
@@ -215,7 +219,7 @@ body {
 .flexGapNotSupported .column-gap-20px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-column: 20px;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
@@ -224,7 +228,7 @@ body {
 .flexGapNotSupported .column-gap-20px {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 20px;
 	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
@@ -245,7 +249,7 @@ body {
 .flexGapNotSupported .gap-3\% > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 13%;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.13) + var(--orig-margin-left, 0px));
@@ -255,7 +259,7 @@ body {
 .flexGapNotSupported .gap-3\% {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 13%;
 	--fgp--parent-gap-as-decimal: 0.13;
 	--fgp-margin-left: calc(
@@ -280,7 +284,7 @@ body {
 .flexGapNotSupported .gap-6\% > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 16%;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.16) + var(--orig-margin-left, 0px));
@@ -290,7 +294,7 @@ body {
 .flexGapNotSupported .gap-6\% {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 16%;
 	--fgp--parent-gap-as-decimal: 0.16;
 	--fgp-margin-left: calc(
@@ -315,7 +319,7 @@ body {
 .flexGapNotSupported .gap-2em > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 2em;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -327,7 +331,7 @@ body {
 .flexGapNotSupported .gap-2em {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 2em;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 2em;
@@ -354,7 +358,7 @@ body {
 	--orig-margin-right: initial;
 	--orig-margin-bottom: initial;
 	--orig-margin-left: initial;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -366,7 +370,7 @@ body {
 .flexGapNotSupported .gap-20px.margin-20px {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
@@ -381,7 +385,7 @@ body {
 	--orig-margin-right: 20px;
 	--orig-margin-bottom: 20px;
 	--orig-margin-left: 20px;
-	margin: var(--fgp-margin-top) var(--orig-margin-right) var(--orig-margin-bottom) var(--fgp-margin-left);
+	margin: var(--fgp-margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--fgp-margin-left, var(--orig-margin-left));
 }
 
 .space-evenly {
@@ -400,21 +404,27 @@ body {
 	width: calc(50% - var(--gap));
 }
 
+.flexGapNotSupported .grid > * {
+	/* -fgp */
+	--orig-margin-left: initial;
+}
+
 .grid {
-	display: grid;--orig-margin-left: 20px;
+	display: grid;
+	--orig-margin-left: 20px;
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
 .flexGapNotSupported .flex > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: initial;
+	pointer-events: var(--parent-has-fgp) initial;
 }
 
 .flexGapNotSupported .flex {
 	/* -fgp */
 	--has-fgp: ;
-	pointer-events: none;
+	pointer-events: var(--has-fgp) none;
 }
 
 .flex {
