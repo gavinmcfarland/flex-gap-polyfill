@@ -1,6 +1,6 @@
 :root {
-	--has-display-flex: initial;
-	--parent-has-display-flex: initial;
+	--has-fgp: initial;
+	--parent-has-fgp: initial;
 }
 
 body {
@@ -9,33 +9,33 @@ body {
 
 .flex-and-gap > * > * {
 	/* -fgp */
-	--parent-has-display-flex: initial;
+	--parent-has-fgp: initial;
 }
 
 .flex-and-gap > * {
 	/* -fgp */
-	--parent-has-display-flex: !important;
+	--parent-has-fgp: !important;
 	--orig-margin-top: initial;
 	--fgp-parent-gap-row: 20px;
-	--fgp-margin-top: var(--parent-has-display-flex) var(--fgp-gap-row);
+	--fgp-margin-top: var(--parent-has-fgp) var(--fgp-gap-row);
 	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 20px;
-	--fgp-margin-left: var(--parent-has-display-flex) var(--fgp-gap-column);
+	--fgp-margin-left: var(--parent-has-fgp) var(--fgp-gap-column);
 	margin-left: var(--fgp-margin-left);
 }
 
 .flex-and-gap {
 	/* -fgp */
+	--has-fgp: ;
 	--fgp-gap-row: 20px;
-	--fgp-margin-top: var(--has-display-flex) calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
+	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 	--fgp-gap-column: 20px;
-	--fgp-margin-left: var(--has-display-flex) calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
+	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
 .flex-and-gap {
 	display: flex;
-	--has-display-flex: ;
-	--fgp-gap: var(--has-display-flex, 20px);
+	--fgp-gap: var(--has-fgp, 20px);
 	gap: var(--fgp-gap, 0px);
 	--orig-margin-top: 1em;
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));

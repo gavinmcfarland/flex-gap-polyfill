@@ -4,6 +4,8 @@ const {
   parse
 } = require('postcss-values-parser'); // var twMarginRegex = /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
+// TODO: Has display flex logic needs work. Test with when flexGapSupportedNot not applied.
+// Maybe it's not `--has-display-flex` that's needed. But `--fgp-polyfill-applied`
 
 
 module.exports = (opts = {}) => {
@@ -142,8 +144,8 @@ module.exports = (opts = {}) => {
         selector: ":root"
       });
       root.prepend(rootRule);
-      rootRule.append(`--has-display-flex: initial;
-				--parent-has-display-flex: initial;`);
+      rootRule.append(`--has-fgp: initial;
+				--parent-has-fgp: initial;`);
       rootRule.walk(i => {
         i.raws.before = "\n\t";
       });
@@ -217,9 +219,9 @@ module.exports = (opts = {}) => {
   function rewriteFlex(rule, obj) {
     rule.walkDecls(decl => {
       if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
-        decl.after(`--has-display-flex: ;`);
-        obj.rules.item.append(`--parent-has-display-flex: !important;`);
-        obj.rules.reset.append(`--parent-has-display-flex: initial;`);
+        obj.rules.container.append(`--has-fgp: ;`);
+        obj.rules.item.append(`--parent-has-fgp: !important;`);
+        obj.rules.reset.append(`--parent-has-fgp: initial;`);
       }
     });
   }
@@ -257,7 +259,7 @@ module.exports = (opts = {}) => {
     orig.walkDecls(decl => {
       if (decl.prop === "gap" || decl.prop === "row-gap" || decl.prop === "column-gap") {
         // don't do this is margin is auto because cannot calc with auto
-        decl.before(`--${pf}${decl.prop}: var(--has-display-flex, ${decl.value})`);
+        decl.before(`--${pf}${decl.prop}: var(--has-fgp, ${decl.value})`);
         decl.value = `var(--${pf}${decl.prop}, 0px)`;
       }
     });
@@ -280,21 +282,28 @@ module.exports = (opts = {}) => {
         }
 
         if (parse(value).nodes[0].unit === "%") {
-          var unitlessPercentage = parse(value).nodes[0].value; // formula: (parent - self) / (100 - self) * 100
+          var unitlessPercentage = parse(value).nodes[0].value / 100; // formula: (parent - self) / (100 - 1 + percentageAsDecimal) * 100
 
           container.append(`--${pf}gap-${axis}: ${value};
+						--${pf}-parent-gap-as-decimal: ${unitlessPercentage};
 					--${pf}margin-${side}: calc(
-						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - ${unitlessPercentage}) * 100)
+						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - (1 + ${unitlessPercentage})) * 100)
 						+ var(--${pf}orig-margin-${side}, 0px)
 						) !important`);
         } else {
           // formula: (parent - self)
           container.append(`--${pf}gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--has-display-flex) calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`);
+					--${pf}margin-${side}: var(--has-fgp) calc(var(--${pf}parent-gap-${axis}, 0px) / (1 + var(--${pf}-parent-gap-as-decimal, 0)) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`);
         }
 
-        item.append(`--${pf}parent-gap-${axis}: ${value};
-					--${pf}margin-${side}: var(--parent-has-display-flex) var(--${pf}gap-${axis});`); // Add margin to items
+        if (parse(value).nodes[0].unit === "%") {
+          item.append(`--${pf}parent-gap-${axis}: ${value};
+					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) / (1 + ${unitlessPercentage}));`);
+        } else {
+          item.append(`--${pf}parent-gap-${axis}: ${value};
+					--${pf}margin-${side}: var(--parent-has-fgp) var(--${pf}gap-${axis});`);
+        } // Add margin to items
+
 
         item.append(`margin-${side}: var(--${pf}margin-${side});`);
       }
