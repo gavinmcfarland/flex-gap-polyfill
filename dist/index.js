@@ -252,6 +252,10 @@ module.exports = (opts = {}) => {
         decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);
         decl.before(`--orig-margin-left: ${obj.marginValues[3]};`);
         decl.value = `var(--${pf}margin-top) var(--orig-margin-right) var(--orig-margin-bottom) var(--${pf}margin-left)`;
+        item.append(`--orig-margin-top: initial;`);
+        item.append(`--orig-margin-right: initial;`);
+        item.append(`--orig-margin-bottom: initial;`);
+        item.append(`--orig-margin-left: initial;`);
       }
     }); // 2. Add margin when gap present
 

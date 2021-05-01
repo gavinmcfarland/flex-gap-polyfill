@@ -31,24 +31,24 @@ Becomes:
 /* Output simplified for purpose of example */
 
 .container > * {
-	--fgp-parent-gap-row: 40px;
+    --fgp-parent-gap-row: 40px;
     --fgp-parent-gap-column: 40px;
-	--fgp-margin-top: calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
-	--fgp-margin-left: calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
+    --fgp-margin-top: calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
+    --fgp-margin-left: calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
     margin-top: var(--fgp-margin-top);
-	margin-left: var(--fgp-margin-left);
+    margin-left: var(--fgp-margin-left);
 }
 
 .container {
     --fgp-gap: var(--has-fgp, 40px);
-	--fgp-gap-row: 40px;
+    --fgp-gap-row: 40px;
     --fgp-gap-column: 40px;
-	--fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px));
-	--fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px));
+    --fgp-margin-top: calc(var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) + var(--orig-margin-top, 0px));
+    --fgp-margin-left: calc(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) + var(--orig-margin-left, 0px));
     display: flex;
     gap: var(--fgp-gap, 0px);
-	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
-	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+    margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+    margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 ```
 

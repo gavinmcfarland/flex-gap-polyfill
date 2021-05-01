@@ -348,6 +348,10 @@ body {
 .flexGapNotSupported .gap-20px.margin-20px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
+	--orig-margin-top: initial;
+	--orig-margin-right: initial;
+	--orig-margin-bottom: initial;
+	--orig-margin-left: initial;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
