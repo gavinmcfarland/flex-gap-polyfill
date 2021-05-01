@@ -5,8 +5,10 @@ const { parse } = require('postcss-values-parser');
 
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
 
-// TODO: Has display flex logic needs work. Test with when flexGapSupportedNot not applied.
-// Maybe it's not `--has-display-flex` that's needed. But `--fgp-polyfill-applied`
+// TODO: Test with example repos
+// TODO: Check webComponents option works
+// TODO: Check works with tailwind
+// TODO: Try moving --fgp-margin-top/left to orig container and making sure has --has-fgp
 
 module.exports = (opts = {}) => {
 	opts = opts || {}

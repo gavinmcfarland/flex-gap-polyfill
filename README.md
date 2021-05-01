@@ -5,12 +5,12 @@
 [![Gitter Chat][git-img]][git-url]
 
 
-This is a pure CSS polyfill using PostCSS to emulate flex gap using margins. It should cover 90% of cases.
+This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 
 ## Kown limitations
 
 - Incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
-- Percentage gaps aren't that reliable if the container has a dynamic width, ie not full width of container or a fixed width (latter coming soon)
+- Percentage gaps aren't that reliable if the container has a determined by its content, ie not full width of container
 - Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
@@ -109,13 +109,13 @@ postcss([
 
     __Type__: String __Default__: false
 
-    Manually specify a selector to use when flex gap is not supported via [detection by JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js) by adding a class, eg `flexGapNotSupported: '.flexGapNotSupported'`.
+    Manually specify a selector to use when flex gap is not supported by [detection via JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js), eg `flexGapNotSupported: '.no-flex-gap'`.
 
-- `tailwindCSS`
+<!-- - `tailwindCSS`
 
     __Type__: Boolean __Default__: false
 
-    When `true` polyfill will add extra CSS to support TailwindCSS.
+    When `true` polyfill will add extra CSS to support TailwindCSS. -->
 
 - `webComponents`
 
@@ -123,8 +123,8 @@ postcss([
 
     When `true` polyfill will also target slotted elements
 
-- `percentageRowGaps`
+<!-- - `percentageRowGaps`
 
     __Type__: Boolean __Default__: false
 
-    When `true` percentage row gaps will be calculated based on width of element (non spec).
+    When `true` percentage row gaps will be calculated based on width of element (non spec). -->
