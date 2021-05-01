@@ -271,6 +271,7 @@ module.exports = (opts = {}) => {
 					if (value === "0") {
 						value = "0px";
 					}
+					decl.before(`--${pf}${decl.prop}: initial;`)
 					decl.before(`--orig-${decl.prop}: ${value};`);
 					decl.value = `var(--${pf}${decl.prop}, var(--orig-${decl.prop}))`
 
@@ -280,6 +281,8 @@ module.exports = (opts = {}) => {
 
 			if (decl.prop === "margin") {
 				// TODO: Need to catch when value is auto as can't work with calc
+				decl.before(`--${pf}margin-top: initial;`);
+				decl.before(`--${pf}margin-left: initial;`);
 					decl.before(`--orig-margin-top: ${obj.marginValues[0]};`);
 					decl.before(`--orig-margin-right: ${obj.marginValues[1]};`);
 					decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);

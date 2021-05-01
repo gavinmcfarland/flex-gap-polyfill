@@ -66,6 +66,7 @@
 	display: flex;
 	--fgp-gap: var(--has-fgp, 20px);
 	gap: var(--fgp-gap, 0px);
+	--fgp-margin-top: initial;
 	--orig-margin-top: 1em;
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
@@ -79,8 +80,10 @@
 }
 
 .gap-and-no-flex {
+	--fgp-margin-top: initial;
 	--orig-margin-top: 20px;
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	--fgp-margin-left: initial;
 	--orig-margin-left: 1em;
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 	margin-right: 2em;

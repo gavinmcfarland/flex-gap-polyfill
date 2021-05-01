@@ -381,6 +381,8 @@ body {
 	display: flex;
 	--fgp-gap: var(--has-fgp, 20px);
 	gap: var(--fgp-gap, 0px);
+	--fgp-margin-top: initial;
+	--fgp-margin-left: initial;
 	--orig-margin-top: 20px;
 	--orig-margin-right: 20px;
 	--orig-margin-bottom: 20px;
@@ -411,6 +413,7 @@ body {
 
 .grid {
 	display: grid;
+	--fgp-margin-left: initial;
 	--orig-margin-left: 20px;
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }

@@ -39,6 +39,7 @@ body {
 	display: flex;
 	--fgp-gap: var(--has-fgp, 20px);
 	gap: var(--fgp-gap, 0px);
+	--fgp-margin-top: initial;
 	--orig-margin-top: 1em;
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
@@ -54,6 +55,8 @@ body {
 }
 
 .margin {
+	--fgp-margin-top: initial;
+	--fgp-margin-left: initial;
 	--orig-margin-top: 0px;
 	--orig-margin-right: 0px;
 	--orig-margin-bottom: 0px;
