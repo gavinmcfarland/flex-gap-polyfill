@@ -269,6 +269,8 @@ module.exports = (opts = {}) => {
         decl.value = `var(--${pf}${decl.prop}, 0px)`;
       }
     });
+    container.append(`pointer-events: none;`);
+    item.append(`pointer-events: initial;`);
     properties.forEach((property, index) => {
       var axis = property[0];
       var side = property[1];
@@ -290,12 +292,14 @@ module.exports = (opts = {}) => {
         if (parse(value).nodes[0].unit === "%") {
           var unitlessPercentage = parse(value).nodes[0].value / 100; // formula: (parent - self) / (100 - 1 + percentageAsDecimal) * 100
 
-          container.append(`--${pf}gap-${axis}: ${value};
+          if (side !== "top") {
+            container.append(`--${pf}gap-${axis}: ${value};
 						--${pf}-parent-gap-as-decimal: ${unitlessPercentage};
 					--${pf}margin-${side}: calc(
 						(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - (1 + ${unitlessPercentage})) * 100)
 						+ var(--${pf}orig-margin-${side}, 0px)
 						) !important`);
+          }
         } else {
           // formula: (parent - self)
           container.append(`--${pf}gap-${axis}: ${value};
@@ -303,8 +307,10 @@ module.exports = (opts = {}) => {
         }
 
         if (parse(value).nodes[0].unit === "%") {
-          item.append(`--${pf}parent-gap-${axis}: ${value};
+          if (side !== "top") {
+            item.append(`--${pf}parent-gap-${axis}: ${value};
 					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) / (1 + ${unitlessPercentage}) + var(--orig-margin-${side}, 0px));`);
+          }
         } else {
           item.append(`--${pf}parent-gap-${axis}: ${value};
 					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px));`);

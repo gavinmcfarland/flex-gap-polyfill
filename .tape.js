@@ -7,18 +7,18 @@ module.exports = {
 	// 		flexGapNotSupported: '.flexGapNotSupported'
 	// 	}
 	// },
-	// 'gap-web-components': {
-	// 	message: 'web components support',
-	// 	options: {
-	// 		webComponents: true
-	// 	}
-	// },
-	// 'gap-not-supported': {
-	// 	message: 'javascript detection',
-	// 	options: {
-	// 		flexGapNotSupported: '.flexGapNotSupported'
-	// 	}
-	// },
+	'gap-web-components': {
+		message: 'web components support',
+		options: {
+			webComponents: true
+		}
+	},
+	'gap-not-supported': {
+		message: 'javascript detection',
+		options: {
+			flexGapNotSupported: '.flexGapNotSupported'
+		}
+	},
 	// 'gap-tailwind-css': {
 	// 	message: 'tailwind support',
 	// 	options: {
