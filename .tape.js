@@ -14,18 +14,16 @@ module.exports = {
 		}
 	},
 	'gap-not-supported': {
-		message: 'javascript detection',
+		message: 'when flex gap support can be detected',
 		options: {
-			flexGapNotSupported: '.flexGapNotSupported'
+			flexGapNotSupported: '.flex-gap-not-supported'
 		}
 	},
-	// 'gap-tailwind-css': {
-	// 	message: 'tailwind support',
-	// 	options: {
-	// 		tailwindCSS: true
-	// 	}
-	// },
 	'testing': {
-		message: 'just testing'
+		message: 'just testing',
+		options: {
+			only: ['.margin'],
+			flexGapNotSupported: '.flex-gap-not-supported'
+		}
 	}
 };

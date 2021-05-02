@@ -27,6 +27,10 @@ body {
 	/* -fgp */
 }
 
+.flexGapNotSupported .page {
+	/* -fgp */
+}
+
 .page {
 	max-width: 50em;
 	margin-left: auto;
@@ -40,15 +44,15 @@ body {
 }
 
 .outline::after {
-	content: '';
-	display: block;
-	position: absolute;
-	top: -1px;
-	bottom: -1px;
-	left: -1px;
-	right: -1px;
-	border: 1px dotted black;
-	pointer-events: none;
+		content: '';
+		display: block;
+		position: absolute;
+		top: -1px;
+		bottom: -1px;
+		left: -1px;
+		right: -1px;
+		border: 1px dotted black;
+		pointer-events: none;
 	}
 
 .flexGapNotSupported .container {
@@ -63,23 +67,23 @@ body {
 }
 
 .container > * {
-	box-sizing: border-box;
-	background: pink;
-	border-radius: 5px;
-	padding: 1em;
-	font-weight: bold;
+			box-sizing: border-box;
+			background: pink;
+			border-radius: 5px;
+			padding: 1em;
+			font-weight: bold;
 		}
 
 .container > .container > * {
-	background: aqua;
+			background: aqua;
 		}
 
 .container > .container > .container > * {
-	background: lightgrey;
+			background: lightgrey;
 		}
 
 .container > .container > .container > .container > * {
-	background: yellow;
+			background: yellow;
 		}
 
 .flexGapNotSupported .flex-wrap > * {
@@ -171,35 +175,8 @@ body {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .flex.gap-40px-no-flex > * > *, .flexGapNotSupported .inline-flex.gap-40px-no-flex > * > * {
-	/* -fgp */
-}
-
-.flexGapNotSupported .flex.gap-40px-no-flex > *, .flexGapNotSupported .inline-flex.gap-40px-no-flex > * {
-	/* -fgp */
-	pointer-events: var(--parent-has-fgp) auto;
-	--fgp-parent-gap-row: 40px;
-	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
-	margin-top: var(--fgp-margin-top);
-	--fgp-parent-gap-column: 40px;
-	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
-	margin-left: var(--fgp-margin-left);
-}
-
-.flexGapNotSupported .flex.gap-40px-no-flex, .flexGapNotSupported .inline-flex.gap-40px-no-flex {
-	/* -fgp */
-	pointer-events: var(--has-fgp) none;
-	--fgp-gap-row: 40px;
-	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
-	--fgp-gap-column: 40px;
-	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
-}
-
 .gap-40px-no-flex {
-	--fgp-gap: var(--has-fgp, 40px);
-	gap: var(--fgp-gap, 0px);
-	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
-	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+	gap: 40px;
 }
 
 .flexGapNotSupported .row-gap-40px > * > * {
@@ -429,6 +406,10 @@ body {
 .flexGapNotSupported .grid > * {
 	/* -fgp */
 	--orig-margin-left: initial;
+}
+
+.flexGapNotSupported .grid {
+	/* -fgp */
 }
 
 .grid {

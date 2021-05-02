@@ -3,12 +3,12 @@
 	--parent-has-fgp: initial;
 }
 
-.flexGapNotSupported .pixels > * > * {
+.flex-gap-not-supported .pixels > * > * {
 	/* -fgp */
 	--parent-has-fgp: initial;
 }
 
-.flexGapNotSupported .pixels > * {
+.flex-gap-not-supported .pixels > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
@@ -20,7 +20,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .pixels {
+.flex-gap-not-supported .pixels {
 	/* -fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;

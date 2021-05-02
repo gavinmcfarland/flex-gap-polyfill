@@ -52,7 +52,7 @@ Becomes:
 }
 ```
 
-It emulates flex gap by adding margins to each child element and applying a negative margin to the container.
+The polyfill emulates flex gap by adding margins to each child element and applying a negative margin to the container.
 
 - <mark>NEW</mark> Now works regardless of whether `display: flex` and `gap` are used in the same rule
 - Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc
@@ -61,7 +61,7 @@ It emulates flex gap by adding margins to each child element and applying a nega
 - Style margin, borders and padding as normal
 - Supports `gap`, `row-gap` and `column-gap`
 
-## Browsers
+## Browser support
 
 Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera (any browser that supports `calc()` and `var()`).
 
@@ -105,11 +105,18 @@ postcss([
 
 ## Options
 
+- `only`
+
+    __Type__: Array __Default__: undefined
+
+    When `true` polyfill will only apply when `display: flex | inline-flex` and `gap` are used in the same rule. Provide an array of selectors to match additional rules. Can be `strings` or `regexes`. Inlcude `/* apply fgp */` within a rule to manually apply the polyfill.
+
+
 - `flexGapNotSupported`
 
     __Type__: String __Default__: false
 
-    Manually specify a selector to use when flex gap is not supported by [detection via JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js), eg `flexGapNotSupported: '.no-flex-gap'`.
+    Manually specify a selector to use when flex gap is not supported by [detection via JavaScript](https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/flexgap.js), eg `flexGapNotSupported: '.flex-gap-not-supported'`.
 
 <!-- - `tailwindCSS`
 

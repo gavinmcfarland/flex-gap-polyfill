@@ -7,12 +7,12 @@ body {
 	height: 10px;
 }
 
-.flex-and-gap > * > * {
+.flex-gap-not-supported .flex-and-gap > * > * {
 	/* -fgp */
 	--parent-has-fgp: initial;
 }
 
-.flex-and-gap > * {
+.flex-gap-not-supported .flex-and-gap > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
 	--orig-margin-top: initial;
@@ -25,7 +25,7 @@ body {
 	margin-left: var(--fgp-margin-left);
 }
 
-.flex-and-gap {
+.flex-gap-not-supported .flex-and-gap {
 	/* -fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
@@ -46,12 +46,16 @@ body {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.margin > * {
+.flex-gap-not-supported .margin > * {
 	/* -fgp */
 	--orig-margin-top: initial;
 	--orig-margin-right: initial;
 	--orig-margin-bottom: initial;
 	--orig-margin-left: initial;
+}
+
+.flex-gap-not-supported .margin {
+	/* -fgp */
 }
 
 .margin {
@@ -62,4 +66,16 @@ body {
 	--orig-margin-bottom: 0px;
 	--orig-margin-left: 0px;
 	margin: var(--fgp-margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--fgp-margin-left, var(--orig-margin-left));
+}
+
+.ma {
+	margin: 0;
+}
+
+.flex {
+	display: flex;
+}
+
+.w {
+	width: 100px;
 }

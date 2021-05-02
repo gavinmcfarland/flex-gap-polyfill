@@ -11,3 +11,15 @@ body {
 .margin {
 	margin: 0;
 }
+
+.ma {
+	margin: 0;
+}
+
+.flex {
+	display: flex;
+}
+
+.w {
+	width: 100px;
+}

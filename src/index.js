@@ -383,6 +383,17 @@ module.exports = (opts = {}) => {
 				// Add margin to items
 				item.append(`margin-${side}: var(--${pf}margin-${side});`)
 
+				// FIXME: Needs fixing
+				// if (opts.webComponents === true) {
+				// 	container.before(slotted);
+
+				// 	slotted.append(
+				// 		`${pf}gap-parent-${axis}: ${value};
+				// 	${pf}gap-item-${axis}: ${value};
+				// 	${pf}gap-${axis}: var(${pf}gap-item-${axis});`
+				// 	);
+				// }
+
 			}
 		})
 
@@ -616,10 +627,16 @@ module.exports = (opts = {}) => {
 				})
 
 				rule.walkComments(comment => {
-					if (comment.text === "-fgp") {
+					if (comment.text === "-fgp" || comment.text === "fgp") {
 						origRule = false;
 					}
 				})
+
+				var hasFgp = false;
+
+				if (Array.isArray(opts.only) || opts.only === true) {
+					hasFgp = false
+				}
 
 				if (origRule) {
 					var obj = {
@@ -628,7 +645,8 @@ module.exports = (opts = {}) => {
 						marginValues: [null, null, null, null],
 						hasGap: false,
 						hasFlex: false,
-						hasMargin: false
+						hasMargin: false,
+						hasFgp: hasFgp
 					}
 
 					rule.walkDecls((decl) => {
@@ -639,18 +657,47 @@ module.exports = (opts = {}) => {
 						getWidth(decl, obj)
 					});
 
-					// addWidth(rule, obj);
-					rewriteFlex(rule, obj)
-					// addMargin(rule, obj)
-					rewriteMargin(rule, obj)
-
-					if ((obj.hasGap && obj.hasFlex) || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex)) {
-						// addFlex(rule, obj);
-						// addGap(rule, obj, opts);
-						// removeGap(rule);
+					if (Array.isArray(opts.only) || opts.only === true) {
+						if (obj.hasFlex && obj.hasGap) {
+							obj.hasFgp = true
+						}
+					}
+					else {
+						if (obj.hasFlex || obj.hasMargin || (obj.hasGap && obj.hasFlex)) {
+							obj.hasFgp = true
+						}
 					}
 
-					if (obj.hasFlex || obj.hasGap) {
+					if (Array.isArray(opts.only)) {
+						if (opts.only.includes(rule.selector) || opts.only.some((item) => {
+							if (item instanceof RegExp) {
+								return item.test(rule.selector)
+							}
+						})) {
+							obj.hasFgp = true
+						}
+
+					}
+
+					rule.walkComments(comment => {
+						if (comment.text === "apply fgp") {
+							comment.remove()
+							obj.hasFgp = true;
+						}
+					})
+
+					if (obj.hasFgp) {
+						// addWidth(rule, obj);
+						rewriteFlex(rule, obj)
+						// addMargin(rule, obj)
+						rewriteMargin(rule, obj)
+
+					// if ((obj.hasGap && obj.hasFlex) || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex)) {
+					// 	// addFlex(rule, obj);
+					// 	// addGap(rule, obj, opts);
+					// 	// removeGap(rule);
+					// }
+
 
 
 						obj.rules.orig.before(obj.rules.container);
@@ -660,19 +707,19 @@ module.exports = (opts = {}) => {
 						if (obj.hasGap) {
 							obj.rules.item.before(obj.rules.reset);
 						}
-					}
 
-					if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
-						obj.rules.orig.before(obj.rules.item);
-					}
+						// if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
+						// 	obj.rules.orig.before(obj.rules.item);
+						// }
 
-					// Clean
-					obj.rules.orig.walk(i => {
-						return i.raws.before = "\n\t"
-					});
-					obj.rules.container.walk(i => { i.raws.before = "\n\t" });
-					obj.rules.item.walk(i => { i.raws.before = "\n\t" });
-					obj.rules.reset.walk(i => { i.raws.before = "\n\t" });
+						// Clean
+						obj.rules.orig.walk(i => {
+							return i.raws.before = "\n\t"
+						});
+						obj.rules.container.walk(i => { i.raws.before = "\n\t" });
+						obj.rules.item.walk(i => { i.raws.before = "\n\t" });
+						obj.rules.reset.walk(i => { i.raws.before = "\n\t" });
+					}
 				}
 			})
 		}
