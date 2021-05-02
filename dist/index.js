@@ -301,7 +301,7 @@ module.exports = (opts = {}) => {
 
     if (obj.hasFlex || obj.hasGap) {
       container.append(`pointer-events: var(--has-fgp) none;`);
-      item.append(`pointer-events: var(--parent-has-fgp) initial;`);
+      item.append(`pointer-events: var(--parent-has-fgp) auto;`);
     }
 
     properties.forEach((property, index) => {

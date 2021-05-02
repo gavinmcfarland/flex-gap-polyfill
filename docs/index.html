@@ -1,3 +1,18 @@
+<script>
+	function toggle() {
+		var page = document.getElementById('page')
+		var label = document.getElementById('label')
+
+		if (label.innerHTML === "on") {
+    		label.innerHTML = "off";
+  		} else {
+    		label.innerHTML = "on";
+  		}
+
+		page.classList.toggle('flexGapNotSupported')
+	}
+</script>
+
 <style>:root {
 	--has-fgp: initial;
 	--parent-has-fgp: initial;
@@ -36,6 +51,11 @@ body {
 	pointer-events: none;
 	}
 
+.flexGapNotSupported .container {
+	outline: var(--has-fgp) 2px dashed red !important;
+	border-radius: var(--has-fgp) 4px;
+}
+
 .container {
 	padding: 0 !important;
 	background: transparent !important;
@@ -65,7 +85,7 @@ body {
 .flexGapNotSupported .flex-wrap > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 }
 
 .flexGapNotSupported .flex-wrap {
@@ -87,7 +107,7 @@ body {
 .flexGapNotSupported .gap-20px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: var(--gap);
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -124,7 +144,7 @@ body {
 .flexGapNotSupported .gap-40px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -157,7 +177,7 @@ body {
 
 .flexGapNotSupported .flex.gap-40px-no-flex > *, .flexGapNotSupported .inline-flex.gap-40px-no-flex > * {
 	/* -fgp */
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -190,7 +210,7 @@ body {
 .flexGapNotSupported .row-gap-40px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -219,7 +239,7 @@ body {
 .flexGapNotSupported .column-gap-20px > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-column: 20px;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
@@ -249,7 +269,7 @@ body {
 .flexGapNotSupported .gap-3\% > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 13%;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.13) + var(--orig-margin-left, 0px));
@@ -284,7 +304,7 @@ body {
 .flexGapNotSupported .gap-6\% > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	margin-top: var(--fgp-margin-top);
 	--fgp-parent-gap-column: 16%;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.16) + var(--orig-margin-left, 0px));
@@ -319,7 +339,7 @@ body {
 .flexGapNotSupported .gap-2em > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 2em;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -358,7 +378,7 @@ body {
 	--orig-margin-right: initial;
 	--orig-margin-bottom: initial;
 	--orig-margin-left: initial;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
@@ -421,7 +441,7 @@ body {
 .flexGapNotSupported .flex > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 }
 
 .flexGapNotSupported .flex {
@@ -444,14 +464,21 @@ body {
 .w {
 	width: auto;
 }
+
+.on-off {
+	text-decoration: underline;
+	cursor: pointer;
+}
 </style>
 
-<div class="page flexGapNotSupported">
+<div id="page" class="page flexGapNotSupported">
 
 	<h1>Flex Gap Polyfill</h1>
 
 	<p>Below are a list of test cases demonstrating scenarios this polyfill works with.</p>
 	<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a>.</p>
+
+	<p><a class="on-off" onclick="toggle()">Turn polyfill <span id="label">on</span></a>. Red lines show container with negative margins.</p>
 
 	<h4>Basic</h4>
 	<pre>

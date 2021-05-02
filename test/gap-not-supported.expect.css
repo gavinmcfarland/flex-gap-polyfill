@@ -11,7 +11,7 @@
 .flexGapNotSupported .pixels > * {
 	/* -fgp */
 	--parent-has-fgp: !important;
-	pointer-events: var(--parent-has-fgp) initial;
+	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
