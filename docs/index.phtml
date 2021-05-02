@@ -300,6 +300,8 @@ body {
 		</div>
 	</div>
 
+	<p>Percentage gaps aren't that reliable if the width of the container is not 100% of it's parent.</p>
+
 	<pre>
 .container
 	display: flex;
@@ -321,34 +323,6 @@ body {
 			<div>C</div>
 			<div>D</div>
 			<div class="container gap-3% flex-wrap">
-				<div>A</div>
-				<div>B</div>
-				<div>C</div>
-				<div>D</div>
-			</div>
-		</div>
-	</div>
-
-		<pre>
-.container
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.container .container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 3%;
-}
-	</pre>
-
-	<div class="outline">
-		<div class="container flex-wrap">
-			<div>A</div>
-			<div>B</div>
-			<div>C</div>
-			<div>D</div>
-			<div class="container gap-6% flex-wrap">
 				<div>A</div>
 				<div>B</div>
 				<div>C</div>
