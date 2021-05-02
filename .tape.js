@@ -22,8 +22,7 @@ module.exports = {
 	'testing': {
 		message: 'just testing',
 		options: {
-			only: ['.margin'],
-			flexGapNotSupported: '.flex-gap-not-supported'
+			only: []
 		}
 	}
 };

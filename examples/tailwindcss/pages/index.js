@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
 	return (
-		<div className={styles.container} className="flexGapNotSupported">
+		<div className={styles.container}>
 			<Head>
 				<title>Create Next App</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -14,12 +14,12 @@ export default function Home() {
 					Welcome to <a href="https://nextjs.org">Next.js!</a>
 				</h1>
 
-				<p className="flex gap-1">
+				<p>
 					Get started by editing{' '}
 					<code className={styles.code}>pages/index.js</code>
 				</p>
 
-				<div className={styles.grid}>
+				<div className={`${styles.grid} flex gap-8 mt-12`}>
 					<a href="https://nextjs.org/docs" className={styles.card}>
 						<h3>Documentation &rarr;</h3>
 						<p>Find in-depth information about Next.js features and API.</p>

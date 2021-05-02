@@ -10,8 +10,8 @@ This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 ## Kown limitations
 
 - Incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
-- Percentage gaps aren't that reliable if the container has a determined by its content, ie not full width of container
-- Slight variation from spec for widths of flex items that use percentages (because of negative margin on container), usually in most cases this is desirable anyway
+- Percentage gaps aren't that reliable if the container has a width determined by its content, ie not full width of parent container
+- Slight variation from spec when flex items use percentage widths (because of negative margin on container), usually in most cases this is desirable anyway
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
 

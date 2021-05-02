@@ -14,6 +14,7 @@
 </script>
 
 <style>:root {
+	/* added by fgp */
 	--has-fgp: initial;
 	--parent-has-fgp: initial;
 }
@@ -24,11 +25,7 @@ body {
 }
 
 .flexGapNotSupported .page > * {
-	/* -fgp */
-}
-
-.flexGapNotSupported .page {
-	/* -fgp */
+	/* added by fgp */
 }
 
 .page {
@@ -86,14 +83,19 @@ body {
 			background: yellow;
 		}
 
+.flexGapNotSupported .flex-wrap > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
+}
+
 .flexGapNotSupported .flex-wrap > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 }
 
 .flexGapNotSupported .flex-wrap {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 }
@@ -104,12 +106,12 @@ body {
 }
 
 .flexGapNotSupported .gap-20px > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .gap-20px > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: var(--gap);
@@ -121,7 +123,7 @@ body {
 }
 
 .flexGapNotSupported .gap-20px {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: var(--gap);
@@ -141,12 +143,12 @@ body {
 }
 
 .flexGapNotSupported .gap-40px > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .gap-40px > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
@@ -158,7 +160,7 @@ body {
 }
 
 .flexGapNotSupported .gap-40px {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
@@ -175,17 +177,40 @@ body {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
+.flexGapNotSupported .gap-40px-no-flex > * {
+	/* added by fgp */
+	pointer-events: var(--parent-has-fgp) auto;
+	--fgp-parent-gap-row: 40px;
+	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
+	margin-top: var(--fgp-margin-top);
+	--fgp-parent-gap-column: 40px;
+	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
+	margin-left: var(--fgp-margin-left);
+}
+
+.flexGapNotSupported .gap-40px-no-flex {
+	/* added by fgp */
+	pointer-events: var(--has-fgp) none;
+	--fgp-gap-row: 40px;
+	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
+	--fgp-gap-column: 40px;
+	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
+}
+
 .gap-40px-no-flex {
-	gap: 40px;
+	--fgp-gap: var(--has-fgp, 40px);
+	gap: var(--fgp-gap, 0px);
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
 .flexGapNotSupported .row-gap-40px > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .row-gap-40px > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
@@ -194,7 +219,7 @@ body {
 }
 
 .flexGapNotSupported .row-gap-40px {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
@@ -209,12 +234,12 @@ body {
 }
 
 .flexGapNotSupported .column-gap-20px > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .column-gap-20px > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-column: 20px;
@@ -223,7 +248,7 @@ body {
 }
 
 .flexGapNotSupported .column-gap-20px {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 20px;
@@ -239,12 +264,12 @@ body {
 }
 
 .flexGapNotSupported .gap-3\% > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .gap-3\% > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	margin-top: var(--fgp-margin-top);
@@ -254,7 +279,7 @@ body {
 }
 
 .flexGapNotSupported .gap-3\% {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 13%;
@@ -274,12 +299,12 @@ body {
 }
 
 .flexGapNotSupported .gap-6\% > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .gap-6\% > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	margin-top: var(--fgp-margin-top);
@@ -289,7 +314,7 @@ body {
 }
 
 .flexGapNotSupported .gap-6\% {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 16%;
@@ -309,12 +334,12 @@ body {
 }
 
 .flexGapNotSupported .gap-2em > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .gap-2em > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 2em;
@@ -326,7 +351,7 @@ body {
 }
 
 .flexGapNotSupported .gap-2em {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 2em;
@@ -344,12 +369,12 @@ body {
 }
 
 .flexGapNotSupported .gap-20px.margin-20px > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flexGapNotSupported .gap-20px.margin-20px > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	--orig-margin-top: initial;
 	--orig-margin-right: initial;
@@ -365,7 +390,7 @@ body {
 }
 
 .flexGapNotSupported .gap-20px.margin-20px {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
@@ -404,12 +429,8 @@ body {
 }
 
 .flexGapNotSupported .grid > * {
-	/* -fgp */
+	/* added by fgp */
 	--orig-margin-left: initial;
-}
-
-.flexGapNotSupported .grid {
-	/* -fgp */
 }
 
 .grid {
@@ -419,14 +440,19 @@ body {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
+.flexGapNotSupported .flex > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
+}
+
 .flexGapNotSupported .flex > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 }
 
 .flexGapNotSupported .flex {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 }

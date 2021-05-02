@@ -116,29 +116,31 @@ module.exports = (opts = {}) => {
 		selector = {
 			container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector}`,
 			item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > *`,
-			reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > * > *`,
-			slotted: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::slotted(*)`
+			reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > * > *`
 		};
+
+		if (opts.webComponents) {
+			selector.item = `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > *,
+${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::slotted(*)`
+		}
 		// }
 
-		if ((opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(obj.rules.orig.selector) && !obj.hasFlex) || (obj.hasWidth || obj.hasHeight) || (opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig.selector) && !obj.hasFlex)) {
-			selector = {
-				container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector}, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector}`,
-				item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > *, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > *`,
-				reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > * > *, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > * > *`,
-				slotted: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > ::slotted(*), ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > ::slotted(*)`
-			};
-		}
+		// if ((opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(obj.rules.orig.selector) && !obj.hasFlex) || (obj.hasWidth || obj.hasHeight) || (opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig.selector) && !obj.hasFlex)) {
+		// 	selector = {
+		// 		container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector}, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector}`,
+		// 		item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > *, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > *`,
+		// 		reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > * > *, ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > * > *`,
+		// 		slotted: `${cssModule}${flexGapNotSupported}${cssModuleEnd}.flex${obj.rules.orig.selector} > ::slotted(*), ${cssModule}${flexGapNotSupported}${cssModuleEnd}.inline-flex${obj.rules.orig.selector} > ::slotted(*)`
+		// 	};
+		// }
 
 		obj.rules.container = postcss.rule({ selector: selector.container });
 		obj.rules.item = postcss.rule({ selector: selector.item });
 		obj.rules.reset = postcss.rule({ selector: selector.reset });
-		obj.rules.slotted = postcss.rule({ selector: selector.slotted });
 
-		obj.rules.container.prepend(postcss.comment({ text: '-fgp' }))
-		obj.rules.item.prepend(postcss.comment({ text: '-fgp' }))
-		obj.rules.reset.prepend(postcss.comment({ text: '-fgp' }))
-		obj.rules.slotted.prepend(postcss.comment({ text: '-fgp' }))
+		obj.rules.container.prepend(postcss.comment({ text: 'added by fgp' }))
+		obj.rules.item.prepend(postcss.comment({ text: 'added by fgp' }))
+		obj.rules.reset.prepend(postcss.comment({ text: 'added by fgp' }))
 	}
 
 	function addRootSelector(root) {
@@ -149,6 +151,7 @@ module.exports = (opts = {}) => {
 			const rootRule = postcss.rule({ selector: ":root" });
 
 			root.prepend(rootRule);
+			rootRule.prepend(postcss.comment({ text: 'added by fgp' }))
 
 			rootRule.append(
 				`--has-fgp: initial;
@@ -383,17 +386,6 @@ module.exports = (opts = {}) => {
 				// Add margin to items
 				item.append(`margin-${side}: var(--${pf}margin-${side});`)
 
-				// FIXME: Needs fixing
-				// if (opts.webComponents === true) {
-				// 	container.before(slotted);
-
-				// 	slotted.append(
-				// 		`${pf}gap-parent-${axis}: ${value};
-				// 	${pf}gap-item-${axis}: ${value};
-				// 	${pf}gap-${axis}: var(${pf}gap-item-${axis});`
-				// 	);
-				// }
-
 			}
 		})
 
@@ -627,7 +619,7 @@ module.exports = (opts = {}) => {
 				})
 
 				rule.walkComments(comment => {
-					if (comment.text === "-fgp" || comment.text === "fgp") {
+					if (comment.text === "added by fgp") {
 						origRule = false;
 					}
 				})
@@ -663,7 +655,7 @@ module.exports = (opts = {}) => {
 						}
 					}
 					else {
-						if (obj.hasFlex || obj.hasMargin || (obj.hasGap && obj.hasFlex)) {
+						if (obj.hasFlex || obj.hasMargin || obj.hasGap || obj.hasFlex) {
 							obj.hasFgp = true
 						}
 					}
@@ -700,17 +692,19 @@ module.exports = (opts = {}) => {
 
 
 
-						obj.rules.orig.before(obj.rules.container);
+						if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
+							obj.rules.orig.before(obj.rules.container);
 
-						obj.rules.container.before(obj.rules.item);
+							obj.rules.container.before(obj.rules.item);
+						}
 
-						if (obj.hasGap) {
+						if (obj.hasFlex) {
 							obj.rules.item.before(obj.rules.reset);
 						}
 
-						// if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
-						// 	obj.rules.orig.before(obj.rules.item);
-						// }
+						if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
+							obj.rules.orig.before(obj.rules.item);
+						}
 
 						// Clean
 						obj.rules.orig.walk(i => {

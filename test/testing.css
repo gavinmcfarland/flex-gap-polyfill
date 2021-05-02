@@ -1,25 +1,9 @@
-body {
-	height: 10px;
-}
-
-.flex-and-gap {
-	display: flex;
-	gap: 20px;
-	margin-top: 1em;
-}
-
-.margin {
-	margin: 0;
-}
-
-.ma {
-	margin: 0;
+.gap-8 {
+	/* apply fgp */
+	gap: 2em;
 }
 
 .flex {
 	display: flex;
-}
-
-.w {
-	width: 100px;
+	gap: 2em;
 }

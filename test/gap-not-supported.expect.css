@@ -1,15 +1,16 @@
 :root {
+	/* added by fgp */
 	--has-fgp: initial;
 	--parent-has-fgp: initial;
 }
 
 .flex-gap-not-supported .pixels > * > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
 .flex-gap-not-supported .pixels > * {
-	/* -fgp */
+	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 20px;
@@ -21,7 +22,7 @@
 }
 
 .flex-gap-not-supported .pixels {
-	/* -fgp */
+	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
