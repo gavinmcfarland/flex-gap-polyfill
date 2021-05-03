@@ -486,6 +486,21 @@ a {
 	margin-bottom: 2em;
 	padding: 2em;
 }
+
+.flex-gap-not-supported .header h1 > * {
+	/* added by fgp */
+	--orig-margin-top: initial;
+}
+
+.header h1 {
+	--fgp-margin-top: initial;
+	--orig-margin-top: 0px;
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
 </style>
 
 	<head>
