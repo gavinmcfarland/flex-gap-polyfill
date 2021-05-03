@@ -24,7 +24,9 @@
 	body {
 		--color: #000;
 		--background-color: #fff;
-		padding: 3em;
+		padding: 2em;
+		padding-top: 0;
+		margin: 0;
 		font-family: sans-serif;
 		color: var(--color);
 		background-color: var(--background-color);;
@@ -37,11 +39,19 @@
 		}
 	}
 
+	@media (max-width: 450px) {
+		body {
+			padding: 0;
+		}
+	}
+
 
 .page {
-	max-width: 50em;
+	max-width: 54em;
 	margin-left: auto;
 	margin-right: auto;
+	padding: 0 2em;
+	/* padding-top: 246px; */
 }
 
 .outline {
@@ -63,7 +73,7 @@
 }
 
 .flex-gap-not-supported .container {
-	outline: var(--has-fgp) 2px dashed red !important;
+	outline: var(--has-fgp) 2px dashed rgba(255, 0, 0, 0.8) !important;
 	border-radius: var(--has-fgp) 4px;
 }
 
@@ -187,19 +197,37 @@ a {
 .w {
 	width: auto;
 }
+
+.header {
+	top: 0px;
+    /* left: 0px; */
+    /* right: 0px; */
+    /* padding: 2em 4em; */
+    position: sticky;
+	border-bottom: 1px solid var(--color);
+	background-color: var(--background-color);
+	z-index: 1;
+	margin-left: -2em;
+	margin-right: -2em;
+	margin-bottom: 2em;
+	padding: 2em;
+}
 </style>
 
 	<head>
 
 	<body>
+
 	<div id="page" class="page flex-gap-not-supported">
 
-	<h1>Flex Gap Polyfill</h1>
+	<div class="header">
+		<h1>Flex Gap Polyfill</h1>
 
-	<p>Below are a list of test cases demonstrating scenarios this polyfill works with.</p>
-	<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a>. <a class="on-off" onclick="toggle()">Polyfill: <span id="label">on</span></a>.</p>
+		<p>Below are a list of test cases demonstrating scenarios this polyfill works with. <a href="https://github.com/limitlessloop/flex-gap-polyfill">Github</a></p>
 
-	<p>Red lines show container with negative margins.</p>
+		<p><a class="on-off" onclick="toggle()">Polyfill: <span id="label">on</span></a> Red lines show container with negative margins.</p>
+
+	</div>
 
 	<h4>Basic</h4>
 	<pre>
