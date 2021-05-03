@@ -8,8 +8,7 @@ module.exports = {
 			}
 		}),
 		require('./dist/index.js')({
-			flexGapNotSupported: ".flexGapNotSupported",
-			tailwindCSS: true
+			flexGapNotSupported: ".flex-gap-not-supported"
 		})
 	]
 };

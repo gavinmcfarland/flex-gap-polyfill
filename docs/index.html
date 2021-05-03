@@ -1,4 +1,10 @@
-<script>
+<html>
+
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width"/>
+
+		<script>
 	function toggle() {
 		var page = document.getElementById('page')
 		var label = document.getElementById('label')
@@ -9,24 +15,37 @@
     		label.innerHTML = "on";
   		}
 
-		page.classList.toggle('flexGapNotSupported')
+		page.classList.toggle('flex-gap-not-supported')
 	}
-</script>
+	</script>
 
-<style>:root {
+	<style>:root {
 	/* added by fgp */
 	--has-fgp: initial;
 	--parent-has-fgp: initial;
 }
 
-body {
-	padding: 3em;
-	font-family: sans-serif;
-}
+	body {
+		--color: #000;
+		--background-color: #fff;
+		padding: 3em;
+		font-family: sans-serif;
+		color: var(--color);
+		background-color: var(--background-color);;
+	}
 
-.flexGapNotSupported .page > * {
+	@media (prefers-color-scheme: dark) {
+  		body   {
+			  --color:  #FFF;
+			  --background-color: #000;
+		}
+	}
+
+
+.flex-gap-not-supported .page > * {
 	/* added by fgp */
 }
+
 
 .page {
 	max-width: 50em;
@@ -48,11 +67,11 @@ body {
 		bottom: -1px;
 		left: -1px;
 		right: -1px;
-		border: 1px dotted black;
+		border: 1px dotted var(--color);
 		pointer-events: none;
 	}
 
-.flexGapNotSupported .container {
+.flex-gap-not-supported .container {
 	outline: var(--has-fgp) 2px dashed red !important;
 	border-radius: var(--has-fgp) 4px;
 }
@@ -83,18 +102,31 @@ body {
 			background: yellow;
 		}
 
-.flexGapNotSupported .flex-wrap > * > * {
+.on-off {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.container {
+	color: black;
+}
+
+a {
+	color: rgb(202, 72, 202);
+}
+
+.flex-gap-not-supported .flex-wrap > * > * {
 	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
-.flexGapNotSupported .flex-wrap > * {
+.flex-gap-not-supported .flex-wrap > * {
 	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 }
 
-.flexGapNotSupported .flex-wrap {
+.flex-gap-not-supported .flex-wrap {
 	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
@@ -105,14 +137,8 @@ body {
 	flex-wrap: wrap;
 }
 
-.flexGapNotSupported .gap-20px > * > * {
+.flex-gap-not-supported .gap-20px > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .gap-20px > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: var(--gap);
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
@@ -122,9 +148,8 @@ body {
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-20px {
+.flex-gap-not-supported .gap-20px {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: var(--gap);
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
@@ -133,7 +158,6 @@ body {
 }
 
 .gap-20px {
-	display: flex;
 	--gap: 20px;
 	--fgp-gap: var(--has-fgp, var(--gap));
 	gap: var(--fgp-gap, 0px);
@@ -142,14 +166,8 @@ body {
 
 }
 
-.flexGapNotSupported .gap-40px > * > * {
+.flex-gap-not-supported .gap-40px > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .gap-40px > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
@@ -159,9 +177,8 @@ body {
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-40px {
+.flex-gap-not-supported .gap-40px {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
@@ -170,14 +187,13 @@ body {
 }
 
 .gap-40px {
-	display: flex;
 	--fgp-gap: var(--has-fgp, 40px);
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .gap-40px-no-flex > * {
+.flex-gap-not-supported .gap-40px-no-flex > * {
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
@@ -188,7 +204,7 @@ body {
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-40px-no-flex {
+.flex-gap-not-supported .gap-40px-no-flex {
 	/* added by fgp */
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
@@ -204,143 +220,105 @@ body {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .row-gap-40px > * > * {
+.flex-gap-not-supported .row-gap-40px > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .row-gap-40px > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 40px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
 	margin-top: var(--fgp-margin-top);
 }
 
-.flexGapNotSupported .row-gap-40px {
+.flex-gap-not-supported .row-gap-40px {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 40px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
 }
 
 .row-gap-40px {
-	display: flex;
 	--fgp-row-gap: var(--has-fgp, 40px);
 	row-gap: var(--fgp-row-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 }
 
-.flexGapNotSupported .column-gap-20px > * > * {
+.flex-gap-not-supported .column-gap-20px > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .column-gap-20px > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-column: 20px;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .column-gap-20px {
+.flex-gap-not-supported .column-gap-20px {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-column: 20px;
 	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
 .column-gap-20px {
-	display: flex;
 	-moz-column-gap: 20px;
 	--fgp-column-gap: var(--has-fgp, 20px);
 	column-gap: var(--fgp-column-gap, 0px);
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .gap-3\% > * > * {
+.flex-gap-not-supported .gap-3\% > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .gap-3\% > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	margin-top: var(--fgp-margin-top);
-	--fgp-parent-gap-column: 13%;
-	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.13) + var(--orig-margin-left, 0px));
+	--fgp-parent-gap-column: 3%;
+	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.03) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-3\% {
+.flex-gap-not-supported .gap-3\% {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
-	--fgp-gap-column: 13%;
-	--fgp--parent-gap-as-decimal: 0.13;
+	--fgp-gap-column: 3%;
+	--fgp--parent-gap-as-decimal: 0.03;
 	--fgp-margin-left: calc(
-						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - (1 + 0.13)) * 100)
+						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - (1 + 0.03)) * 100)
 						+ var(--fgp-orig-margin-left, 0px)
 						) !important;
 }
 
 .gap-3\% {
-	display: flex;
-	--fgp-gap: var(--has-fgp, 13%);
+	--fgp-gap: var(--has-fgp, 3%);
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .gap-6\% > * > * {
+.flex-gap-not-supported .gap-6\% > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .gap-6\% > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	margin-top: var(--fgp-margin-top);
-	--fgp-parent-gap-column: 16%;
-	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.16) + var(--orig-margin-left, 0px));
+	--fgp-parent-gap-column: 6%;
+	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) / (1 + 0.06) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-6\% {
+.flex-gap-not-supported .gap-6\% {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
-	--fgp-gap-column: 16%;
-	--fgp--parent-gap-as-decimal: 0.16;
+	--fgp-gap-column: 6%;
+	--fgp--parent-gap-as-decimal: 0.06;
 	--fgp-margin-left: calc(
-						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - (1 + 0.16)) * 100)
+						(var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) / (100 - (1 + 0.06)) * 100)
 						+ var(--fgp-orig-margin-left, 0px)
 						) !important;
 }
 
 .gap-6\% {
-	display: flex;
-	--fgp-gap: var(--has-fgp, 16%);
+	--fgp-gap: var(--has-fgp, 6%);
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .gap-2em > * > * {
+.flex-gap-not-supported .gap-2em > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .gap-2em > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 2em;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
@@ -350,9 +328,8 @@ body {
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-2em {
+.flex-gap-not-supported .gap-2em {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 2em;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
@@ -361,21 +338,14 @@ body {
 }
 
 .gap-2em {
-	display: flex;
 	--fgp-gap: var(--has-fgp, 2em);
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .gap-20px.margin-20px > * > * {
+.flex-gap-not-supported .margin-20px > * {
 	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
-.flexGapNotSupported .gap-20px.margin-20px > * {
-	/* added by fgp */
-	--parent-has-fgp: !important;
 	--orig-margin-top: initial;
 	--orig-margin-right: initial;
 	--orig-margin-bottom: initial;
@@ -389,9 +359,8 @@ body {
 	margin-left: var(--fgp-margin-left);
 }
 
-.flexGapNotSupported .gap-20px.margin-20px {
+.flex-gap-not-supported .margin-20px {
 	/* added by fgp */
-	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
@@ -399,8 +368,7 @@ body {
 	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
-.gap-20px.margin-20px {
-	display: flex;
+.margin-20px {
 	--fgp-gap: var(--has-fgp, 20px);
 	gap: var(--fgp-gap, 0px);
 	--fgp-margin-top: initial;
@@ -428,7 +396,7 @@ body {
 	width: calc(50% - var(--gap));
 }
 
-.flexGapNotSupported .grid > * {
+.flex-gap-not-supported .grid > * {
 	/* added by fgp */
 	--orig-margin-left: initial;
 }
@@ -440,18 +408,18 @@ body {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flexGapNotSupported .flex > * > * {
+.flex-gap-not-supported .flex > * > * {
 	/* added by fgp */
 	--parent-has-fgp: initial;
 }
 
-.flexGapNotSupported .flex > * {
+.flex-gap-not-supported .flex > * {
 	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
 }
 
-.flexGapNotSupported .flex {
+.flex-gap-not-supported .flex {
 	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
@@ -471,21 +439,19 @@ body {
 .w {
 	width: auto;
 }
-
-.on-off {
-	text-decoration: underline;
-	cursor: pointer;
-}
 </style>
 
-<div id="page" class="page flexGapNotSupported">
+	<head>
+
+	<body>
+	<div id="page" class="page flex-gap-not-supported">
 
 	<h1>Flex Gap Polyfill</h1>
 
 	<p>Below are a list of test cases demonstrating scenarios this polyfill works with.</p>
-	<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a>.</p>
+	<p>View on <a href="https://github.com/limitlessloop/flex-gap-polyfill">github</a>. <a class="on-off" onclick="toggle()">Polyfill: <span id="label">on</span></a>.</p>
 
-	<p><a class="on-off" onclick="toggle()">Turn polyfill <span id="label">on</span></a>. Red lines show container with negative margins.</p>
+	<p>Red lines show container with negative margins.</p>
 
 	<h4>Basic</h4>
 	<pre>
@@ -608,6 +574,8 @@ body {
 		</div>
 	</div>
 
+	<p>Percentage gaps aren't that reliable if the width of the container is not 100% of it's parent.</p>
+
 	<pre>
 .container
 	display: flex;
@@ -629,34 +597,6 @@ body {
 			<div>C</div>
 			<div>D</div>
 			<div class="container gap-3% flex-wrap">
-				<div>A</div>
-				<div>B</div>
-				<div>C</div>
-				<div>D</div>
-			</div>
-		</div>
-	</div>
-
-		<pre>
-.container
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.container .container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 3%;
-}
-	</pre>
-
-	<div class="outline">
-		<div class="container flex-wrap">
-			<div>A</div>
-			<div>B</div>
-			<div>C</div>
-			<div>D</div>
-			<div class="container gap-6% flex-wrap">
 				<div>A</div>
 				<div>B</div>
 				<div>C</div>
@@ -801,4 +741,8 @@ body {
 	</div>
 
 </div>
+
+	</body>
+
+</html>
 
