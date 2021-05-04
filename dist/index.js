@@ -1,7 +1,9 @@
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var postcss = _interopDefault(require('postcss'));
+var postcss = require('postcss');
 var postcssValuesParser = require('postcss-values-parser');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var postcss__default = /*#__PURE__*/_interopDefaultLegacy(postcss);
 
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
 // TODO: Test with example repos
@@ -42,7 +44,7 @@ module.exports = (opts = {}) => {
       }
 
       if (decl.prop === "gap") {
-        obj.gapValues = postcss.list.space(decl.value);
+        obj.gapValues = postcss__default['default'].list.space(decl.value);
 
         if (obj.gapValues.length === 1) {
           obj.gapValues.push(obj.gapValues[0]);
@@ -65,7 +67,7 @@ module.exports = (opts = {}) => {
       }
 
       if (decl.prop === "margin") {
-        obj.marginValues = postcss.list.space(decl.value);
+        obj.marginValues = postcss__default['default'].list.space(decl.value);
 
         if (decl.prop === "margin-left") {
           if (decl.value === "0") {
@@ -133,22 +135,22 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
     // }
 
 
-    obj.rules.container = postcss.rule({
+    obj.rules.container = postcss__default['default'].rule({
       selector: selector.container
     });
-    obj.rules.item = postcss.rule({
+    obj.rules.item = postcss__default['default'].rule({
       selector: selector.item
     });
-    obj.rules.reset = postcss.rule({
+    obj.rules.reset = postcss__default['default'].rule({
       selector: selector.reset
     });
-    obj.rules.container.prepend(postcss.comment({
+    obj.rules.container.prepend(postcss__default['default'].comment({
       text: 'added by fgp'
     }));
-    obj.rules.item.prepend(postcss.comment({
+    obj.rules.item.prepend(postcss__default['default'].comment({
       text: 'added by fgp'
     }));
-    obj.rules.reset.prepend(postcss.comment({
+    obj.rules.reset.prepend(postcss__default['default'].comment({
       text: 'added by fgp'
     }));
   }
@@ -157,11 +159,11 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
     var fileName = root.source.input.file; // This avoids adding :root selector to module files used by Next.js
 
     if (!(fileName && fileName.endsWith(".module.css"))) {
-      const rootRule = postcss.rule({
+      const rootRule = postcss__default['default'].rule({
         selector: ":root"
       });
       root.prepend(rootRule);
-      rootRule.prepend(postcss.comment({
+      rootRule.prepend(postcss__default['default'].comment({
         text: 'added by fgp'
       }));
       rootRule.append(`--has-fgp: initial;
@@ -567,7 +569,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
               obj.hasFgp = true;
             }
           } else {
-            if (obj.hasFlex || obj.hasMargin || obj.hasGap || obj.hasFlex) {
+            if (obj.hasFlex || obj.hasMargin || obj.hasGap) {
               obj.hasFgp = true;
             }
           }

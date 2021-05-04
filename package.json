@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "7.7.2",
     "@babel/preset-env": "7.7.1",
+    "@rollup/plugin-commonjs": "^18.1.0",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "10.0.3",
     "chokidar": "^3.5.1",
@@ -41,16 +42,17 @@
     "postcss-nested": "^5.0.3",
     "postcss-preset-env": "^6.7.0",
     "postcss-tape": "^6.0.1",
-    "postcss-values-parser": "^5.0.0",
+    "postcss-values-parser": "5.0.0",
     "pre-commit": "1.2.2",
-    "rollup": "1.26.3",
+    "rollup": "^2.47.0",
     "rollup-plugin-babel": "4.3.3",
     "stylup": "0.0.0-alpha.3",
     "uniqid": "^5.2.0",
     "yarn": "^1.22.10"
   },
   "peerDependencies": {
-    "postcss": "^8.2.4"
+    "postcss": "^8.2.4",
+    "postcss-values-parser": "^5.0.0"
   },
   "eslintConfig": {
     "env": {

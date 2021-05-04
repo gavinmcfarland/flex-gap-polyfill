@@ -565,7 +565,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
               obj.hasFgp = true;
             }
           } else {
-            if (obj.hasFlex || obj.hasMargin || obj.hasGap || obj.hasFlex) {
+            if (obj.hasFlex || obj.hasMargin || obj.hasGap) {
               obj.hasFgp = true;
             }
           }
