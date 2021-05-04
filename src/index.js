@@ -1,5 +1,5 @@
 import postcss from "postcss";
-const { parse } = require('postcss-values-parser');
+import { parse } from 'postcss-values-parser';
 
 // var twMarginRegex = /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi
 
@@ -655,7 +655,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 						}
 					}
 					else {
-						if (obj.hasFlex || obj.hasMargin || obj.hasGap || obj.hasFlex) {
+						if (obj.hasFlex || obj.hasMargin || obj.hasGap) {
 							obj.hasFgp = true
 						}
 					}

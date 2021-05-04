@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container flex-gap-not-supported">
     <div>
       <Logo />
       <h1 class="title">
-        nuxtjs
+        nuxtjs-2
       </h1>
       <div class="links">
         <a

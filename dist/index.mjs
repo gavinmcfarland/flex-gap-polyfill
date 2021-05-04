@@ -1,13 +1,10 @@
 import postcss from 'postcss';
+import { parse } from 'postcss-values-parser';
 
-const {
-  parse
-} = require('postcss-values-parser'); // var twMarginRegex = /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
 // TODO: Test with example repos
 // TODO: Check webComponents option works
 // TODO: Check works with tailwind
-
 
 module.exports = (opts = {}) => {
   opts = opts || {};

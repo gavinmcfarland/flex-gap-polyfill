@@ -1,15 +1,12 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var postcss = _interopDefault(require('postcss'));
+var postcssValuesParser = require('postcss-values-parser');
 
-const {
-  parse
-} = require('postcss-values-parser'); // var twMarginRegex = /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi
 // TODO: To support Tailwind need to cover all variants of class names including device eg md:. margin, width, flex, height
 // TODO: Test with example repos
 // TODO: Check webComponents option works
 // TODO: Check works with tailwind
-
 
 module.exports = (opts = {}) => {
   opts = opts || {};
@@ -323,8 +320,8 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
           orig.append(`margin-${side}: var(--${pf}margin-${side}, var(--orig-margin-${side}));`);
         }
 
-        if (parse(value).nodes[0].unit === "%") {
-          var unitlessPercentage = parse(value).nodes[0].value / 100; // formula: (parent - self) / (100 - 1 + percentageAsDecimal) * 100
+        if (postcssValuesParser.parse(value).nodes[0].unit === "%") {
+          var unitlessPercentage = postcssValuesParser.parse(value).nodes[0].value / 100; // formula: (parent - self) / (100 - 1 + percentageAsDecimal) * 100
 
           if (side !== "top") {
             container.append(`--${pf}gap-${axis}: ${value};
@@ -341,7 +338,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
           container.append(`--${pf}margin-${side}: var(--has-fgp) calc(var(--${pf}parent-gap-${axis}, 0px) / (1 + var(--${pf}-parent-gap-as-decimal, 0)) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`);
         }
 
-        if (parse(value).nodes[0].unit === "%") {
+        if (postcssValuesParser.parse(value).nodes[0].unit === "%") {
           if (side !== "top") {
             item.append(`--${pf}parent-gap-${axis}: ${value};
 					--${pf}margin-${side}: var(--parent-has-fgp) calc(var(--${pf}gap-${axis}) / (1 + ${unitlessPercentage}) + var(--orig-margin-${side}, 0px));`);
