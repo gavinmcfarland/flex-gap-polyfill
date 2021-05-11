@@ -9,8 +9,8 @@ This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 
 ## Kown limitations
 
-- Incompatible when `margin: auto` and `gap` are used together, to get around this create a wrapper which `margin: auto` is applied to
-- Percentage gaps aren't that reliable if the container has a width determined by its content, ie not full width of parent container
+- Must use a wrapper div when using `margin: auto` or `background`.
+- Percentage gaps aren't reliable if the container is not full width of parent container
 - Width of flex items with percentages vary slightly from spec because of negative margin on container.
 
 View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
@@ -22,7 +22,6 @@ View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for var
     display: flex;
     gap: 40px;
 }
-
 ```
 
 Becomes:
@@ -54,9 +53,9 @@ Becomes:
 
 The polyfill emulates flex gap by adding margins to each child element and applying a negative margin to the container.
 
-- <mark>NEW</mark> Now works regardless of whether `display: flex` and `gap` are used in the same rule
+- <mark>NEW</mark> Now works regardless of whether `display: flex` and `gap` are used in the same rule (see [Options](#Options) for ways to optimise)
 - Works with unlimited nested elements with any combination of units, px > px, px > %, % > %, etc
-- No additional class names or divs needed (except when using `margin: auto`)
+- No additional class names or divs needed (except when using `margin: auto` or `background`)
 - Works even when margin already exists on element (inline styles not supported)
 - Style margin, borders and padding as normal
 - Supports `gap`, `row-gap` and `column-gap`
@@ -64,6 +63,7 @@ The polyfill emulates flex gap by adding margins to each child element and apply
 ## Browser support
 
 Supports all current modern browsers, Edge, Firefox, Chrome, Safari, Opera (any browser that supports `calc()` and `var()`).
+
 
 ## Usage
 
