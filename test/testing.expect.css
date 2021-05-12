@@ -4,6 +4,12 @@
 	--parent-has-fgp: initial;
 }
 
+.gap-8 > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
+}
+
 .gap-8 > * {
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
@@ -31,11 +37,6 @@
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flex > * > * {
-	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
 .flex > * {
 	/* added by fgp */
 	--parent-has-fgp: !important;
@@ -46,6 +47,13 @@
 	--fgp-parent-gap-column: 2em;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
+}
+
+.flex > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex {
@@ -64,4 +72,8 @@
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+}
+
+.test {
+	margin: 10px;
 }

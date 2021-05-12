@@ -4,6 +4,12 @@
 	--parent-has-fgp: initial;
 }
 
+.gap-and-no-flex > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
+}
+
 .gap-and-no-flex > *,
 .gap-and-no-flex > ::slotted(*) {
 	/* added by fgp */
@@ -32,11 +38,6 @@
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flex-and-gap > * > * {
-	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
 .flex-and-gap > *,
 .flex-and-gap > ::slotted(*) {
 	/* added by fgp */
@@ -49,6 +50,13 @@
 	--fgp-parent-gap-column: 20px;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
+}
+
+.flex-and-gap > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-and-gap {

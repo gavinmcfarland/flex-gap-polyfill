@@ -252,7 +252,8 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
     let {
       orig,
       container,
-      item
+      item,
+      reset
     } = obj.rules; // 1. Replace existing margin-left and margin-top
 
     orig.walkDecls(decl => {
@@ -351,7 +352,11 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
         } // Add margin to items
 
 
-        item.append(`margin-${side}: var(--${pf}margin-${side});`);
+        item.append(`margin-${side}: var(--${pf}margin-${side});`); // // Reset fgp margins
+        // reset.append(`--${pf}margin-${side}: initial`)
+        // // Reset fgp parent gap
+
+        reset.append(`--${pf}parent-gap-${axis}: initial`);
       }
     });
   } // function addGap(rule, obj, opts) {
@@ -604,6 +609,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
             if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
               obj.rules.orig.before(obj.rules.container);
               obj.rules.container.before(obj.rules.item);
+              obj.rules.item.before(obj.rules.reset);
             }
 
             if (obj.hasFlex) {

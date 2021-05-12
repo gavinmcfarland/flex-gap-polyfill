@@ -139,15 +139,15 @@ a {
 	color: rgb(202, 72, 202);
 }
 
-.flex-gap-not-supported .flex-wrap > * > * {
-	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
 .flex-gap-not-supported .flex-wrap > * {
 	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
+}
+
+.flex-gap-not-supported .flex-wrap > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
 }
 
 .flex-gap-not-supported .flex-wrap {
@@ -159,6 +159,12 @@ a {
 .flex-wrap {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.flex-gap-not-supported .gap-20px > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-gap-not-supported .gap-20px > * {
@@ -190,6 +196,12 @@ a {
 
 }
 
+.flex-gap-not-supported .gap-40px > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
+}
+
 .flex-gap-not-supported .gap-40px > * {
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
@@ -215,6 +227,12 @@ a {
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+}
+
+.flex-gap-not-supported .gap-40px-no-flex > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-gap-not-supported .gap-40px-no-flex > * {
@@ -244,6 +262,11 @@ a {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
+.flex-gap-not-supported .row-gap-40px > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+}
+
 .flex-gap-not-supported .row-gap-40px > * {
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
@@ -263,6 +286,11 @@ a {
 	--fgp-row-gap: var(--has-fgp, 40px);
 	row-gap: var(--fgp-row-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+}
+
+.flex-gap-not-supported .column-gap-20px > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-gap-not-supported .column-gap-20px > * {
@@ -285,6 +313,12 @@ a {
 	--fgp-column-gap: var(--has-fgp, 20px);
 	column-gap: var(--fgp-column-gap, 0px);
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+}
+
+.flex-gap-not-supported .gap-3\% > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-gap-not-supported .gap-3\% > * {
@@ -314,6 +348,12 @@ a {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
+.flex-gap-not-supported .gap-6\% > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
+}
+
 .flex-gap-not-supported .gap-6\% > * {
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
@@ -341,6 +381,12 @@ a {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
+.flex-gap-not-supported .gap-2em > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
+}
+
 .flex-gap-not-supported .gap-2em > * {
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
@@ -366,6 +412,12 @@ a {
 	gap: var(--fgp-gap, 0px);
 	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+}
+
+.flex-gap-not-supported .margin-20px > * > * {
+	/* added by fgp */
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-gap-not-supported .margin-20px > * {
@@ -432,15 +484,15 @@ a {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flex-gap-not-supported .flex > * > * {
-	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
 .flex-gap-not-supported .flex > * {
 	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
+}
+
+.flex-gap-not-supported .flex > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
 }
 
 .flex-gap-not-supported .flex {

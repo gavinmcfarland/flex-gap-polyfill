@@ -4,11 +4,6 @@
 	--parent-has-fgp: initial;
 }
 
-.flex-gap-not-supported .pixels > * > * {
-	/* added by fgp */
-	--parent-has-fgp: initial;
-}
-
 .flex-gap-not-supported .pixels > * {
 	/* added by fgp */
 	--parent-has-fgp: !important;
@@ -19,6 +14,13 @@
 	--fgp-parent-gap-column: 20px;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
+}
+
+.flex-gap-not-supported .pixels > * > * {
+	/* added by fgp */
+	--parent-has-fgp: initial;
+	--fgp-parent-gap-row: initial;
+	--fgp-parent-gap-column: initial;
 }
 
 .flex-gap-not-supported .pixels {
