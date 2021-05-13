@@ -1,6 +1,6 @@
 {
   "name": "flex-gap-polyfill",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A PostCSS polyfill for adding gap between flex items",
   "author": "Gavin <someotter@tadpot.com>",
   "license": "CC0-1.0",
