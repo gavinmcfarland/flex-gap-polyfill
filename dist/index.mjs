@@ -6,7 +6,7 @@ import { parse } from 'postcss-values-parser';
 // TODO: Check webComponents option works
 // TODO: Check works with tailwind
 
-module.exports = (opts = {}) => {
+var index = postcss.plugin("postcss-gap", opts => {
   opts = opts || {};
   const pf = "fgp-";
   const flexGapNotSupported = opts.flexGapNotSupported ? opts.flexGapNotSupported + " " : "";
@@ -523,119 +523,114 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
   // }
 
 
-  return {
-    postcssPlugin: 'postcss-gap',
-
-    Once(root) {
-      addRootSelector(root);
-      root.walkRules(rule => {
-        // To check if rule original or added by plugin
-        var origRule = true;
-        rule.walkDecls(decl => {
-          if (decl.prop.startsWith("--fgp") || decl.prop.startsWith("--has")) {
-            origRule = false;
-          }
-        });
-        rule.walkComments(comment => {
-          if (comment.text === "added by fgp") {
-            origRule = false;
-          }
-        });
-        var hasFgp = false;
-
-        if (Array.isArray(opts.only) || opts.only === true) {
-          hasFgp = false;
-        }
-
-        if (origRule) {
-          var obj = {
-            rules: {},
-            gapValues: [null, null],
-            marginValues: [null, null, null, null],
-            hasGap: false,
-            hasFlex: false,
-            hasMargin: false,
-            hasFgp: hasFgp
-          };
-          rule.walkDecls(decl => {
-            getRules(decl, obj, root);
-            getFlex(decl, obj);
-            getGap(decl, obj);
-            getMargin(decl, obj);
-            getWidth(decl, obj);
-          });
-
-          if (Array.isArray(opts.only) || opts.only === true) {
-            if (obj.hasFlex && obj.hasGap) {
-              obj.hasFgp = true;
-            }
-          } else {
-            if (obj.hasFlex || obj.hasMargin || obj.hasGap) {
-              obj.hasFgp = true;
-            }
-          }
-
-          if (Array.isArray(opts.only)) {
-            if (opts.only.includes(rule.selector) || opts.only.some(item => {
-              if (item instanceof RegExp) {
-                return item.test(rule.selector);
-              }
-            })) {
-              obj.hasFgp = true;
-            }
-          }
-
-          rule.walkComments(comment => {
-            if (comment.text === "apply fgp") {
-              comment.remove();
-              obj.hasFgp = true;
-            }
-          });
-
-          if (obj.hasFgp) {
-            // addWidth(rule, obj);
-            rewriteFlex(rule, obj); // addMargin(rule, obj)
-
-            rewriteMargin(rule, obj); // if ((obj.hasGap && obj.hasFlex) || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex)) {
-            // 	// addFlex(rule, obj);
-            // 	// addGap(rule, obj, opts);
-            // 	// removeGap(rule);
-            // }
-
-            if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
-              obj.rules.orig.before(obj.rules.container);
-              obj.rules.container.before(obj.rules.item);
-              obj.rules.item.before(obj.rules.reset);
-            }
-
-            if (obj.hasFlex) {
-              obj.rules.item.before(obj.rules.reset);
-            }
-
-            if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
-              obj.rules.orig.before(obj.rules.item);
-            } // Clean
-
-
-            obj.rules.orig.walk(i => {
-              return i.raws.before = "\n\t";
-            });
-            obj.rules.container.walk(i => {
-              i.raws.before = "\n\t";
-            });
-            obj.rules.item.walk(i => {
-              i.raws.before = "\n\t";
-            });
-            obj.rules.reset.walk(i => {
-              i.raws.before = "\n\t";
-            });
-          }
+  return function (root) {
+    addRootSelector(root);
+    root.walkRules(rule => {
+      // To check if rule original or added by plugin
+      var origRule = true;
+      rule.walkDecls(decl => {
+        if (decl.prop.startsWith("--fgp") || decl.prop.startsWith("--has")) {
+          origRule = false;
         }
       });
-    }
+      rule.walkComments(comment => {
+        if (comment.text === "added by fgp") {
+          origRule = false;
+        }
+      });
+      var hasFgp = false;
 
+      if (Array.isArray(opts.only) || opts.only === true) {
+        hasFgp = false;
+      }
+
+      if (origRule) {
+        var obj = {
+          rules: {},
+          gapValues: [null, null],
+          marginValues: [null, null, null, null],
+          hasGap: false,
+          hasFlex: false,
+          hasMargin: false,
+          hasFgp: hasFgp
+        };
+        rule.walkDecls(decl => {
+          getRules(decl, obj, root);
+          getFlex(decl, obj);
+          getGap(decl, obj);
+          getMargin(decl, obj);
+          getWidth(decl, obj);
+        });
+
+        if (Array.isArray(opts.only) || opts.only === true) {
+          if (obj.hasFlex && obj.hasGap) {
+            obj.hasFgp = true;
+          }
+        } else {
+          if (obj.hasFlex || obj.hasMargin || obj.hasGap) {
+            obj.hasFgp = true;
+          }
+        }
+
+        if (Array.isArray(opts.only)) {
+          if (opts.only.includes(rule.selector) || opts.only.some(item => {
+            if (item instanceof RegExp) {
+              return item.test(rule.selector);
+            }
+          })) {
+            obj.hasFgp = true;
+          }
+        }
+
+        rule.walkComments(comment => {
+          if (comment.text === "apply fgp") {
+            comment.remove();
+            obj.hasFgp = true;
+          }
+        });
+
+        if (obj.hasFgp) {
+          // addWidth(rule, obj);
+          rewriteFlex(rule, obj); // addMargin(rule, obj)
+
+          rewriteMargin(rule, obj); // if ((obj.hasGap && obj.hasFlex) || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex)) {
+          // 	// addFlex(rule, obj);
+          // 	// addGap(rule, obj, opts);
+          // 	// removeGap(rule);
+          // }
+
+          if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
+            obj.rules.orig.before(obj.rules.container);
+            obj.rules.container.before(obj.rules.item);
+            obj.rules.item.before(obj.rules.reset);
+          }
+
+          if (obj.hasFlex) {
+            obj.rules.item.before(obj.rules.reset);
+          }
+
+          if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
+            obj.rules.orig.before(obj.rules.item);
+          } // Clean
+
+
+          obj.rules.orig.walk(i => {
+            return i.raws.before = "\n\t";
+          });
+          obj.rules.container.walk(i => {
+            i.raws.before = "\n\t";
+          });
+          obj.rules.item.walk(i => {
+            i.raws.before = "\n\t";
+          });
+          obj.rules.reset.walk(i => {
+            i.raws.before = "\n\t";
+          });
+        }
+      }
+    });
   };
-};
+});
 
-module.exports.postcss = true;
+export default index;
 //# sourceMappingURL=index.mjs.map

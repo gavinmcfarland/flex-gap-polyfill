@@ -9,7 +9,7 @@ import { parse } from 'postcss-values-parser';
 // TODO: Check webComponents option works
 // TODO: Check works with tailwind
 
-module.exports = (opts = {}) => {
+export default postcss.plugin("postcss-gap", (opts) => {
 	opts = opts || {}
 
 	const pf = "fgp-";
@@ -608,9 +608,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 	// 	})
 	// }
 
-	return {
-		postcssPlugin: 'postcss-gap',
-		Once(root) {
+	return function (root) {
 
 			addRootSelector(root)
 
@@ -724,8 +722,5 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 					}
 				}
 			})
-		}
 	}
-}
-
-module.exports.postcss = true
+})
