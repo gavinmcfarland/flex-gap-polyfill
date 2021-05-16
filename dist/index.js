@@ -155,14 +155,14 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
     }));
   }
 
-  function addRootSelector(root) {
+  function addRootSelector(root, rule) {
     var fileName = root.source.input.file; // This avoids adding :root selector to module files used by Next.js
 
     if (!(fileName && fileName.endsWith(".module.css"))) {
       const rootRule = postcss__default['default'].rule({
         selector: ":root"
       });
-      root.prepend(rootRule);
+      rule.before(rootRule);
       rootRule.prepend(postcss__default['default'].comment({
         text: 'added by fgp'
       }));
@@ -531,7 +531,13 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
     postcssPlugin: 'postcss-gap',
 
     Once(root) {
-      addRootSelector(root);
+      var rootAdded = false;
+      root.walkRules(rule => {
+        if (rule.name !== 'import' && !rootAdded) {
+          addRootSelector(root, rule);
+          rootAdded = true;
+        }
+      });
       root.walkRules(rule => {
         // To check if rule original or added by plugin
         var origRule = true;

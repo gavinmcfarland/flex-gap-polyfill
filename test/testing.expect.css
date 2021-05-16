@@ -1,16 +1,20 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Jost:wght@400;600;700&family=Roboto+Slab:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Jost:wght@400;600;700&family=Roboto+Slab:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Jost:wght@400;600;700&family=Roboto+Slab:wght@400;700&display=swap');
+
+:root{
 	/* added by fgp */
 	--has-fgp: initial;
 	--parent-has-fgp: initial;
 }
 
-.gap-8 > * > * {
+.gap-8 > * > *{
 	/* added by fgp */
 	--fgp-parent-gap-row: initial;
 	--fgp-parent-gap-column: initial;
 }
 
-.gap-8 > * {
+.gap-8 > *{
 	/* added by fgp */
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 2em;
@@ -21,7 +25,7 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.gap-8 {
+.gap-8{
 	/* added by fgp */
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 2em;
@@ -37,7 +41,7 @@
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.flex > * {
+.flex > *{
 	/* added by fgp */
 	--parent-has-fgp: !important;
 	pointer-events: var(--parent-has-fgp) auto;
@@ -49,14 +53,14 @@
 	margin-left: var(--fgp-margin-left);
 }
 
-.flex > * > * {
+.flex > * > *{
 	/* added by fgp */
 	--parent-has-fgp: initial;
 	--fgp-parent-gap-row: initial;
 	--fgp-parent-gap-column: initial;
 }
 
-.flex {
+.flex{
 	/* added by fgp */
 	--has-fgp: ;
 	pointer-events: var(--has-fgp) none;
