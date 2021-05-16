@@ -5,8 +5,8 @@
   "author": "Gavin <someotter@tadpot.com>",
   "license": "CC0-1.0",
   "repository": "limitlessloop/flex-gap-polyfill",
-  "homepage": "https://github.com/limitlessloop/flex-gap-polyfills#readme",
-  "bugs": "https://github.com/limitlessloop/flex-gap-polyfills/issues",
+  "homepage": "https://github.com/limitlessloop/flex-gap-polyfill#readme",
+  "bugs": "https://github.com/limitlessloop/flex-gap-polyfill/issues",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "files": [
