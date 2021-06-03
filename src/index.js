@@ -147,7 +147,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 		var fileName = root.source.input.file
 
 		// This avoids adding :root selector to module files used by Next.js
-		if (!(fileName && fileName.endsWith(".module.css"))) {
+		if (!(fileName && (fileName.endsWith(".module.css") || fileName.endsWith(".module.scss") || fileName.endsWith(".module.sass") || fileName.endsWith(".module.pcss") ))) {
 			const rootRule = postcss.rule({ selector: ":root" });
 
 			rule.before(rootRule);
