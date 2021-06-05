@@ -311,7 +311,8 @@ a {
 .column-gap-20px {
 	-moz-column-gap: 20px;
 	--fgp-column-gap: var(--has-fgp, 20px);
-	column-gap: var(--fgp-column-gap, 0px);
+	-moz-column-gap: var(--fgp-column-gap, 0px);
+	     column-gap: var(--fgp-column-gap, 0px);
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
@@ -526,7 +527,6 @@ a {
 	/* left: 0px; */
 	/* right: 0px; */
 	/* padding: 2em 4em; */
-	position: -webkit-sticky;
 	position: sticky;
 	border-bottom: 1px solid var(--color);
 	background-color: var(--background-color);
