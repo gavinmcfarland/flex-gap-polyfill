@@ -7,7 +7,7 @@
 
 This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 
-## Kown limitations
+## Known limitations
 
 - Must use a wrapper div when using `margin: auto` or `background`.
 - Percentage gaps aren't reliable if the container is not full width of parent container
