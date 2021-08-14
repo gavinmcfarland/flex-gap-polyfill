@@ -5,6 +5,7 @@
 :root{
 	/* added by fgp */
 	--has-fgp: initial;
+	--element-has-fgp: initial;
 	--parent-has-fgp: initial;
 }
 
@@ -44,6 +45,7 @@
 .flex > *{
 	/* added by fgp */
 	--parent-has-fgp: !important;
+	--element-has-fgp: initial;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 2em;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
@@ -63,6 +65,7 @@
 .flex{
 	/* added by fgp */
 	--has-fgp: ;
+	--element-has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 2em;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;

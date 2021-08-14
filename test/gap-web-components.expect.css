@@ -1,6 +1,7 @@
 :root {
 	/* added by fgp */
 	--has-fgp: initial;
+	--element-has-fgp: initial;
 	--parent-has-fgp: initial;
 }
 
@@ -42,6 +43,7 @@
 .flex-and-gap > ::slotted(*) {
 	/* added by fgp */
 	--parent-has-fgp: !important;
+	--element-has-fgp: initial;
 	--orig-margin-top: initial;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 20px;
@@ -62,6 +64,7 @@
 .flex-and-gap {
 	/* added by fgp */
 	--has-fgp: ;
+	--element-has-fgp: ;
 	pointer-events: var(--has-fgp) none;
 	--fgp-gap-row: 20px;
 	--fgp-margin-top: var(--has-fgp) calc(var(--fgp-parent-gap-row, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-row) + var(--orig-margin-top, 0px)) !important;
@@ -98,5 +101,10 @@
 }
 
 .width-400 {
-	width: 400px;
+	width: var(--fgp-width, 400px);;
+}
+
+.width-400 {
+	/* added by fgp */
+	--fgp-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-column, 0%));
 }

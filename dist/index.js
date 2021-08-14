@@ -199,7 +199,14 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 
         if (decl.prop === "width" || decl.prop === "height") {
           // Percentages
-          if (value.unit === "%") ; // else if (value.type === 'func') {
+          if (value.unit === "%") {
+            container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`); // container.append(
+            // 	`--${pf}${prop}-percentages-decimal: ${value.number / 100} !important;`
+            // );
+            // reset.append(
+            // 	`--${pf}${prop}-percentages-decimal: initial;`
+            // );
+          } // else if (value.type === 'func') {
           // 	decl.value = "isVar"
           // }
           // Pixels, Ems
@@ -214,7 +221,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
               // 			);
             }
 
-          decl.value = `var(--fgp-width, ${decl.value});`;
+          decl.value = `var(--fgp-${prop}, ${decl.value});`;
           container.walk(i => {
             i.raws.before = "\n\t";
           });
@@ -609,7 +616,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
             }
           });
 
-          if (obj.hasWidth) {
+          if (obj.hasWidth || obj.hasHeight) {
             addWidth(rule, obj);
           }
 
