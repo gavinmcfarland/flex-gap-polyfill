@@ -1,0 +1,14 @@
+:root {
+	/* added by fgp */
+	--has-fgp: initial;
+	--element-has-fgp: initial;
+	--parent-has-fgp: initial;
+}
+.test {
+	--thingy: 200px;
+	width: var(--fgp-width, var(--thingy));;
+}
+.test {
+	/* added by fgp */
+	--fgp-width: var(--element-has-fgp) calc(var(--thingy) + var(--fgp-gap-column, 0%));
+}

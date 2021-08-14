@@ -7,6 +7,9 @@ module.exports = {
 	// 		flexGapNotSupported: '.flexGapNotSupported'
 	// 	}
 	// },
+	'gap-width': {
+		message: 'works with width'
+	},
 	'gap-web-components': {
 		message: 'web components support',
 		options: {

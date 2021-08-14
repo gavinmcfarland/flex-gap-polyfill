@@ -1,0 +1,4 @@
+.test {
+	--thingy: 200px;
+	width: var(--thingy);
+}

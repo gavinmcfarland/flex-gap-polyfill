@@ -155,6 +155,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 
 			rootRule.append(
 				`--has-fgp: initial;
+				--element-has-fgp: initial;
 				--parent-has-fgp: initial;`
 			);
 
@@ -163,65 +164,78 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 		}
 	}
 
-	// function addWidth(rule, obj) {
-	// 	function ifUnit(value) {
-	// 		var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/
-	// 		return regex.test(value)
-	// 	}
+	function addWidth(rule, obj) {
+		// function ifUnit(value) {
+		// 	var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/
+		// 	return regex.test(value)
+		// }
 
-	// 	if (obj.hasWidth || obj.hasHeight) {
-	// 		rule.walkDecls((decl) => {
-	// 			var value = parse(decl.value).nodes[0];
-	// 			let prop = decl.prop;
 
-	// 			if (decl.value === 0) {
-	// 				decl.value = "0px";
-	// 			}
+		if (obj.hasWidth || obj.hasHeight) {
+			rule.walkDecls((decl) => {
 
-	// 			if (ifUnit(decl.value)) {
-	// 				const origContainer = obj.rules.orig;
-	// 				const container = obj.rules.container
-	// 				const reset = obj.rules.reset;
+				var value = parse(decl.value).nodes[0];
+				let prop = decl.prop;
 
-	// 				origContainer.after(container);
-	// 				container.before(reset);
+				if (decl.value === 0) {
+					decl.value = "0px";
+				}
+				// if (ifUnit(decl.value)) {
+					const origContainer = obj.rules.orig;
+					const container = obj.rules.container
+					const reset = obj.rules.reset;
 
-	// 				let axis = prop === "width" ? "column" : "row";
+					origContainer.after(container);
+					// container.before(reset);
 
-	// 				// Percentages
-	// 				if (value.unit === "%") {
-	// 					container.append(
-	// 						`${pf}${prop}-percentages-decimal: ${value.number / 100} !important;`
-	// 					);
+					let axis = prop === "width" ? "column" : "row";
 
-	// 					reset.append(
-	// 						`${pf}${prop}-percentages-decimal: initial;`
-	// 					);
-	// 				}
 
-	// 				// Pixels, Ems
-	// 				else {
-	// 					container.append(
-	// 						`${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
-	// 		${pf}gap-percentage-to-pixels-row: calc(-1 * ${decl.value} * var(${pf}gap-percentage-decimal-${axis})) !important;`
-	// 					);
+					if (decl.prop === "width" || decl.prop === "height") {
+						// Percentages
 
-	// 					container.append(
-	// 						`${pf}${prop}: calc(${decl.value} - var(${pf}gap-container-${axis}, 0%)) !important;`
-	// 					);
+						if (value.unit === "%") {
+							// container.append(
+							// 	`--${pf}${prop}-percentages-decimal: ${value.number / 100} !important;`
+							// );
 
-	// 					reset.append(
-	// 						`${pf}gap-percentage-to-pixels-column: initial;
-	// 		${pf}gap-percentage-to-pixels-row: initial;`
-	// 					);
-	// 				}
+							// reset.append(
+							// 	`--${pf}${prop}-percentages-decimal: initial;`
+							// );
+						}
+						// else if (value.type === 'func') {
 
-	// 				container.walk(i => { i.raws.before = "\n\t"; });
-	// 				reset.walk(i => { i.raws.before = "\n\t"; });
-	// 			}
-	// 		})
-	// 	}
-	// }
+						// 	decl.value = "isVar"
+
+						// }
+
+						// Pixels, Ems
+						else {
+							container.append(
+								`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`
+							);
+
+							// 			container.append(
+							// 				`--${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
+							// ${pf}gap-percentage-to-pixels-row: calc(-1 * ${decl.value} * var(${pf}gap-percentage-decimal-${axis})) !important;`
+							// 			);
+
+							// 			reset.append(
+							// 				`--${pf}gap-percentage-to-pixels-column: initial;
+							// ${pf}gap-percentage-to-pixels-row: initial;`
+							// 			);
+						}
+
+						decl.value = `var(--fgp-width, ${decl.value});`
+
+						container.walk(i => { i.raws.before = "\n\t"; });
+						reset.walk(i => { i.raws.before = "\n\t"; });
+						// decl.remove()
+					}
+				// }
+			})
+		}
+	}
 
 	// function addFlex(rule, obj) {
 	// 	// if (obj.hasFlex) {
@@ -251,8 +265,10 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 			if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
 
 				obj.rules.container.append(`--has-fgp: ;`)
+				obj.rules.container.append(`--element-has-fgp: ;`)
 
 				obj.rules.item.append(`--parent-has-fgp: !important;`)
+				obj.rules.item.append(`--element-has-fgp: initial;`)
 
 				obj.rules.reset.append(`--parent-has-fgp: initial;`)
 
@@ -693,8 +709,11 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 						}
 					})
 
+					if (obj.hasWidth) {
+						addWidth(rule, obj);
+					}
+
 					if (obj.hasFgp) {
-						// addWidth(rule, obj);
 						rewriteFlex(rule, obj)
 						// addMargin(rule, obj)
 						rewriteMargin(rule, obj)
