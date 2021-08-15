@@ -18,11 +18,11 @@ module.exports = (opts = {}) => {
   }
 
   function getWidth(decl, obj) {
-    if (decl.prop === "width") {
+    if (decl.prop === "width" || decl.prop === "max-width" || decl.prop === "min-width") {
       obj.hasWidth = true;
     }
 
-    if (decl.prop === "height") {
+    if (decl.prop === "height" || decl.prop === "max-height" || decl.prop === "min-height") {
       obj.hasHeight = true;
     }
   }
@@ -172,10 +172,6 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
   }
 
   function addWidth(rule, obj) {
-    // function ifUnit(value) {
-    // 	var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/
-    // 	return regex.test(value)
-    // }
     if (obj.hasWidth || obj.hasHeight) {
       rule.walkDecls(decl => {
         var value = parse(decl.value).nodes[0];
@@ -183,29 +179,30 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 
         if (decl.value === 0) {
           decl.value = "0px";
-        } // if (ifUnit(decl.value)) {
+        }
 
-
-        const origContainer = obj.rules.orig;
-        const container = obj.rules.container;
-        const reset = obj.rules.reset;
-        origContainer.after(container); // container.before(reset);
-
+        let {
+          orig,
+          container
+        } = obj.rules;
+        orig.before(container);
         let axis = prop === "width" ? "column" : "row";
 
-        if (decl.prop === "width" || decl.prop === "height") {
+        if (decl.prop === "width" || decl.prop === "height" || decl.prop === "max-height" || decl.prop === "min-height" || decl.prop === "max-width" || decl.prop === "min-width") {
           // Percentages
           if (value.unit === "%") {
-            container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`); // container.append(
+            container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`); // var precentageToDecimal = value.value / 100
+            // Sort of a guess for forumla when width is a percentage
+            // container.append(
+            // 	`--${pf}${prop}: var(--element-has-fgp) calc((${decl.value} - ${precentageToDecimal}%) + (1.0${value.value} * var(--${pf}gap-${axis}, 0%)));`
+            // );
+            // container.append(
             // 	`--${pf}${prop}-percentages-decimal: ${value.number / 100} !important;`
             // );
             // reset.append(
             // 	`--${pf}${prop}-percentages-decimal: initial;`
             // );
-          } // else if (value.type === 'func') {
-          // 	decl.value = "isVar"
-          // }
-          // Pixels, Ems
+          } // Pixels, Ems
           else {
               container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`); // 			container.append(
               // 				`--${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
@@ -217,34 +214,15 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
               // 			);
             }
 
-          decl.value = `var(--fgp-${prop}, ${decl.value});`;
+          decl.value = `var(--fgp-${prop}, ${decl.value})`;
           container.walk(i => {
             i.raws.before = "\n\t";
-          });
-          reset.walk(i => {
-            i.raws.before = "\n\t";
-          }); // decl.remove()
-        } // }
-
+          }); // reset.walk(i => { i.raws.before = "\n\t"; });
+          // decl.remove()
+        }
       });
     }
-  } // function addFlex(rule, obj) {
-  // 	// if (obj.hasFlex) {
-  // 	const origContainer = obj.rules.orig;
-  // 	const container = obj.rules.container;
-  // 	const item = obj.rules.item
-  // 	origContainer.after(container);
-  // 	container.before(item);
-  // 	container.append(
-  // 		`${pf}has-polyfill-gap-container: initial;`
-  // 	);
-  // 	item.append(
-  // 		`${pf}has-polyfill-gap-item: initial;`
-  // 	);
-  // 	item.walk(i => { i.raws.before = "\n\t" });
-  // 	// }
-  // }
-
+  }
 
   function rewriteFlex(rule, obj) {
     rule.walkDecls(decl => {
@@ -369,173 +347,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
         reset.append(`--${pf}parent-gap-${axis}: initial`);
       }
     });
-  } // function addGap(rule, obj, opts) {
-  // 	const origContainer = obj.rules.orig;
-  // 	const container = obj.rules.container
-  // 	const item = obj.rules.item
-  // 	const reset = obj.rules.reset
-  // 	const slotted = obj.rules.slotted
-  // 	const properties = [
-  // 		["row", "top"],
-  // 		["column", "left"]
-  // 	];
-  // 	origContainer.after(container);
-  // 	container.before(item);
-  // 	item.before(reset);
-  // 	// Just a precaution incase flex gap detection has false positive
-  // 	if (opts.flexGapNotSupported) {
-  // 		container.append(
-  // 			`gap: 0;`
-  // 		)
-  // 	}
-  // 	properties.forEach((property, index) => {
-  // 		var axis = property[0];
-  // 		var side = property[1];
-  // 		var value = obj.gapValues[index];
-  // 		if (value === "0") {
-  // 			value = "0px";
-  // 		}
-  // 		var unit = parse(value).nodes[0].unit;
-  // 		var percentageRowGaps = opts.percentageRowGaps || unit != "%" && axis === "row";
-  // 		var axisNumber = axis === "row" ? 0 : 1
-  // 		// Percentages
-  // 		if (unit === "%") {
-  // 			// formula: (parent - self) / (100 - self) * 100
-  // 			var unitlessPercentage = parse(value).nodes[0].value
-  // 			container.append(
-  // 				`--${pf}orig-margin-${side}: ${obj.marginValues[axisNumber]};
-  // 				--${pf}gap-${axis}: ${value};
-  // 				--${pf}margin-${side}: calc(
-  // 					(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) / (100 - ${unitlessPercentage}) * 100)
-  // 					+ var(--${pf}orig-margin-${side})
-  // 					) !important;
-  // 				margin-${side}: var(--has-display-flex) var(--${pf}margin-${side});`
-  // 			);
-  // 			// if ((percentageRowGaps && axis === "row") || axis === "column") {
-  // 			// 	container.append(
-  // 			// 		`${pf}gap-percentage-decimal-${axis}: ${number / 100};
-  // 			// ${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, var(${pf}gap-percentage-to-pixels-${axis}, calc( ((var(${pf}gap-parent-${axis}, 0%) - ${value}) * var(${pf}width-percentages-decimal, 1)) / (100 - ${number}) * 100))) !important;`
-  // 			// 	);
-  // 			// }
-  // 			// else {
-  // 			// 	container.append(
-  // 			// 		`${pf}gap-container-${axis}: var(--fgp-gap-item-row) !important;`
-  // 			// 	);
-  // 			// }
-  // 		}
-  // 		// Pixels, Ems
-  // 		else {
-  // 			// formula: (parent - self)
-  // 			container.append(
-  // 				`--${pf}orig-margin-${side}: ${obj.marginValues[axisNumber]};
-  // 				--${pf}gap-${axis}: ${value};
-  // 				--${pf}margin-${side}: calc(var(--${pf}parent-gap-${axis}, 0px) - var(--${pf}gap-${axis}) + var(--${pf}orig-margin-${side})) !important;
-  // 				margin-${side}: var(--has-display-flex) var(--${pf}margin-${side});`
-  // 			);
-  // 			// ${pf}gap-container-${axis}: var(${pf}has-polyfill-gap-container, calc(var(${pf}gap-parent-${axis}, 0px) - ${value})) !important;
-  // 		}
-  // 		// reset.append(
-  // 		// 	`${pf}gap-item-${axis}: initial;`
-  // 		// );
-  // 		item.append(
-  // 			`--${pf}parent-gap-${axis}: ${value};
-  // 			--${pf}margin-${side}: var(--${pf}gap-${axis});
-  // 			margin-${side}: var(--${pf}margin-${side});`
-  // 		);
-  // 		// ${pf}gap-container-${axis}: initial;
-  // 		// ${pf}gap-item-${axis}: var(${pf}has-polyfill-gap-item, ${value}) !important;
-  // 		// ${pf}gap-${axis}: var(${pf}gap-item-${axis});
-  // 		if ((percentageRowGaps && axis === "row") || axis === "column") {
-  // 			// item.append(
-  // 			// 	`${pf}gap-parent-${axis}: var(${pf}has-polyfill-gap-item, ${value}) !important;
-  // 			// 	margin-${side}: var(${pf}gap-${axis});`
-  // 			// );
-  // 		}
-  // 		// container.append(
-  // 		// 	`${pf}gap-parent-${axis}: initial;
-  // 		// ${pf}gap-item-${axis}: initial;
-  // 		// ${pf}gap-${axis}: var(${pf}gap-container-${axis}) !important;`
-  // 		// );
-  // 		// if ((percentageRowGaps && axis === "row") || axis === "column") {
-  // 		// 	// Needed to switch margin values depending on row/top or column/left marginValues => [top, left] // may need changing to [top, right, bottom, left]?
-  // 		// 	var axisNumber = axis === "row" ? 0 : 1
-  // 		// 	// Moved !important to from margin property to custom property. Not sure if this breaks anything
-  // 		// 	container.append(
-  // 		// 		`${pf}margin-${side}: calc(var(${pf}gap-${axis}) + ${obj.marginValues[axisNumber]}) !important;
-  // 		// 		margin-${side}: var(${pf}margin-${side});`
-  // 		// 	);
-  // 		// }
-  // 		// If web components
-  // 		if (opts.webComponents === true) {
-  // 			// container.before(slotted);
-  // 			// slotted.append(
-  // 			// 	`${pf}gap-parent-${axis}: ${value};
-  // 			// ${pf}gap-item-${axis}: ${value};
-  // 			// ${pf}gap-${axis}: var(${pf}gap-item-${axis});`
-  // 			// );
-  // 			// if ((percentageRowGaps && axis === "row") || axis === "column") {
-  // 			// 	slotted.append(
-  // 			// 		`margin-${side}: var(${pf}gap-${axis}) !important;`
-  // 			// 	);
-  // 			// }
-  // 		}
-  // 	});
-  // 	item.append(`pointer-events: all;`)
-  // 	container.append(
-  // 		`pointer-events: none;
-  // 	padding-top: 0.02px;`)
-  // 	container.walk(i => { i.raws.before = "\n\t" });
-  // 	item.walk(i => { i.raws.before = "\n\t" });
-  // 	reset.walk(i => { i.raws.before = "\n\t" });
-  // 	slotted.walk(i => { i.raws.before = "\n\t" });
-  // }
-  // function addMargin(rule, obj) {
-  // 	// Rewrites margin properties for:
-  // 	// margin: 1em; => margin: calc() 1em calc();
-  // 	// margin-top: 1em; => margin-top: calc();
-  // 	// margin-left: 1em; => margin-left: calc();
-  // 	function ifUnit(value) {
-  // 		var regex = /^calc\(|([0-9|.]+px|cm|mm|in|pt|pc|em|ex|ch|rem|vw|vh|vmin|vmax|%)$/
-  // 		return regex.test(value)
-  // 	}
-  // 	const origContainer = obj.rules.orig;
-  // 	const container = obj.rules.container
-  // 	if ((opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig?.selector))) {
-  // 		rule.walkDecls((decl) => {
-  // 			if (ifUnit(decl.value)) {
-  // 				origContainer.after(container);
-  // 				if (decl.prop === "margin") {
-  // 					container.append(
-  // 						`margin: calc(var(${pf}gap-row) + ${obj.marginValues[0]}) ${obj.marginValues[1]} calc(var(${pf}gap-column) + ${obj.marginValues[0]})`
-  // 					)
-  // 				}
-  // 				if (decl.prop === "margin-top") {
-  // 					container.append(
-  // 						`margin-top: calc(var(${pf}gap-row) + ${obj.marginValues[0]})`
-  // 					)
-  // 				}
-  // 				if (decl.prop === "margin-left") {
-  // 					container.append(
-  // 						`margin-left: calc(var(${pf}gap-column) + ${obj.marginValues[1]})`
-  // 					)
-  // 				}
-  // 				// let axis = prop === "width" ? "column" : "row";
-  // 				container.walk(i => { i.raws.before = "\n\t"; });
-  // 			}
-  // 		})
-  // 	}
-  // }
-  // function removeGap(rule) {
-  // 	rule.walkDecls((decl) => {
-  // 		if (decl.prop === "gap" || decl.prop === "column-gap" || decl.prop === "row-gap") {
-  // 			// FIXME: Prevent gap from being deletec in certain scenarios // Thing this is working?
-  // 			if (!(opts.flexGapNotSupported || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector)))) {
-  // 				decl.remove()
-  // 			}
-  // 		}
-  // 	})
-  // }
-
+  }
 
   return {
     postcssPlugin: 'postcss-gap',
@@ -561,10 +373,10 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
             origRule = false;
           }
         });
-        var hasFgp = false;
+        var shouldPolyfill = false;
 
         if (Array.isArray(opts.only) || opts.only === true) {
-          hasFgp = false;
+          shouldPolyfill = false;
         }
 
         if (origRule) {
@@ -575,7 +387,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
             hasGap: false,
             hasFlex: false,
             hasMargin: false,
-            hasFgp: hasFgp
+            shouldPolyfill: shouldPolyfill
           };
           rule.walkDecls(decl => {
             getRules(decl, obj, root);
@@ -587,11 +399,11 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
 
           if (Array.isArray(opts.only) || opts.only === true) {
             if (obj.hasFlex && obj.hasGap) {
-              obj.hasFgp = true;
+              obj.shouldPolyfill = true;
             }
           } else {
-            if (obj.hasFlex || obj.hasMargin || obj.hasGap) {
-              obj.hasFgp = true;
+            if (obj.hasFlex || obj.hasMargin || obj.hasGap || obj.hasWidth || obj.hasHeight) {
+              obj.shouldPolyfill = true;
             }
           }
 
@@ -601,57 +413,53 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::
                 return item.test(rule.selector);
               }
             })) {
-              obj.hasFgp = true;
+              obj.shouldPolyfill = true;
             }
-          }
+          } // If rule contains comment /* apply fgp */ then polyfill it
+
 
           rule.walkComments(comment => {
             if (comment.text === "apply fgp") {
               comment.remove();
-              obj.hasFgp = true;
+              obj.shouldPolyfill = true;
             }
           });
 
-          if (obj.hasWidth || obj.hasHeight) {
+          if (obj.shouldPolyfill) {
             addWidth(rule, obj);
-          }
-
-          if (obj.hasFgp) {
             rewriteFlex(rule, obj); // addMargin(rule, obj)
 
-            rewriteMargin(rule, obj); // if ((obj.hasGap && obj.hasFlex) || (opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(rule.selector) && !obj.hasFlex)) {
-            // 	// addFlex(rule, obj);
-            // 	// addGap(rule, obj, opts);
-            // 	// removeGap(rule);
-            // }
+            rewriteMargin(rule, obj);
 
-            if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
-              obj.rules.orig.before(obj.rules.container);
-              obj.rules.container.before(obj.rules.item);
-              obj.rules.item.before(obj.rules.reset);
+            if (obj.hasFlex || obj.hasGap || obj.hasMargin || !(obj.hasWidth || obj.hasHeight)) {
+              if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
+                obj.rules.orig.before(obj.rules.container);
+                obj.rules.container.before(obj.rules.item);
+                obj.rules.item.before(obj.rules.reset);
+              }
+
+              if (obj.hasFlex) {
+                obj.rules.item.before(obj.rules.reset);
+              }
+
+              if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
+                obj.rules.orig.before(obj.rules.item);
+              } // Clean
+
+
+              obj.rules.orig.walk(i => {
+                return i.raws.before = "\n\t";
+              });
+              obj.rules.container.walk(i => {
+                i.raws.before = "\n\t";
+              });
+              obj.rules.item.walk(i => {
+                i.raws.before = "\n\t";
+              });
+              obj.rules.reset.walk(i => {
+                i.raws.before = "\n\t";
+              });
             }
-
-            if (obj.hasFlex) {
-              obj.rules.item.before(obj.rules.reset);
-            }
-
-            if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
-              obj.rules.orig.before(obj.rules.item);
-            } // Clean
-
-
-            obj.rules.orig.walk(i => {
-              return i.raws.before = "\n\t";
-            });
-            obj.rules.container.walk(i => {
-              i.raws.before = "\n\t";
-            });
-            obj.rules.item.walk(i => {
-              i.raws.before = "\n\t";
-            });
-            obj.rules.reset.walk(i => {
-              i.raws.before = "\n\t";
-            });
           }
         }
       });

@@ -10,8 +10,9 @@
 .flex {
 	display: flex;
 	gap: 2em;
+	width: 200px;
 }
 
 .test {
-	margin: 10px;
+	width: 200px;
 }

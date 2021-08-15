@@ -71,11 +71,17 @@
 
 
 .page {
-	max-width: 54em;
+	max-width: var(--fgp-max-width, 54em);
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0 2em;
 	/* padding-top: 246px; */
+}
+
+
+.flex-gap-not-supported .page {
+	/* added by fgp */
+	--fgp-max-width: var(--element-has-fgp) calc(54em + var(--fgp-gap-row, 0%));
 }
 
 .outline {
@@ -418,17 +424,22 @@ a {
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
-.width-400px {
-	width: var(--fgp-width, 400px);;
-}
-
 .flex-gap-not-supported .width-400px {
 	/* added by fgp */
 	--fgp-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-column, 0%));
 }
 
-.height-400px {
-	height: var(--fgp-height, 400px);;
+.width-400px {
+	width: var(--fgp-width, 400px);
+}
+
+.flex-gap-not-supported .max-width-400px {
+	/* added by fgp */
+	--fgp-max-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-row, 0%));
+}
+
+.max-width-400px {
+	max-width: var(--fgp-max-width, 400px);
 }
 
 .flex-gap-not-supported .height-400px {
@@ -436,8 +447,8 @@ a {
 	--fgp-height: var(--element-has-fgp) calc(400px + var(--fgp-gap-row, 0%));
 }
 
-.width-50\% {
-	width: var(--fgp-width, 50%);;
+.height-400px {
+	height: var(--fgp-height, 400px);
 }
 
 .flex-gap-not-supported .width-50\% {
@@ -445,13 +456,17 @@ a {
 	--fgp-width: var(--element-has-fgp) calc(50% + var(--fgp-gap-column, 0%));
 }
 
-.height-50\% {
-	height: var(--fgp-height, 50%);;
+.width-50\% {
+	width: var(--fgp-width, 50%);
 }
 
 .flex-gap-not-supported .height-50\% {
 	/* added by fgp */
 	--fgp-height: var(--element-has-fgp) calc(50% + var(--fgp-gap-row, 0%));
+}
+
+.height-50\% {
+	height: var(--fgp-height, 50%);
 }
 
 .flex-gap-not-supported .margin-20px > * > * {
@@ -508,13 +523,17 @@ a {
 	flex-grow: 1;
 }
 
-.width-50\% {
-	width: var(--fgp-width, calc(50% - var(--gap)));;
-}
-
 .flex-gap-not-supported .width-50\% {
 	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(calc(50% - var(--gap)) + var(--fgp-gap-column, 0%));
+	--fgp-width: var(--element-has-fgp) calc(50% + var(--fgp-gap-column, 0%));
+}
+
+.width-50\% {
+	width: var(--fgp-width, 50%);
+}
+
+.item {
+	flex: calc(50% - var(--gap));
 }
 
 .flex-gap-not-supported .grid > * {
@@ -559,13 +578,13 @@ a {
 	--parent-has-display-flex: initial !important;
 }
 
-.w {
-	width: var(--fgp-width, auto);;
-}
-
 .flex-gap-not-supported .w {
 	/* added by fgp */
 	--fgp-width: var(--element-has-fgp) calc(auto + var(--fgp-gap-column, 0%));
+}
+
+.w {
+	width: var(--fgp-width, auto);
 }
 
 .flex-gap-not-supported .header > * {
@@ -841,16 +860,16 @@ p:last-child {
 	flex-grow: 1;
 	--gap: 20px;
 	gap: var(--gap);
-	width: 50%;
+	max-width: 400px;
 }
 
 .item {
-	width: calc(50% - var(--gap))
+	flex: calc(50% - var(--gap));
 }
 	</pre>
 
 	<div class="outline">
-		<div class="container gap-20px flex-wrap grow width-50%">
+		<div class="container gap-20px flex-wrap grow max-width-400px">
 			<div class="item width-50%">A</div>
 			<div class="item width-50%">B</div>
 			<div class="item width-50%">C</div>

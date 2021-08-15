@@ -161,6 +161,10 @@ a {
 	width: 400px;
 }
 
+.max-width-400px {
+	max-width: 400px;
+}
+
 .height-400px {
 	height: 400px;
 }
@@ -191,7 +195,11 @@ a {
 }
 
 .width-50\% {
-	width: calc(50% - var(--gap));
+	width: 50%;
+}
+
+.item {
+	flex: calc(50% - var(--gap));
 }
 
 .grid {
@@ -473,16 +481,16 @@ p:last-child {
 	flex-grow: 1;
 	--gap: 20px;
 	gap: var(--gap);
-	width: 50%;
+	max-width: 400px;
 }
 
 .item {
-	width: calc(50% - var(--gap))
+	flex: calc(50% - var(--gap));
 }
 	</pre>
 
 	<div class="outline">
-		<div class="container gap-20px flex-wrap grow width-50%">
+		<div class="container gap-20px flex-wrap grow max-width-400px">
 			<div class="item width-50%">A</div>
 			<div class="item width-50%">B</div>
 			<div class="item width-50%">C</div>

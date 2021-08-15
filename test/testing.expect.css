@@ -42,6 +42,15 @@
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
+.flex {
+	display: flex;
+	--fgp-gap: var(--has-fgp, 2em);
+	gap: var(--fgp-gap, 0px);
+	width: var(--fgp-width, 200px);
+	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
+	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+}
+
 .flex > *{
 	/* added by fgp */
 	--parent-has-fgp: !important;
@@ -64,6 +73,7 @@
 
 .flex{
 	/* added by fgp */
+	--fgp-width: var(--element-has-fgp) calc(200px + var(--fgp-gap-column, 0%));
 	--has-fgp: ;
 	--element-has-fgp: ;
 	pointer-events: var(--has-fgp) none;
@@ -73,14 +83,11 @@
 	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
-.flex {
-	display: flex;
-	--fgp-gap: var(--has-fgp, 2em);
-	gap: var(--fgp-gap, 0px);
-	margin-top: var(--fgp-margin-top, var(--orig-margin-top));
-	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
+.test{
+	/* added by fgp */
+	--fgp-width: var(--element-has-fgp) calc(200px + var(--fgp-gap-column, 0%));
 }
 
 .test {
-	margin: 10px;
+	width: var(--fgp-width, 200px);
 }

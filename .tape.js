@@ -23,9 +23,6 @@ module.exports = {
 		}
 	},
 	'testing': {
-		message: 'just testing',
-		options: {
-			only: []
-		}
+		message: 'just testing'
 	}
 };
