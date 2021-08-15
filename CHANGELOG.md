@@ -1,5 +1,9 @@
 # Changes to postcss-gap-polyfil
 
+### 4.10 (1 May 2021)
+
+- Polyfill now adjusts the widths/heights of elements with flex applied to account for the negative margin used to emulate flex gap.
+
 ### 4.00 (1 May 2021)
 
 - Completely refactored from the ground up
