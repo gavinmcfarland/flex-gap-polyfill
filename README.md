@@ -13,7 +13,7 @@ This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 - Percentage gaps aren't reliable if the container is not full width of parent container
 - Width of flex items with percentages vary slightly from spec because of negative margin on container.
 
-View the [demo page](https://limitlessloop.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
+View the [demo page](https://gavinmcfarland.github.io/flex-gap-polyfill/) for various test cases of the polyfill in action.
 
 ## Example
 
