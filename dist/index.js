@@ -117,13 +117,13 @@ module.exports = (opts = {}) => {
 
     selector = {
       container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector}`,
-      item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > *`,
-      reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > * > *`
+      item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > *`).join(",")}`,
+      reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > * > *`).join(",")}`
     };
 
     if (opts.webComponents) {
-      selector.item = `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > *,
-${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector} > ::slotted(*)`;
+      selector.item = `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > *`).join(",")},
+${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > ::slotted(*)`).join(",")}`;
     } // }
     // if ((opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(obj.rules.orig.selector) && !obj.hasFlex) || (obj.hasWidth || obj.hasHeight) || (opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig.selector) && !obj.hasFlex)) {
     // 	selector = {

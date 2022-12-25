@@ -24,5 +24,8 @@ module.exports = {
 	},
 	'testing': {
 		message: 'just testing'
+	},
+	'gap-multiple-selectors': {
+		message: 'when multiple selectors are used',
 	}
 };

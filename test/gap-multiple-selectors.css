@@ -1,0 +1,12 @@
+.flex,
+[anyPrefix-flex~="~"] {
+  display: flex;
+}
+.flex-col,
+[anyPrefix-flex~="col"] {
+  flex-direction: column;
+}
+.gap-8 {
+  grid-gap: 2rem;
+  gap: 2rem;
+}
