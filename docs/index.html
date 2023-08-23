@@ -26,7 +26,7 @@
 	--parent-has-fgp: initial;
 }
 
-	.flex-gap-not-supported body > * {
+	body > * {
 	/* added by fgp */
 	--orig-margin-top: initial;
 	--orig-margin-right: initial;
@@ -63,11 +63,6 @@
 			padding: 0;
 		}
 	}
-
-
-.flex-gap-not-supported .page > * {
-	/* added by fgp */
-}
 
 
 .page {
@@ -451,6 +446,42 @@ a {
 	height: var(--fgp-height, 400px);
 }
 
+.margin-b-30px > * {
+	/* added by fgp */
+	--orig-margin-top: initial;
+	--orig-margin-right: initial;
+	--orig-margin-bottom: initial;
+	--orig-margin-left: initial;
+}
+
+.margin-b-30px {
+	--fgp-margin-top: initial;
+	--fgp-margin-left: initial;
+	--orig-margin-top: 3rem;
+	--orig-margin-right: 0px;
+	--orig-margin-bottom: 3rem;
+	--orig-margin-left: 0px;
+	margin: var(--fgp-margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--fgp-margin-left, var(--orig-margin-left));
+}
+
+.margin-30px > * {
+	/* added by fgp */
+	--orig-margin-top: initial;
+	--orig-margin-right: initial;
+	--orig-margin-bottom: initial;
+	--orig-margin-left: initial;
+}
+
+.margin-30px {
+	--fgp-margin-top: initial;
+	--fgp-margin-left: initial;
+	--orig-margin-top: 3rem;
+	--orig-margin-right: 3rem;
+	--orig-margin-bottom: 3rem;
+	--orig-margin-left: 3rem;
+	margin: var(--fgp-margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--fgp-margin-left, var(--orig-margin-left));
+}
+
 .flex-gap-not-supported .width-50\% {
 	/* added by fgp */
 	--fgp-width: var(--element-has-fgp) calc(50% + var(--fgp-gap-column, 0%));
@@ -477,10 +508,6 @@ a {
 
 .flex-gap-not-supported .margin-20px > * {
 	/* added by fgp */
-	--orig-margin-top: initial;
-	--orig-margin-right: initial;
-	--orig-margin-bottom: initial;
-	--orig-margin-left: initial;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
@@ -488,6 +515,14 @@ a {
 	--fgp-parent-gap-column: 20px;
 	--fgp-margin-left: var(--parent-has-fgp) calc(var(--fgp-gap-column) + var(--orig-margin-left, 0px));
 	margin-left: var(--fgp-margin-left);
+}
+
+.margin-20px > * {
+	/* added by fgp */
+	--orig-margin-top: initial;
+	--orig-margin-right: initial;
+	--orig-margin-bottom: initial;
+	--orig-margin-left: initial;
 }
 
 .flex-gap-not-supported .margin-20px {
@@ -536,7 +571,7 @@ a {
 	flex: calc(50% - var(--gap));
 }
 
-.flex-gap-not-supported .grid > * {
+.grid > * {
 	/* added by fgp */
 	--orig-margin-left: initial;
 }
@@ -544,7 +579,7 @@ a {
 .grid {
 	display: grid;
 	--fgp-margin-left: initial;
-	--orig-margin-left: 20px;
+	--orig-margin-left: 40px;
 	margin-left: var(--fgp-margin-left, var(--orig-margin-left));
 }
 
@@ -587,7 +622,7 @@ a {
 	width: var(--fgp-width, auto);
 }
 
-.flex-gap-not-supported .header > * {
+.header > * {
 	/* added by fgp */
 	--orig-margin-left: initial;
 }
@@ -609,7 +644,7 @@ a {
 	padding: 2em;
 }
 
-.flex-gap-not-supported .header h1 > * {
+.header h1 > * {
 	/* added by fgp */
 	--orig-margin-top: initial;
 }
@@ -926,10 +961,4 @@ p:last-child {
 			<div>D</div>
 		</div>
 	</div>
-
-</div>
-
-	</body>
-
-</html>
 

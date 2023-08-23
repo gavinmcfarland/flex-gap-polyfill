@@ -113,28 +113,40 @@ module.exports = (opts = {}) => {
 		}
 
 		// if (obj.hasGap && obj.hasFlex) {
-			selector = {
-				container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector}`,
-				item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
-					.split(",")
-					.map((item) => `${item} > *`)
-					.join(",")}`,
-				reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
-					.split(",")
-					.map((item) => `${item} > * > *`)
-					.join(",")}`,
-			};
+		selector = {
+			container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector}`,
+			item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
+				.split(",")
+				.map((item) => `${item} > *`)
+				.join(",")}`,
+			reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
+				.split(",")
+				.map((item) => `${item} > * > *`)
+				.join(",")}`,
+			itemUniversal: `${cssModule}${cssModuleEnd}${obj.rules.orig.selector
+				.split(",")
+				.map((item) => `${item} > *`)
+				.join(",")}`,
+		};
 
-			if (opts.webComponents) {
-				selector.item = `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
-					.split(",")
-					.map((item) => `${item} > *`)
-					.join(",")},
+		if (opts.webComponents) {
+			selector.item = `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
+				.split(",")
+				.map((item) => `${item} > *`)
+				.join(",")},
 ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 					.split(",")
 					.map((item) => `${item} > ::slotted(*)`)
 					.join(",")}`;
-			}
+			selector.itemUniversal = `${cssModule}${cssModuleEnd}${obj.rules.orig.selector
+				.split(",")
+				.map((item) => `${item} > *`)
+				.join(",")},
+		${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
+					.split(",")
+					.map((item) => `${item} > ::slotted(*)`)
+					.join(",")}`;
+		}
 		// }
 
 		// if ((opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(obj.rules.orig.selector) && !obj.hasFlex) || (obj.hasWidth || obj.hasHeight) || (opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig.selector) && !obj.hasFlex)) {
@@ -148,10 +160,12 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 
 		obj.rules.container = postcss.rule({ selector: selector.container });
 		obj.rules.item = postcss.rule({ selector: selector.item });
+		obj.rules.itemUniversal = postcss.rule({ selector: selector.itemUniversal });
 		obj.rules.reset = postcss.rule({ selector: selector.reset });
 
 		obj.rules.container.prepend(postcss.comment({ text: 'added by fgp' }))
 		obj.rules.item.prepend(postcss.comment({ text: 'added by fgp' }))
+		obj.rules.itemUniversal.prepend(postcss.comment({ text: 'added by fgp' }))
 		obj.rules.reset.prepend(postcss.comment({ text: 'added by fgp' }))
 	}
 
@@ -159,7 +173,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 		var fileName = root.source.input.file
 
 		// This avoids adding :root selector to module files used by Next.js
-		if (!(fileName && (fileName.endsWith(".module.css") || fileName.endsWith(".module.scss") || fileName.endsWith(".module.sass") || fileName.endsWith(".module.pcss") ))) {
+		if (!(fileName && (fileName.endsWith(".module.css") || fileName.endsWith(".module.scss") || fileName.endsWith(".module.sass") || fileName.endsWith(".module.pcss")))) {
 			const rootRule = postcss.rule({ selector: ":root" });
 
 			rule.before(rootRule);
@@ -267,7 +281,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 
 	function rewriteMargin(rule, obj) {
 
-		let { orig, container, item, reset} = obj.rules
+		let { orig, container, item, reset, itemUniversal } = obj.rules
 
 		// 1. Replace existing margin-left and margin-top
 		orig.walkDecls((decl) => {
@@ -282,7 +296,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 					decl.before(`--orig-${decl.prop}: ${value};`);
 					decl.value = `var(--${pf}${decl.prop}, var(--orig-${decl.prop}))`
 
-					item.append(`--orig-${decl.prop}: initial;`)
+					itemUniversal.append(`--orig-${decl.prop}: initial;`)
 				}
 			}
 
@@ -290,16 +304,16 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 				// TODO: Need to catch when value is auto as can't work with calc
 				decl.before(`--${pf}margin-top: initial;`);
 				decl.before(`--${pf}margin-left: initial;`);
-					decl.before(`--orig-margin-top: ${obj.marginValues[0]};`);
-					decl.before(`--orig-margin-right: ${obj.marginValues[1]};`);
-					decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);
-					decl.before(`--orig-margin-left: ${obj.marginValues[3]};`);
+				decl.before(`--orig-margin-top: ${obj.marginValues[0]};`);
+				decl.before(`--orig-margin-right: ${obj.marginValues[1]};`);
+				decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);
+				decl.before(`--orig-margin-left: ${obj.marginValues[3]};`);
 				decl.value = `var(--${pf}margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--${pf}margin-left, var(--orig-margin-left))`
 
-				item.append(`--orig-margin-top: initial;`)
-				item.append(`--orig-margin-right: initial;`)
-				item.append(`--orig-margin-bottom: initial;`)
-				item.append(`--orig-margin-left: initial;`)
+				itemUniversal.append(`--orig-margin-top: initial;`)
+				itemUniversal.append(`--orig-margin-right: initial;`)
+				itemUniversal.append(`--orig-margin-bottom: initial;`)
+				itemUniversal.append(`--orig-margin-left: initial;`)
 			}
 		})
 
@@ -320,8 +334,8 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 		})
 
 		if (obj.hasFlex || obj.hasGap) {
-		container.append(`pointer-events: var(--has-fgp) none;`)
-		item.append(`pointer-events: var(--parent-has-fgp) auto;`)
+			container.append(`pointer-events: var(--has-fgp) none;`)
+			item.append(`pointer-events: var(--parent-has-fgp) auto;`)
 		}
 
 
@@ -369,7 +383,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 						`--${pf}gap-${axis}: ${value};`
 					)
 					container.append(`--${pf}margin-${side}: var(--has-fgp) calc(var(--${pf}parent-gap-${axis}, 0px) / (1 + var(--${pf}-parent-gap-as-decimal, 0)) - var(--${pf}gap-${axis}) + var(--orig-margin-${side}, 0px)) !important;`
-						);
+					);
 				}
 
 				if (parse(value).nodes[0].unit === "%") {
@@ -498,6 +512,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 								obj.rules.orig.before(obj.rules.container);
 
 								obj.rules.container.before(obj.rules.item);
+								obj.rules.container.before(obj.rules.itemUniversal);
 
 								obj.rules.item.before(obj.rules.reset);
 							}
@@ -508,6 +523,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 
 							if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
 								obj.rules.orig.before(obj.rules.item);
+								obj.rules.orig.before(obj.rules.itemUniversal);
 							}
 
 							// Clean
@@ -516,7 +532,20 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 							});
 							obj.rules.container.walk(i => { i.raws.before = "\n\t" });
 							obj.rules.item.walk(i => { i.raws.before = "\n\t" });
+							obj.rules.itemUniversal.walk(i => { i.raws.before = "\n\t" });
 							obj.rules.reset.walk(i => { i.raws.before = "\n\t" });
+
+							// Remove empty rules created/added by plugin
+							root.walkRules((rule) => {
+
+								// Check if the rule has no declarations but only comments
+								const hasDeclarations = rule.nodes.some(node => node.type === 'decl');
+								const hasOnlyComments = rule.nodes.every(node => node.type === 'comment' && node.text === "added by fgp");
+
+								if (!hasDeclarations && hasOnlyComments) {
+									rule.remove();
+								}
+							});
 						}
 
 					}

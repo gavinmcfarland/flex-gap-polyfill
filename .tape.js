@@ -7,6 +7,9 @@ module.exports = {
 	// 		flexGapNotSupported: '.flexGapNotSupported'
 	// 	}
 	// },
+	'gap-margin-issue': {
+		message: 'works with margin on parent and grid'
+	},
 	'gap-width': {
 		message: 'works with width'
 	},

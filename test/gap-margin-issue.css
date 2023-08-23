@@ -1,0 +1,18 @@
+.wrapper {
+	margin: 3rem 0;
+	border: 1px solid black;
+}
+.grid {
+	display: grid;
+	gap: 4rem;
+	grid-template-columns: 24rem 1fr;
+	border: 1px solid red;
+}
+
+.empty-rule {
+	/* added by fgp */
+}
+
+.empty-rule-2 {
+	/* my custom comment */
+}

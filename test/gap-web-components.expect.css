@@ -44,7 +44,6 @@
 	/* added by fgp */
 	--parent-has-fgp: !important;
 	--element-has-fgp: initial;
-	--orig-margin-top: initial;
 	pointer-events: var(--parent-has-fgp) auto;
 	--fgp-parent-gap-row: 20px;
 	--fgp-margin-top: var(--parent-has-fgp) calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
@@ -59,6 +58,12 @@
 	--parent-has-fgp: initial;
 	--fgp-parent-gap-row: initial;
 	--fgp-parent-gap-column: initial;
+}
+
+.flex-and-gap > *,
+		.flex-and-gap > ::slotted(*) {
+	/* added by fgp */
+	--orig-margin-top: initial;
 }
 
 .flex-and-gap {
@@ -84,7 +89,7 @@
 }
 
 .gap-and-no-flex > *,
-.gap-and-no-flex > ::slotted(*) {
+		.gap-and-no-flex > ::slotted(*) {
 	/* added by fgp */
 	--orig-margin-top: initial;
 	--orig-margin-left: initial;

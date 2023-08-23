@@ -114,12 +114,15 @@ module.exports = (opts = {}) => {
     selector = {
       container: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector}`,
       item: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > *`).join(",")}`,
-      reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > * > *`).join(",")}`
+      reset: `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > * > *`).join(",")}`,
+      itemUniversal: `${cssModule}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > *`).join(",")}`
     };
 
     if (opts.webComponents) {
       selector.item = `${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > *`).join(",")},
 ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > ::slotted(*)`).join(",")}`;
+      selector.itemUniversal = `${cssModule}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > *`).join(",")},
+		${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split(",").map(item => `${item} > ::slotted(*)`).join(",")}`;
     } // }
     // if ((opts.tailwindCSS && /^.gap(?=\b|[0-9])/gmi.test(obj.rules.orig.selector) && !obj.hasFlex) || (obj.hasWidth || obj.hasHeight) || (opts.tailwindCSS && /^.-?m(y-[0-9]|x-[0-9]|-px|-[0-9].?[0-9]?)/gmi.test(obj.rules.orig.selector) && !obj.hasFlex)) {
     // 	selector = {
@@ -137,6 +140,9 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
     obj.rules.item = postcss.rule({
       selector: selector.item
     });
+    obj.rules.itemUniversal = postcss.rule({
+      selector: selector.itemUniversal
+    });
     obj.rules.reset = postcss.rule({
       selector: selector.reset
     });
@@ -144,6 +150,9 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
       text: 'added by fgp'
     }));
     obj.rules.item.prepend(postcss.comment({
+      text: 'added by fgp'
+    }));
+    obj.rules.itemUniversal.prepend(postcss.comment({
       text: 'added by fgp'
     }));
     obj.rules.reset.prepend(postcss.comment({
@@ -241,7 +250,8 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
       orig,
       container,
       item,
-      reset
+      reset,
+      itemUniversal
     } = obj.rules; // 1. Replace existing margin-left and margin-top
 
     orig.walkDecls(decl => {
@@ -257,7 +267,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
           decl.before(`--${pf}${decl.prop}: initial;`);
           decl.before(`--orig-${decl.prop}: ${value};`);
           decl.value = `var(--${pf}${decl.prop}, var(--orig-${decl.prop}))`;
-          item.append(`--orig-${decl.prop}: initial;`);
+          itemUniversal.append(`--orig-${decl.prop}: initial;`);
         }
       }
 
@@ -270,10 +280,10 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
         decl.before(`--orig-margin-bottom: ${obj.marginValues[2]};`);
         decl.before(`--orig-margin-left: ${obj.marginValues[3]};`);
         decl.value = `var(--${pf}margin-top, var(--orig-margin-top)) var(--orig-margin-right) var(--orig-margin-bottom) var(--${pf}margin-left, var(--orig-margin-left))`;
-        item.append(`--orig-margin-top: initial;`);
-        item.append(`--orig-margin-right: initial;`);
-        item.append(`--orig-margin-bottom: initial;`);
-        item.append(`--orig-margin-left: initial;`);
+        itemUniversal.append(`--orig-margin-top: initial;`);
+        itemUniversal.append(`--orig-margin-right: initial;`);
+        itemUniversal.append(`--orig-margin-bottom: initial;`);
+        itemUniversal.append(`--orig-margin-left: initial;`);
       }
     }); // 2. Add margin when gap present
 
@@ -435,6 +445,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
               if (!(obj.hasMargin && !obj.hasFlex && !obj.hasGap)) {
                 obj.rules.orig.before(obj.rules.container);
                 obj.rules.container.before(obj.rules.item);
+                obj.rules.container.before(obj.rules.itemUniversal);
                 obj.rules.item.before(obj.rules.reset);
               }
 
@@ -444,6 +455,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
 
               if (obj.hasMargin && !obj.hasFlex && !obj.hasGap) {
                 obj.rules.orig.before(obj.rules.item);
+                obj.rules.orig.before(obj.rules.itemUniversal);
               } // Clean
 
 
@@ -456,8 +468,21 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
               obj.rules.item.walk(i => {
                 i.raws.before = "\n\t";
               });
+              obj.rules.itemUniversal.walk(i => {
+                i.raws.before = "\n\t";
+              });
               obj.rules.reset.walk(i => {
                 i.raws.before = "\n\t";
+              }); // Remove empty rules created/added by plugin
+
+              root.walkRules(rule => {
+                // Check if the rule has no declarations but only comments
+                const hasDeclarations = rule.nodes.some(node => node.type === 'decl');
+                const hasOnlyComments = rule.nodes.every(node => node.type === 'comment' && node.text === "added by fgp");
+
+                if (!hasDeclarations && hasOnlyComments) {
+                  rule.remove();
+                }
               });
             }
           }
