@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.test {
+	height: attr(height);
+	aspect-ratio: attr(width) / attr(height);
+}

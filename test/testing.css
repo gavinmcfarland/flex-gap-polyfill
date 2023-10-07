@@ -13,6 +13,7 @@
 	width: 200px;
 }
 
-.test {
-	width: 200px;
+img[width][height] {
+	height: auto;
+	aspect-ratio: attr(width) / attr(height);
 }

@@ -83,11 +83,12 @@
 	--fgp-margin-left: var(--has-fgp) calc(var(--fgp-parent-gap-column, 0px) / (1 + var(--fgp--parent-gap-as-decimal, 0)) - var(--fgp-gap-column) + var(--orig-margin-left, 0px)) !important;
 }
 
-.test{
-	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(200px + var(--fgp-gap-column, 0%));
+img[width][height] {
+	height: var(--fgp-height, auto);
+	aspect-ratio: attr(width) / attr(height);
 }
 
-.test {
-	width: var(--fgp-width, 200px);
+img[width][height]{
+	/* added by fgp */
+	--fgp-height: var(--element-has-fgp) calc(auto + var(--fgp-gap-row, 0%));
 }
