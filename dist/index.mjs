@@ -360,7 +360,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
   }
 
   return {
-    postcssPlugin: 'postcss-gap',
+    postcssPlugin: 'flex-gap-polyfill',
 
     Once(root) {
       var rootAdded = false;
