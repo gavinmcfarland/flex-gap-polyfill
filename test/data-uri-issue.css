@@ -1,0 +1,8 @@
+/* Not sure yet, how to recreate this issue. Need more feedback from user */
+
+body {
+	width: 800px;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAC0lEQVR42mP8/wcAAwAB/omvOHsAAAAASUVORK5CYII=");
+	background-size: cover;
+	background-repeat: no-repeat;
+}

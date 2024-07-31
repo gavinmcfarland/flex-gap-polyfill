@@ -1,0 +1,20 @@
+/* Not sure yet, how to recreate this issue. Need more feedback from user */
+
+:root {
+	/* added by fgp */
+	--has-fgp: initial;
+	--element-has-fgp: initial;
+	--parent-has-fgp: initial;
+}
+
+body {
+	width: var(--fgp-width, 800px);
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAC0lEQVR42mP8/wcAAwAB/omvOHsAAAAASUVORK5CYII=");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+body {
+	/* added by fgp */
+	--fgp-width: var(--element-has-fgp) calc(800px + var(--fgp-gap-column, 0%));
+}

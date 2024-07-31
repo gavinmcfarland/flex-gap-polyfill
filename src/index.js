@@ -192,11 +192,22 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 
 	function addWidth(rule, obj) {
 
+
 		if (obj.hasWidth || obj.hasHeight) {
 			rule.walkDecls((decl) => {
 
-				var value = parse(decl.value).nodes[0];
 				let prop = decl.prop;
+
+				// let allowedProps = [
+				// 	"width",
+				// 	"height"
+				// ]
+
+				// if (allowedProps.includes(prop)) {
+
+
+
+
 
 				if (decl.value === 0) {
 					decl.value = "0px";
@@ -211,9 +222,9 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 
 
 				if (decl.prop === "width" || decl.prop === "height" || decl.prop === "max-height" || decl.prop === "min-height" || decl.prop === "max-width" || decl.prop === "min-width") {
+					var value = parse(decl.value).nodes[0];
+
 					// Percentages
-
-
 					if (value.unit === "%") {
 						container.append(
 							`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`
@@ -257,6 +268,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 					// reset.walk(i => { i.raws.before = "\n\t"; });
 					// decl.remove()
 				}
+				// }
 			})
 		}
 	}

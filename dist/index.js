@@ -187,8 +187,11 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
   function addWidth(rule, obj) {
     if (obj.hasWidth || obj.hasHeight) {
       rule.walkDecls(decl => {
-        var value = postcssValuesParser.parse(decl.value).nodes[0];
-        let prop = decl.prop;
+        let prop = decl.prop; // let allowedProps = [
+        // 	"width",
+        // 	"height"
+        // ]
+        // if (allowedProps.includes(prop)) {
 
         if (decl.value === 0) {
           decl.value = "0px";
@@ -202,7 +205,8 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
         let axis = prop === "width" ? "column" : "row";
 
         if (decl.prop === "width" || decl.prop === "height" || decl.prop === "max-height" || decl.prop === "min-height" || decl.prop === "max-width" || decl.prop === "min-width") {
-          // Percentages
+          var value = postcssValuesParser.parse(decl.value).nodes[0]; // Percentages
+
           if (value.unit === "%") {
             container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`); // var precentageToDecimal = value.value / 100
             // Sort of a guess for forumla when width is a percentage
@@ -232,7 +236,8 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
             i.raws.before = "\n\t";
           }); // reset.walk(i => { i.raws.before = "\n\t"; });
           // decl.remove()
-        }
+        } // }
+
       });
     }
   }

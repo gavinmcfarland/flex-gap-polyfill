@@ -1,0 +1,28 @@
+/* Fixed by making sure only width and height decl values are parsed in addWidth() */
+
+:root {
+	/* added by fgp */
+	--has-fgp: initial;
+	--element-has-fgp: initial;
+	--parent-has-fgp: initial;
+}
+
+.thing {
+	height: var(--fgp-height, 100px);
+	filter: alpha(opacity=80);
+}
+
+.thing {
+	/* added by fgp */
+	--fgp-height: var(--element-has-fgp) calc(100px + var(--fgp-gap-row, 0%));
+}
+
+.thing2 {
+	height: var(--fgp-height, 100px);
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+
+.thing2 {
+	/* added by fgp */
+	--fgp-height: var(--element-has-fgp) calc(100px + var(--fgp-gap-row, 0%));
+}

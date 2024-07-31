@@ -1,0 +1,11 @@
+/* Fixed by making sure only width and height decl values are parsed in addWidth() */
+
+.thing {
+	height: 100px;
+	filter: alpha(opacity=80);
+}
+
+.thing2 {
+	height: 100px;
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
