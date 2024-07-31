@@ -64,6 +64,15 @@
 		}
 	}
 
+	.test {
+		width: var(--fgp-width, 800px);
+		filter: alpha(opacity=80);
+	}
+
+	.flex-gap-not-supported .test {
+	/* added by fgp */
+	--fgp-width: var(--element-has-fgp) calc(800px + var(--fgp-gap-column, 0%));
+}
 
 .page {
 	max-width: var(--fgp-max-width, 54em);
@@ -72,7 +81,6 @@
 	padding: 0 2em;
 	/* padding-top: 246px; */
 }
-
 
 .flex-gap-not-supported .page {
 	/* added by fgp */
