@@ -1,8 +1,9 @@
 # Flex Gap Polyfill
 
 [![NPM Version][npm-img]][npm-url]
-[![Linux Build Status][cli-img]][cli-url]
 [![Gitter Chat][git-img]][git-url]
+
+<!-- [![Linux Build Status][cli-img]][cli-url] -->
 
 This is a pure CSS polyfill using PostCSS to emulate flex gap using margins.
 
@@ -98,7 +99,9 @@ postcss([flexGapPolyfill(/* pluginOptions */)]).process(
 
 [npm-url]: https://www.npmjs.com/package/flex-gap-polyfill
 [npm-img]: https://img.shields.io/npm/v/flex-gap-polyfill.svg
-[cli-url]: https://travis-ci.org/gavinmcfarland/flex-gap-polyfill
+
+<!-- [cli-url]: https://travis-ci.org/gavinmcfarland/flex-gap-polyfill -->
+
 [cli-img]: https://img.shields.io/travis/gavinmcfarland/flex-gap-polyfill.svg
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
