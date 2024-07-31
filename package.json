@@ -80,6 +80,6 @@
         "polyfill"
     ],
     "dependencies": {
-        "postcss-values-parser": "^5.0.0"
+        "postcss-values-parser": "^6.0.2"
     }
 }
