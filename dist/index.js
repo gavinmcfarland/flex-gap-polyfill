@@ -12,7 +12,6 @@ var postcss__default = /*#__PURE__*/_interopDefaultLegacy(postcss);
 
 module.exports = (opts = {}) => {
   opts = opts || {};
-  console.log("------", opts);
   const pf = "fgp-";
   const flexGapNotSupported = opts.flexGapNotSupported ? opts.flexGapNotSupported + " " : "";
 
@@ -370,11 +369,6 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
   }
 
   return {
-    info(opts) {
-      opts = opts || {};
-      opts.from = opts.from || process.cwd();
-    },
-
     postcssPlugin: 'flex-gap-polyfill',
 
     Once(root) {

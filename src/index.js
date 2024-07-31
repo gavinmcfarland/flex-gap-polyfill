@@ -12,8 +12,6 @@ import { parse } from 'postcss-values-parser';
 module.exports = (opts = {}) => {
 	opts = opts || {}
 
-	console.log("------", opts)
-
 	const pf = "fgp-";
 	const flexGapNotSupported = opts.flexGapNotSupported ? opts.flexGapNotSupported + " " : "";
 
@@ -430,10 +428,7 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 	}
 
 	return {
-		info(opts) {
-			opts = opts || {}
-			opts.from = opts.from || process.cwd()
-		},
+
 		postcssPlugin: 'flex-gap-polyfill',
 
 		Once(root) {
