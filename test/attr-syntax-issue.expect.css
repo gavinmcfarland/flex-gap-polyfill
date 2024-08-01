@@ -1,0 +1,28 @@
+/* Plugin should not change aspect-ratio value */
+
+:root {
+	/* added by fgp */
+	--has-fgp: initial;
+	--element-has-fgp: initial;
+	--parent-has-fgp: initial;
+}
+
+img[width][height] {
+	height: var(--fgp-height, auto);
+	aspect-ratio: attr(width) / attr(height);
+}
+
+img[width][height] {
+	/* added by fgp */
+	--fgp-height: var(--element-has-fgp) calc(auto + var(--fgp-gap-row, 0%));
+}
+
+.test2 {
+	height: var(--fgp-height, auto);
+	aspect-ratio: attr(width)/attr(height);
+}
+
+.test2 {
+	/* added by fgp */
+	--fgp-height: var(--element-has-fgp) calc(auto + var(--fgp-gap-row, 0%));
+}

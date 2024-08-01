@@ -16,10 +16,10 @@
         "dist/index.mjs.map"
     ],
     "scripts": {
-        "build": "rollup --config .rollup.js --silent && node ./utils/preprocess.js",
+        "build": "rollup --config .rollup.js --silent && node preprocess.js",
         "prepublishOnly": "npm test",
         "pretest:tape": "npm run build",
-        "test": "npm run test:js && npm run test:tape && node ./utils/preprocess.js",
+        "test": "npm run test:js && npm run test:tape && node preprocess.js",
         "test:js": "eslint src/{*,**/*}.js --cache --ignore-path .gitignore --quiet",
         "test:tape": "postcss-tape"
     },
@@ -39,7 +39,7 @@
         "fs-extra": "^10.0.0",
         "phtml-utility-class": "^3.0.3",
         "postcss": "8.3.6",
-        "postcss-load-config": "^3.0.1",
+        "postcss-load-config": "^6.0.1",
         "postcss-nested": "^5.0.5",
         "postcss-preset-env": "^6.7.0",
         "postcss-tape": "^6.0.1",

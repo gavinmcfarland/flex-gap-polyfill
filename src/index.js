@@ -15,6 +15,7 @@ module.exports = (opts = {}) => {
 	const pf = "fgp-";
 	const flexGapNotSupported = opts.flexGapNotSupported ? opts.flexGapNotSupported + " " : "";
 
+
 	function getFlex(decl, obj) {
 		if (decl.prop === "display" && decl.value === "flex" || decl.prop === "display" && decl.value === "inline-flex") {
 			obj.hasFlex = true;

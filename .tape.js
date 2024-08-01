@@ -13,6 +13,9 @@ module.exports = {
 	// 'data-uri-issue': {
 	// 	message: 'trips when data uri used'
 	// },
+	'attr-syntax-issue': {
+		message: 'trips up when / in value name because spaces removed'
+	},
 	'equals-sign-issue': {
 		message: 'postcss-values-parser trips on equals sign'
 	},

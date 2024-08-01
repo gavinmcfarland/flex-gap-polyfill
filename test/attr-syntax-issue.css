@@ -1,0 +1,11 @@
+/* Plugin should not change aspect-ratio value */
+
+img[width][height] {
+	height: auto;
+	aspect-ratio: attr(width) / attr(height);
+}
+
+.test2 {
+	height: auto;
+	aspect-ratio: attr(width)/attr(height);
+}
