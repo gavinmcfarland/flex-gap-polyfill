@@ -7,9 +7,9 @@ module.exports = {
 	// 		flexGapNotSupported: '.flexGapNotSupported'
 	// 	}
 	// },
-	// 'gap-margin-issue': {
-	// 	message: 'works with margin on parent and grid'
-	// },
+	'gap-margin-issue': {
+		message: 'works with margin on parent and grid'
+	},
 	// 'data-uri-issue': {
 	// 	message: 'trips when data uri used'
 	// },
