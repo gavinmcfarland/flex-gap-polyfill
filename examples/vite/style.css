@@ -95,7 +95,7 @@ button:focus-visible {
 	}
 }
 
-/* flex-gap-polyfill */
+/* flex-gap-polyfill example */
 
 .container {
 	display: flex;

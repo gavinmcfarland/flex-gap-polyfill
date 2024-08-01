@@ -8,21 +8,19 @@
 }
 
 img[width][height] {
-	height: var(--fgp-height, auto);
+	height: auto;
 	aspect-ratio: attr(width) / attr(height);
 }
 
 img[width][height] {
 	/* added by fgp */
-	--fgp-height: var(--element-has-fgp) calc(auto + var(--fgp-gap-row, 0%));
 }
 
 .test2 {
-	height: var(--fgp-height, auto);
-	aspect-ratio: attr(width)/attr(height);
+	height: auto;
+	aspect-ratio: attr(width) / attr(height);
 }
 
 .test2 {
 	/* added by fgp */
-	--fgp-height: var(--element-has-fgp) calc(auto + var(--fgp-gap-row, 0%));
 }

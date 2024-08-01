@@ -7,5 +7,5 @@ img[width][height] {
 
 .test2 {
 	height: auto;
-	aspect-ratio: attr(width)/attr(height);
+	aspect-ratio: attr(width) / attr(height);
 }

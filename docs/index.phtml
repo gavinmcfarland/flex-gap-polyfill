@@ -1,4 +1,4 @@
-<html>
+<html class="flex-gap-not-supported">
 
 	<head>
 		<meta charset="UTF-8"/>
@@ -6,8 +6,10 @@
 
 		<script>
 	function toggle() {
-		var page = document.getElementById('page')
+		var page = document.getElementsByTagName('html')
 		var label = document.getElementById('label')
+
+
 
 		if (label.innerHTML === "on") {
     		label.innerHTML = "off";
@@ -15,7 +17,7 @@
     		label.innerHTML = "on";
   		}
 
-		page.classList.toggle('flex-gap-not-supported')
+		page[0].classList.toggle('flex-gap-not-supported')
 	}
 	</script>
 
@@ -262,7 +264,7 @@ p:last-child {
 
 	<body>
 
-	<div id="page" class="page flex-gap-not-supported">
+	<div id="page" class="page">
 
 	<div class="header">
 		<h1>Flex Gap Polyfill</h1>

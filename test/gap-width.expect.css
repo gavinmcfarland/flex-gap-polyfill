@@ -6,8 +6,8 @@
 }
 .test {
 	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(var(--thingy) + var(--fgp-gap-column, 0%));
-	--fgp-height: var(--element-has-fgp) calc(var(--thingy) + var(--fgp-gap-row, 0%));
+	--fgp-width: var(--element-has-fgp) calc(var(--thingy) + var(--fgp-gap-column, 0px));
+	--fgp-height: var(--element-has-fgp) calc(var(--thingy) + var(--fgp-gap-row, 0px));
 }
 .test {
 	--thingy: 200px;

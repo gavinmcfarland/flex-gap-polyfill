@@ -1,0 +1,13 @@
+:root {
+	/* added by fgp */
+	--has-fgp: initial;
+	--element-has-fgp: initial;
+	--parent-has-fgp: initial;
+}
+body {
+	/* added by fgp */
+	--fgp-min-height: var(--element-has-fgp) calc(100vh + var(--fgp-gap-row, 0px));
+}
+body {
+	min-height: var(--fgp-min-height, 100vh);
+}

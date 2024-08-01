@@ -219,19 +219,22 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector.split
             // reset.append(
             // 	`--${pf}${prop}-percentages-decimal: initial;`
             // );
-          } // Pixels, Ems
-          else {
-              container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`); // 			container.append(
-              // 				`--${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
-              // ${pf}gap-percentage-to-pixels-row: calc(-1 * ${decl.value} * var(${pf}gap-percentage-decimal-${axis})) !important;`
-              // 			);
-              // 			reset.append(
-              // 				`--${pf}gap-percentage-to-pixels-column: initial;
-              // ${pf}gap-percentage-to-pixels-row: initial;`
-              // 			);
-            }
+          } else if (decl.value !== "auto") {
+            container.append(`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0px));`); // 			container.append(
+            // 				`--${pf}gap-percentage-to-pixels-column: calc(-1 * ${decl.value} * var(${pf}gap_percentage-decimal-${axis})) !important;
+            // ${pf}gap-percentage-to-pixels-row: calc(-1 * ${decl.value} * var(${pf}gap-percentage-decimal-${axis})) !important;`
+            // 			);
+            // 			reset.append(
+            // 				`--${pf}gap-percentage-to-pixels-column: initial;
+            // ${pf}gap-percentage-to-pixels-row: initial;`
+            // 			);
+          } // If value is auto we ignore it, beacause it can't be calculated with calc
 
-          decl.value = `var(--fgp-${prop}, ${decl.value})`;
+
+          if (decl.value !== "auto") {
+            decl.value = `var(--fgp-${prop}, ${decl.value})`;
+          }
+
           container.walk(i => {
             i.raws.before = "\n\t";
           }); // reset.walk(i => { i.raws.before = "\n\t"; });

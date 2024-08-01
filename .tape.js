@@ -7,12 +7,15 @@ module.exports = {
 	// 		flexGapNotSupported: '.flexGapNotSupported'
 	// 	}
 	// },
+	// // 'data-uri-issue': {
+	// // 	message: 'trips when data uri used'
+	// // },
+	'calc-vh-issue': {
+		message: 'issue where calc doesnt work with value + 0 or 0%'
+	},
 	'gap-margin-issue': {
 		message: 'works with margin on parent and grid'
 	},
-	// 'data-uri-issue': {
-	// 	message: 'trips when data uri used'
-	// },
 	'attr-syntax-issue': {
 		message: 'trips up when / in value name because spaces removed'
 	},

@@ -1,4 +1,4 @@
-<html>
+<html class="flex-gap-not-supported">
 
 	<head>
 		<meta charset="UTF-8"/>
@@ -6,8 +6,10 @@
 
 		<script>
 	function toggle() {
-		var page = document.getElementById('page')
+		var page = document.getElementsByTagName('html')
 		var label = document.getElementById('label')
+
+
 
 		if (label.innerHTML === "on") {
     		label.innerHTML = "off";
@@ -15,7 +17,7 @@
     		label.innerHTML = "on";
   		}
 
-		page.classList.toggle('flex-gap-not-supported')
+		page[0].classList.toggle('flex-gap-not-supported')
 	}
 	</script>
 
@@ -71,7 +73,7 @@
 
 	.flex-gap-not-supported .test {
 	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(800px + var(--fgp-gap-column, 0%));
+	--fgp-width: var(--element-has-fgp) calc(800px + var(--fgp-gap-column, 0px));
 }
 
 .page {
@@ -84,7 +86,7 @@
 
 .flex-gap-not-supported .page {
 	/* added by fgp */
-	--fgp-max-width: var(--element-has-fgp) calc(54em + var(--fgp-gap-row, 0%));
+	--fgp-max-width: var(--element-has-fgp) calc(54em + var(--fgp-gap-row, 0px));
 }
 
 .outline {
@@ -429,7 +431,7 @@ a {
 
 .flex-gap-not-supported .width-400px {
 	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-column, 0%));
+	--fgp-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-column, 0px));
 }
 
 .width-400px {
@@ -438,7 +440,7 @@ a {
 
 .flex-gap-not-supported .max-width-400px {
 	/* added by fgp */
-	--fgp-max-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-row, 0%));
+	--fgp-max-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-row, 0px));
 }
 
 .max-width-400px {
@@ -447,7 +449,7 @@ a {
 
 .flex-gap-not-supported .height-400px {
 	/* added by fgp */
-	--fgp-height: var(--element-has-fgp) calc(400px + var(--fgp-gap-row, 0%));
+	--fgp-height: var(--element-has-fgp) calc(400px + var(--fgp-gap-row, 0px));
 }
 
 .height-400px {
@@ -621,13 +623,8 @@ a {
 	--parent-has-display-flex: initial !important;
 }
 
-.flex-gap-not-supported .w {
-	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(auto + var(--fgp-gap-column, 0%));
-}
-
 .w {
-	width: var(--fgp-width, auto);
+	width: auto;
 }
 
 .header > * {
@@ -672,7 +669,7 @@ p:last-child {
 
 	<body>
 
-	<div id="page" class="page flex-gap-not-supported">
+	<div id="page" class="page">
 
 	<div class="header">
 		<h1>Flex Gap Polyfill</h1>

@@ -107,7 +107,7 @@
 
 .width-400 {
 	/* added by fgp */
-	--fgp-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-column, 0%));
+	--fgp-width: var(--element-has-fgp) calc(400px + var(--fgp-gap-column, 0px));
 }
 
 .width-400 {

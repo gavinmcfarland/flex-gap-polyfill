@@ -14,7 +14,7 @@
 
 .thing {
 	/* added by fgp */
-	--fgp-height: var(--element-has-fgp) calc(100px + var(--fgp-gap-row, 0%));
+	--fgp-height: var(--element-has-fgp) calc(100px + var(--fgp-gap-row, 0px));
 }
 
 .thing2 {
@@ -24,5 +24,5 @@
 
 .thing2 {
 	/* added by fgp */
-	--fgp-height: var(--element-has-fgp) calc(100px + var(--fgp-gap-row, 0%));
+	--fgp-height: var(--element-has-fgp) calc(100px + var(--fgp-gap-row, 0px));
 }

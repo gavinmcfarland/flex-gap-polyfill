@@ -246,10 +246,10 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 						// );
 					}
 
-					// Pixels, Ems
-					else {
+					else if (decl.value !== "auto") {
+
 						container.append(
-							`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0%));`
+							`--${pf}${prop}: var(--element-has-fgp) calc(${decl.value} + var(--${pf}gap-${axis}, 0px));`
 						);
 
 						// 			container.append(
@@ -263,7 +263,10 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 						// 			);
 					}
 
-					decl.value = `var(--fgp-${prop}, ${decl.value})`
+					// If value is auto we ignore it, beacause it can't be calculated with calc
+					if (decl.value !== "auto") {
+						decl.value = `var(--fgp-${prop}, ${decl.value})`
+					}
 
 					container.walk(i => { i.raws.before = "\n\t"; });
 					// reset.walk(i => { i.raws.before = "\n\t"; });
