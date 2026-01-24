@@ -42,5 +42,11 @@ module.exports = {
 	},
 	'gap-multiple-selectors': {
 		message: 'when multiple selectors are used',
+	},
+	'undefined-selector-issue': {
+		message: 'handles cases where selector might be undefined (e.g., @media, edge cases)',
+		options: {
+			flexGapNotSupported: '.flexGapNotSupported'
+		}
 	}
 };

@@ -1,0 +1,22 @@
+/* Test case for undefined selector issue */
+/* This tests that the plugin handles cases where selector might be undefined */
+
+.container {
+	display: flex;
+	gap: 20px;
+}
+
+/* @media query with rules inside - should work fine */
+@media (max-width: 768px) {
+	.responsive {
+		display: flex;
+		gap: 10px;
+	}
+}
+
+/* Multiple selectors - should work fine */
+.selector1,
+.selector2 {
+	display: flex;
+	gap: 15px;
+}

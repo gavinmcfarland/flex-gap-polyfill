@@ -101,6 +101,12 @@ module.exports = (opts = {}) => {
 		var fileName = root.source.input.file
 		obj.rules.orig = decl.parent
 
+		// Check if parent is a rule with a selector
+		// Skip processing if parent is not a rule (e.g., @media, @import, etc.) or doesn't have a selector
+		if (!obj.rules.orig || !obj.rules.orig.selector || typeof obj.rules.orig.selector !== 'string') {
+			return;
+		}
+
 		var selector;
 
 
@@ -520,6 +526,11 @@ ${cssModule}${flexGapNotSupported}${cssModuleEnd}${obj.rules.orig.selector
 					})
 
 					if (obj.shouldPolyfill) {
+						// Skip if rules weren't set (e.g., parent doesn't have a selector)
+						if (!obj.rules.orig || !obj.rules.container) {
+							return;
+						}
+
 						addWidth(rule, obj);
 						rewriteFlex(rule, obj)
 						// addMargin(rule, obj)
